@@ -15,53 +15,56 @@ import { EmployeeInfoDTO } from 'src/app/model/EmployeeInfoDTO';
 export class AuthenService {
   id_role = "";
   isAuthen = false;
-  empolyeeInfo:EmployeeInfoDTO;
+  empolyeeInfo: EmployeeInfoDTO;
 
-  constructor(private spinner: NgxSpinnerService,public snackBar:SnackbarService,private router: Router,
-     private serverhttpService:ServerHttpService,private employee:EmployeeService,private common:CommonService) { }
+  constructor(private spinner: NgxSpinnerService, public snackBar: SnackbarService, private router: Router,
+    private serverhttpService: ServerHttpService, private employee: EmployeeService, private common: CommonService) { }
 
-  authenticate(sigIndata: SigInData){
-    if(sigIndata.getCode() == '' || sigIndata.getPass() == ''){
-      this.snackBar.openSnackBar("Vui Lòng Xem Lại Tài Khoản Và Mật Khẩu",'ĐÓNG');
+  authenticate(sigIndata: SigInData) {
+    if (sigIndata.getCode() == '' || sigIndata.getPass() == '') {
+      this.snackBar.openSnackBar("Vui Lòng Xem Lại Tài Khoản Và Mật Khẩu", 'ĐÓNG');
       return;
     } else {
-      try{
+      try {
         this.spinner.show();
-        this.serverhttpService.getAcc(sigIndata.getCode(),sigIndata.getPass()).subscribe((data1 =>{
+        this.serverhttpService.getAcc(sigIndata.getCode(), sigIndata.getPass()).subscribe((data1 => {
           this.isAuthen = true;
-          this.common.setCookie('token_key',data1['token_key'],3);
-          if(data1['status_code'] !== 'not ok'){
+          this.common.setCookie('token_key', data1['token_key'], 3);
+          if (data1['status_code'] !== 'not ok') {
             this.employee.getDetailEmployebyCode(jwt_decode(data1['token_key'])['sub']).subscribe((data => {
               this.empolyeeInfo = data;
               this.employee.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {
                 this.id_role = data['id_role'];
-                if(this.id_role == '2'){
+                if (this.id_role == '2') {
                   this.spinner.hide();
                   this.router.navigate(['dashboard']);
-                } else if (this.id_role == '1'){
+                } else if (this.id_role == '1') {
                   this.spinner.hide();
                   this.router.navigate(['employee-manage']);
-                } else if (this.id_role == '3'){
+                } else if (this.id_role == '3') {
+                  this.spinner.hide();
+                  this.router.navigate(['appraiser-request-manage']);
+                } else if (this.id_role == '4') {
                   this.spinner.hide();
                   this.router.navigate(['appraiser-request-manage']);
                 }
-                
-               }));
+
+              }));
             }))
-            
+
           } else {
-            this.snackBar.openSnackBar("Vui Lòng Xem Lại Tài Khoản Và Mật Khẩu",'ĐÓNG');
+            this.snackBar.openSnackBar("Vui Lòng Xem Lại Tài Khoản Và Mật Khẩu", 'ĐÓNG');
             this.isAuthen = false;
             this.spinner.hide();
           }
         }));
-      } catch (error){
-        this.snackBar.openSnackBar("Vui Lòng Xem Lại Tài Khoản Và Mật Khẩu",'ĐÓNG');
+      } catch (error) {
+        this.snackBar.openSnackBar("Vui Lòng Xem Lại Tài Khoản Và Mật Khẩu", 'ĐÓNG');
       };
-    
-  }
+
+    }
     return false;
   }
 
-  
+
 }

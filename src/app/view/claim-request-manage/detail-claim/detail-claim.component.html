@@ -1,5 +1,5 @@
 <div class="content-wrapper custom-wraper">
-    <div class="col-12">
+    <div class="col-6 left">
         <div class="card">
 
             <mat-tab-group>
@@ -20,13 +20,17 @@
                                     <div class="form-group ">
                                         <label for="exampleInputPassword1 ">Mã Hợp Đồng</label>
                                         <p style="color: red; ">
-                                            <span><a *ngFor="let item of custInfo" (click)="openDialogContractDetail(item.id_contract)">#HĐ{{ item?.id_contract }}&nbsp;&nbsp;</a></span>
+                                            <span><a *ngFor="let item of custInfo"
+                                                    (click)="openDialogContractDetail(item.id_contract)">#HĐ{{
+                                                    item?.id_contract }}&nbsp;&nbsp;</a></span>
                                         </p>
                                     </div>
                                     <div class="form-group ">
                                         <label for="exampleInputPassword1 ">Mã Bản Minh Họa Tương Ứng</label>
                                         <p style="color: red;">
-                                            <span><a *ngFor="let item of custInfo" (click)="openillustrationDetailDialog(item.id_illustration)">#BMH{{ item?.id_illustration }}&nbsp;&nbsp;</a></span>
+                                            <span><a *ngFor="let item of custInfo"
+                                                    (click)="openillustrationDetailDialog(item.id_illustration)">#BMH{{
+                                                    item?.id_illustration }}&nbsp;&nbsp;</a></span>
                                         </p>
                                     </div>
                                     <div class="form-group ">
@@ -222,6 +226,16 @@
                         </mat-tab>
                     </mat-tab-group>
                 </mat-tab>
+
+
+            </mat-tab-group>
+
+
+        </div>
+    </div>
+    <div class="col-6 right">
+        <div class="card">
+            <mat-tab-group>
                 <mat-tab label="Bảng minh họa">
                     <div class="col-12">
                         <div class="card-header">
@@ -255,7 +269,8 @@
                             </tr>
                             <tr>
                                 <th>Ngày Sinh</th>
-                                <td>{{illustration?.illustrationMainBenifit.birth_date_insured_person | date: 'dd-MM-yyyy'}}</td>
+                                <td>{{illustration?.illustrationMainBenifit.birth_date_insured_person | date:
+                                    'dd-MM-yyyy'}}</td>
                             </tr>
                             <tr>
                                 <th>Giới Tính</th>
@@ -360,16 +375,22 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="Giấy Tờ Liên Quan">
-                    <div>
-                        <p class="form-control-custom" *ngFor="let doc of listDocument"><a href="{{doc.url}}">{{doc.name_document}}</a></p>
-                    </div>
+                    <mat-tab-group>
+                        <mat-tab label="Tài liệu khách hàng">
+                            <p class="form-control-custom" *ngFor="let doc of listDocument"><a
+                                    href="{{doc.url}}">{{doc.name_document}}</a></p>
+                        </mat-tab>
+                        <mat-tab label="Tài liệu bồi thường">
+                            <p class="form-control-custom" *ngFor="let doc of listClaimDocument"><a
+                                    href="{{doc.url}}">{{doc.name_document}}</a></p>
+                        </mat-tab>
+                    </mat-tab-group>
                 </mat-tab>
-
             </mat-tab-group>
-
         </div>
     </div>
 </div>
 <div class="custom-div">
-    <button *ngIf="req?.status=='CXD'" class="btn btn-success custom-bnt" (click)="displayConfirmDialog()">XÉT DUYỆT</button>
+    <button *ngIf="req?.status=='CXD'" class="btn btn-success custom-bnt" (click)="displayConfirmDialog()">XÉT
+        DUYỆT</button>
 </div>

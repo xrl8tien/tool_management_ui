@@ -18,42 +18,71 @@ export class FileManagementService {
     }),
   }
 
-  public uploadFile(data:any): Observable<any>{
-    const url = this.common.makeUrl('/file_management/upload_file/');
+  //contract attachment
+  public uploadFileCustomer(data: any): Observable<any> {
+    const url = this.common.makeUrl('/file_management/upload_file_customer/');
     return this.httpClient
-    .post<any>(url,data,{ observe: 'response' })
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, { observe: 'response' })
+      .pipe(catchError(this.handleError));
   }
 
-  public saveFile(data:any): Observable<any>{
+  public saveFile(data: any): Observable<any> {
     const url = this.common.makeUrl('/attachment/save_customer_attachment/');
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public saveFileAttachment(data:any): Observable<any>{
-    const url = this.common.makeUrl('/attachment/save_attachment/');
-    return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
-  }
-
-  public getFile(data:any): Observable<any>{
+  public getFile(data: any): Observable<any> {
     const url = this.common.makeUrl('/attachment/get_customer_attachment/');
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public getFileForCustomer(data:any): Observable<any>{
+  //
+  public getFileForCustomer(data: any): Observable<any> {
     const url = this.common.makeUrlForCustomer('/customer-api/get_customer_attachment/');
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  
+  public saveFileAttachment(data: any): Observable<any> {
+    const url = this.common.makeUrl('/attachment/save_attachment/');
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public uploadFileRequest(data: any): Observable<any> {
+    const url = this.common.makeUrl('/file_management/upload_file_request/');
+    return this.httpClient
+      .post<any>(url, data, { observe: 'response' })
+      .pipe(catchError(this.handleError));
+  }
+
+  //claim attachment
+  public saveFileRequest(data: any): Observable<any> {
+    const url = this.common.makeUrl('/attachment/save_request_attachment/');
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getFileRequest(data: any): Observable<any> {
+    const url = this.common.makeUrl('/attachment/get_request_attachment/');
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getFileForRequest(data: any): Observable<any> {
+    const url = this.common.makeUrlForCustomer('/customer-api/get_request_attachment/');
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

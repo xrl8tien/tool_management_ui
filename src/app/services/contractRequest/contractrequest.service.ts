@@ -11,7 +11,7 @@ import { CommonService } from '../common/common.service';
 })
 export class ContractrequestService {
 
-  constructor(private httpClient: HttpClient, private common: CommonService,private route: Router) { }
+  constructor(private httpClient: HttpClient, private common: CommonService, private route: Router) { }
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -20,49 +20,81 @@ export class ContractrequestService {
     }),
   }
 
-  public getAllContractRequest(code_appraiser:string): Observable<any>{
+  //contract request
+  public getAllContractRequest(code_appraiser: string): Observable<any> {
     const url = this.common.makeUrl("/request/get_all_request");
     return this.httpClient
-    .post<any>(url,code_appraiser,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, code_appraiser, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public searchAllContractRequest(code_appraiser:string,dateFrom:String,dateTo:String,searchValue:String): Observable<any>{
-  let data = {code_appraiser:code_appraiser,dateFrom:dateFrom,dateTo:dateTo,searchValue:searchValue};
+  public searchAllContractRequest(code_appraiser: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { code_appraiser: code_appraiser, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
     const url = this.common.makeUrl("/request/search_all_request");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public getAllContractRequestApproval(code_appraiser:string): Observable<any>{
+  public getAllContractRequestApproval(code_appraiser: string): Observable<any> {
     const url = this.common.makeUrl("/request/get_all_request_approval");
     return this.httpClient
-    .post<any>(url,code_appraiser,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, code_appraiser, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public searchAllContractRequestApproval(code_appraiser:string,dateFrom:String,dateTo:String,searchValue:String): Observable<any>{
-    let data = {code_appraiser:code_appraiser,dateFrom:dateFrom,dateTo:dateTo,searchValue:searchValue};
+  public searchAllContractRequestApproval(code_appraiser: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { code_appraiser: code_appraiser, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
     const url = this.common.makeUrl("/request/search_all_request_approval");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-
-  public getOneContractRequest(id:number){
+  //add and get request
+  public getOneContractRequest(id: number) {
     const url = this.common.makeUrl("/request/get_detail_request");
     return this.httpClient
-    .post<any>(url,id,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, id, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public addOneRequest(req:Request){
+  public addOneRequest(req: Request) {
     const url = this.common.makeUrl("/request/add_one_request");
     return this.httpClient
-    .post<any>(url,req,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, req, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  //claim request
+  public getAllClaimRequest(code_appraiser: string): Observable<any> {
+    const url = this.common.makeUrl("/request/get_all_claim_request");
+    return this.httpClient
+      .post<any>(url, code_appraiser, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllClaimRequest(code_appraiser: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { code_appraiser: code_appraiser, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
+    const url = this.common.makeUrl("/request/search_all_claim_request");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllClaimRequestApproval(code_appraiser: string): Observable<any> {
+    const url = this.common.makeUrl("/request/get_all_claim_request_approval");
+    return this.httpClient
+      .post<any>(url, code_appraiser, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllClaimRequestApproval(code_appraiser: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { code_appraiser: code_appraiser, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
+    const url = this.common.makeUrl("/request/search_all_claim_request_approval");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

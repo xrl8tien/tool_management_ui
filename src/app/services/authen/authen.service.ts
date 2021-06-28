@@ -46,7 +46,13 @@ export class AuthenService {
                   this.router.navigate(['appraiser-request-manage']);
                 } else if (this.id_role == '4') {
                   this.spinner.hide();
-                  this.router.navigate(['appraiser-request-manage']);
+                  this.router.navigate(['claim-request-manage']);
+                } else if (this.id_role == '5') {
+                  this.spinner.hide();
+                  this.router.navigate(['dashboard']);
+                } else if (this.id_role == '6') {
+                  this.spinner.hide();
+                  this.router.navigate(['dashboard']);
                 }
 
               }));

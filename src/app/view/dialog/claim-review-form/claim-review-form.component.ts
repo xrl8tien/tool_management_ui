@@ -16,12 +16,11 @@ import { RevenueService } from 'src/app/services/revenue/revenue.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
-  selector: 'app-appraiser-review-form',
-  templateUrl: './appraiser-review-form.component.html',
-  styleUrls: ['./appraiser-review-form.component.css']
+  selector: 'app-claim-review-form',
+  templateUrl: './claim-review-form.component.html',
+  styleUrls: ['./claim-review-form.component.css']
 })
-export class AppraiserReviewFormComponent implements OnInit {
-
+export class ClaimReviewFormComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA)
   public req: Request, public contractService: ContractService, private revenueSer: RevenueService,
     private common: CommonService, private commissionSer: DetailCommissonService, private custService: CustomerService,
@@ -36,7 +35,7 @@ export class AppraiserReviewFormComponent implements OnInit {
   approveStatus: string;
   Review() {
     this.spinner.show();
-    if (this.approveStatus == "DD") {
+    if (this.approveStatus == "DX") {
       this.contractService.setStatusContract(this.req.id_contract, this.req.id, this.description, this.approveStatus).subscribe((data => {
         // set trạng thái cho hợp đồng và request
         let data1 = { id: this.req.id_contract, code: this.req.code_sender };

@@ -12,11 +12,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { ContractDetailDialogComponent } from '../dialog/contract-detail-dialog/contract-detail-dialog.component';
 
 @Component({
-  selector: 'app-appraiser-request-manage',
-  templateUrl: './appraiser-request-manage.component.html',
-  styleUrls: ['./appraiser-request-manage.component.css']
+  selector: 'app-claim-request-manage',
+  templateUrl: './claim-request-manage.component.html',
+  styleUrls: ['./claim-request-manage.component.css']
 })
-export class AppraiserRequestManageComponent implements OnInit {
+export class ClaimRequestManageComponent implements OnInit {
 
   constructor(private dialog: MatDialog,
     private contractService: ContractService,
@@ -32,12 +32,12 @@ export class AppraiserRequestManageComponent implements OnInit {
   contractRequests: Array<Request>
   contractRequestsApprovals: Array<Request>
   ngOnInit(): void {
-    this.common.titlePage = "Danh Sách Hồ Sơ Yêu Cầu Bảo Hiểm";
-    this.contractRequestService.getAllContractRequest(jwtDecode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+    this.common.titlePage = "Danh Sách Yêu Cầu Bồi Thường Bảo Hiểm";
+    this.contractRequestService.getAllClaimRequest(jwtDecode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
       this.contractRequests = data;
       this.totalRecordsRequest = this.contractRequests.length;
     }))
-    this.contractRequestService.getAllContractRequestApproval(jwtDecode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+    this.contractRequestService.getAllClaimRequestApproval(jwtDecode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
       this.contractRequestsApprovals = data;
       this.contractRequestsApprovals.forEach(element => {
         element.status = this.common.transformStatus(element.status);
@@ -48,7 +48,7 @@ export class AppraiserRequestManageComponent implements OnInit {
   }
 
   public requestDetail(id_request: number) {
-    this.router.navigate(['appraiser-request-detail', id_request]);
+    this.router.navigate(['claim-request-detail', id_request]);
   }
 
   contract: Contract;
@@ -91,7 +91,7 @@ export class AppraiserRequestManageComponent implements OnInit {
       }
       let searchText = "%" + this.searchValueRequest + "%";
 
-      this.contractRequestService.searchAllContractRequest(jwtDecode(this.common.getCookie('token_key'))['sub'], dateFrom1, dateTo1, searchText).subscribe((data => {
+      this.contractRequestService.searchAllClaimRequest(jwtDecode(this.common.getCookie('token_key'))['sub'], dateFrom1, dateTo1, searchText).subscribe((data => {
         this.contractRequests = data;
         this.totalRecordsRequest = this.contractRequests.length;
         this.spinner.hide();
@@ -137,7 +137,7 @@ export class AppraiserRequestManageComponent implements OnInit {
       let searchText = "%" + this.searchValueApproval + "%";
 
 
-      this.contractRequestService.searchAllContractRequestApproval(jwtDecode(this.common.getCookie('token_key'))['sub'], dateFrom1, dateTo1, searchText).subscribe((data => {
+      this.contractRequestService.searchAllClaimRequestApproval(jwtDecode(this.common.getCookie('token_key'))['sub'], dateFrom1, dateTo1, searchText).subscribe((data => {
         this.contractRequestsApprovals = data;
         this.totalRecordsApprovals = this.contractRequestsApprovals.length;
         this.spinner.hide();

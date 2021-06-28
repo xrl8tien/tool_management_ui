@@ -76,7 +76,7 @@ export class ViewDetailContractComponent implements OnInit {
     this.selectedFile.forEach(file => {
       uploadImageData.append('fileData', file, file.name);
     });
-    this.fileService.uploadFile(uploadImageData).subscribe((data => {
+    this.fileService.uploadFileCustomer(uploadImageData).subscribe((data => {
       if(data['body']!=null){
         let listFileSave = Array<CustomerAttachment>();
         for(let i=0;i<this.selectedFile.length;i++){

@@ -21,16 +21,19 @@ import { CustomerAttachment } from 'src/app/model/CustomerAttachment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Benifit } from 'src/app/model/Benifit';
 import { BenifitService } from 'src/app/services/benifit/benifit.service';
+import { ClaimReviewFormComponent } from '../../dialog/claim-review-form/claim-review-form.component';
+import { RequestAttachment } from 'src/app/model/RequestAttachment';
 
 @Component({
-  selector: 'app-detail-request',
-  templateUrl: './detail-request.component.html',
-  styleUrls: ['./detail-request.component.css']
+  selector: 'app-detail-claim',
+  templateUrl: './detail-claim.component.html',
+  styleUrls: ['./detail-claim.component.css']
 })
-export class DetailRequestComponent implements OnInit {
+export class DetailClaimComponent implements OnInit {
 
   listSubBenifit: Array<Benifit> = [];
   listDocument = new Array<CustomerAttachment>();
+  listClaimDocument = new Array<RequestAttachment>();
   illustration: Illustration;
   illustrationCopy: Illustration;
   listRelatedPersonNumber: Number[] = [];
@@ -109,6 +112,10 @@ export class DetailRequestComponent implements OnInit {
             this.listDocument = data;
             this.spinner.hide();
           }))
+          this.fileService.getFileRequest(this.req.id).subscribe((data => {
+            this.listClaimDocument = data;
+            this.spinner.hide();
+          }))
         }))
         // End Lấy detail contract
 
@@ -128,7 +135,7 @@ export class DetailRequestComponent implements OnInit {
   }
 
   displayConfirmDialog(): void {
-    let dialogRef = this.dialog.open(AppraiserReviewFormComponent, { data: this.req });
+    let dialogRef = this.dialog.open(ClaimReviewFormComponent, { data: this.req });
     dialogRef.afterClosed().subscribe(result => {
 
     })
@@ -153,4 +160,5 @@ export class DetailRequestComponent implements OnInit {
       data: id_illustration
     });
   }
+
 }

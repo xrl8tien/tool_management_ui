@@ -100,6 +100,9 @@ import { HeaderComponent } from './customerwebsite/header/header.component';
 import { ChangePassCustomerComponent } from './customerwebsite/change-pass-customer/change-pass-customer.component';
 import { CompensationTreatmentComponent } from './customerwebsite/compensation-treatment/compensation-treatment.component';
 import { DetailEmployeeInfoComponent } from './view/detail-employee-info/detail-employee-info.component';
+import { ClaimRequestManageComponent } from './view/claim-request-manage/claim-request-manage.component';
+import { DetailClaimComponent } from './view/claim-request-manage/detail-claim/detail-claim.component';
+import { ClaimReviewFormComponent } from './view/dialog/claim-review-form/claim-review-form.component';
 
 
 
@@ -180,6 +183,9 @@ import { DetailEmployeeInfoComponent } from './view/detail-employee-info/detail-
     ChangePassCustomerComponent,
     CompensationTreatmentComponent,
     DetailEmployeeInfoComponent,
+    ClaimRequestManageComponent,
+    DetailClaimComponent,
+    ClaimReviewFormComponent,
   ],
   imports: [
     DataTablesModule,

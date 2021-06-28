@@ -43,6 +43,8 @@ import { ProfileCustomerComponent } from './customerwebsite/profile-customer/pro
 import { ChangePassCustomerComponent } from './customerwebsite/change-pass-customer/change-pass-customer.component';
 import { CompensationTreatmentComponent } from './customerwebsite/compensation-treatment/compensation-treatment.component';
 import { DetailEmployeeInfoComponent } from './view/detail-employee-info/detail-employee-info.component';
+import { ClaimRequestManageComponent } from './view/claim-request-manage/claim-request-manage.component';
+import { DetailClaimComponent } from './view/claim-request-manage/detail-claim/detail-claim.component';
 
 const routes: Routes = [
   {path : "dashboard", component: DashboardComponent},
@@ -87,7 +89,8 @@ const routes: Routes = [
   {path: "change-pass-customerweb", component:  ChangePassCustomerComponent},
   {path: "compensation-treatment", component:  CompensationTreatmentComponent},
   {path: "detail-employee-info", component:  DetailEmployeeInfoComponent},
-  
+  {path: "claim-request-manage", component:  ClaimRequestManageComponent},
+  {path: "claim-request-detail/:id", component: DetailClaimComponent},
 ];
 
 @NgModule({

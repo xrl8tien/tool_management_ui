@@ -343,11 +343,11 @@
 
                         <div class="card-header">
                             <h2>
-                                <b>Thông Tin Quyền Lợi Bảo Hiểm Bổ Sung </b>
+                                <b>Thông Tin Quyền Lợi Bảo Hiểm Bổ Sung</b>
                             </h2>
                         </div>
                         <table id="example1" class="table table-bordered table-striped">
-                            <tr>
+                            <!-- <tr>
                                 <th>Tên Quyền Lợi</th>
                                 <th>Nhóm Nghề Nghiệp</th>
                                 <th>Số Tiền Bảo Hiểm</th>
@@ -358,7 +358,16 @@
                                 <td>{{detail?.carrier_group_extra_insured_person}}</td>
                                 <td>{{detail?.denominations | currency : "VND"}}</td>
                                 <td>{{detail?.fee_value | currency : "VND"}}</td>
+                            </tr> -->
+                            <tr *ngFor="let mainBenefitScale of listMainBenefitScale">
+                                <td>{{mainBenefitScale.name}}</td>
+                                <td>{{mainBenefitScale.scale}}</td>
                             </tr>
+                            <tr *ngFor="let subBenefitScale of listSubBenefitScale">
+                                <td>{{subBenefitScale.name}}</td>
+                                <td>{{subBenefitScale.scale}}</td>
+                            </tr>
+                            
                         </table>
 
                     </div>

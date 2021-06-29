@@ -29,7 +29,15 @@
                     </textarea>
                     </td>
                 </tr>
-
+                <tr *ngFor="let mainBenefitScale of listMainBenefitScale">
+                    <td>{{mainBenefitScale.name}}</td>
+                    <td>{{mainBenefitScale.scale}}</td>
+                </tr>
+                <tr *ngFor="let subBenefitScale of listSubBenefitScale">
+                    <td>{{subBenefitScale.name}}</td>
+                    <td>{{subBenefitScale.scale}}</td>
+                </tr>
+                
             </table>
         </form>
     </div>

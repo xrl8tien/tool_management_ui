@@ -94,6 +94,27 @@ export class IllustrationService {
     .pipe(catchError(this.handleError));
   }
 
+  public getAllSubBenefitById(id:number): Observable<any>{
+    const url = this.common.makeUrl('/illustration/get_all_sub_benefit/'+id);
+    return this.httpClient
+    .get<any>(url,this.httpOptions)
+    .pipe(catchError(this.handleError));
+  }
+
+  public getAllMainBenefitScaleByMainBenefitId(id:number): Observable<any>{
+    const url = this.common.makeUrl('/illustration/get_all_main_benefit_scale/'+id);
+    return this.httpClient
+    .get<any>(url,this.httpOptions)
+    .pipe(catchError(this.handleError));
+  }
+
+  public getAllSubBenefitScaleBySubBenefitId(id:number): Observable<any>{
+    const url = this.common.makeUrl('/illustration/get_all_sub_benefit_scale/'+id);
+    return this.httpClient
+    .get<any>(url,this.httpOptions)
+    .pipe(catchError(this.handleError));
+  }
+
   // lấy tất cả bảng minh họa cho customer tại web customerWebsite
   public getAllIllustrationForCustomer(data:any): Observable<any>{
     const url = this.common.makeUrlForCustomer('/customer-api/get_all_illustration_customer/');

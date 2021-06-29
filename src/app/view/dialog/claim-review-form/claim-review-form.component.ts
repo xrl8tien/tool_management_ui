@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Contract } from 'src/app/model/Contract';
 import { Illustration } from 'src/app/model/Illustration';
@@ -10,10 +10,14 @@ import { ContractService } from 'src/app/services/contract/contract.service';
 import { DetailCommissonService } from 'src/app/services/detailCommisson/detail-commisson.service';
 import { IllustrationService } from 'src/app/services/illustration/illustration.service';
 import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
-import jwt_decode from "jwt-decode";
-import { CommonService } from 'src/app/services/common/common.service';
 import { RevenueService } from 'src/app/services/revenue/revenue.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
+import { MainBenefitScale } from 'src/app/model/MainBenefitScale';
+import { SubBenefitScale } from 'src/app/model/SubBenefitScale';
+import { ContractrequestService } from 'src/app/services/contractRequest/contractrequest.service';
+import { IllustrationSubBenifit } from 'src/app/model/IllustrationSubBenifit';
+import { RelatedPersonInfo } from 'src/app/model/RelatedPersonInfo';
+import { Benifit } from 'src/app/model/Benifit';
 
 @Component({
   selector: 'app-claim-review-form',
@@ -21,18 +25,53 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
   styleUrls: ['./claim-review-form.component.css']
 })
 export class ClaimReviewFormComponent implements OnInit {
+
+  contract: Contract;
+  illustrationCopy: Illustration;
+  revenue = new Revenue(0, '', 0, 0, 0, new Date());
+  illustration: Illustration;
+  approveStatus: string;
+  listRelatedPersonNumber: Number[] = [];
+  listSubRelatedPerSonBig: Array<any> = [];
+  listSubRelatedPerSonSmall: IllustrationSubBenifit[] = [];
+  listRelatedPerSonInfo: Array<RelatedPersonInfo> = [];
+  listSubBenifit: Array<Benifit> = [];
+  illustrationSubBenefit: IllustrationSubBenifit;
+  listSubBenefitScale: Array<SubBenefitScale> = [];
+  listMainBenefitScale: Array<MainBenefitScale> = [];
+  listSub: Array<IllustrationSubBenifit> = [];
+
   constructor(@Inject(MAT_DIALOG_DATA)
   public req: Request, public contractService: ContractService, private revenueSer: RevenueService,
-    private common: CommonService, private commissionSer: DetailCommissonService, private custService: CustomerService,
+    private commissionSer: DetailCommissonService, private custService: CustomerService,
     private illustSer: IllustrationService, private snackBar: SnackbarService, private spinner: NgxSpinnerService,
+    private contractRequestService: ContractrequestService, private activateRoute: ActivatedRoute,
     private router: Router) { }
   description: String;
   ngOnInit(): void {
     this.approveStatus = "DD";
+
+
+    let data1 = this.req.id_contract;
+    this.contractService.getDetailContractForCustomer(data1).subscribe((data1 => {
+      this.contract = data1;
+
+      this.illustSer.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
+        this.listSub = data;
+        this.illustSer.getAllSubBenefitScaleBySubBenefitId(this.listSub[0].id_sub_benifit).subscribe((data => {
+          this.listSubBenefitScale = data;
+        }))
+      }))
+
+      this.illustSer.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {
+        this.listMainBenefitScale = data;
+      }))
+
+    }))
+
+
   }
-  revenue = new Revenue(0, '', 0, 0, 0, new Date());
-  illustration: Illustration;
-  approveStatus: string;
+
   Review() {
     this.spinner.show();
     if (this.approveStatus == "DX") {

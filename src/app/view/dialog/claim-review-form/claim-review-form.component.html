@@ -9,7 +9,7 @@
                 <tr>
                     <th>Quyết Định Xét Duyệt</th>
                     <td>
-                        <select class="custom-select" [(ngModel)]="approveStatus" name="approveStatus">
+                        <select class="custom-select" [(ngModel)]="approveStatus" name="approveStatus" required>
                             <option value="DX">Đề Xuất</option>
                             <option value="YCT">Yêu Cầu Bổ Sung</option>
                             <option value="TC">Từ Chối</option>
@@ -18,11 +18,21 @@
                 </tr>
                 <tr>
                     <th>Số tiền chi trả</th>
-                    <td><input class="form-control" type="number" placeholder="VND" id="moneyPayment"> </td>
+                    <td><input class="form-control" type="number" placeholder="VND" [(ngModel)]="amountMoney"
+                            name="amountMoney"></td>
+                </tr>
+                <tr>
+                    <th>Độ Ưu Tiên</th>
+                    <div class="form-group">
+                        <select class="form-control" name="priority" [(ngModel)]="priority" required>
+                            <option value="Cao">Cao</option>
+                            <option value="Thấp">Thấp</option>
+                        </select>
+                    </div>
                 </tr>
                 <tr>
                     <th>Ghi Chú</th>
-                    <td><textarea class="form-control" rows="3"  maxlength="2000" placeholder="Enter ..."
+                    <td><textarea class="form-control" rows="3" maxlength="2000" placeholder="Enter ..."
                             name="description" [(ngModel)]="description" #note="ngModel" required>
                         <span id="errorMessagename" style="color: red;" *ngIf="note.errors?.required && note.touched">Ghi Chú không được để trống</span>
                                     
@@ -37,7 +47,7 @@
                     <td>{{subBenefitScale.name}}</td>
                     <td>{{subBenefitScale.scale}}</td>
                 </tr>
-                
+
             </table>
         </form>
     </div>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Request } from 'src/app/model/Request';
+import { RequestClaimApprove } from 'src/app/model/RequestClaimApprove';
 import { CommonService } from '../common/common.service';
 
 @Injectable({
@@ -63,6 +64,21 @@ export class ContractrequestService {
     const url = this.common.makeUrl("/request/add_one_request");
     return this.httpClient
       .post<any>(url, req, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public addClaimRequest(reqClaim: RequestClaimApprove) {
+    const url = this.common.makeUrl("/request/add_claim_request");
+    return this.httpClient
+      .post<any>(url, reqClaim, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public setStatusRequest(id_request:number,description:String,approval_status:string): Observable<any> {
+    const url = this.common.makeUrl("/request/set_status_request");
+    let data = {id_request:id_request,description:description,approval_status};
+    return this.httpClient
+      .post<any>(url,data,this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

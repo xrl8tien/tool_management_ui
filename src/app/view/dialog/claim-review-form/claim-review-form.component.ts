@@ -19,6 +19,7 @@ import { IllustrationSubBenifit } from 'src/app/model/IllustrationSubBenifit';
 import { RelatedPersonInfo } from 'src/app/model/RelatedPersonInfo';
 import { Benifit } from 'src/app/model/Benifit';
 import { RequestClaimApprove } from 'src/app/model/RequestClaimApprove';
+import { IllustrationMainBenifit } from 'src/app/model/IllustrationMainBenifit';
 
 @Component({
   selector: 'app-claim-review-form',
@@ -48,6 +49,7 @@ export class ClaimReviewFormComponent implements OnInit {
   listSub: Array<IllustrationSubBenifit> = [];
   dateNow: Date;
   ids: number[];
+  mainBenefit: IllustrationMainBenifit;
 
   constructor(@Inject(MAT_DIALOG_DATA)
   public req: Request, public contractService: ContractService, private revenueSer: RevenueService,
@@ -79,6 +81,11 @@ export class ClaimReviewFormComponent implements OnInit {
             }
           }))
         }
+      }))
+
+      //lay illMainBenefit
+      this.illustSer.getMainBenefitById(this.contract.id_illustration).subscribe((data => {
+        this.mainBenefit = data;
       }))
 
       this.illustSer.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {

@@ -101,6 +101,13 @@ export class IllustrationService {
     .pipe(catchError(this.handleError));
   }
 
+  public getMainBenefitById(id:number): Observable<any>{
+    const url = this.common.makeUrl('/illustration/get_main_benefit/'+id);
+    return this.httpClient
+    .get<any>(url,this.httpOptions)
+    .pipe(catchError(this.handleError));
+  }
+
   public getAllMainBenefitScaleByMainBenefitId(id:number): Observable<any>{
     const url = this.common.makeUrl('/illustration/get_all_main_benefit_scale/'+id);
     return this.httpClient

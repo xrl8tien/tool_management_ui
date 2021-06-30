@@ -14,6 +14,8 @@ export class IllustrationSubBenifit {
     is_extra_insured_person: boolean;
     id_related_person: number;
 
+    listSubBenefitScale: Array<SubBenefitScale>
+
     constructor(id_illustration: number,
         id_sub_benifit: number,
         full_name_insured_persion_extra: string,

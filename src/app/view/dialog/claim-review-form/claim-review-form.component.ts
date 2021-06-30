@@ -43,9 +43,11 @@ export class ClaimReviewFormComponent implements OnInit {
   listSubBenifit: Array<Benifit> = [];
   illustrationSubBenefit: IllustrationSubBenifit;
   listSubBenefitScale: Array<SubBenefitScale> = [];
+  listSubScale: Array<SubBenefitScale> = [];
   listMainBenefitScale: Array<MainBenefitScale> = [];
   listSub: Array<IllustrationSubBenifit> = [];
   dateNow: Date;
+  ids: number[];
 
   constructor(@Inject(MAT_DIALOG_DATA)
   public req: Request, public contractService: ContractService, private revenueSer: RevenueService,
@@ -58,16 +60,25 @@ export class ClaimReviewFormComponent implements OnInit {
     // this.amountMoney = 0;
     this.dateNow = new Date();
 
-    let data1 = this.req.id_contract;
-    this.contractService.getDetailContractForCustomer(data1).subscribe((data1 => {
-      this.contract = data1;
-      
+    this.contractService.getDetailContractForCustomer(this.req.id_contract).subscribe((data => {
+      this.contract = data;
+
 
       this.illustSer.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
-        this.listSub = data;
-        this.illustSer.getAllSubBenefitScaleBySubBenefitId(this.listSub[0].id_sub_benifit).subscribe((data => {
-          this.listSubBenefitScale = data;
-        }))
+        for (var i = 0; i < data.length; i++) {
+          this.illustSer.getAllSubBenefitScaleBySubBenefitId(data[i].id_sub_benifit).subscribe((data1 => {
+            this.listSubScale = data1;
+            for (var j = 0; j < this.listSubScale.length; j++) {
+              let subBenefitScale = new SubBenefitScale(
+                this.listSubScale[i].id,
+                this.listSubScale[i].name,
+                this.listSubScale[i].scale,
+                this.listSubScale[i].id_sub_benefit
+              )
+              this.listSubBenefitScale.push(subBenefitScale);
+            }
+          }))
+        }
       }))
 
       this.illustSer.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {

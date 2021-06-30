@@ -113,16 +113,16 @@ export class DetailClaimComponent implements OnInit {
             }
           }
 
-          this.illustrationService.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
-            this.listSub = data;
-            this.illustrationService.getAllSubBenefitScaleBySubBenefitId(this.listSub[0].id_sub_benifit).subscribe((data => {
-              this.listSubBenefitScale = data;
-            }))
-          }))
+          // this.illustrationService.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
+          //   this.listSub = data;
+          //   this.illustrationService.getAllSubBenefitScaleBySubBenefitId(this.listSub[0].id_sub_benifit).subscribe((data => {
+          //     this.listSubBenefitScale = data;
+          //   }))
+          // }))
 
-          this.illustrationService.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {
-            this.listMainBenefitScale = data;
-          }))
+          // this.illustrationService.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {
+          //   this.listMainBenefitScale = data;
+          // }))
 
           this.benifitSer.getAllSubBenifit().subscribe((data => {
             this.listSubBenifit = data;

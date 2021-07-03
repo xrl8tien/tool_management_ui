@@ -67,6 +67,7 @@ public setCookie(name: string, value: string, expireDays: number, path: string =
       case "DD": return "Đã duyệt";
       case "TC": return "Từ chối";
       case "YCT": return "Yêu cầu thêm";
+      case "DX": return "Đề Xuất";
     }
   }
 }

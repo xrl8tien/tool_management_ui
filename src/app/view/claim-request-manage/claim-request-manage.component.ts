@@ -26,11 +26,14 @@ export class ClaimRequestManageComponent implements OnInit {
     private router: Router) { }
 
   pageApprovals: number = 1;
+  pageApproved: number = 1;
   pageRequest: number = 1;
   totalRecordsApprovals: number;
   totalRecordsRequest: number;
+  totalRecordsApproveds: number;
   contractRequests: Array<Request>
   contractRequestsApprovals: Array<Request>
+  contractRequestsApproveds: Array<Request>
   ngOnInit(): void {
     this.common.titlePage = "Danh Sách Yêu Cầu Bồi Thường Bảo Hiểm";
     this.contractRequestService.getAllClaimRequest(jwtDecode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
@@ -44,7 +47,13 @@ export class ClaimRequestManageComponent implements OnInit {
       });
       this.totalRecordsApprovals = this.contractRequestsApprovals.length;
     }))
-
+    this.contractRequestService.getAllApprovedClaimRequest(jwtDecode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+      this.contractRequestsApproveds = data;
+      this.contractRequestsApproveds.forEach(element => {
+        element.status = this.common.transformStatus(element.status);
+      });
+      this.totalRecordsApproveds = this.contractRequestsApproveds.length;
+    }))
   }
 
   public requestDetail(id_request: number) {
@@ -152,6 +161,50 @@ export class ClaimRequestManageComponent implements OnInit {
   ResetDateApproval() {
     this.dateFromApproval = null;
     this.dateToApproval = null;
+  }
+
+  searchValueApproved: String = "";
+  dateFromApproved: Date;
+  dateToApproved: Date;
+  SearchApproved() {
+    this.spinner.show();
+    try {
+      let dateTo1: String;
+      let dateFrom1: String;
+      let dateToValue = (<HTMLInputElement>document.getElementById('RtoSearchApproved')).value;
+      let dateFromValue = (<HTMLInputElement>document.getElementById('RfromSearchApproved')).value;
+      if (dateFromValue == "") {
+        this.dateFromApproved = new Date('1990-01-01');
+        dateFrom1 = this.dateFromApproved.getFullYear() + "-" + (this.dateFromApproved.getMonth() + 1) + "-" + this.dateFromApproved.getDate()
+      } else {
+        dateFrom1 = this.dateFromApproved.toString();
+      }
+
+      if (dateToValue == "") {
+        this.dateToApproved = new Date('3000-01-01');
+        dateTo1 = this.dateToApproved.getFullYear() + "-" + (this.dateToApproved.getMonth() + 1) + "-" + this.dateToApproved.getDate()
+      }
+      else {
+        dateTo1 = this.dateToApproved.toString();
+      }
+      let searchText = "%" + this.searchValueApproved + "%";
+
+
+      this.contractRequestService.searchAllApprovedClaimRequest(jwtDecode(this.common.getCookie('token_key'))['sub'], dateFrom1, dateTo1, searchText).subscribe((data => {
+        this.contractRequestsApproveds = data;
+        this.totalRecordsApproveds = this.contractRequestsApproveds.length;
+        this.spinner.hide();
+        this.pageApproved = 1;
+      }))
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  ResetDateApproved() {
+    this.dateFromApproved = null;
+    this.dateToApproved = null;
   }
 
   key = '';

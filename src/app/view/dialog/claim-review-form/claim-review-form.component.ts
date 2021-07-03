@@ -20,6 +20,7 @@ import { RelatedPersonInfo } from 'src/app/model/RelatedPersonInfo';
 import { Benifit } from 'src/app/model/Benifit';
 import { RequestClaimApprove } from 'src/app/model/RequestClaimApprove';
 import { IllustrationMainBenifit } from 'src/app/model/IllustrationMainBenifit';
+import { CustomerNotification} from 'src/app/model/CustomerNotification';
 
 @Component({
   selector: 'app-claim-review-form',
@@ -36,6 +37,7 @@ export class ClaimReviewFormComponent implements OnInit {
   amountMoney: number;
   description: string;
   requestClaim: RequestClaimApprove;
+  notification: CustomerNotification;
   priority: string;
   listRelatedPersonNumber: Number[] = [];
   listSubRelatedPerSonBig: Array<any> = [];
@@ -50,6 +52,7 @@ export class ClaimReviewFormComponent implements OnInit {
   dateNow: Date;
   ids: number[];
   mainBenefit: IllustrationMainBenifit;
+  notiDescrip: string;
 
   constructor(@Inject(MAT_DIALOG_DATA)
   public req: Request, public contractService: ContractService, private revenueSer: RevenueService,
@@ -72,10 +75,10 @@ export class ClaimReviewFormComponent implements OnInit {
             this.listSubScale = data1;
             for (var j = 0; j < this.listSubScale.length; j++) {
               let subBenefitScale = new SubBenefitScale(
-                this.listSubScale[i].id,
-                this.listSubScale[i].name,
-                this.listSubScale[i].scale,
-                this.listSubScale[i].id_sub_benefit
+                this.listSubScale[j].id,
+                this.listSubScale[j].name,
+                this.listSubScale[j].scale,
+                this.listSubScale[j].id_sub_benefit
               )
               this.listSubBenefitScale.push(subBenefitScale);
             }
@@ -86,6 +89,10 @@ export class ClaimReviewFormComponent implements OnInit {
       //lay illMainBenefit
       this.illustSer.getMainBenefitById(this.contract.id_illustration).subscribe((data => {
         this.mainBenefit = data;
+      }))
+
+      this.illustSer.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
+        this.listSub = data;
       }))
 
       this.illustSer.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {
@@ -111,10 +118,20 @@ export class ClaimReviewFormComponent implements OnInit {
       }))
     }
     else {
+      switch (this.approveStatus) {
+        case "TC":
+          this.notiDescrip = "Yêu cầu bồi thường của bạn đã bị từ chối.";
+          break;
+        case "YCT":
+          this.notiDescrip = "Yêu cầu của bạn cần bổ sung thêm giấy tờ.";
+      }
+      this.notification = new CustomerNotification(0, this.contract.id_customer, this.req.name, this.notiDescrip, "", 2);
       this.contractRequestService.setStatusRequest(this.req.id, this.description, this.approveStatus).subscribe((data => {
-        this.spinner.hide();
-        this.snackBar.openSnackBar("Xử Lý Yêu Cầu Thành Công", "Đóng");
-        this.router.navigate(['claim-request-manage']);
+        this.contractRequestService.addOneNotification(this.notification).subscribe((data => {
+          this.spinner.hide();
+          this.snackBar.openSnackBar("Xử Lý Yêu Cầu Thành Công", "Đóng");
+          this.router.navigate(['claim-request-manage']);
+        }))
       }))
     }
   }

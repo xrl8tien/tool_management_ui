@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { CustomerNotification } from 'src/app/model/CustomerNotification';
 import { Request } from 'src/app/model/Request';
 import { RequestClaimApprove } from 'src/app/model/RequestClaimApprove';
 import { CommonService } from '../common/common.service';
@@ -74,6 +75,13 @@ export class ContractrequestService {
       .pipe(catchError(this.handleError));
   }
 
+  public addOneNotification(noti: CustomerNotification) {
+    const url = this.common.makeUrl("/request/add_one_notification");
+    return this.httpClient
+      .post<any>(url, noti, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   public setStatusRequest(id_request:number,description:String,approval_status:string): Observable<any> {
     const url = this.common.makeUrl("/request/set_status_request");
     let data = {id_request:id_request,description:description,approval_status};
@@ -108,6 +116,21 @@ export class ContractrequestService {
   public searchAllClaimRequestApproval(code_appraiser: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
     let data = { code_appraiser: code_appraiser, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
     const url = this.common.makeUrl("/request/search_all_claim_request_approval");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllApprovedClaimRequest(code_appraiser: string): Observable<any> {
+    const url = this.common.makeUrl("/request/get_all_approved_claim_request");
+    return this.httpClient
+      .post<any>(url, code_appraiser, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllApprovedClaimRequest(code_appraiser: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { code_appraiser: code_appraiser, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
+    const url = this.common.makeUrl("/request/search_all_approved_claim_request");
     return this.httpClient
       .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));

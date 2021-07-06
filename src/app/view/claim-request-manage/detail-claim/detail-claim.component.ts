@@ -61,7 +61,6 @@ export class DetailClaimComponent implements OnInit {
     this.contractRequestService.getOneContractRequest(this.activateRoute.snapshot.params['id']).subscribe((data => {
       this.req = data;
       // đề phòng user nhập các id khác nhau trên đường dẫn
-      if (this.req.code_reciever != jwt_decode(this.common.getCookie('token_key'))['sub']) return;
       let data1 = this.req.id_contract;
       this.contractService.getDetailContractForCustomer(data1).subscribe((data1 => {
         this.contract = data1;

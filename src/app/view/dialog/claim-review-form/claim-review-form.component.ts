@@ -20,7 +20,7 @@ import { RelatedPersonInfo } from 'src/app/model/RelatedPersonInfo';
 import { Benifit } from 'src/app/model/Benifit';
 import { RequestClaimApprove } from 'src/app/model/RequestClaimApprove';
 import { IllustrationMainBenifit } from 'src/app/model/IllustrationMainBenifit';
-import { CustomerNotification} from 'src/app/model/CustomerNotification';
+import { TemplatePortal } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-claim-review-form',
@@ -28,7 +28,6 @@ import { CustomerNotification} from 'src/app/model/CustomerNotification';
   styleUrls: ['./claim-review-form.component.css']
 })
 export class ClaimReviewFormComponent implements OnInit {
-
   contract: Contract;
   illustrationCopy: Illustration;
   revenue = new Revenue(0, '', 0, 0, 0, new Date());
@@ -37,7 +36,6 @@ export class ClaimReviewFormComponent implements OnInit {
   amountMoney: number;
   description: string;
   requestClaim: RequestClaimApprove;
-  notification: CustomerNotification;
   priority: string;
   listRelatedPersonNumber: Number[] = [];
   listSubRelatedPerSonBig: Array<any> = [];
@@ -52,7 +50,8 @@ export class ClaimReviewFormComponent implements OnInit {
   dateNow: Date;
   ids: number[];
   mainBenefit: IllustrationMainBenifit;
-  notiDescrip: string;
+  value1 = 0;
+  value2 = 0;
 
   constructor(@Inject(MAT_DIALOG_DATA)
   public req: Request, public contractService: ContractService, private revenueSer: RevenueService,
@@ -67,7 +66,6 @@ export class ClaimReviewFormComponent implements OnInit {
 
     this.contractService.getDetailContractForCustomer(this.req.id_contract).subscribe((data => {
       this.contract = data;
-
 
       this.illustSer.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
         for (var i = 0; i < data.length; i++) {
@@ -100,11 +98,10 @@ export class ClaimReviewFormComponent implements OnInit {
       }))
 
     }))
-
-
   }
 
   Review() {
+
     this.spinner.show();
     this.requestClaim = new RequestClaimApprove(0, this.req.name, this.dateNow, this.req.code_sender,
       this.description, this.amountMoney, this.req.id_contract, this.approveStatus, this.priority);
@@ -118,21 +115,21 @@ export class ClaimReviewFormComponent implements OnInit {
       }))
     }
     else {
-      switch (this.approveStatus) {
-        case "TC":
-          this.notiDescrip = "Yêu cầu bồi thường của bạn đã bị từ chối.";
-          break;
-        case "YCT":
-          this.notiDescrip = "Yêu cầu của bạn cần bổ sung thêm giấy tờ.";
-      }
-      this.notification = new CustomerNotification(0, this.contract.id_customer, this.req.name, this.notiDescrip, "", 2);
       this.contractRequestService.setStatusRequest(this.req.id, this.description, this.approveStatus).subscribe((data => {
-        this.contractRequestService.addOneNotification(this.notification).subscribe((data => {
-          this.spinner.hide();
-          this.snackBar.openSnackBar("Xử Lý Yêu Cầu Thành Công", "Đóng");
-          this.router.navigate(['claim-request-manage']);
-        }))
+        this.spinner.hide();
+        this.snackBar.openSnackBar("Xử Lý Yêu Cầu Thành Công", "Đóng");
+        this.router.navigate(['claim-request-manage']);
       }))
     }
+  }
+
+  handleChange1(value) {
+    this.value1 = value;
+    this.amountMoney = this.value2 + this.value1;
+  }
+
+  handleChange2(value) {
+    this.value2 = value;
+    this.amountMoney = this.value2 + this.value1;
   }
 }

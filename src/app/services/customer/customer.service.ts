@@ -5,6 +5,7 @@ import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CustomerAcc } from 'src/app/model/CustomerAcc';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
+import { Request } from 'src/app/model/Request';
 import { CommonService } from '../common/common.service';
 
 @Injectable({
@@ -118,6 +119,27 @@ export class CustomerService {
     return this.httpClient
     .post<any>(url,id,this.httpOptions)
     .pipe(catchError(this.handleError));
+  }
+
+  public addOneCustomerRequest(req: Request) {
+    const url = this.common.makeUrlForCustomer("/customer-api/add_one_customer_request");
+    return this.httpClient
+      .post<any>(url, req, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public uploadCustomerFileRequest(data: any): Observable<any> {
+    const url = this.common.makeUrlForCustomer('/customer-api/upload_customer_file_request/');
+    return this.httpClient
+      .post<any>(url, data, { observe: 'response' })
+      .pipe(catchError(this.handleError));
+  }
+
+  public saveCustomerFileRequest(data: any): Observable<any> {
+    const url = this.common.makeUrlForCustomer('/customer-api/save_customer_request_attachment/');
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   public authenAccCustomer(data:any){

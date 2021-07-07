@@ -21,6 +21,7 @@ import { Benifit } from 'src/app/model/Benifit';
 import { RequestClaimApprove } from 'src/app/model/RequestClaimApprove';
 import { IllustrationMainBenifit } from 'src/app/model/IllustrationMainBenifit';
 import { TemplatePortal } from '@angular/cdk/portal';
+import { CustomerNotification } from 'src/app/model/CustomerNotification';
 
 @Component({
   selector: 'app-claim-review-form',
@@ -108,17 +109,31 @@ export class ClaimReviewFormComponent implements OnInit {
     if (this.approveStatus == "DX") {
       this.contractRequestService.setStatusRequest(this.req.id, this.description, this.approveStatus).subscribe((data => {
         this.contractRequestService.addClaimRequest(this.requestClaim).subscribe((data => {
+          let noti = new CustomerNotification(0, this.contract.id_customer, this.req.name, "Yêu cầu của bạn đã được đề xuất thanh toán!", "", 1, new Date());
+          this.contractRequestService.addOneNotification(noti).subscribe((noti => {
+            this.spinner.hide();
+            this.snackBar.openSnackBar("Xử Lý Yêu Cầu Thành Công", "Đóng");
+            this.router.navigate(['claim-request-manage']);
+          }))
+        }))
+      }))
+    } else if (this.approveStatus == "YCT") {
+      this.contractRequestService.setStatusRequest(this.req.id, this.description, this.approveStatus).subscribe((data => {
+        let noti = new CustomerNotification(0, this.contract.id_customer, this.req.name, "Yêu cầu của bạn cần bổ sung thêm tài liệu!", "", 1, new Date());
+        this.contractRequestService.addOneNotification(noti).subscribe((noti => {
           this.spinner.hide();
           this.snackBar.openSnackBar("Xử Lý Yêu Cầu Thành Công", "Đóng");
           this.router.navigate(['claim-request-manage']);
         }))
       }))
-    }
-    else {
+    } else {
       this.contractRequestService.setStatusRequest(this.req.id, this.description, this.approveStatus).subscribe((data => {
-        this.spinner.hide();
-        this.snackBar.openSnackBar("Xử Lý Yêu Cầu Thành Công", "Đóng");
-        this.router.navigate(['claim-request-manage']);
+        let noti = new CustomerNotification(0, this.contract.id_customer, this.req.name, "Yêu cầu của bạn đã bị từ chối!", "", 1, new Date());
+        this.contractRequestService.addOneNotification(noti).subscribe((noti => {
+          this.spinner.hide();
+          this.snackBar.openSnackBar("Xử Lý Yêu Cầu Thành Công", "Đóng");
+          this.router.navigate(['claim-request-manage']);
+        }))
       }))
     }
   }

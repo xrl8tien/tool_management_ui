@@ -18,6 +18,12 @@ import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
 import { ContractrequestService } from 'src/app/services/contractRequest/contractrequest.service';
 import { CustomerWebServiceService } from 'src/app/services/customer-web-service/customer-web-service.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
+import { ContractDTO } from 'src/app/model/ContractDTO';
+import { FormControl } from '@angular/forms';
+import { Contract } from 'src/app/model/Contract';
+import { SubBenefitScale } from 'src/app/model/SubBenefitScale';
+import { MainBenefitScale } from 'src/app/model/MainBenefitScale';
+import { IllustrationService } from 'src/app/services/illustration/illustration.service';
 
 @Component({
   selector: 'app-claim-submit-form',
@@ -26,6 +32,7 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 })
 export class ClaimSubmitFormComponent implements OnInit {
 
+  contract: Contract;
   code_sender: string;
   id_contract: number;
   name: string;
@@ -33,9 +40,14 @@ export class ClaimSubmitFormComponent implements OnInit {
   payment_period: string;
   selectedFile = new Array<File>();
   req: Request;
+  listContracts: Array<ContractDTO>;
+  selectContract: FormControl = new FormControl();
+  selectBenefit: FormControl = new FormControl();
+  listSubBenefitScale: Array<SubBenefitScale> = [];
+  listMainBenefitScale: Array<MainBenefitScale> = [];
+  listSubScale: Array<SubBenefitScale> = [];
 
-
-  constructor(private snackBar: SnackbarService, private cusService: CustomerService,
+  constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,
     private common: CommonService, private spinner: NgxSpinnerService,
     private referTable: RefertableService, public authenService: AuthenService,
@@ -43,22 +55,46 @@ export class ClaimSubmitFormComponent implements OnInit {
     private dialog: MatDialog, private EmAccService: EmployeeService) { }
 
   ngOnInit(): void {
+    let token_customer = this.common.getCookie('token_customer');
+    if (!token_customer) {
+      this.router.navigate(['login-customerweb']);
+    } else {
+      this.contractService.getAllContractForCustomer(jwt_decode(this.common.getCookie('token_customer'))['sub']).subscribe((data => {
+        this.listContracts = data;
+      }));
+    }
+
   }
 
-  public exportPDF() {
-    var data = document.getElementById('mat-typography');
-    html2canvas(data).then(canvas => {
-      let imgWidth = 208;
-      let pageHeight = 295;
-      let imgHeight = canvas.height * imgWidth / canvas.width;
-      var heightLeft = imgHeight;
+  onChangeContract(id_contract: number) {
+    this.cusService.getDetailContractForCustomer(id_contract).subscribe((data => {
+      this.contract = data;
 
-      const contentUrl = canvas.toDataURL('img/png')
-      let pdf = new jspdf('p', 'mm', 'a4');
-      var position = 0;
-      pdf.addImage(contentUrl, 'PNG', 0, position, imgWidth, imgHeight)
-      pdf.save('Thongtinbosung.pdf');
-    });
+      this.cusService.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
+        for (var i = 0; i < data.length; i++) {
+          this.cusService.getAllSubBenefitScaleBySubBenefitId(data[i].id_sub_benifit).subscribe((data1 => {
+            this.listSubScale = data1;
+            for (var j = 0; j < this.listSubScale.length; j++) {
+              let subBenefitScale = new SubBenefitScale(
+                this.listSubScale[j].id,
+                this.listSubScale[j].name,
+                this.listSubScale[j].scale,
+                this.listSubScale[j].id_sub_benefit
+              )
+              this.listSubBenefitScale.push(subBenefitScale);
+            }
+          }))
+        }
+      }))
+      this.cusService.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {
+        this.listMainBenefitScale = data;
+      }))
+
+    }))
+  }
+
+  dowloadPDF() {
+    window.print();
   }
 
   onChangeFile(event) {
@@ -77,7 +113,7 @@ export class ClaimSubmitFormComponent implements OnInit {
 
   sendReq() {
     this.spinner.show();
-    this.req = new Request(0, this.name, 2, new Date(), 1, this.code_sender, '', '', 'Cao', this.id_contract, 'CXD');
+    this.req = new Request(0, this.name, 2, new Date(), 1, this.code_sender, '', '', 'Cao', this.selectContract.value, 'CXD');
 
     this.cusService.addOneCustomerRequest(this.req).subscribe((reqData => {
       if (this.selectedFile.length != 0) {

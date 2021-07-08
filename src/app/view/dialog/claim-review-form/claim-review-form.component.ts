@@ -109,7 +109,7 @@ export class ClaimReviewFormComponent implements OnInit {
     if (this.approveStatus == "DX") {
       this.contractRequestService.setStatusRequest(this.req.id, this.description, this.approveStatus).subscribe((data => {
         this.contractRequestService.addClaimRequest(this.requestClaim).subscribe((data => {
-          let noti = new CustomerNotification(0, this.contract.id_customer, this.req.name, "Yêu cầu của bạn đã được đề xuất thanh toán!", "", 1, new Date());
+          let noti = new CustomerNotification(0, this.contract.id_customer, this.req.name, "Yêu cầu của bạn đã được đề xuất thanh toán!", "list-request-customer", 1, new Date());
           this.contractRequestService.addOneNotification(noti).subscribe((noti => {
             this.spinner.hide();
             this.snackBar.openSnackBar("Xử Lý Yêu Cầu Thành Công", "Đóng");
@@ -119,7 +119,7 @@ export class ClaimReviewFormComponent implements OnInit {
       }))
     } else if (this.approveStatus == "YCT") {
       this.contractRequestService.setStatusRequest(this.req.id, this.description, this.approveStatus).subscribe((data => {
-        let noti = new CustomerNotification(0, this.contract.id_customer, this.req.name, "Yêu cầu của bạn cần bổ sung thêm tài liệu!", "", 1, new Date());
+        let noti = new CustomerNotification(0, this.contract.id_customer, this.req.name, "Yêu cầu của bạn cần bổ sung thêm tài liệu!", "list-request-customer", 1, new Date());
         this.contractRequestService.addOneNotification(noti).subscribe((noti => {
           this.spinner.hide();
           this.snackBar.openSnackBar("Xử Lý Yêu Cầu Thành Công", "Đóng");
@@ -128,7 +128,7 @@ export class ClaimReviewFormComponent implements OnInit {
       }))
     } else {
       this.contractRequestService.setStatusRequest(this.req.id, this.description, this.approveStatus).subscribe((data => {
-        let noti = new CustomerNotification(0, this.contract.id_customer, this.req.name, "Yêu cầu của bạn đã bị từ chối!", "", 1, new Date());
+        let noti = new CustomerNotification(0, this.contract.id_customer, this.req.name, "Yêu cầu của bạn đã bị từ chối!", "list-request-customer", 1, new Date());
         this.contractRequestService.addOneNotification(noti).subscribe((noti => {
           this.spinner.hide();
           this.snackBar.openSnackBar("Xử Lý Yêu Cầu Thành Công", "Đóng");

@@ -109,6 +109,7 @@ import { CustomerHelpComponent } from './customerwebsite/customer-help/customer-
 import { GetContactInfoComponent } from './customerwebsite/get-contact-info/get-contact-info.component';
 import { ClaimGuideComponent } from './customerwebsite/claim-guide/claim-guide.component';
 import { ClaimSubmitFormComponent } from './customerwebsite/claim-submit-form/claim-submit-form.component';
+import { ListRequestCustomerComponent } from './customerwebsite/list-request-customer/list-request-customer.component';
 
 
 
@@ -197,6 +198,7 @@ import { ClaimSubmitFormComponent } from './customerwebsite/claim-submit-form/cl
     GetContactInfoComponent,
     ClaimGuideComponent,
     ClaimSubmitFormComponent,
+    ListRequestCustomerComponent,
   ],
   imports: [
     DataTablesModule,

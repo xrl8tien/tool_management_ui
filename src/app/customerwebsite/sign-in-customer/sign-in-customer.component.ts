@@ -30,6 +30,7 @@ export class SignInCustomerComponent implements OnInit {
     this.customerService.authenAccCustomer(this.customerAcc).subscribe((data =>{
       if(data['token_customer']){
         this.common.setCookie('token_customer',data['token_customer'],1);
+        this.common.setCookie('name_customer',this.customerAcc.code,1);
         this.router.navigate(['']);
         this.spinner.hide();
       } else {

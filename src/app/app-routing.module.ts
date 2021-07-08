@@ -50,6 +50,7 @@ import { ClaimSubmitFormComponent } from './customerwebsite/claim-submit-form/cl
 import { CustomerCareComponent } from './customerwebsite/customer-care/customer-care.component';
 import { CustomerHelpComponent } from './customerwebsite/customer-help/customer-help.component';
 import { GetContactInfoComponent } from './customerwebsite/get-contact-info/get-contact-info.component';
+import { ListRequestCustomerComponent } from './customerwebsite/list-request-customer/list-request-customer.component';
 
 const routes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -101,6 +102,7 @@ const routes: Routes = [
   { path: "customer-care", component: CustomerCareComponent},
   { path: "customer-help", component: CustomerHelpComponent},
   { path: "get-contact-info", component: GetContactInfoComponent},
+  { path: "list-request-customer", component: ListRequestCustomerComponent},
 ];
 
 @NgModule({

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 import { CustomerNotification } from 'src/app/model/CustomerNotification';
 import { CommonService } from 'src/app/services/common/common.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
-import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-header',
@@ -12,18 +13,16 @@ import jwt_decode from 'jwt-decode';
 })
 export class HeaderComponent implements OnInit {
 
-  listNoti: Array<CustomerNotification> = [];
+  listNotifications: Array<CustomerNotification>;
 
-  constructor(public common: CommonService, private route: Router, private customerSer: CustomerService) { }
+  constructor(public common: CommonService, private route: Router,
+    private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    // this.customerSer.getAllNotificationByIdCustomer(14).subscribe((data => {
-    //   this.listNoti = data;
-    // }))
-
-    this.customerSer.getAllNotificationByIdCustomer(jwt_decode(this.common.getCookie('token_customer'))['sub']).subscribe((data => {
-      this.listNoti = data;
-    }))
+    this.customerService.getAllNotificationByIdCustomer(jwt_decode(this.common.getCookie('token_customer'))['sub'])
+      .subscribe((data => {
+        this.listNotifications = data;
+      }))
   }
 
   exit() {
@@ -32,3 +31,4 @@ export class HeaderComponent implements OnInit {
   }
 
 }
+

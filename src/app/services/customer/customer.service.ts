@@ -231,10 +231,10 @@ export class CustomerService {
   }
 
   //notification
-  public getAllNotificationByIdCustomer(id_customer: number): Observable<any> {
+  public getAllNotificationByIdCustomer(data: any): Observable<any> {
     const url = this.common.makeUrlForCustomer("/customer-api/get_all_notification_by_id_customer");
     return this.httpClient
-      .post<any>(url, id_customer, this.httpOptions)
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

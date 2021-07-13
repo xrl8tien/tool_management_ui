@@ -59,6 +59,7 @@ export class ClaimSubmitFormComponent implements OnInit {
     if (!token_customer) {
       this.router.navigate(['login-customerweb']);
     } else {
+      this.code_sender = this.common.getCookie('name_customer');
       this.contractService.getAllContractForCustomer(jwt_decode(this.common.getCookie('token_customer'))['sub']).subscribe((data => {
         this.listContracts = data;
       }));
@@ -136,6 +137,7 @@ export class ClaimSubmitFormComponent implements OnInit {
       }
       this.spinner.hide();
       this.snackBar.openSnackBar("Gửi Yêu Cầu Thành Công", "Đóng");
+      this.router.navigate(['list-request-customer']);
     }))
   }
 }

@@ -13,28 +13,28 @@ import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
 })
 export class SignInCustomerComponent implements OnInit {
 
-  constructor(private snackBar:SnackbarService,private spinner:NgxSpinnerService,private customerService:CustomerService,private common:CommonService,private router:Router) { }
-  customerAcc = new CustomerAcc(0,"","",false);
-  
+  constructor(private snackBar: SnackbarService, private spinner: NgxSpinnerService, private customerService: CustomerService, private common: CommonService, private router: Router) { }
+  customerAcc = new CustomerAcc(0, "", "", false);
+
   customerAccPass
   ngOnInit(): void {
     let token_customer = this.common.getCookie('token_customer');
-    if(token_customer){
+    if (token_customer) {
       this.router.navigate(['']);
-    }else{
+    } else {
       return;
     }
   }
-  onSubmit(){
+  onSubmit() {
     this.spinner.show();
-    this.customerService.authenAccCustomer(this.customerAcc).subscribe((data =>{
-      if(data['token_customer']){
-        this.common.setCookie('token_customer',data['token_customer'],1);
-        this.common.setCookie('name_customer',this.customerAcc.code,1);
+    this.customerService.authenAccCustomer(this.customerAcc).subscribe((data => {
+      if (data['token_customer']) {
+        this.common.setCookie('token_customer', data['token_customer'], 1);
+        this.common.setCookie('name_customer', this.customerAcc.code, 1);
         this.router.navigate(['']);
         this.spinner.hide();
       } else {
-        this.snackBar.openSnackBar("Vui lòng xem lại tài khoản và mật khẩu","Đóng");
+        this.snackBar.openSnackBar("Vui lòng xem lại tài khoản và mật khẩu", "Đóng");
         this.spinner.hide();
       }
     }))

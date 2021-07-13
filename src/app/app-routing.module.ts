@@ -51,6 +51,7 @@ import { CustomerCareComponent } from './customerwebsite/customer-care/customer-
 import { CustomerHelpComponent } from './customerwebsite/customer-help/customer-help.component';
 import { GetContactInfoComponent } from './customerwebsite/get-contact-info/get-contact-info.component';
 import { ListRequestCustomerComponent } from './customerwebsite/list-request-customer/list-request-customer.component';
+import { PaymentGuideComponent } from './customerwebsite/payment-guide/payment-guide.component';
 
 const routes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -97,12 +98,13 @@ const routes: Routes = [
   { path: "detail-employee-info", component: DetailEmployeeInfoComponent },
   { path: "claim-request-manage", component: ClaimRequestManageComponent },
   { path: "claim-request-detail/:id", component: DetailClaimComponent },
-  { path: "claim-guide", component: ClaimGuideComponent},
-  { path: "claim-submit-form", component: ClaimSubmitFormComponent},
-  { path: "customer-care", component: CustomerCareComponent},
-  { path: "customer-help", component: CustomerHelpComponent},
-  { path: "get-contact-info", component: GetContactInfoComponent},
-  { path: "list-request-customer", component: ListRequestCustomerComponent},
+  { path: "claim-guide", component: ClaimGuideComponent },
+  { path: "claim-submit-form", component: ClaimSubmitFormComponent },
+  { path: "customer-care", component: CustomerCareComponent },
+  { path: "customer-help", component: CustomerHelpComponent },
+  { path: "get-contact-info", component: GetContactInfoComponent },
+  { path: "list-request-customer", component: ListRequestCustomerComponent },
+  { path: "payment-guide", component: PaymentGuideComponent },
 ];
 
 @NgModule({

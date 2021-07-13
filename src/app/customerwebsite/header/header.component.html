@@ -5,7 +5,8 @@
         </div>
         <div class="container container-cust">
             <a href="index.html" class="navbar-brand"><img src="assets/img/logo.png" alt=""></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="lni-menu"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -21,14 +22,17 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="#">
                             Các Gói Bảo Hiểm
-                            </a>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="nav-link" href="feature">
                             </a><a class="dropdown-item" href="detail-page-customerweb/1"> Bảo hiểm chăm sóc y tế </a>
-                            <a class="dropdown-item" href="detail-page-customerweb/2">Bảo hiểm phẫu thuật và điều trị ngoại khoa</a>
-                            <a class="dropdown-item" href="detail-page-customerweb/3">Chăm sóc sức khỏe dành cho phụ nữ</a>
+                            <a class="dropdown-item" href="detail-page-customerweb/2">Bảo hiểm phẫu thuật và điều trị
+                                ngoại khoa</a>
+                            <a class="dropdown-item" href="detail-page-customerweb/3">Chăm sóc sức khỏe dành cho phụ
+                                nữ</a>
                             <a class="dropdown-item" href="detail-page-customerweb/4">Bảo hiểm tai nạn toàn diện</a>
-                            <a class="dropdown-item" href="detail-page-customerweb/5">Bảo hiểm các bệnh lý nghiêm trọng</a>
+                            <a class="dropdown-item" href="detail-page-customerweb/5">Bảo hiểm các bệnh lý nghiêm
+                                trọng</a>
                         </div>
 
 
@@ -56,7 +60,41 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="compensation-treatment">Giải quyết Quyền lợi bảo hiểm</a>
                             <a class="dropdown-item" href="customer-care">Chăm sóc khách hàng</a>
+                            <a class="dropdown-item" href="claim-submit-form">Nộp hồ sơ yêu cầu bồi thường</a>
+                            <a class="dropdown-item" href="payment-guide">Đóng phí bảo hiểm</a>
                         </div>
+                    </li>
+
+                    <li *ngIf="common.getCookie('token_customer')" class="nav-item dropdown">
+                        <button type="button" class="icon-button">
+                            <span class="material-icons">
+                                notifications
+                            </span>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a *ngFor="let noti of listNoti" class="dropdown-item" href="{{noti.url}}">
+                                    <i *ngIf="noti.type == 1" class="fas fa-folder-plus fa-2x">
+                                        <p class="notitile">{{noti.title}}</p>
+                                    </i>
+
+                                    <i *ngIf="noti.type == 2" class="fas fa-comment-dollar fa-2x">
+                                        <p class="notitile">{{noti.title}}</p>
+                                    </i>
+
+                                    <i *ngIf="noti.type == 3" class="fas fa-ad fa-2x">
+                                        <p class="notitile">{{noti.title}}</p>
+                                    </i>
+
+                                    <i *ngIf="noti.type == 4" class="fas fa-birthday-cake fa-2x">
+                                        <p class="notitile">{{noti.title}}</p>
+                                    </i>
+
+                                    <p>{{noti.description}}<br>
+                                        {{noti.date | date}}
+                                    </p>
+                                </a>
+                            </div>
+                            <span git initclass="icon-button_badge">{{listNoti.length}}</span>
+                        </button>
                     </li>
 
                     <li *ngIf="!common.getCookie('token_customer')" class="nav-item">

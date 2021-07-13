@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustomerNotification } from 'src/app/model/CustomerNotification';
 import { CommonService } from 'src/app/services/common/common.service';
+import { CustomerService } from 'src/app/services/customer/customer.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +12,21 @@ import { CommonService } from 'src/app/services/common/common.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public common:CommonService,private route:Router) { }
+  listNoti: Array<CustomerNotification> = [];
+
+  constructor(public common: CommonService, private route: Router, private customerSer: CustomerService) { }
 
   ngOnInit(): void {
+    // this.customerSer.getAllNotificationByIdCustomer(14).subscribe((data => {
+    //   this.listNoti = data;
+    // }))
+
+    this.customerSer.getAllNotificationByIdCustomer(jwt_decode(this.common.getCookie('token_customer'))['sub']).subscribe((data => {
+      this.listNoti = data;
+    }))
   }
 
-  exit(){
+  exit() {
     this.common.deleteCookie('token_customer');
     this.route.navigate(['login-customerweb']);
   }

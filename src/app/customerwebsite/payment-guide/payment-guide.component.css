@@ -1,0 +1,201 @@
+.fullPage{
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  .block-bannerBreadcrumbWrap {
+    position: relative;
+  }
+  
+  .block-bannerBreadcrumbWrap .block-bannerPage {
+    position: relative;
+  }
+  
+  .slick-slider{
+    display: block;
+    box-sizing: border-box;
+    user-select: none;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-weight: normal;
+    vertical-align: baseline;
+    background: transparent;
+  }
+  
+  .slick-slider .slick-track, .slick-slider .slick-list {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  .slick-list {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .slick-initialized .slick-slide {
+    display: block;
+  }
+  
+  .slick-slide {
+    /* display: none; */
+    float: left;
+    height: 100%;
+    min-height: 1px;
+  }
+  
+  .slick-slide img {
+    display: block;
+  }
+  
+  img, svg {
+    vertical-align: middle;
+  }
+  
+  img {
+    border-style: none;
+  }
+  
+  /* img, object, embed {
+    max-width: 100%;
+  } */
+  
+  .block-bannerBreadcrumbWrap .block-bannerPage .box-content {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    transform: translate(0, -50%);
+    z-index: 1;
+  }
+  
+  /* @media (min-width: 1200px) */
+  .container {
+    max-width: 1200px;
+  }
+  
+  /* @media (min-width: 1200px) */
+  .container {
+    /* max-width: 1170px; */
+    width: 100%;
+  }
+  
+  .container {
+    position: static;
+  }
+  
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    /* width: 100%; */
+  }
+  
+  .title-bn {
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: #004fb6;
+    border-bottom: 3px solid #004fb6;
+    display: inline-block;
+  }
+  a {
+    color: #ffffff;
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+  
+  main {
+    clear: both;
+}
+.title-page {
+    background-color: lightblue;
+    margin-left: 325px;
+    margin-top: 40px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color:black;
+}
+
+.block-paymentguide.head-benefit {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.block-paymentguide .head-benefit h3 {
+    font-size: 5.625rem;
+    line-height: 1;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.block-paymentguide .item-benefit.part1 {
+    background-color: #019ab1;
+}
+
+.block-paymentguide .item-benefit.part2 {
+    background-color: #044f98;
+}
+
+.block-paymentguide .item-benefit.part3 {
+  background-color: lime;
+}
+
+.block-paymentguide .item-benefit .content-benefit {
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ffffff;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.img-credit-card {
+    width: 50%;
+    height: 50%;
+    margin-left: 100px;
+    margin-top: -40px;
+}
+
+.seperate {
+  margin: 40px;
+}
+
+.img-credit-card2 {
+  width: 50%;
+  height: 50%;
+  margin-left: 100px;
+  margin-top: -20px;
+}
+
+

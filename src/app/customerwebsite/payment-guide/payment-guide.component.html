@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/assets/dist/css/css_cust/fonts/line-icons.css">
+    <link rel="stylesheet" href="/assets/dist/css/css_cust/animate.css">
+    <link rel="stylesheet" href="/assets/dist/css/css_cust/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+</head>
+
+<body>
+    <app-header></app-header>
+    <div class="full-page">
+        <div id="ct100_divAlt1" class="altcontent1 cmszone">
+            <div class="block-bannerBreadcrumbWrap">
+                <div class="Module Module-242">
+                    <div class="ModuleContent">
+                        <section class="block-bannerPage slick-initialized slick-slider">
+                            <div class="slick-list draggale">
+                                <div class="slick-track" style="opacity: 1; width: 1600px;">
+                                    <div class="item slick-slide slick-current slick-active" data-slick-index="0"
+                                        aria-hidden="false" tabindex="0"
+                                        style="width: 1600px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
+                                        <img src="assets/images/online-pay-banner.jpg"
+                                            alt="Giải quyết quyền lợi bảo hiểm">
+                                        <div class="box-content">
+                                            <div class="container">
+                                                <h2 class="title-bn">Đóng phí bảo hiểm</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <main class="main">
+            <div id="ct100_divCenter" class="middle-fullwidth">
+                <div class="ModuleContent">
+                    <div class="block-payment">
+                        <article class="item-first">
+                            <div class="box-content">
+                                <div class="row flex flex-wrap flex-content-center">
+                                    <div class="col-12 col-xl-10">
+                                        <h1 class="title-page">Quy trình thông báo phí bảo hiểm định kỳ</h1>
+                                        <h3></h3>
+                                        <div class="fullContent">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="block-paymentguide">
+                                <div class="container">
+                                    <div class="row flex flex-wrap">
+                                        <div class="col-12 col-md-6 col-lg-4" style="margin: auto;">
+                                            <div class="item-benefit part1">
+                                                <div class="head-benefit">
+                                                    <h3>01</h3>
+                                                    <a><img src="assets/images/cus.png" alt="04"
+                                                            class="img-credit-card2" (click)="openDialog()"></a>
+                                                </div>
+                                                <div class="content-benefit"><a (click)="openDialog()">Khách
+                                                        hàng cá nhân</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ct100_divCenter" class="middle-fullwidth">
+                <div class="ModuleContent">
+                    <div class="block-payment">
+                        <article class="item-first">
+                            <div class="box-content">
+                                <div class="row flex flex-wrap flex-content-center">
+                                    <div class="col-12 col-xl-10">
+                                        <h1 class="title-page">Các kênh thanh toán phí bảo hiểm</h1>
+                                        <h3></h3>
+                                        <div class="fullContent">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="block-paymentguide">
+                                <div class="container">
+                                    <div class="row flex flex-wrap">
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="item-benefit part1">
+                                                <div class="head-benefit">
+                                                    <h3>01</h3>
+                                                    <a (click)="openDialog1()"><img src="assets/images/credit-card.png"
+                                                            alt="01" class="img-credit-card"></a>
+                                                </div>
+                                                <div class="content-benefit"><a (click)="openDialog1()">Thanh toán qua
+                                                        thẻ</a></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="item-benefit part2">
+                                                <div class="head-benefit">
+                                                    <h3>02</h3>
+                                                    <a (click)="openDialog2()"><img src="assets/images/online-pay.png"
+                                                            alt="02" class="img-credit-card"></a>
+                                                </div>
+                                                <div class="content-benefit"><a (click)="openDialog2()">Thanh toán trực
+                                                        tuyến qua ngân hàng</a></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="item-benefit part3">
+                                                <div class="head-benefit">
+                                                    <h3>03</h3>
+                                                    <a (click)="openDialog3()"><img src="assets/images/pay-cash.png"
+                                                            alt="03" class="img-credit-card"></a>
+                                                </div>
+                                                <div class="content-benefit"><a (click)="openDialog3()">Thanh toán bằng
+                                                        tiền mặt</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="seperate"></div>
+    <div class="footer-clean" style="color: white;background: #3a3633e0;">
+        <footer>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>SẢN PHẨM</h3>
+                        <ul>
+                            <li><a href="detail-page-customerweb/1"
+                                    style="font-weight: 700; border-bottom:2px; font-size: 15px;"> Bảo hiểm chăm sóc y
+                                    tế</a></li>
+                            <li><a href="detail-page-customerweb/2"
+                                    style="font-weight: 700; border-bottom: 2px; font-size: 15px;">Bảo hiểm phẫu thuật
+                                    và điều trị ngoại khoa</a></li>
+                            <li><a href="detail-page-customerweb/3"
+                                    style="font-weight: 700; border-bottom: 2px; font-size: 15px;">Chăm sóc sức khỏe
+                                    dành cho phụ nữ</a></li>
+                            <li><a href="detail-page-customerweb/4"
+                                    style="font-weight: 700; border-bottom: 2px; font-size: 15px;">Bảo hiểm tai nạn toàn
+                                    diện</a></li>
+                            <li><a href="detail-page-customerweb/5"
+                                    style="font-weight: 700; border-bottom: 2px; font-size: 15px;">Bảo hiểm các bệnh lý
+                                    nghiêm trọng</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>HỖ TRỢ KHÁCH HÀNG</h3>
+                        <ul>
+                            <li style="font-weight: 700; border-bottom:2px; font-size: 15px;">Địa chỉ : KM29 Khu Công
+                                Nghệ Cao Láng Hòa Lạc - Hà Nội</li>
+                            <li style="font-weight: 700; border-bottom:2px; font-size: 15px;">Phone : +84 846 250 592
+                            </li>
+                            <li style="font-weight: 700; border-bottom:2px; font-size: 15px;">Email :
+                                saler@isolution.asia</li>
+                            <li style="font-weight: 700; border-bottom:2px; font-size: 15px;">Website : isolution.asia
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-12" style="text-align: center;">
+                        <img src="../../../assets/images/favicon.png" width="50px"
+                            style="margin-bottom: 20px; margin-top: 5px;">
+                        <div class="social-icon text-center">
+                            <a class="facebook" href="#"><i class="lni-facebook-filled"></i></a>
+                            <a class="twitter" href="#"><i class="lni-twitter-filled"></i></a>
+                            <a class="instagram" href="#"><i class="lni-instagram-filled"></i></a>
+                            <a class="linkedin" href="#"><i class="lni-linkedin-filled"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

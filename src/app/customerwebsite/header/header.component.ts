@@ -5,6 +5,7 @@ import { CustomerNotification } from 'src/app/model/CustomerNotification';
 import { CommonService } from 'src/app/services/common/common.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

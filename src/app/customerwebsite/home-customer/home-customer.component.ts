@@ -49,7 +49,11 @@ export class HomeCustomerComponent implements OnInit {
       let dialogRef = this.dialog.open(GetContactInfoComponent, {});
       this.common.setSession('contact', 'ok');
     }
-    
+
+  }
+
+  onClick() {
+    const dialogContact = this.dialog.open(GetContactInfoComponent);
   }
 
   exit() {

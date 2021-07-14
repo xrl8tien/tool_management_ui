@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
+import { ID_SEPARATOR } from '@angular/localize/src/utils';
 import { Router } from '@angular/router';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -98,6 +99,13 @@ export class CustomerService {
     const url = this.common.makeUrl("/customer/get_all_old_contact_by_district_ids");
     return this.httpClient
       .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getDistrictNameById(ids: Array<number>): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_district_name_by_id");
+    return this.httpClient
+      .post<any>(url, ids, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

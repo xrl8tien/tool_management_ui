@@ -39,18 +39,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <h2 class="card-title">{{district_name}}</h2>
                                             <table style="text-align: center;"
                                                 class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th (click)="sort('name')">Tên Khách Hàng&nbsp;<i
                                                                 class="fas fa-sort"></i>
-                                                        </th>
-                                                        <th (click)="sort('id_province')">Tỉnh/Thành Phố&nbsp;<i
-                                                                class="fa fa-sort"></i>
-                                                        </th>
-                                                        <th (click)="sort('id_district')">Quận/Huyện&nbsp;<i
-                                                                class="fa fa-sort"></i>
                                                         </th>
                                                         <th (click)="sort('phone')">Số Điện Thoại&nbsp;<i
                                                                 class="fa fa-sort"></i>
@@ -69,8 +64,6 @@
                                                     <tr
                                                         *ngFor="let contact of listContact | orderBy: key:reverse | paginate: { id: 'listing_pagination' ,itemsPerPage: 5, currentPage: page, totalItems: totalRecords} ">
                                                         <td>{{contact.customer_name}}</td>
-                                                        <td>{{contact.id_province}}</td>
-                                                        <td>{{contact.id_district}}</td>
                                                         <td>{{contact.phone}}</td>
                                                         <td>{{contact.question}}</td>
                                                         <td>{{contact.create_time | date:'dd-MM-yyyy'}}</td>
@@ -89,8 +82,6 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th>Tên Khách Hàng</th>
-                                                        <th>Tỉnh/Thành Phố</th>
-                                                        <th>Quận/Huyện</th>
                                                         <th>Số Điện Thoại</th>
                                                         <th>Yêu Cầu</th>
                                                         <th>Ngày Gửi</th>
@@ -137,18 +128,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <h2 class="card-title">{{district_name}}</h2>
                                             <table style="text-align: center;"
                                                 class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th (click)="sort('name')">Tên Khách Hàng&nbsp;<i
                                                                 class="fas fa-sort"></i>
-                                                        </th>
-                                                        <th (click)="sort('id_province')">Tỉnh/Thành Phố&nbsp;<i
-                                                                class="fa fa-sort"></i>
-                                                        </th>
-                                                        <th (click)="sort('id_district')">Quận/Huyện&nbsp;<i
-                                                                class="fa fa-sort"></i>
                                                         </th>
                                                         <th (click)="sort('phone')">Số Điện Thoại&nbsp;<i
                                                                 class="fa fa-sort"></i>
@@ -168,8 +154,6 @@
                                                     <tr
                                                         *ngFor="let contact of listContactOld | orderBy: key:reverse | paginate: { id: 'listing_pagination_old' ,itemsPerPage: 5, currentPage: pageOld, totalItems: totalRecordsOld} ">
                                                         <td>{{contact.customer_name}}</td>
-                                                        <td>{{contact.id_province}}</td>
-                                                        <td>{{contact.id_district}}</td>
                                                         <td>{{contact.phone}}</td>
                                                         <td>{{contact.question}}</td>
                                                         <td>{{contact.status}}</td>
@@ -179,13 +163,11 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th>Tên Khách Hàng</th>
-                                                        <th>Tỉnh/Thành Phố</th>
-                                                        <th>Quận/Huyện</th>
                                                         <th>Số Điện Thoại</th>
                                                         <th>Yêu Cầu</th>
                                                         <th>Trạng Thái</th>
                                                         <th>Ngày Gửi</th>
-                                                    </tr>
+                                                    </tr> 
                                                 </tfoot>
                                             </table>
                                             <pagination-controls style="float: right;" id="listing_pagination_old"

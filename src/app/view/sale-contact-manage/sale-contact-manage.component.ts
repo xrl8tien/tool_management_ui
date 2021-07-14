@@ -25,6 +25,7 @@ export class SaleContactManageComponent implements OnInit {
     private common: CommonService,
     public snackbar: SnackbarService) { }
 
+  district_name: string = "";
   page: number = 1;
   totalRecords: number;
   searchValue: String = "";
@@ -53,6 +54,14 @@ export class SaleContactManageComponent implements OnInit {
     this.customerService.getAllDistrictByCodeSale(jwt_decode(this.common.getCookie('token_key'))['sub'])
       .subscribe((ids => {
         this.listId = ids;
+        this.customerService.getDistrictNameById(this.listId).subscribe((data => {
+          for (let i = 0; i < data.length; i++) {
+            if (i < data.length - 1)
+              this.district_name += " " + data[i] +", "
+            else
+              this.district_name += " " + data[i]
+          }
+        }))
         this.customerService.getAllNewContactByDistrictIds(this.listId).subscribe((data => {
           this.listContact = data;
         }))
@@ -134,7 +143,7 @@ export class SaleContactManageComponent implements OnInit {
     this.dateFrom = null;
     this.dateTo = null;
   }
-  
+
   ResetDateOld() {
     this.dateFromOld = null;
     this.dateToOld = null;

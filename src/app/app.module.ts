@@ -116,6 +116,7 @@ import { PaymentByCashComponent } from './customerwebsite/payment-guide/payment-
 import { PaymentByCreditCardComponent } from './customerwebsite/payment-guide/payment-by-credit-card/payment-by-credit-card.component';
 import { PaymentDirectlyComponent } from './customerwebsite/payment-guide/payment-directly/payment-directly.component';
 import { SaleContactManageComponent } from './view/sale-contact-manage/sale-contact-manage.component';
+import { HelpCustomerSendClaimRequestComponent } from './view/help-customer-send-claim-request/help-customer-send-claim-request.component';
 
 
 
@@ -210,6 +211,7 @@ import { SaleContactManageComponent } from './view/sale-contact-manage/sale-cont
     PaymentByCreditCardComponent,
     PaymentDirectlyComponent,
     SaleContactManageComponent,
+    HelpCustomerSendClaimRequestComponent,
 
   ],
   imports: [

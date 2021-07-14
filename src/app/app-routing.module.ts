@@ -53,6 +53,8 @@ import { ListRequestCustomerComponent } from './customerwebsite/list-request-cus
 import { PaymentGuideComponent } from './customerwebsite/payment-guide/payment-guide.component';
 import { SaleContactManageComponent } from './view/sale-contact-manage/sale-contact-manage.component';
 
+import { HelpCustomerSendClaimRequestComponent } from './view/help-customer-send-claim-request/help-customer-send-claim-request.component'
+
 const routes: Routes = [
   { path: "dashboard", component: DashboardComponent },
   { path: "customer", component: CustomerListComponent },
@@ -105,6 +107,8 @@ const routes: Routes = [
   { path: "list-request-customer", component: ListRequestCustomerComponent },
   { path: "payment-guide", component: PaymentGuideComponent },
   { path: "sale-contact-manage", component: SaleContactManageComponent },
+
+  { path: "help-customer-send-claim-request", component: HelpCustomerSendClaimRequestComponent },
 
 ];
 

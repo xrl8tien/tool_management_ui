@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Danh sách liên hệ</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-primary card-outline">
+                                <div class="card-header">
+                                    <h2 class="card-title">Liên hệ mới</h2>
+
+                                    <div class="searchWithDateandValue">
+                                        <div class="left">
+                                        </div>
+                                        <div class="right">
+                                            <div class="input-group searchBar">
+                                                <input type="search" class="form-control form-control-lg"
+                                                    [(ngModel)]="searchValue" placeholder="Nhập từ khóa cần tìm">
+                                            </div>
+                                            <div class="date">
+                                                <label>Từ Ngày<input id="RfromSearch" type="date" name="dateFrom"
+                                                        [(ngModel)]="dateFrom" class="form-control form-control-sm"
+                                                        placeholder="" aria-controls="example1"></label>
+                                                <label style="margin-left: 2%;"> Đến Ngày<input id="RtoSearch"
+                                                        type="date" name="dateTo" [(ngModel)]="dateTo"
+                                                        class="form-control form-control-sm" placeholder=""
+                                                        aria-controls="example1"></label>
+                                                <button type="button" class="btn btn-danger btn-date"
+                                                    (click)="ResetDate()">Xóa
+                                                    ngày</button>
+                                                <button type="button" class="btn btn-info btn-date"
+                                                    (click)="Search()">Tìm
+                                                    kiếm
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table style="text-align: center;" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th (click)="sort('name')">Tên Khách Hàng&nbsp;<i
+                                                        class="fas fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('id_province')">Tỉnh/Thành Phố&nbsp;<i
+                                                        class="fa fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('id_district')">Quận/Huyện&nbsp;<i
+                                                        class="fa fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('phone')">Số Điện Thoại&nbsp;<i
+                                                        class="fa fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('question')">Yêu Cầu&nbsp;<i class="fa fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('create_time')">Ngày Gửi&nbsp;<i
+                                                        class="fa fa-sort"></i>
+                                                </th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr
+                                                *ngFor="let contact of listContact | orderBy: key:reverse | paginate: { id: 'listing_pagination' ,itemsPerPage: 5, currentPage: page, totalItems: totalRecords} ">
+                                                <td>{{contact.customer_name}}</td>
+                                                <td>{{contact.id_province}}</td>
+                                                <td>{{contact.id_district}}</td>
+                                                <td>{{contact.phone}}</td>
+                                                <td>{{contact.question}}</td>
+                                                <td>{{contact.create_time | date:'dd-MM-yyyy'}}</td>
+                                                <td><button type="button" class="btn btn-block btn-success btn-flat"
+                                                        (click)="yesDialog(contact.id)">
+                                                        Đồng ý
+                                                    </button></td>
+                                                <td><button type="button" class="btn btn-block btn-danger btn-flat"
+                                                        (click)="noDialog(contact.id)">
+                                                        Từ chối
+                                                    </button></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Tên Khách Hàng</th>
+                                                <th>Tỉnh/Thành Phố</th>
+                                                <th>Quận/Huyện</th>
+                                                <th>Số Điện Thoại</th>
+                                                <th>Yêu Cầu</th>
+                                                <th>Ngày Gửi</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <pagination-controls style="float: right;" id="listing_pagination" maxSize="9"
+                                        directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2 class="card-title">Lịch Sử Tư Vấn</h2>
+                                    <div class="searchWithDateandValue">
+                                        <div class="left">
+                                        </div>
+                                        <div class="right">
+                                            <div class="input-group searchBar">
+                                                <input type="search" class="form-control form-control-lg"
+                                                    [(ngModel)]="searchValueOld" placeholder="Nhập từ khóa cần tìm">
+                                            </div>
+                                            <div class="date">
+                                                <label>Từ Ngày<input id="RfromSearchOld" type="date" name="dateFromOld"
+                                                        [(ngModel)]="dateFromOld" class="form-control form-control-sm"
+                                                        placeholder="" aria-controls="example1"></label>
+                                                <label style="margin-left: 2%;"> Đến Ngày<input id="RtoSearchOld"
+                                                        type="date" name="dateToOld" [(ngModel)]="dateToOld"
+                                                        class="form-control form-control-sm" placeholder=""
+                                                        aria-controls="example1"></label>
+                                                <button type="button" class="btn btn-danger btn-date"
+                                                    (click)="ResetDateOld()">Xóa
+                                                    ngày</button>
+                                                <button type="button" class="btn btn-info btn-date"
+                                                    (click)="SearchOld()">Tìm
+                                                    kiếm
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table style="text-align: center;" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th (click)="sort('name')">Tên Khách Hàng&nbsp;<i
+                                                        class="fas fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('id_province')">Tỉnh/Thành Phố&nbsp;<i
+                                                        class="fa fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('id_district')">Quận/Huyện&nbsp;<i
+                                                        class="fa fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('phone')">Số Điện Thoại&nbsp;<i
+                                                        class="fa fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('question')">Yêu Cầu&nbsp;<i class="fa fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('status')">Trạng Thái&nbsp;<i class="fa fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('create_time')">Ngày Gửi&nbsp;<i
+                                                        class="fa fa-sort"></i>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr
+                                                *ngFor="let contact of listContactOld | orderBy: key:reverse | paginate: { id: 'listing_pagination_old' ,itemsPerPage: 5, currentPage: pageOld, totalItems: totalRecordsOld} ">
+                                                <td>{{contact.customer_name}}</td>
+                                                <td>{{contact.id_province}}</td>
+                                                <td>{{contact.id_district}}</td>
+                                                <td>{{contact.phone}}</td>
+                                                <td>{{contact.question}}</td>
+                                                <td>{{contact.status}}</td>
+                                                <td>{{contact.create_time | date:'dd-MM-yyyy'}}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Tên Khách Hàng</th>
+                                                <th>Tỉnh/Thành Phố</th>
+                                                <th>Quận/Huyện</th>
+                                                <th>Số Điện Thoại</th>
+                                                <th>Yêu Cầu</th>
+                                                <th>Trạng Thái</th>
+                                                <th>Ngày Gửi</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <pagination-controls style="float: right;" id="listing_pagination_old" maxSize="9"
+                                        directionLinks="true" (pageChange)="pageOld = $event"></pagination-controls>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

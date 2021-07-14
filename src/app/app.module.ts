@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxSpinnerModule } from 'ngx-spinner'
+import { NgApexchartsModule } from "ng-apexcharts";
 
 // material
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -110,6 +111,7 @@ import { GetContactInfoComponent } from './customerwebsite/get-contact-info/get-
 import { ClaimGuideComponent } from './customerwebsite/claim-guide/claim-guide.component';
 import { ClaimSubmitFormComponent } from './customerwebsite/claim-submit-form/claim-submit-form.component';
 import { ListRequestCustomerComponent } from './customerwebsite/list-request-customer/list-request-customer.component';
+import { SaleContactManageComponent } from './view/sale-contact-manage/sale-contact-manage.component';
 
 
 
@@ -199,6 +201,7 @@ import { ListRequestCustomerComponent } from './customerwebsite/list-request-cus
     ClaimGuideComponent,
     ClaimSubmitFormComponent,
     ListRequestCustomerComponent,
+    SaleContactManageComponent,
   ],
   imports: [
     DataTablesModule,
@@ -226,7 +229,8 @@ import { ListRequestCustomerComponent } from './customerwebsite/list-request-cus
     MatSelectModule,
     Ng2SearchPipeModule,
     Ng2OrderModule,
-    NgbModule
+    NgbModule,
+    NgApexchartsModule
   ],
   entryComponents: [AdminResetPasswordComponent,AppraiserReviewFormComponent,EmployeeEditInfoDialogComponent,ContractPauseDialogComponent,ContractChangeInfoDialogComponent,ReportCustomerDialogComponent,CustomerEditInfoComponent,AdminAddEmployeeInfoComponent,AdminAddAccountEmployeeComponent,AddCustomerIllustrationDialogComponent,CustomerAddInfoDialogComponent,ContractAddDialogComponent,NotificationConfirmDialogComponent,PauseCustomerDialogComponent],
   providers: [AdminDataServiceService],

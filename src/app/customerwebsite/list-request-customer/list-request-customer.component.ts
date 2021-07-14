@@ -29,6 +29,15 @@ export class ListRequestCustomerComponent implements OnInit {
   code_sender: string;
 
   ngOnInit(): void {
+    this.contractService.subsVar = this.contractService.
+      callRefreshTable.subscribe((name: string) => {
+        this.refresh();
+      });
+    this.refresh();
+  }
+
+  public refresh(){
+    this.spinner.show();
     this.code_sender = this.common.getCookie('name_customer');
     this.customerService.getAllCustomerRequest(this.code_sender).subscribe((data => {
       this.claimRequests = data;
@@ -36,6 +45,7 @@ export class ListRequestCustomerComponent implements OnInit {
         element.status = this.common.transformStatus(element.status);
       });
       this.totalRecords = this.claimRequests.length;
+      this.spinner.hide();
     }))
   }
 

@@ -56,6 +56,13 @@ export class RevenueService {
     .pipe(catchError(this.handleError))
   }
 
+  public getAllKpi(code_employee:String):Observable<any>{
+    const url = this.common.makeUrl("/revenue/get_all_kpi_employee");
+    return this.httpClient
+    .post<any>(url,code_employee,this.httpOptions)
+    .pipe(catchError(this.handleError))
+  }
+
   
 
   private handleError(error: HttpErrorResponse) {

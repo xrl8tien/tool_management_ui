@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Contact } from 'src/app/model/Contact';
+import { ContactDTO } from 'src/app/model/ContactDTO';
+import { ContractDTO } from 'src/app/model/ContractDTO';
 import { CustomerAcc } from 'src/app/model/CustomerAcc';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
 import { Request } from 'src/app/model/Request';
@@ -74,6 +76,51 @@ export class CustomerService {
     const url = this.common.makeUrl("/customer/get_all_customer_info_admin");
     return this.httpClient
       .get<any>(url, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllNewContactByDistrictIds(data: any): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_all_new_contact_by_district_ids");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllNewContact(ids: Array<number>, dateFrom: string, dateTo: string, searchValue: string): Observable<any> {
+    let data = new ContactDTO(ids, dateFrom, dateTo, searchValue);
+    const url = this.common.makeUrl("/customer/search_all_new_contact");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllOldContactByDistrictIds(data: any): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_all_old_contact_by_district_ids");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllOldContact(ids: Array<number>, dateFrom: string, dateTo: string, searchValue: string): Observable<any> {
+    let data = new ContactDTO(ids, dateFrom, dateTo, searchValue);
+    const url = this.common.makeUrl("/customer/search_all_old_contact");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllDistrictByCodeSale(code_sale: string): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_all_district_by_code_sale");
+    return this.httpClient
+      .post<any>(url, code_sale, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public updateContact(status: string, id: number): Observable<any> {
+    let data = { status: status, id: id };
+    const url = this.common.makeUrl("/customer/update_contact");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
@@ -187,32 +234,32 @@ export class CustomerService {
   }
 
   //claim submit form
-  public getDetailContractForCustomer(data:any): Observable<any> {
+  public getDetailContractForCustomer(data: any): Observable<any> {
     const url = this.common.makeUrlForCustomer("/customer-api/get_detail_contract_for_customer/");
     return this.httpClient
-      .post<any>(url,data,this.httpOptions)
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  public getAllSubBenefitById(id:number): Observable<any>{
-    const url = this.common.makeUrlForCustomer('/customer-api/get_all_sub_benefit/'+id);
+  public getAllSubBenefitById(id: number): Observable<any> {
+    const url = this.common.makeUrlForCustomer('/customer-api/get_all_sub_benefit/' + id);
     return this.httpClient
-    .get<any>(url,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .get<any>(url, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public getAllMainBenefitScaleByMainBenefitId(id:number): Observable<any>{
-    const url = this.common.makeUrlForCustomer('/customer-api/get_all_main_benefit_scale/'+id);
+  public getAllMainBenefitScaleByMainBenefitId(id: number): Observable<any> {
+    const url = this.common.makeUrlForCustomer('/customer-api/get_all_main_benefit_scale/' + id);
     return this.httpClient
-    .get<any>(url,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .get<any>(url, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public getAllSubBenefitScaleBySubBenefitId(id:number): Observable<any>{
-    const url = this.common.makeUrlForCustomer('/customer-api/get_all_sub_benefit_scale/'+id);
+  public getAllSubBenefitScaleBySubBenefitId(id: number): Observable<any> {
+    const url = this.common.makeUrlForCustomer('/customer-api/get_all_sub_benefit_scale/' + id);
     return this.httpClient
-    .get<any>(url,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .get<any>(url, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   public getAllCustomerRequest(code_sender: string): Observable<any> {

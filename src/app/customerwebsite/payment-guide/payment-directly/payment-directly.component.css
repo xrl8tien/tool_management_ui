@@ -1,0 +1,21 @@
+.title-dialog {
+    font-weight: 600;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.order {
+    font-weight: 600;
+}
+
+.li-list{
+    margin-left: 2rem;
+}
+
+.img-payment{
+    vertical-align: middle;
+}
+
+.table {
+   padding: auto;
+}

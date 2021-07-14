@@ -26,7 +26,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatInputModule } from '@angular/material/input';
 import { DashboardComponent } from '././view/dashboard/dashboard.component';
-import { NotificationComponent } from '././view/notification/notification.component';
 import { CustomerListComponent } from '././view/customer-list/customer-list.component';
 import { IllustrationComponent } from '././view/illustration/illustration.component';
 import { ContractComponent } from '././view/contract/contract.component';
@@ -62,8 +61,8 @@ import { IllustrationTableComponent } from '././view/illustration/illustration-t
 import { ContractTableComponent } from '././view/contract/contract-table/contract-table.component';
 import { CreateIllustrationComponent } from './view/illustration/illustration-table/list-illustration/detail-illustration/create-illustration/create-illustration.component';
 import { DetailIllustrationComponent } from './view/illustration/illustration-table/list-illustration/detail-illustration/detail-illustration.component';
-import {AdminAddEmployeeInfoComponent} from '././view/dialog/admin-add-employee-info/admin-add-employee-info.component';
-import {AdminAddAccountEmployeeComponent} from '././view/dialog/admin-add-account-employee/admin-add-account-employee.component';
+import { AdminAddEmployeeInfoComponent } from '././view/dialog/admin-add-employee-info/admin-add-employee-info.component';
+import { AdminAddAccountEmployeeComponent } from '././view/dialog/admin-add-account-employee/admin-add-account-employee.component';
 import { ListIllustrationComponent } from '././view/illustration/illustration-table/list-illustration/list-illustration.component';
 import { AddCustomerIllustrationDialogComponent } from './view/dialog/add-customer-illustration-dialog/add-customer-illustration-dialog.component';
 import { CustomerAddInfoDialogComponent } from './view/dialog/customer-add-info-dialog/customer-add-info-dialog.component';
@@ -111,6 +110,11 @@ import { GetContactInfoComponent } from './customerwebsite/get-contact-info/get-
 import { ClaimGuideComponent } from './customerwebsite/claim-guide/claim-guide.component';
 import { ClaimSubmitFormComponent } from './customerwebsite/claim-submit-form/claim-submit-form.component';
 import { ListRequestCustomerComponent } from './customerwebsite/list-request-customer/list-request-customer.component';
+import { PaymentGuideComponent } from './customerwebsite/payment-guide/payment-guide.component';
+import { NotificationPaymentComponent } from './customerwebsite/payment-guide/notification-payment/notification-payment.component';
+import { PaymentByCashComponent } from './customerwebsite/payment-guide/payment-by-cash/payment-by-cash.component';
+import { PaymentByCreditCardComponent } from './customerwebsite/payment-guide/payment-by-credit-card/payment-by-credit-card.component';
+import { PaymentDirectlyComponent } from './customerwebsite/payment-guide/payment-directly/payment-directly.component';
 import { SaleContactManageComponent } from './view/sale-contact-manage/sale-contact-manage.component';
 
 
@@ -119,7 +123,6 @@ import { SaleContactManageComponent } from './view/sale-contact-manage/sale-cont
   declarations: [
     AppComponent,
     DashboardComponent,
-    NotificationComponent,
     CustomerListComponent,
     IllustrationComponent,
     ContractComponent,
@@ -201,7 +204,13 @@ import { SaleContactManageComponent } from './view/sale-contact-manage/sale-cont
     ClaimGuideComponent,
     ClaimSubmitFormComponent,
     ListRequestCustomerComponent,
+    PaymentGuideComponent,
+    NotificationPaymentComponent,
+    PaymentByCashComponent,
+    PaymentByCreditCardComponent,
+    PaymentDirectlyComponent,
     SaleContactManageComponent,
+
   ],
   imports: [
     DataTablesModule,
@@ -232,7 +241,7 @@ import { SaleContactManageComponent } from './view/sale-contact-manage/sale-cont
     NgbModule,
     NgApexchartsModule
   ],
-  entryComponents: [AdminResetPasswordComponent,AppraiserReviewFormComponent,EmployeeEditInfoDialogComponent,ContractPauseDialogComponent,ContractChangeInfoDialogComponent,ReportCustomerDialogComponent,CustomerEditInfoComponent,AdminAddEmployeeInfoComponent,AdminAddAccountEmployeeComponent,AddCustomerIllustrationDialogComponent,CustomerAddInfoDialogComponent,ContractAddDialogComponent,NotificationConfirmDialogComponent,PauseCustomerDialogComponent],
+  entryComponents: [AdminResetPasswordComponent, AppraiserReviewFormComponent, EmployeeEditInfoDialogComponent, ContractPauseDialogComponent, ContractChangeInfoDialogComponent, ReportCustomerDialogComponent, CustomerEditInfoComponent, AdminAddEmployeeInfoComponent, AdminAddAccountEmployeeComponent, AddCustomerIllustrationDialogComponent, CustomerAddInfoDialogComponent, ContractAddDialogComponent, NotificationConfirmDialogComponent, PauseCustomerDialogComponent],
   providers: [AdminDataServiceService],
   bootstrap: [AppComponent]
 })

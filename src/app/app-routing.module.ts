@@ -16,7 +16,6 @@ import { IncomeComponent } from '././view/income/income.component';
 import { LabourContractComponent } from '././view/labour-contract/labour-contract.component';
 import { LoginComponent } from '././view/login/login.component';
 import { MailComponent } from '././view/mail/mail.component';
-import { NotificationComponent } from '././view/notification/notification.component';
 import { ApproveContractComponent } from '././view/approve-contract/approve-contract.component';
 import { AppraiserContractManageComponent } from '././view/appraiser-contract-manage/appraiser-contract-manage.component';
 import { ViewDetailContractComponent } from '././view/view-detail-contract/view-detail-contract.component';
@@ -51,11 +50,11 @@ import { CustomerCareComponent } from './customerwebsite/customer-care/customer-
 import { CustomerHelpComponent } from './customerwebsite/customer-help/customer-help.component';
 import { GetContactInfoComponent } from './customerwebsite/get-contact-info/get-contact-info.component';
 import { ListRequestCustomerComponent } from './customerwebsite/list-request-customer/list-request-customer.component';
+import { PaymentGuideComponent } from './customerwebsite/payment-guide/payment-guide.component';
 import { SaleContactManageComponent } from './view/sale-contact-manage/sale-contact-manage.component';
 
 const routes: Routes = [
   { path: "dashboard", component: DashboardComponent },
-  { path: "notification", component: NotificationComponent },
   { path: "customer", component: CustomerListComponent },
   { path: "illustration", component: IllustrationComponent },
   { path: "contract", component: ContractComponent },
@@ -98,13 +97,15 @@ const routes: Routes = [
   { path: "detail-employee-info", component: DetailEmployeeInfoComponent },
   { path: "claim-request-manage", component: ClaimRequestManageComponent },
   { path: "claim-request-detail/:id", component: DetailClaimComponent },
-  { path: "claim-guide", component: ClaimGuideComponent},
-  { path: "claim-submit-form", component: ClaimSubmitFormComponent},
-  { path: "customer-care", component: CustomerCareComponent},
-  { path: "customer-help", component: CustomerHelpComponent},
-  { path: "get-contact-info", component: GetContactInfoComponent},
-  { path: "list-request-customer", component: ListRequestCustomerComponent},
-  { path: "sale-contact-manage", component: SaleContactManageComponent},
+  { path: "claim-guide", component: ClaimGuideComponent },
+  { path: "claim-submit-form", component: ClaimSubmitFormComponent },
+  { path: "customer-care", component: CustomerCareComponent },
+  { path: "customer-help", component: CustomerHelpComponent },
+  { path: "get-contact-info", component: GetContactInfoComponent },
+  { path: "list-request-customer", component: ListRequestCustomerComponent },
+  { path: "payment-guide", component: PaymentGuideComponent },
+  { path: "sale-contact-manage", component: SaleContactManageComponent },
+
 ];
 
 @NgModule({

@@ -48,7 +48,6 @@ export class CustomerInfo {
     source:string;
     status:number;
 
-
     
 
     constructor(id: number, birth_date: Date, age: number, birth_address: string, types_identification: string, id_card: string, nationality_1: string, nationality_2: string,

@@ -20,6 +20,8 @@ import {
   ApexYAxis
 } from "ng-apexcharts";
 import { Kpi } from 'src/app/model/Kpi';
+import { CustomerInfo } from 'src/app/model/CustomerInfo';
+import { CustomerService } from 'src/app/services/customer/customer.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -73,7 +75,9 @@ export class DashboardComponent implements OnInit {
   // ];
   // chartLabels = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
 
-  constructor(private router: Router, private revenueService: RevenueService, private common: CommonService, private contractService: ContractService) {
+  constructor(private router: Router, private revenueService: RevenueService,
+    private common: CommonService, private contractService: ContractService,
+    private customerService: CustomerService) {
 
   }
   // danh sách này để hiển thị
@@ -96,10 +100,14 @@ export class DashboardComponent implements OnInit {
   listRevenueEmployeeMonthNow: Array<Revenue> = [];
   percentBetweenIncome: String;
   incomeStatus: String;
+  listBirthdayCus: Array<CustomerInfo> = [];
+  listExpiredContract: Array<Contract> = [];
+  customerinfos: Array<CustomerInfo> = [];
 
   ngOnInit(): void {
     this.common.titlePage = "Tổng Quan";
     this.CalculateIncomeForThisYear();
+    this.FindBirthdayCus();
 
     this.contractService.getAllContract(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
       this.listContract = data;
@@ -109,6 +117,10 @@ export class DashboardComponent implements OnInit {
         }
         if (this.listContract[i].approval_status == "DD") {
           this.ContractApproved += 1;
+        }
+        let day = new Date(this.listContract[i].end_time)
+        if (this.calculateDiff(day) <= 30 && this.calculateDiff(day) >= 0 && this.listContract[i].approval_status == "DD") {
+          this.listExpiredContract.push(this.listContract[i]);
         }
       }
     }))
@@ -121,6 +133,26 @@ export class DashboardComponent implements OnInit {
   }
   RevenuePage() {
     this.router.navigate["income"];
+  }
+
+  FindBirthdayCus() {
+    let today = new Date();
+    this.customerService.getAllCustomerInfo(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+      this.customerinfos = data;
+      for (let i = 0; i < this.customerinfos.length; i++) {
+        let day = new Date(this.customerinfos[i].birth_date)
+        if (day.getDate() == today.getDate() && day.getMonth() == today.getMonth()) {
+          this.listBirthdayCus.push(this.customerinfos[i]);
+        }
+      }
+    }))
+  }
+
+  calculateDiff(dateSent) {
+    let currentDate = new Date();
+    dateSent = new Date(dateSent);
+
+    return Math.floor((Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) - Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())) / (1000 * 60 * 60 * 24));
   }
 
   CalculateIncomeForThisYear() {

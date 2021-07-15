@@ -53,7 +53,7 @@
                                                         <th (click)="sort('question')">Yêu Cầu&nbsp;<i
                                                                 class="fa fa-sort"></i>
                                                         </th>
-                                                        <th (click)="sort('create_time')">Ngày Gửi&nbsp;<i
+                                                        <th (click)="sort('create_time')">Thời Gian&nbsp;<i
                                                                 class="fa fa-sort"></i>
                                                         </th>
                                                         <th></th>
@@ -66,7 +66,8 @@
                                                         <td>{{contact.customer_name}}</td>
                                                         <td>{{contact.phone}}</td>
                                                         <td>{{contact.question}}</td>
-                                                        <td>{{contact.create_time | date:'dd-MM-yyyy'}}</td>
+                                                        <td *ngIf="calculateDiff(contact.create_time) > 0">{{calculateDiff(contact.create_time)}} ngày trước</td>
+                                                        <td *ngIf="calculateDiff(contact.create_time) == 0">Hôm nay</td>
                                                         <td><button type="button"
                                                                 class="btn btn-block btn-success btn-flat"
                                                                 (click)="yesDialog(contact.id)">
@@ -84,7 +85,7 @@
                                                         <th>Tên Khách Hàng</th>
                                                         <th>Số Điện Thoại</th>
                                                         <th>Yêu Cầu</th>
-                                                        <th>Ngày Gửi</th>
+                                                        <th>Thời Gian</th>
                                                         <th></th>
                                                         <th></th>
                                                     </tr>
@@ -145,7 +146,7 @@
                                                         <th (click)="sort('status')">Trạng Thái&nbsp;<i
                                                                 class="fa fa-sort"></i>
                                                         </th>
-                                                        <th (click)="sort('create_time')">Ngày Gửi&nbsp;<i
+                                                        <th (click)="sort('create_time')">Thời Gian&nbsp;<i
                                                                 class="fa fa-sort"></i>
                                                         </th>
                                                     </tr>
@@ -157,7 +158,8 @@
                                                         <td>{{contact.phone}}</td>
                                                         <td>{{contact.question}}</td>
                                                         <td>{{contact.status}}</td>
-                                                        <td>{{contact.create_time | date:'dd-MM-yyyy'}}</td>
+                                                        <td *ngIf="calculateDiff(contact.create_time) > 0">{{calculateDiff(contact.create_time)}} ngày trước</td>
+                                                        <td *ngIf="calculateDiff(contact.create_time) == 0">Hôm nay</td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
@@ -166,7 +168,7 @@
                                                         <th>Số Điện Thoại</th>
                                                         <th>Yêu Cầu</th>
                                                         <th>Trạng Thái</th>
-                                                        <th>Ngày Gửi</th>
+                                                        <th>Thời Gian</th>
                                                     </tr> 
                                                 </tfoot>
                                             </table>

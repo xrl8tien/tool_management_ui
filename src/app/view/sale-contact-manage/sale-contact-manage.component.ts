@@ -188,6 +188,13 @@ export class SaleContactManageComponent implements OnInit {
     })
   }
 
+  checkKHTN(status: string): boolean{
+    if(status == "Đã thêm vào KHTN"){
+      return true;
+    }
+    return false;
+  }
+
   calculateDiff(dateSent) {
     let currentDate = new Date();
     dateSent = new Date(dateSent);

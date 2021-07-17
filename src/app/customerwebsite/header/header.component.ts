@@ -19,10 +19,12 @@ export class HeaderComponent implements OnInit {
     private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    this.customerService.getAllNotificationByIdCustomer(jwt_decode(this.common.getCookie('token_customer'))['sub'])
-      .subscribe((data => {
-        this.listNotifications = data;
-      }))
+    if (this.common.getCookie('token_customer')) {
+      this.customerService.getAllNotificationByIdCustomer(jwt_decode(this.common.getCookie('token_customer'))['sub'])
+        .subscribe((data => {
+          this.listNotifications = data;
+        }))
+    }
   }
 
   exit() {

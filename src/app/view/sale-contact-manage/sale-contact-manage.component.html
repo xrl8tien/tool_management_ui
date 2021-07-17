@@ -149,6 +149,7 @@
                                                         <th (click)="sort('create_time')">Thời Gian&nbsp;<i
                                                                 class="fa fa-sort"></i>
                                                         </th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -160,6 +161,12 @@
                                                         <td>{{contact.status}}</td>
                                                         <td *ngIf="calculateDiff(contact.create_time) > 0">{{calculateDiff(contact.create_time)}} ngày trước</td>
                                                         <td *ngIf="calculateDiff(contact.create_time) == 0">Hôm nay</td>
+                                                        <td *ngIf="!checkKHTN(contact.status)"><button type="button"
+                                                            class="btn btn-block btn-success btn-flat"
+                                                            (click)="yesDialog(contact.id)">
+                                                            Thêm KHTN
+                                                        </button></td>
+                                                        <td *ngIf="checkKHTN(contact.status)"></td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
@@ -169,6 +176,7 @@
                                                         <th>Yêu Cầu</th>
                                                         <th>Trạng Thái</th>
                                                         <th>Thời Gian</th>
+                                                        <th></th>
                                                     </tr> 
                                                 </tfoot>
                                             </table>

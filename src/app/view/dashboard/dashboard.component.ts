@@ -86,7 +86,6 @@ export class DashboardComponent implements OnInit {
   listIncome: Array<Income> = [];
   listKpi: Array<Kpi> = [];
 
-
   dateNow: Date = new Date();
   month: number = this.dateNow.getMonth() + 1;
   year: number = this.dateNow.getFullYear();
@@ -104,7 +103,6 @@ export class DashboardComponent implements OnInit {
   listBirthdayCus: Array<CustomerInfo> = [];
   listExpiredContract: Array<Contract> = [];
   customerinfos: Array<CustomerInfo> = [];
-
 
   ngOnInit(): void {
     this.common.titlePage = "Tổng Quan";
@@ -126,29 +124,16 @@ export class DashboardComponent implements OnInit {
         }
       }
     }))
+
+
+
   }
   ContractPage() {
     this.router.navigate["contract"];
   }
-
   RevenuePage() {
     this.router.navigate["income"];
   }
-
-  CalculateIncomeForThisYear() {
-    for (let i = 0; i < 12; i++) {
-      let incomePredic = new itemIncomePredic(i + 1, 0, 0);
-      this.listIncomePredic.push(incomePredic);
-    }
-    this.revenueService.getAllIncomeSaler(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
-      this.listIncome = data;
-      this.listIncome.forEach(item => {
-        //Bước 1: cộng income vào tháng mà hợp đồng này bắt đầu hoạt động
-        var startTime = new Date(item.start_time);
-        if (startTime.getFullYear() == this.year) {
-          this.listIncomePredic[startTime.getMonth()].income += item.income;
-          this.listIncomePredic[startTime.getMonth()].revenue += item.revenue_val;
-        }
 
   FindBirthdayCus() {
     let today = new Date();

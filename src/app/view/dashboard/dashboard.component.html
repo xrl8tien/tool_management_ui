@@ -15,6 +15,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
+<<<<<<< Updated upstream
                 <div class="col-lg-6 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
@@ -22,15 +23,38 @@
                             <h3>{{incomeStatus}} {{percentBetweenIncome}}</h3>
 
                             <p>Thu Nhập So Với Tháng Trước</p>
+=======
+                <div class="col-lg-3 col-6">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">So sánh với tháng trước</span>
+                            <span class="info-box-number">
+                                Thu nhập: {{incomeStatus}} {{percentBetweenIncome}}
+                            </span>
+                            <a href="income" class="small-box-footer">Chi Tiết<i
+                                    class="fas fa-arrow-circle-right"></i></a>
+>>>>>>> Stashed changes
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-cash"></i>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Tiền cần để đạt KPI</span>
+                            <span class="info-box-number">
+                                {{listIncomePredic[month-1].kpi - this.listIncomePredic[this.month - 1].revenue |
+                                currency : "VND"}}
+                            </span>
+                            <br>
                         </div>
+<<<<<<< Updated upstream
                         <a href="income" class="small-box-footer">Chi Tiết<i
                                 class="fas fa-arrow-circle-right"></i></a>
+=======
+>>>>>>> Stashed changes
                     </div>
+
                 </div>
                 <!-- ./col -->
+<<<<<<< Updated upstream
                 <div class="col-lg-6 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
@@ -38,14 +62,27 @@
                             <h3>{{ContractApproved}}</h3>
 
                             <p>Tổng Số Hợp Đồng Đã Được Chấp Thuận</p>
+=======
+                <div class="col-lg-3 col-6">
+
+                    <div class="info-box mb-3" style="background-color: light;">
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-file-contract"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">HĐ đã xác nhận</span>
+                            <span class="info-box-number">{{ContractApproved}}</span>
+                            <a href="contract" class="small-box-footer">Chi Tiết<i
+                                    class="fas fa-arrow-circle-right"></i></a>
+>>>>>>> Stashed changes
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-document"></i>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">HĐ chờ xác nhận</span>
+                            <span class="info-box-number">{{ContractNotApproved}}</span>
+                            <br>
                         </div>
-                        <a href="contract" class="small-box-footer">Chi Tiết<i
-                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+<<<<<<< Updated upstream
                 <!-- ./col -->
                 <div class="col-lg-6 col-6">
                     <!-- small box -->
@@ -54,30 +91,59 @@
                             <h3>{{ContractNotApproved}}</h3>
 
                             <p>Số Hợp Đồng Đang Chờ Xác Nhận</p>
+=======
+                <div class="col-lg-3 col-6">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">KH sắp sinh nhật</span>
+                            <span class="info-box-number">{{listBirthdayCus.length}}</span>
+                            <a href="contact-birthday-info" class="small-box-footer">Chi Tiết<i
+                                    class="fas fa-arrow-circle-right"></i></a>
+>>>>>>> Stashed changes
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-folder"></i>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">HĐ sắp hết hạn</span>
+                            <span class="info-box-number">{{listExpiredContract.length}}</span>
+                            <br>
                         </div>
-                        <a href="contract" class="small-box-footer">Chi Tiết<i
-                                class="fas fa-arrow-circle-right"></i></a>
+
                     </div>
+
                 </div>
+<<<<<<< Updated upstream
                 <!-- ./col -->
                 <div class="col-lg-6 col-6">
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>{{listIncomePredic[month-1].income | currency : "VND"}}</h3>
+=======
+                <div class="col-lg-3 col-6">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-plus"></i></span>
+>>>>>>> Stashed changes
 
-                            <p>Thu Nhập Dự Kiến Của Bạn Trong Tháng</p>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Thông tin liên hệ mới</span>
+                            <span class="info-box-number">{{listContactOld.length}}</span>
+                            <a href="sale-contact-manage" class="small-box-footer">Chi Tiết<i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
+<<<<<<< Updated upstream
                         <div class="icon">
                             <i class="ion ion-cash"></i>
                         </div>
                         <a href="income" class="small-box-footer">Chi Tiết<i
                                 class="fas fa-arrow-circle-right"></i></a>
+=======
+>>>>>>> Stashed changes
                     </div>
                 </div>
+
+
+
             </div>
             <!-- /.row -->
             <!-- Main row -->

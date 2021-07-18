@@ -28,8 +28,47 @@
                     <input type="number" class="form-control" id="inputPhone" required>
                 </div>
                 <div class="col-md-4 mb-3">
+<<<<<<< Updated upstream
                     <label for="inputEmail">Email</label>
                     <input type="email" class="form-control" id="inputEmail" required>
+=======
+                    <label for="inputCMND">Số CMND/CCCD</label>
+                    <input type="number" class="form-control" id="inputCMND" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-2 mb-3">
+                    <label for="inputContractID">Mã số hợp đồng</label>
+                    <select id="inputContractID" class="form-control" [formControl]="selectContract" required
+                        (change)="onChangeContract($event.target.value)">
+                        <option selected>Chọn hợp đồng...</option>
+                        <option *ngFor="let contract of listContracts" [value]="contract.id">
+                            #HD{{contract.id}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label>Có hiệu lực từ</label>
+                    <input class="form-control" type="date" name="start_date">
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label>đến</label>
+                    <input class="form-control" type="date" name="end_date">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputBenefit">Quyền lợi bảo hiểm</label>
+                    <select id="inputBenefit" class="form-control" required>
+                        <option selected>Chọn loại quyền lợi bảo hiểm...</option>
+                        <option *ngFor="let mainBenefit of listMainBenefitScale" [value]="mainBenefit.id">
+                            {{mainBenefit.name}}
+                        </option>
+                        <option *ngFor="let subBenefit of listSubBenefitScale" [value]="subBenefit.id">
+                            {{subBenefit.name}}
+                        </option>
+                    </select>
+>>>>>>> Stashed changes
                 </div>
             </div>
 
@@ -57,6 +96,7 @@
             </fieldset>
 
             <div class="form-row">
+<<<<<<< Updated upstream
                 <div class="form-group col-md-2">
                     <label for="inputContractID">Mã số hợp đồng</label>
                     <select id="inputContractID" class="form-control" [formControl]="selectContract" required
@@ -66,6 +106,49 @@
                             #HD{{contract.id}}
                         </option>
                     </select>
+=======
+                <label for="inputAddress">Địa chỉ liên hệ</label>
+                <input type="text" class="form-control" id="inputAddress" required>
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem;">
+                <div class="col-md-6 mb-1">
+                    <label for="inputPhone">Số ĐT</label>
+                    <input type="number" class="form-control" id="inputPhone" required>
+                </div>
+                <div class="col-md-6 mb-1">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" required>
+                </div>
+            </div>
+
+            <p class="order-info">2. THÔNG TIN VỀ SỰ KIỆN BẢO HIỂM</p>
+
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label>Ngày xảy ra</label>
+                    <input class="form-control" type="date" name="day_happen">
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="validationTextarea">Mô tả về sự kiện bảo hiểm</label>
+                <textarea class="form-control" id="validationTextarea" name="name" [(ngModel)]="name"
+                    required></textarea>
+            </div>
+
+            <p class="order-info">3. THÔNG TIN VỀ NGƯỜI YÊU CẦU BỒI THƯỜNG (ĐỒNG THỜI LÀ NGƯỜI NHẬN TIỀN)</p>
+            <p><em>Người yêu cầu bồi thường phải là NĐBH hoặc người thừa kế/người thụ hưởng/người được chỉ định trên
+                    giấy chứng nhân bảo hiểm (GCNBH)/người được ủy quyền hợp pháp của NĐBH hoặc bố/mẹ/người giám hộ
+                    hợp pháp trong trường hợp NĐBH dưới 18 tuổi. Chỉ điền các thông tin nếu NĐBH khác với người yêu cầu
+                    bồi thường.</em>
+            </p>
+
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="inputName2">Họ và tên</label>
+                    <input type="text" class="form-control" id="inputName2" name="code_sender2">
+>>>>>>> Stashed changes
                 </div>
 
                 <div class="form-group col-md-6">
@@ -91,10 +174,63 @@
                 <input type="text" class="form-control" id="inputAddress" required>
             </div>
 
+<<<<<<< Updated upstream
             <div class="form-group">
                 <label for="inputAddress2">Địa chỉ nhận thư</label>
                 <input type="text" class="form-control" id="inputAddress2">
             </div>
+=======
+            <!-- <p class="order-info">4. HÌNH THỨC NHẬN TIỀN BỒI THƯỜNG</p> -->
+            <!-- <table class="table table-bordered">
+                <tr>
+                    <td><input type="radio" value="1" name="gridPay"> Nhận tiền mặt tại ISolution</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" value="2" name="gridPay"> Nhận tiền qua bưu điện<br>
+                        Thông tin về Người nhận tiền chính là các thông tin về Người yêu cầu bồi thường ở trên.</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" value="3" name="gridPay"> Chuyển khoản
+                        <br>
+                        <div class="col-md-4">
+                            <label for="account">Chủ tài khoản</label>
+                            <input type="text" class="form-control" name="account">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="account2">Số tài khoản</label>
+                            <input type="number" class="form-control" name="account2">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="account3">Ngân hàng</label>
+                            <input type="text" class="form-control" name="account3">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="account4">Chi nhánh</label>
+                            <input type="text" class="form-control" name="account4">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <p> - Khi ghi nhận tiền mặt tại ISolution hoặc qua bưu điện, Người nhận tiền phải xuất trình giấy CMND/CCCD.
+            </p>
+            <p> - Trường hợp bố/mẹ hoặc người giám hộ nhận tiền thay cho NĐBH dưới 18 tuổi, Người nhận tiền phải cung
+                cấp giấy tờ chứng minh quan hệ với NĐBH như: bản sao sổ hộ khẩu hoặc giấy khai sinh, giấy chứng minh
+                quyền giám hộ hoặc các giấy tờ khác theo quy định của pháp luật.</p>
+            <p> - Trường hợp NĐBH trên 18 tuổi và được người khác nhận tiền thay, Người nhận tiền phải cung cấp giấy tờ
+                chứng minh quyền thừa kế/giấy ủy quyền công chứng hoặc được xác nhận bởi UBND cấp phường/xã trở lên hoặc
+                các giấy tờ khác theo quy định của pháp luật (trừ trường hợp Người nhận tiền là người thụ hưởng/ chỉ
+                định nhận tiền bảo hiểm trên Giấy chứng nhận bảo hiểm).</p> -->
+            <p><em><strong>CAM KẾT:</strong></em> Người yêu cầu bồi thường cam đoan rằng những thông tin trên là chính
+                xác, đầy đủ và chịu trách nhiệm về các thông tin trên trước pháp luật. NĐBH và/hoặc Người đại diện/Người
+                được ủy quyền của NĐBH đồng ý rằng vớiGiấy yêu cầu bồi thường này, NĐBH và/hoặc Người đại diện/Người
+                được ủy quyền của NĐBH cho pháp Bảo hiểm ISolution và/hoặc đại diện của họ tiếp cận với các bên thứ ba
+                để thu thập thông tin cần thiết cho việc xét bồi thường này bao gồm, nhưng không giới hạn ở việc tiếp
+                cận bác sỹ và đang điều trị cho NĐBH.</p>
+
+>>>>>>> Stashed changes
 
             <div class="form-group">
                 <div class="custom-upload-div">

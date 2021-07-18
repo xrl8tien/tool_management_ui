@@ -52,6 +52,13 @@ import { CustomerHelpComponent } from './customerwebsite/customer-help/customer-
 import { GetContactInfoComponent } from './customerwebsite/get-contact-info/get-contact-info.component';
 import { ListRequestCustomerComponent } from './customerwebsite/list-request-customer/list-request-customer.component';
 import { PaymentGuideComponent } from './customerwebsite/payment-guide/payment-guide.component';
+<<<<<<< Updated upstream
+=======
+import { SaleContactManageComponent } from './view/sale-contact-manage/sale-contact-manage.component';
+
+import { HelpCustomerSendClaimRequestComponent } from './view/help-customer-send-claim-request/help-customer-send-claim-request.component';
+import { ContactBirthdayInfoComponent } from './view/contact-birthday-info/contact-birthday-info.component';
+>>>>>>> Stashed changes
 
 const routes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -105,6 +112,14 @@ const routes: Routes = [
   { path: "get-contact-info", component: GetContactInfoComponent },
   { path: "list-request-customer", component: ListRequestCustomerComponent },
   { path: "payment-guide", component: PaymentGuideComponent },
+<<<<<<< Updated upstream
+=======
+  { path: "sale-contact-manage", component: SaleContactManageComponent },
+
+  { path: "help-customer-send-claim-request", component: HelpCustomerSendClaimRequestComponent },
+  { path: "contact-birthday-info", component: ContactBirthdayInfoComponent }
+
+>>>>>>> Stashed changes
 ];
 
 @NgModule({

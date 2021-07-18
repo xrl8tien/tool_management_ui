@@ -115,6 +115,13 @@ import { NotificationPaymentComponent } from './customerwebsite/payment-guide/no
 import { PaymentByCashComponent } from './customerwebsite/payment-guide/payment-by-cash/payment-by-cash.component';
 import { PaymentByCreditCardComponent } from './customerwebsite/payment-guide/payment-by-credit-card/payment-by-credit-card.component';
 import { PaymentDirectlyComponent } from './customerwebsite/payment-guide/payment-directly/payment-directly.component';
+<<<<<<< Updated upstream
+=======
+import { SaleContactManageComponent } from './view/sale-contact-manage/sale-contact-manage.component';
+import { HelpCustomerSendClaimRequestComponent } from './view/help-customer-send-claim-request/help-customer-send-claim-request.component';
+import { ReceiveMethodsComponent } from './customerwebsite/receive-methods/receive-methods.component';
+import { ContactBirthdayInfoComponent } from './view/contact-birthday-info/contact-birthday-info.component';
+>>>>>>> Stashed changes
 
 
 
@@ -209,6 +216,14 @@ import { PaymentDirectlyComponent } from './customerwebsite/payment-guide/paymen
     PaymentByCashComponent,
     PaymentByCreditCardComponent,
     PaymentDirectlyComponent,
+<<<<<<< Updated upstream
+=======
+    SaleContactManageComponent,
+    HelpCustomerSendClaimRequestComponent,
+    ReceiveMethodsComponent,
+    ContactBirthdayInfoComponent,
+
+>>>>>>> Stashed changes
   ],
   imports: [
     DataTablesModule,

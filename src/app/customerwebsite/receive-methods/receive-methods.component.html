@@ -1,0 +1,55 @@
+<mat-dialog-content class="mat-typography" id="mat-typography">
+    <div class="card-header">
+        Lựa chọn hình thức nhận tiền bồi thường
+    </div>
+
+    <div class="mat-content">
+        <table class="table table-bordered">
+            <tr>
+                <td><input type="radio" value="1" name="gridPay"> Nhận tiền mặt tại ISolution</td>
+            </tr>
+            <tr>
+                <td><input type="radio" value="2" name="gridPay"> Nhận tiền qua bưu điện<br>
+                    Thông tin về Người nhận tiền chính là các thông tin về Người yêu cầu bồi thường ở trên.</td>
+            </tr>
+            <tr>
+                <td><input type="radio" value="3" name="gridPay"> Chuyển khoản
+                    <br>
+                    <div class="col-md-4">
+                        <label for="account">Chủ tài khoản</label>
+                        <input type="text" class="form-control" name="account">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="account2">Số tài khoản</label>
+                        <input type="number" class="form-control" name="account2">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="account3">Ngân hàng</label>
+                        <input type="text" class="form-control" name="account3">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="account4">Chi nhánh</label>
+                        <input type="text" class="form-control" name="account4">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p> - Khi ghi nhận tiền mặt tại ISolution hoặc qua bưu điện, Người nhận tiền phải xuất trình giấy CMND/CCCD.
+        </p>
+        <p> - Trường hợp bố/mẹ hoặc người giám hộ nhận tiền thay cho NĐBH dưới 18 tuổi, Người nhận tiền phải cung <br>
+            cấp giấy tờ chứng minh quan hệ với NĐBH như: bản sao sổ hộ khẩu hoặc giấy khai sinh, giấy chứng minh
+            quyền<br> giám hộ hoặc các giấy tờ khác theo quy định của pháp luật.</p>
+        <p> - Trường hợp NĐBH trên 18 tuổi và được người khác nhận tiền thay, Người nhận tiền phải cung cấp giấy tờ
+            chứng<br> minh quyền thừa kế/giấy ủy quyền công chứng hoặc được xác nhận bởi UBND cấp phường/xã trở lên hoặc
+            các giấy<br> tờ khác theo quy định của pháp luật (trừ trường hợp Người nhận tiền là người thụ hưởng/ chỉ
+            định nhận tiền bảo hiểm<br> trên Giấy chứng nhận bảo hiểm).</p>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Hủy</button>
+    <button mat-button mat-dialog-close type="submit" class="btn btn-primary">Xác nhận</button>
+</mat-dialog-actions>

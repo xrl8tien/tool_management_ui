@@ -8,6 +8,7 @@ import { Request } from 'src/app/model/Request';
 import { CommonService } from 'src/app/services/common/common.service';
 import { ContractService } from 'src/app/services/contract/contract.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
+import { ReceiveMethodsComponent } from '../receive-methods/receive-methods.component';
 
 @Component({
   selector: 'app-list-request-customer',
@@ -29,6 +30,18 @@ export class ListRequestCustomerComponent implements OnInit {
   code_sender: string;
 
   ngOnInit(): void {
+<<<<<<< Updated upstream
+=======
+    this.contractService.subsVar = this.contractService.
+      callRefreshTable.subscribe((name: string) => {
+        this.refresh();
+      });
+    this.refresh();
+  }
+
+  public refresh() {
+    this.spinner.show();
+>>>>>>> Stashed changes
     this.code_sender = this.common.getCookie('name_customer');
     this.customerService.getAllCustomerRequest(this.code_sender).subscribe((data => {
       this.claimRequests = data;
@@ -92,6 +105,10 @@ export class ListRequestCustomerComponent implements OnInit {
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
+  }
+
+  openDialog() {
+    const refDialog = this.dialog.open(ReceiveMethodsComponent);
   }
 
 }

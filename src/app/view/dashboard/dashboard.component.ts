@@ -118,8 +118,8 @@ export class DashboardComponent implements OnInit {
         if (this.listContract[i].approval_status == "DD") {
           this.ContractApproved += 1;
         }
-        let day = new Date(this.listContract[i].end_time)
-        if (this.calculateDiff(day) <= 30 && this.calculateDiff(day) >= 0 && this.listContract[i].approval_status == "DD") {
+        let day = new Date(this.listContract[i].start_time)
+        if (this.calculateDiff(day, this.listContract[i].payment_period_id) <= 30 && this.calculateDiff(day, this.listContract[i].payment_period_id) >= 0 && this.listContract[i].approval_status == "DD") {
           this.listExpiredContract.push(this.listContract[i]);
         }
       }
@@ -148,9 +148,18 @@ export class DashboardComponent implements OnInit {
     }))
   }
 
-  calculateDiff(dateSent) {
+  calculateDiff(dateSent, payment_period) {
     let currentDate = new Date();
     dateSent = new Date(dateSent);
+    if (payment_period == 1) {
+      dateSent.setDate(dateSent.getDate() + 365);
+    } else if (payment_period == 2) {
+      dateSent.setDate(dateSent.getDate() + 182);
+    } else if (payment_period == 3) {
+      dateSent.setDate(dateSent.getDate() + 91);
+    } else {
+      dateSent.setDate(dateSent.getDate() + 30);
+    }
 
     return Math.floor((Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) - Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())) / (1000 * 60 * 60 * 24));
   }

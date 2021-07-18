@@ -55,12 +55,14 @@
                     <div class="small-box" style="background-color: #ff720e!important;">
                         <div class="inner" style="color: white;">
                             <h3>{{listBirthdayCus.length}}</h3>
-
                             <p>Số khách hàng đến sinh nhật</p>
 
                             <h3>{{listExpiredContract.length}}</h3>
-
                             <p>Số khách hàng đến hạn đóng tiền</p>
+                            <li *ngFor="let contract of listExpiredContract">
+                                <i>{{contract.name_contract_owner}}</i>
+                                <i>{{contract.start_time}}</i>
+                            </li>
                         </div>
                         <div class="icon">
                             <i class="ion ion-folder"></i>

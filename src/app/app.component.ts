@@ -46,6 +46,12 @@ export class AppComponent {
             this.router.navigate(['employee-manage']);
           } else if (this.authenService.id_role == '3'){
             this.router.navigate(['appraiser-request-manage']);
+          } else if (this.authenService.id_role == '4') {
+            this.router.navigate(['claim-request-manage']);
+          } else if (this.authenService.id_role == '5') {
+            this.router.navigate(['dashboard']);
+          } else if (this.authenService.id_role == '6') {
+            this.router.navigate(['dashboard']);
           }
           
           return;

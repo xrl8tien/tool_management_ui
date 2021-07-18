@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxSpinnerModule } from 'ngx-spinner'
+import { NgApexchartsModule } from "ng-apexcharts";
 
 // material
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -25,7 +26,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatInputModule } from '@angular/material/input';
 import { DashboardComponent } from '././view/dashboard/dashboard.component';
-import { NotificationComponent } from '././view/notification/notification.component';
 import { CustomerListComponent } from '././view/customer-list/customer-list.component';
 import { IllustrationComponent } from '././view/illustration/illustration.component';
 import { ContractComponent } from '././view/contract/contract.component';
@@ -115,13 +115,11 @@ import { NotificationPaymentComponent } from './customerwebsite/payment-guide/no
 import { PaymentByCashComponent } from './customerwebsite/payment-guide/payment-by-cash/payment-by-cash.component';
 import { PaymentByCreditCardComponent } from './customerwebsite/payment-guide/payment-by-credit-card/payment-by-credit-card.component';
 import { PaymentDirectlyComponent } from './customerwebsite/payment-guide/payment-directly/payment-directly.component';
-<<<<<<< Updated upstream
-=======
 import { SaleContactManageComponent } from './view/sale-contact-manage/sale-contact-manage.component';
 import { HelpCustomerSendClaimRequestComponent } from './view/help-customer-send-claim-request/help-customer-send-claim-request.component';
 import { ReceiveMethodsComponent } from './customerwebsite/receive-methods/receive-methods.component';
 import { ContactBirthdayInfoComponent } from './view/contact-birthday-info/contact-birthday-info.component';
->>>>>>> Stashed changes
+
 
 
 
@@ -129,7 +127,6 @@ import { ContactBirthdayInfoComponent } from './view/contact-birthday-info/conta
   declarations: [
     AppComponent,
     DashboardComponent,
-    NotificationComponent,
     CustomerListComponent,
     IllustrationComponent,
     ContractComponent,
@@ -216,14 +213,11 @@ import { ContactBirthdayInfoComponent } from './view/contact-birthday-info/conta
     PaymentByCashComponent,
     PaymentByCreditCardComponent,
     PaymentDirectlyComponent,
-<<<<<<< Updated upstream
-=======
     SaleContactManageComponent,
     HelpCustomerSendClaimRequestComponent,
     ReceiveMethodsComponent,
     ContactBirthdayInfoComponent,
 
->>>>>>> Stashed changes
   ],
   imports: [
     DataTablesModule,
@@ -251,7 +245,8 @@ import { ContactBirthdayInfoComponent } from './view/contact-birthday-info/conta
     MatSelectModule,
     Ng2SearchPipeModule,
     Ng2OrderModule,
-    NgbModule
+    NgbModule,
+    NgApexchartsModule
   ],
   entryComponents: [AdminResetPasswordComponent, AppraiserReviewFormComponent, EmployeeEditInfoDialogComponent, ContractPauseDialogComponent, ContractChangeInfoDialogComponent, ReportCustomerDialogComponent, CustomerEditInfoComponent, AdminAddEmployeeInfoComponent, AdminAddAccountEmployeeComponent, AddCustomerIllustrationDialogComponent, CustomerAddInfoDialogComponent, ContractAddDialogComponent, NotificationConfirmDialogComponent, PauseCustomerDialogComponent],
   providers: [AdminDataServiceService],

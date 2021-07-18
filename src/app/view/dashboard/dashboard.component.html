@@ -15,7 +15,6 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-<<<<<<< Updated upstream
                 <div class="col-lg-6 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
@@ -23,7 +22,6 @@
                             <h3>{{incomeStatus}} {{percentBetweenIncome}}</h3>
 
                             <p>Thu Nhập So Với Tháng Trước</p>
-=======
                 <div class="col-lg-3 col-6">
                     <div class="info-box">
                         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
@@ -34,7 +32,6 @@
                             </span>
                             <a href="income" class="small-box-footer">Chi Tiết<i
                                     class="fas fa-arrow-circle-right"></i></a>
->>>>>>> Stashed changes
                         </div>
 
                         <div class="info-box-content">
@@ -45,16 +42,12 @@
                             </span>
                             <br>
                         </div>
-<<<<<<< Updated upstream
                         <a href="income" class="small-box-footer">Chi Tiết<i
                                 class="fas fa-arrow-circle-right"></i></a>
-=======
->>>>>>> Stashed changes
                     </div>
 
                 </div>
                 <!-- ./col -->
-<<<<<<< Updated upstream
                 <div class="col-lg-6 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
@@ -62,7 +55,6 @@
                             <h3>{{ContractApproved}}</h3>
 
                             <p>Tổng Số Hợp Đồng Đã Được Chấp Thuận</p>
-=======
                 <div class="col-lg-3 col-6">
 
                     <div class="info-box mb-3" style="background-color: light;">
@@ -72,7 +64,6 @@
                             <span class="info-box-number">{{ContractApproved}}</span>
                             <a href="contract" class="small-box-footer">Chi Tiết<i
                                     class="fas fa-arrow-circle-right"></i></a>
->>>>>>> Stashed changes
                         </div>
 
                         <div class="info-box-content">
@@ -82,16 +73,15 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< Updated upstream
                 <!-- ./col -->
-                <div class="col-lg-6 col-6">
+                <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box" style="background-color: #ff720e!important;">
                         <div class="inner" style="color: white;">
-                            <h3>{{ContractNotApproved}}</h3>
+                            <h3>{{listBirthdayCus.length}}</h3>
+                            <p>Số khách hàng đến sinh nhật</p>
 
                             <p>Số Hợp Đồng Đang Chờ Xác Nhận</p>
-=======
                 <div class="col-lg-3 col-6">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
@@ -100,7 +90,6 @@
                             <span class="info-box-number">{{listBirthdayCus.length}}</span>
                             <a href="contact-birthday-info" class="small-box-footer">Chi Tiết<i
                                     class="fas fa-arrow-circle-right"></i></a>
->>>>>>> Stashed changes
                         </div>
 
                         <div class="info-box-content">
@@ -112,33 +101,26 @@
                     </div>
 
                 </div>
-<<<<<<< Updated upstream
                 <!-- ./col -->
-                <div class="col-lg-6 col-6">
+                <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>{{listIncomePredic[month-1].income | currency : "VND"}}</h3>
-=======
                 <div class="col-lg-3 col-6">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-plus"></i></span>
->>>>>>> Stashed changes
-
                         <div class="info-box-content">
                             <span class="info-box-text">Thông tin liên hệ mới</span>
                             <span class="info-box-number">{{listContactOld.length}}</span>
                             <a href="sale-contact-manage" class="small-box-footer">Chi Tiết<i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
-<<<<<<< Updated upstream
                         <div class="icon">
                             <i class="ion ion-cash"></i>
                         </div>
                         <a href="income" class="small-box-footer">Chi Tiết<i
                                 class="fas fa-arrow-circle-right"></i></a>
-=======
->>>>>>> Stashed changes
                     </div>
                 </div>
 
@@ -152,7 +134,7 @@
                 <section class="col-lg-12 connectedSortable ui-sortable">
 
                     <!-- Custom tabs (Charts with tabs)-->
-                    <div class="card bg-gradient-info">
+                    <!-- <div class="card bg-gradient-info">
                         <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
                             <h3 class="card-title">
                                 <i class="fas fa-th mr-1"></i>Thu Nhập
@@ -161,6 +143,30 @@
                         <div style="width: 90%; margin: 0 auto; text-align: center;">
                             <canvas baseChart [colors]="chartColors" [chartType]="'bar'" [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [legend]="true">
                             </canvas>
+                        </div>
+                    </div> -->
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-6 col-6">
+                                <div id="chart">
+                                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                                        [xaxis]="chartOptions.xaxis" [markers]="chartOptions.markers"
+                                        [stroke]="chartOptions.stroke" [yaxis]="chartOptions.yaxis"
+                                        [dataLabels]="chartOptions.dataLabels" [title]="chartOptions.title"
+                                        [fill]="chartOptions.fill" [tooltip]="chartOptions.tooltip"
+                                        [legend]="chartOptions.legend"></apx-chart>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-6">
+                                <div id="chart1">
+                                    <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                                        [xaxis]="chartOptions1.xaxis" [markers]="chartOptions1.markers"
+                                        [stroke]="chartOptions1.stroke" [yaxis]="chartOptions1.yaxis"
+                                        [dataLabels]="chartOptions1.dataLabels" [title]="chartOptions1.title"
+                                        [fill]="chartOptions1.fill" [tooltip]="chartOptions1.tooltip"
+                                        [legend]="chartOptions1.legend"></apx-chart>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>

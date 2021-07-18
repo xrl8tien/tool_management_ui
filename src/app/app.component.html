@@ -1,6 +1,8 @@
 <mat-toolbar class="nav-height fixed-toolbar noprint" *ngIf="authenService.isAuthen">
     <mat-toolbar-row>
-        <button (click)="openLeftSide()" mat-icon-button><mat-icon>menu</mat-icon></button>
+        <button (click)="openLeftSide()" mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
         <p style="margin: 0px 0px 0px 26px;">{{common.titlePage}}</p>
     </mat-toolbar-row>
 </mat-toolbar>
@@ -13,7 +15,8 @@
             </a>
             <hr style="color: gray;">
             <a mat-list-item [routerLink]="['/detail-employee-info']">
-                <img [src]="authenService.empolyeeInfo?.name? '../assets/images/profile_man.png' : '../assets/images/profile_women.png' " class="imglink" alt="User Image">
+                <img [src]="authenService.empolyeeInfo?.name? '../assets/images/profile_man.png' : '../assets/images/profile_women.png' "
+                    class="imglink" alt="User Image">
                 <a class="d-block">{{ authenService.empolyeeInfo?.name }}</a>
             </a>
             <hr style="color: gray;">
@@ -22,9 +25,9 @@
                 <a mat-list-item [routerLink]="['/dashboard']">
                     <mat-icon mat-list-icon>dashboard</mat-icon>Tổng Quan
                 </a>
-                <!-- <a mat-list-item [routerLink]="['/notification']">
-                    <mat-icon mat-list-icon>notifications</mat-icon>Thông Báo
-                </a> -->
+                <a mat-list-item [routerLink]="['/sale-contact-manage']">
+                    <mat-icon mat-list-icon>call</mat-icon>Liên Hệ
+                </a>
                 <a mat-list-item [routerLink]="['/customer']">
                     <mat-icon mat-list-icon>table_chart</mat-icon>Danh Sách KHTN
                 </a>
@@ -36,6 +39,9 @@
                 </a>
                 <a mat-list-item [routerLink]="['/income']">
                     <mat-icon mat-list-icon>credit_card</mat-icon>Thu Nhập
+                </a>
+                <a mat-list-item [routerLink]="['/help-customer-send-claim-request']">
+                    <mat-icon mat-list-icon>send</mat-icon>Gửi yêu cầu bồi thường giúp KH
                 </a>
                 <a mat-list-item [routerLink]="['/mail']">
                     <mat-icon mat-list-icon>email</mat-icon>Hộp Thư

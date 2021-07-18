@@ -11,6 +11,41 @@
     max-width: 50%;
 } */
 
+.card-header {
+    text-align: center;
+    text-transform: uppercase;
+    /* font-weight: 600; */
+    font-size: .5rem;
+    color:cornflowerblue;
+    margin-top: .5rem;
+    margin-right: 3.5rem;
+    margin-left: 3.5rem;
+}
+
+.png-logo{
+    width: 8%;
+    margin-bottom: 1rem;
+}
+
+.name-sys{
+    font-weight: 400;
+    font-size: .7rem;
+}
+
+.order-info{
+    margin-top: 1rem;
+    background: cornflowerblue ;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.note {
+    margin-top: 0;
+    text-transform: lowercase;
+    font-size: .8rem;
+}
+
 .form-container {
     max-width: 95%;
     margin-left: 2.5rem;

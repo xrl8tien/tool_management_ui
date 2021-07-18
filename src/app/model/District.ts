@@ -3,4 +3,5 @@ export class District{
     name: string;
     type: string;
     id_province: number;
+    code_sale: string;
 }

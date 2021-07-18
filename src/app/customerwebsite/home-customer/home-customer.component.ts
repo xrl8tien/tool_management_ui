@@ -40,16 +40,25 @@ export class HomeCustomerComponent implements OnInit {
           } else if (this.id_role == '3') {
             this.spinner.hide();
             this.router.navigate(['appraiser-request-manage']);
+          } else if (this.id_role == '4') {
+            this.spinner.hide();
+            this.router.navigate(['claim-request-manage']);
+          } else if (this.id_role == '5') {
+            this.spinner.hide();
+            this.router.navigate(['dashboard']);
+          } else if (this.id_role == '6') {
+            this.spinner.hide();
+            this.router.navigate(['dashboard']);
           }
           this.spinner.hide();
         }));
       }))
+    } else {
+      if (this.common.getSession('contact') == null) {
+        let dialogRef = this.dialog.open(GetContactInfoComponent, {});
+        this.common.setSession('contact', 'ok');
+      }
     }
-    if (this.common.getSession('contact') == null) {
-      let dialogRef = this.dialog.open(GetContactInfoComponent, {});
-      this.common.setSession('contact', 'ok');
-    }
-
   }
 
   onClick() {

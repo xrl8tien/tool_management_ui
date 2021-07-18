@@ -65,7 +65,7 @@ export class AppraiserReviewFormComponent implements OnInit {
               //   this.revenue.revenue_val = 0;
               // }
               // doanh thu của 1 hợp đồng sẽ bằng tổng phí bảo hiểm đóng theo kỳ hạn
-              this.revenue.revenue_val = this.illustration.total_fee;
+              this.revenue.revenue_val = this.illustration.total_fee * 0.15;
               // gửi thông tin tài khoản và password cho khách hàng khi xét duyệt hợp đồng lần đầu tiên
               this.custService.sendOneAccCustomer((this.illustration.id_customer_info)).subscribe((data => {
                 this.revenueSer.addOneRevenue(this.revenue).subscribe((data => {

@@ -2,5 +2,5 @@ export class Province{
     id: number;
     name: string;
     type: string;
-    slug: string;
+    code_sale_executive: string;
 }

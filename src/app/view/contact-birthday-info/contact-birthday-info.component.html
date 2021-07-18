@@ -1,0 +1,104 @@
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <mat-tab-group>
+                            <mat-tab label="Thông tin chăm sóc khách hàng">
+                                <mat-tab-group>
+                                    <mat-tab label="Danh sách sinh nhật KH">
+                                        <div class="card-header">
+                                            <h2 class="card-title">Danh sách khách hàng sắp tới sinh nhật</h2>
+                                            <!-- <div class="searchWithDateandValue">
+                                                <div class="left">
+                                                </div>
+                                                <div class="right">
+                                                    <div class="input-group searchBar">
+                                                        <input type="search" class="form-control form-control-lg"
+                                                            [(ngModel)]="searchValue"
+                                                            placeholder="Nhập từ khóa cần tìm">
+                                                    </div>
+                                                    <div class="date">
+                                                        <label>Từ Ngày<input id="RfromSearch" type="date"
+                                                                name="dateFrom" [(ngModel)]="dateFrom"
+                                                                class="form-control form-control-sm" placeholder=""
+                                                                aria-controls="example1"></label>
+                                                        <label style="margin-left: 2%;"> Đến Ngày<input id="RtoSearch"
+                                                                type="date" name="dateTo" [(ngModel)]="dateTo"
+                                                                class="form-control form-control-sm" placeholder=""
+                                                                aria-controls="example1"></label>
+                                                        <button type="button" class="btn btn-danger btn-date"
+                                                            (click)="ResetDate()">Xóa
+                                                            ngày</button>
+                                                        <button type="button" class="btn btn-info btn-date"
+                                                            (click)="Search()">Tìm
+                                                            kiếm
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <table style="text-align: center;" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Mã khách hàng</th>
+                                                    <th>Họ và tên</th>
+                                                    <th>Ngày sinh</th>
+                                                    <th>Địa chỉ</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th>Nơi làm việc</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let birthdayCus of listBirthdayCus">
+                                                    <td>#KH{{birthdayCus.id}}</td>
+                                                    <td>{{birthdayCus.full_name}}</td>
+                                                    <td>{{birthdayCus.birth_date | date:'dd-MM-yyyy'}}</td>
+                                                    <td>{{birthdayCus.conadd_city}}</td>
+                                                    <td>{{birthdayCus.phone_1}}</td>
+                                                    <td>{{birthdayCus.workadd_no_street}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </mat-tab>
+
+                                    <mat-tab label="Danh sách KH sắp đến hạn đóng tiền">
+                                        <div class="card-header">
+                                            <h2 class="card-title">Danh sách khách hàng sắp hạn đóng tiền</h2>
+                                        </div>
+                                        <table style="text-align: center;" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Mã hợp đồng</th>
+                                                    <th>Mã khách hàng</th>
+                                                    <th>Chủ hợp đồng</th>
+                                                    <th>Loại bảo hiểm</th>
+                                                    <th>Mã gói bảo hiểm</th>
+                                                    <!-- <th>Mã bảng minh họa</th> -->
+                                                    <th>Trạng thái</th>
+                                                    <th>Ngày đăng ký</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let contractExpired of listExpiredContract">
+                                                    <td>#HD{{contractExpired.id}}</td>
+                                                    <td>#KH{{contractExpired.id_customer}}</td>
+                                                    <td>{{contractExpired.name_contract_owner}}</td>
+                                                    <td>{{contractExpired.insurance_type}}</td>
+                                                    <td>{{contractExpired.payment_period_id}}</td>
+                                                    <td>{{contractExpired.approval_status}}</td>
+                                                    <td>{{contractExpired.start_time}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </mat-tab>
+                                </mat-tab-group>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

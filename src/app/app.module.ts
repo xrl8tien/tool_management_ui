@@ -117,6 +117,9 @@ import { PaymentByCreditCardComponent } from './customerwebsite/payment-guide/pa
 import { PaymentDirectlyComponent } from './customerwebsite/payment-guide/payment-directly/payment-directly.component';
 import { SaleContactManageComponent } from './view/sale-contact-manage/sale-contact-manage.component';
 import { HelpCustomerSendClaimRequestComponent } from './view/help-customer-send-claim-request/help-customer-send-claim-request.component';
+import { ReceiveMethodsComponent } from './customerwebsite/receive-methods/receive-methods.component';
+import { ContactBirthdayInfoComponent } from './view/contact-birthday-info/contact-birthday-info.component';
+
 
 
 
@@ -212,6 +215,8 @@ import { HelpCustomerSendClaimRequestComponent } from './view/help-customer-send
     PaymentDirectlyComponent,
     SaleContactManageComponent,
     HelpCustomerSendClaimRequestComponent,
+    ReceiveMethodsComponent,
+    ContactBirthdayInfoComponent,
 
   ],
   imports: [

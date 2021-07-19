@@ -1,0 +1,98 @@
+<mat-dialog-content class="mat-typography">
+    <div>
+        <mat-tab-group>
+
+            <mat-tab label="Danh Sách Khách Hàng Đến Hạn Đóng Tiền">
+                <table style="text-align: center;" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Mã Hợp Đồng</th>
+                            <th>Mã Khách Hàng</th>
+                            <th>Chủ Hợp Đồng</th>
+                            <th>Loại Bảo Hiểm</th>
+                            <th>Mã Bảng Minh Họa</th>
+                            <th>Chi Phí Bảo Hiểm</th>
+                            <th>Kỳ Hạn Đóng Phí</th>
+                            <th>Ngày Đăng Ký</th>
+                            <th>Gửi Thông Báo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let contract of data.listExpiredContract">
+                            <td>#HD{{contract.id}}</td>
+                            <td>#KH{{contract.id_customer}}</td>
+                            <td>{{contract.name_contract_owner}}</td>
+                            <td>{{contract.insurance_type}}</td>
+                            <td>#BMH{{contract.id_illustration}}</td>
+                            <td>{{contract.contract_total_value}}</td>
+                            <td>{{paymentPeriod(contract.payment_period_id)}}</td>
+                            <td>{{contract.start_time | date: 'dd-MM-yyyy'}}</td>
+                            <button (click)="sendPaymentNotification(contract.id_customer)" class="btn btn-info"
+                                style="height: 40px; width: 130px; margin: 10px; color: white;">Gửi Thông Báo</button>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Mã Hợp Đồng</th>
+                            <th>Mã Khách Hàng</th>
+                            <th>Chủ Hợp Đồng</th>
+                            <th>Loại Bảo Hiểm</th>
+                            <th>Mã Bảng Minh Họa</th>
+                            <th>Chi Phí Bảo Hiểm</th>
+                            <th>Kỳ Hạn Đóng Phí</th>
+                            <th>Ngày Đăng Ký</th>
+                            <th>Gửi Thông Báo</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </mat-tab>
+
+            <mat-tab label="Danh Sách KH Sinh Nhật">
+                <table style="text-align: center;" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Mã Khách Hàng</th>
+                            <th>Tài Khoản Khách Hàng</th>
+                            <th>Họ và Tên</th>
+                            <th>Ngày Sinh</th>
+                            <th>Địa Chỉ</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Email</th>
+                            <th>Nơi Làm Viêc</th>
+                            <th>Gửi Thông Báo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let customerinfo of data.listBirthdayCus">
+                            <td>#KH{{customerinfo.id}}</td>
+                            <td>{{customerinfo.code}}</td>
+                            <td>{{customerinfo.full_name}}</td>
+                            <td>{{customerinfo.birth_date | date:'dd-MM-yyyy'}}</td>
+                            <td>{{customerinfo.conadd_city}}</td>
+                            <td>{{customerinfo.phone_1}}</td>
+                            <td>{{customerinfo.email}}</td>
+                            <td>{{customerinfo.workadd_no_street}} {{customerinfo.workadd_district}}
+                                {{customerinfo.workadd_city}}</td>
+                            <button (click)="sendBirthdayNotification(customerinfo.id)" class="btn btn-info"
+                                style="height: 40px; width: 130px; margin: 10px; color: white;">Gửi Thông Báo</button>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Mã Khách Hàng</th>
+                            <th>Tài Khoản Khách Hàng</th>
+                            <th>Họ và Tên</th>
+                            <th>Ngày Sinh</th>
+                            <th>Địa Chỉ</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Email</th>
+                            <th>Nơi Làm Viêc</th>
+                            <th>Gửi Thông Báo</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </mat-tab>
+
+        </mat-tab-group>
+    </div>
+</mat-dialog-content>

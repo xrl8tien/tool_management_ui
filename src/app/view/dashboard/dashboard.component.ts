@@ -24,6 +24,8 @@ import { CustomerInfo } from 'src/app/model/CustomerInfo';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Contact } from 'src/app/model/Contact';
+import { MatDialog } from '@angular/material/dialog';
+import { DayNotificationDialogComponent } from '../dialog/day-notification-dialog/day-notification-dialog.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -79,7 +81,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private router: Router, private revenueService: RevenueService,
     private common: CommonService, private contractService: ContractService, private spinner: NgxSpinnerService,
-    private customerService: CustomerService) {
+    private customerService: CustomerService, private dialog: MatDialog) {
 
   }
   // danh sách này để hiển thị
@@ -457,7 +459,21 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  openDayNotificationDialog(): void {
+    let dialogRef = this.dialog.open(DayNotificationDialogComponent, {
+      data: { listBirthdayCus: this.listBirthdayCus, listExpiredContract: this.listExpiredContract },
+      height: '600px',
+      width: '2000px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+
+    })
+  }
+
 }
+
+
+
 
 class itemIncomePredic {
   month: number;

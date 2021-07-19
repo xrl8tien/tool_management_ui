@@ -110,7 +110,7 @@ const routes: Routes = [
   { path: "payment-guide", component: PaymentGuideComponent },
   { path: "sale-contact-manage", component: SaleContactManageComponent },
   { path: "help-customer-send-claim-request", component: HelpCustomerSendClaimRequestComponent },
-  { path: "contact-birthday-info", component: ContactBirthdayInfoComponent }
+  { path: "contact-birthday-info", component: ContactBirthdayInfoComponent },
 
 ];
 

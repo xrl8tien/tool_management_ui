@@ -6,6 +6,9 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
 import { Contract } from 'src/app/model/Contract';
 import { ContractService } from 'src/app/services/contract/contract.service';
+import { CustomerDetailDialogComponent } from '../dialog/customer-detail-dialog/customer-detail-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { IllustrationDetailDialogComponent } from '../dialog/illustration-detail-dialog/illustration-detail-dialog.component';
 
 @Component({
   selector: 'app-contact-birthday-info',
@@ -22,7 +25,7 @@ export class ContactBirthdayInfoComponent implements OnInit {
   listExpiredContract: Array<Contract> = [];
 
   constructor(private router: Router,
-    private common: CommonService, private customerService: CustomerService, private contractService: ContractService,) { }
+    private common: CommonService, private customerService: CustomerService, private contractService: ContractService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.FindBirthdayCus();
@@ -51,6 +54,22 @@ export class ContactBirthdayInfoComponent implements OnInit {
     dateSent = new Date(dateSent);
 
     return Math.floor((Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) - Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())) / (1000 * 60 * 60 * 24));
+  }
+
+  public openDialogCustomerDetail(id_customer: number) {
+    let dialogRef = this.dialog.open(CustomerDetailDialogComponent, {
+      height: '80%',
+      width: 'fit-content',
+      data: id_customer
+    });
+  }
+
+  public openDialogIllustrationDetail(id_illustration: number) {
+    let dialogRef = this.dialog.open(IllustrationDetailDialogComponent, {
+      height: '80%',
+      width: 'fit-content',
+      data: id_illustration
+    });
   }
 
   FindBirthdayCus() {

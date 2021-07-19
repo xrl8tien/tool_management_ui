@@ -16,77 +16,77 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-lg-3 col-6">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">So sánh với tháng trước</span>
-                            <span class="info-box-number">
-                                Thu nhập: {{incomeStatus}} {{percentBetweenIncome}}
-                            </span>
-                            <a href="income" class="small-box-footer">Chi Tiết<i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
+                    <a href="income" class="small-box-footer">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-info elevation-1"><i
+                                    class="fas fa-hand-holding-usd"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-number" style="font-size: 1.5rem;">
+                                    {{incomeStatus}} {{percentBetweenIncome}}
+                                </span>
+                                <span class="info-box-text">Thu nhập so với tháng trước</span>
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">Tiền cần để đạt KPI</span>
-                            <span class="info-box-number">
-                                {{listIncomePredic[month-1].kpi - this.listIncomePredic[this.month - 1].revenue |
-                                currency : "VND"}}
-                            </span>
-                            <br>
-                        </div>
-                    </div>
 
+                            </div>
+
+                            <div class="info-box-content">
+                                <span class="info-box-number" style="font-size: 1.5rem;">
+                                    {{listIncomePredic[month-1].kpi - this.listIncomePredic[this.month - 1].revenue |
+                                    currency : "VND"}}
+                                </span>
+                                <span class="info-box-text">Tiền cần để đạt KPI</span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
-
-                    <div class="info-box mb-3" style="background-color: light;">
-                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-file-contract"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">HĐ đã xác nhận</span>
-                            <span class="info-box-number">{{ContractApproved}}</span>
-                            <a href="contract" class="small-box-footer">Chi Tiết<i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                    <a href="contract" class="small-box-footer">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-danger elevation-1"><i
+                                    class="fas fa-file-contract"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-number" style="font-size: 1.5rem;">{{ContractApproved}}</span>
+                                <span class="info-box-text">HĐ đã xác nhận</span>
+                            </div>
+                            <div class="info-box-content">
+                                <span class="info-box-number" style="font-size: 1.5rem; ">{{ContractNotApproved}}</span>
+                                <span class="info-box-text">HĐ chờ xác nhận</span>
+                            </div>
                         </div>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">HĐ chờ xác nhận</span>
-                            <span class="info-box-number">{{ContractNotApproved}}</span>
-                            <br>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">KH sắp sinh nhật</span>
-                            <span class="info-box-number">{{listBirthdayCus.length}}</span>
-                            <a href="contact-birthday-info" class="small-box-footer">Chi Tiết<i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
+                    <a (click)="openDayNotificationDialog()" class="small-box-footer">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-number"
+                                    style="font-size: 1.5rem;">{{listBirthdayCus.length}}</span>
+                                <span class="info-box-text">KH có sinh nhật hôm nay</span>
+                            </div>
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">HĐ sắp hết hạn</span>
-                            <span class="info-box-number">{{listExpiredContract.length}}</span>
-                            <br>
+                            <div class="info-box-content">
+                                <span class="info-box-number"
+                                    style="font-size: 1.5rem;">{{listExpiredContract.length}}</span>
+                                <span class="info-box-text">HĐ sắp hết hạn</span>
+                            </div>
                         </div>
-
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-lg-3 col-6">
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-plus"></i></span>
+                    <a href="sale-contact-manage" class="small-box-footer">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-plus"></i></span>
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">Thông tin liên hệ mới</span>
-                            <span class="info-box-number">{{listContactOld.length}}</span>
-                            <a href="sale-contact-manage" class="small-box-footer">Chi Tiết<i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            <div class="info-box-content">
+                                <span class="info-box-number"
+                                    style="font-size: 1.5rem;">{{listContactOld.length}}</span>
+                                <span class="info-box-text">Thông tin liên hệ mới</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
 

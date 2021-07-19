@@ -154,9 +154,6 @@ export class DashboardComponent implements OnInit {
         this.customerService.getAllNewContactByDistrictIds(this.listId).subscribe((data => {
           this.listContact = data;
         }))
-        this.customerService.getAllOldContactByDistrictIds(this.listId).subscribe((data => {
-          this.listContactOld = data;
-        }))
         this.spinner.hide();
       }))
   }

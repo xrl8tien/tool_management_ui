@@ -54,6 +54,42 @@
                 </a>
             </div>
 
+
+            <div *ngIf="authenService.id_role=='5'">
+                <a mat-list-item [routerLink]="['/dashboard']">
+                    <mat-icon mat-list-icon>dashboard</mat-icon>Tổng Quan
+                </a>
+                <a mat-list-item [routerLink]="['/sale-contact-manage']">
+                    <mat-icon mat-list-icon>call</mat-icon>Liên Hệ
+                </a>
+                <a mat-list-item [routerLink]="['/customer']">
+                    <mat-icon mat-list-icon>table_chart</mat-icon>Danh Sách KHTN
+                </a>
+                <a mat-list-item [routerLink]="['/illustration']">
+                    <mat-icon mat-list-icon>description</mat-icon>Bảng Minh Họa
+                </a>
+                <a mat-list-item [routerLink]="['/contract']">
+                    <mat-icon mat-list-icon>table_chart</mat-icon>Danh Sách Hợp Đồng
+                </a>
+                <a mat-list-item [routerLink]="['/income']">
+                    <mat-icon mat-list-icon>credit_card</mat-icon>Thu Nhập
+                </a>
+                <a mat-list-item [routerLink]="['/help-customer-send-claim-request']">
+                    <mat-icon mat-list-icon>send</mat-icon>Gửi yêu cầu bồi thường giúp KH
+                </a>
+                <a mat-list-item [routerLink]="['/mail']">
+                    <mat-icon mat-list-icon>email</mat-icon>Hộp Thư
+                </a>
+                <a mat-list-item [routerLink]="['/document']">
+                    <mat-icon mat-list-icon>library_books</mat-icon>Tài Liệu
+                </a>
+                <a mat-list-item [routerLink]="['/change-pass']">
+                    <mat-icon mat-list-icon>settings</mat-icon>Đổi Mật Khẩu
+                </a>
+            </div>
+
+
+
             <!-- claim appraiser -->
             <div *ngIf="authenService.id_role=='4'">
                 <a mat-list-item [routerLink]="['/claim-request-manage']">

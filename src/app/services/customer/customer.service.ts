@@ -9,6 +9,7 @@ import { ContactDTO } from 'src/app/model/ContactDTO';
 import { ContractDTO } from 'src/app/model/ContractDTO';
 import { CustomerAcc } from 'src/app/model/CustomerAcc';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
+import { CustomerInfoDTO } from 'src/app/model/CustomerInfoDTO';
 import { Request } from 'src/app/model/Request';
 import { CommonService } from '../common/common.service';
 
@@ -54,6 +55,36 @@ export class CustomerService {
     const url = this.common.makeUrl("/customer/get_all_customer");
     return this.httpClient
       .post<any>(url, code_em_support, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  //sale executive
+  public getAllCustomerInfoEx(codes_em_support: Array<string>): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_all_customer_info_ex");
+    return this.httpClient
+      .post<any>(url, codes_em_support, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllCustomerEx(codes_em_support: Array<string>): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_all_customer_ex");
+    return this.httpClient
+      .post<any>(url, codes_em_support, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllCodeSaleByCodeEx(codes_ex: string): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_all_code_sale_by_code_ex");
+    return this.httpClient
+      .post<any>(url, codes_ex, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllCustomerEx(codes_em_support: Array<string>, dateFrom: string, dateTo: string, searchValue: string): Observable<any> {
+    let data = new CustomerInfoDTO(codes_em_support, dateFrom, dateTo, searchValue);
+    const url = this.common.makeUrl("/customer/search_all_customer_info_ex");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

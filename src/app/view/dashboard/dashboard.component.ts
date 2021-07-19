@@ -22,10 +22,10 @@ import {
 import { Kpi } from 'src/app/model/Kpi';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
 import { CustomerService } from 'src/app/services/customer/customer.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Contact } from 'src/app/model/Contact';
 import { MatDialog } from '@angular/material/dialog';
 import { DayNotificationDialogComponent } from '../dialog/day-notification-dialog/day-notification-dialog.component';
+import { Contact } from 'src/app/model/Contact';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -80,8 +80,8 @@ export class DashboardComponent implements OnInit {
   // chartLabels = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
 
   constructor(private router: Router, private revenueService: RevenueService,
-    private common: CommonService, private contractService: ContractService, private spinner: NgxSpinnerService,
-    private customerService: CustomerService, private dialog: MatDialog) {
+    private common: CommonService, private contractService: ContractService,
+    private customerService: CustomerService, private dialog: MatDialog, private spinner: NgxSpinnerService) {
 
   }
   // danh sách này để hiển thị
@@ -471,7 +471,6 @@ export class DashboardComponent implements OnInit {
   }
 
 }
-
 
 
 

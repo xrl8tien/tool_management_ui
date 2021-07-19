@@ -11,6 +11,7 @@ import { ContractDetailDialogComponent } from '../../dialog/contract-detail-dial
 import { ContractService } from 'src/app/services/contract/contract.service';
 import { Contract } from 'src/app/model/Contract';
 import { IllustrationDetailDialogComponent } from '../../dialog/illustration-detail-dialog/illustration-detail-dialog.component';
+import { EmployeeService } from 'src/app/services/employee/employee.service';
 
 @Component({
   selector: 'app-customer-table',
@@ -19,25 +20,27 @@ import { IllustrationDetailDialogComponent } from '../../dialog/illustration-det
 })
 export class CustomerTableComponent implements OnInit {
 
-  constructor(private contractService : ContractService,private changeDetectorRefs: ChangeDetectorRef, private common: CommonService, private dialog: MatDialog, public customerService: CustomerService, private router: Router, private spinner: NgxSpinnerService) {
+  constructor(private contractService: ContractService, private changeDetectorRefs: ChangeDetectorRef, private common: CommonService, private dialog: MatDialog, public customerService: CustomerService, private router: Router, private spinner: NgxSpinnerService, private employeeService: EmployeeService) {
 
   }
   check = false;
-  dtOptions:any;
+  dtOptions: any;
   customerinfos: Array<CustomerInfo>;
   page: number = 1;
   totalRecords: number;
   searchValue: String = "";
   dateFrom: Date;
   dateTo: Date;
+  id_role = "";
+  codes_sale: Array<string> = [];
 
   ngOnInit(): void {
-    
+
     this.customerService.subsVar = this.customerService.
       callRefreshTable.subscribe((name: string) => {
         this.refresh();
       });
-      this.refresh();
+    this.refresh();
   }
 
   Search() {
@@ -47,36 +50,45 @@ export class CustomerTableComponent implements OnInit {
       let dateFrom1: String;
       let dateToValue = (<HTMLInputElement>document.getElementById('RtoSearch')).value;
       let dateFromValue = (<HTMLInputElement>document.getElementById('RfromSearch')).value;
-      if (dateFromValue == "") {      
+      if (dateFromValue == "") {
         this.dateFrom = new Date('1990-01-01');
         dateFrom1 = this.dateFrom.getFullYear() + "-" + (this.dateFrom.getMonth() + 1) + "-" + this.dateFrom.getDate()
-      } else {        
+      } else {
         dateFrom1 = this.dateFrom.toString();
       }
 
       if (dateToValue == "") {
         this.dateTo = new Date();
-        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + this.dateTo.getDate()
+        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + (this.dateTo.getDate() + 1)
       }
       else {
         dateTo1 = this.dateTo.toString();
       }
       let searchText = "%" + this.searchValue + "%";
-      this.customerService.searchAllCustomer(jwt_decode(this.common.getCookie('token_key'))['sub'], this.dateFrom.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
-        this.customerinfos = data;
-        this.totalRecords = this.customerinfos.length;
-        this.spinner.hide();
-        this.page = 1;
-      }))
+      if (this.id_role == '2') {
+        this.customerService.searchAllCustomer(jwt_decode(this.common.getCookie('token_key'))['sub'], dateFrom1.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
+          this.customerinfos = data;
+          this.totalRecords = this.customerinfos.length;
+          this.spinner.hide();
+          this.page = 1;
+        }))
+      } else if (this.id_role == '5') {
+        this.customerService.searchAllCustomerEx(this.codes_sale, dateFrom1.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
+          this.customerinfos = data;
+          this.totalRecords = this.customerinfos.length;
+          this.spinner.hide();
+          this.page = 1;
+        }))
+      }
 
     } catch (error) {
       console.log(error);
     }
   }
 
-  ResetDate(){
-  this.dateFrom = null;
-  this.dateTo = null;
+  ResetDate() {
+    this.dateFrom = null;
+    this.dateTo = null;
   }
 
 
@@ -85,49 +97,65 @@ export class CustomerTableComponent implements OnInit {
   }
 
   public editDrafCustomerInfo(customerInfo: CustomerInfo) {
-    let dialogRef = this.dialog.open(CustomerEditInfoComponent, { 
+    let dialogRef = this.dialog.open(CustomerEditInfoComponent, {
       height: '80%',
       width: 'fit-content',
-      data: customerInfo 
+      data: customerInfo
     });
     dialogRef.afterClosed().subscribe(result => {
 
     })
   }
 
-  contract : Contract;
-  public openDialogContractDetail(id_contract:number){
-    let data = {id:id_contract,code:jwt_decode(this.common.getCookie('token_key'))['sub']}
-    this.contractService.getDetailContract(data).subscribe((dataReturn =>{
+  contract: Contract;
+  public openDialogContractDetail(id_contract: number) {
+    let data = { id: id_contract, code: jwt_decode(this.common.getCookie('token_key'))['sub'] }
+    this.contractService.getDetailContract(data).subscribe((dataReturn => {
       this.contract = dataReturn;
-      let dialogRef = this.dialog.open(ContractDetailDialogComponent,{
-        height:'80%',
-        width:'50%',
-        data:this.contract
+      let dialogRef = this.dialog.open(ContractDetailDialogComponent, {
+        height: '80%',
+        width: '50%',
+        data: this.contract
       });
     }))
   }
 
-  public openDialogIllustrationDetail(id_illustration:number){
-      let dialogRef = this.dialog.open(IllustrationDetailDialogComponent,{
-        height:'80%',
-        width:'fit-content',
-        data:id_illustration   
+  public openDialogIllustrationDetail(id_illustration: number) {
+    let dialogRef = this.dialog.open(IllustrationDetailDialogComponent, {
+      height: '80%',
+      width: 'fit-content',
+      data: id_illustration
     });
   }
-  
+
   public refresh() {
     this.spinner.show();
-    this.customerService.getAllCustomerInfo(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
-      this.customerinfos = data;
-      this.totalRecords = data.length;
-      this.spinner.hide();
+    this.employeeService.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {
+      this.id_role = data['id_role'];
+      if (this.id_role == '2') {
+        this.customerService.getAllCustomerInfo(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+          this.customerinfos = data;
+          this.totalRecords = data.length;
+          this.spinner.hide();
+        }))
+      } else if (this.id_role == '5') {
+        this.customerService.getAllCodeSaleByCodeEx(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((codes => {
+          this.codes_sale = codes;
+          this.codes_sale.push(jwt_decode(this.common.getCookie('token_key'))['sub']);
+          this.customerService.getAllCustomerInfoEx(this.codes_sale).subscribe((data => {
+            this.customerinfos = data;
+            this.totalRecords = data.length;
+            this.spinner.hide();
+          }))
+        }))
+      }
     }))
+
   }
 
   key = '';
   reverse: boolean = true;
-  sort(key){
+  sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
   }

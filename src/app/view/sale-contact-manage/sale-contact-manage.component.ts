@@ -88,7 +88,7 @@ export class SaleContactManageComponent implements OnInit {
 
       if (dateToValue == "") {
         this.dateTo = new Date();
-        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + this.dateTo.getDate()
+        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + (this.dateTo.getDate() +1)
       }
       else {
         dateTo1 = this.dateTo.toString();
@@ -121,7 +121,7 @@ export class SaleContactManageComponent implements OnInit {
 
       if (dateToValue == "") {
         this.dateToOld = new Date();
-        dateTo1 = this.dateToOld.getFullYear() + "-" + (this.dateToOld.getMonth() + 1) + "-" + this.dateToOld.getDate()
+        dateTo1 = this.dateToOld.getFullYear() + "-" + (this.dateToOld.getMonth() + 1) + "-" + (this.dateToOld.getDate() + 1)
       }
       else {
         dateTo1 = this.dateToOld.toString();

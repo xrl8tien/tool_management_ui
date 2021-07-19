@@ -93,7 +93,7 @@ export class ClaimRequestManageComponent implements OnInit {
 
       if (dateToValue == "") {
         this.dateToRequest = new Date('3000-01-01');
-        dateTo1 = this.dateToRequest.getFullYear() + "-" + (this.dateToRequest.getMonth() + 1) + "-" + this.dateToRequest.getDate()
+        dateTo1 = this.dateToRequest.getFullYear() + "-" + (this.dateToRequest.getMonth() + 1) + "-" + (this.dateToRequest.getDate() + 1)
       }
       else {
         dateTo1 = this.dateToRequest.toString();
@@ -138,7 +138,7 @@ export class ClaimRequestManageComponent implements OnInit {
 
       if (dateToValue == "") {
         this.dateToApproval = new Date('3000-01-01');
-        dateTo1 = this.dateToApproval.getFullYear() + "-" + (this.dateToApproval.getMonth() + 1) + "-" + this.dateToApproval.getDate()
+        dateTo1 = this.dateToApproval.getFullYear() + "-" + (this.dateToApproval.getMonth() + 1) + "-" + (this.dateToApproval.getDate() + 1)
       }
       else {
         dateTo1 = this.dateToApproval.toString();

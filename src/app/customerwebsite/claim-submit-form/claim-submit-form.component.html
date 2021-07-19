@@ -68,7 +68,7 @@
 
                 <div class="form-group col-md-6">
                     <label for="inputBenefit">Quyền lợi bảo hiểm</label>
-                    <select id="inputBenefit" class="form-control">
+                    <select id="inputBenefit" class="form-control" required>
                         <option selected>Chọn loại quyền lợi bảo hiểm...</option>
                         <option *ngFor="let mainBenefit of listMainBenefitScale" [value]="mainBenefit.id">
                             {{mainBenefit.name}}
@@ -130,7 +130,8 @@
 
             <div class="mb-4">
                 <label for="validationTextarea">Mô tả về sự kiện bảo hiểm</label>
-                <textarea class="form-control" id="validationTextarea2" name="name2"></textarea>
+                <textarea class="form-control" id="validationTextarea" name="name" [(ngModel)]="name"
+                    required></textarea>
             </div>
 
             <p class="order-info">3. THÔNG TIN VỀ NGƯỜI YÊU CẦU BỒI THƯỜNG (ĐỒNG THỜI LÀ NGƯỜI NHẬN TIỀN)</p>
@@ -172,64 +173,6 @@
                     <input type="email" class="form-control" id="inputEmail2">
                 </div>
             </div>
-
-
-            <!-- <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputName2">Người thụ hưởng quyền lợi</label>
-                    <input type="text" class="form-control" id="inputName2">
-                </div>
-            </div> -->
-            <!-- <div class="form-group">
-                <label for="inputAddress2">Địa chỉ nhận thư</label>
-                <input type="text" class="form-control" id="inputAddress2">
-            </div> -->
-
-            <p class="order-info">4. HÌNH THỨC NHẬN TIỀN BỒI THƯỜNG</p>
-            <!-- <div class="form-row"> -->
-            <table class="table table-bordered">
-                <tr>
-                    <td><input type="checkbox" value="1" name="cash"> Nhận tiền mặt tại ISolution</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" value="2" name="bypost"> Nhận tiền qua bưu điện<br>
-                        Thông tin về Người nhận tiền chính là các thông tin về Người yêu cầu bồi thường ở trên.</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" value="3" name="bybanking"> Chuyển khoản
-                        <br>
-                        <div class="col-md-4">
-                            <label for="account">Chủ tài khoản</label>
-                            <input type="text" class="form-control" name="account">
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="account2">Số tài khoản</label>
-                            <input type="number" class="form-control" name="account2">
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="account3">Ngân hàng</label>
-                            <input type="text" class="form-control" name="account3">
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="account4">Chi nhánh</label>
-                            <input type="text" class="form-control" name="account4">
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <!-- </div> -->
-            <p> - Khi ghi nhận tiền mặt tại ISolution hoặc qua bưu điện, Người nhận tiền phải xuất trình giấy CMND/CCCD.
-            </p>
-            <p> - Trường hợp bố/mẹ hoặc người giám hộ nhận tiền thay cho NĐBH dưới 18 tuổi, Người nhận tiền phải cung
-                cấp giấy tờ chứng minh quan hệ với NĐBH như: bản sao sổ hộ khẩu hoặc giấy khai sinh, giấy chứng minh
-                quyền giám hộ hoặc các giấy tờ khác theo quy định của pháp luật.</p>
-            <p> - Trường hợp NĐBH trên 18 tuổi và được người khác nhận tiền thay, Người nhận tiền phải cung cấp giấy tờ
-                chứng minh quyền thừa kế/giấy ủy quyền công chứng hoặc được xác nhận bởi UBND cấp phường/xã trở lên hoặc
-                các giấy tờ khác theo quy định của pháp luật (trừ trường hợp Người nhận tiền là người thụ hưởng/ chỉ
-                định nhận tiền bảo hiểm trên Giấy chứng nhận bảo hiểm).</p>
             <p><em><strong>CAM KẾT:</strong></em> Người yêu cầu bồi thường cam đoan rằng những thông tin trên là chính
                 xác, đầy đủ và chịu trách nhiệm về các thông tin trên trước pháp luật. NĐBH và/hoặc Người đại diện/Người
                 được ủy quyền của NĐBH đồng ý rằng vớiGiấy yêu cầu bồi thường này, NĐBH và/hoặc Người đại diện/Người

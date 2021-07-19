@@ -22,6 +22,8 @@ import {
 import { Kpi } from 'src/app/model/Kpi';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
 import { CustomerService } from 'src/app/services/customer/customer.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Contact } from 'src/app/model/Contact';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -76,7 +78,7 @@ export class DashboardComponent implements OnInit {
   // chartLabels = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
 
   constructor(private router: Router, private revenueService: RevenueService,
-    private common: CommonService, private contractService: ContractService,
+    private common: CommonService, private contractService: ContractService, private spinner: NgxSpinnerService,
     private customerService: CustomerService) {
 
   }
@@ -104,10 +106,16 @@ export class DashboardComponent implements OnInit {
   listExpiredContract: Array<Contract> = [];
   customerinfos: Array<CustomerInfo> = [];
 
+  listId: Array<number>;
+  listContact: Array<Contact>;
+  listContactOld: Array<Contact>;
+  district_name: string = "";
+
   ngOnInit(): void {
     this.common.titlePage = "Tổng Quan";
     this.CalculateIncomeForThisYear();
     this.FindBirthdayCus();
+    this.refresh();
 
     this.contractService.getAllContract(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
       this.listContract = data;
@@ -127,6 +135,28 @@ export class DashboardComponent implements OnInit {
 
 
 
+  }
+  refresh() {
+    this.spinner.show();
+    this.customerService.getAllDistrictByCodeSale(jwt_decode(this.common.getCookie('token_key'))['sub'])
+      .subscribe((ids => {
+        this.listId = ids;
+        this.customerService.getDistrictNameById(this.listId).subscribe((data => {
+          for (let i = 0; i < data.length; i++) {
+            if (i < data.length - 1)
+              this.district_name += " " + data[i] + ", "
+            else
+              this.district_name += " " + data[i]
+          }
+        }))
+        this.customerService.getAllNewContactByDistrictIds(this.listId).subscribe((data => {
+          this.listContact = data;
+        }))
+        this.customerService.getAllOldContactByDistrictIds(this.listId).subscribe((data => {
+          this.listContactOld = data;
+        }))
+        this.spinner.hide();
+      }))
   }
   ContractPage() {
     this.router.navigate["contract"];

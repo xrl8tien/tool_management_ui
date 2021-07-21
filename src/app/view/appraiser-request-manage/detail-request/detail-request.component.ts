@@ -136,8 +136,7 @@ export class DetailRequestComponent implements OnInit {
 
   contractDetail: Contract;
   public openDialogContractDetail(id_contract: number) {
-    let data = { id: id_contract, code: jwt_decode(this.common.getCookie('token_key'))['sub'] }
-    this.contractService.getDetailContract(data).subscribe((dataReturn => {
+    this.contractService.getDetailContract(id_contract).subscribe((dataReturn => {
       this.contractDetail = dataReturn;
       let dialogRef = this.dialog.open(ContractDetailDialogComponent, {
         height: '80%',

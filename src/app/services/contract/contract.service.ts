@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Contract } from 'src/app/model/Contract';
+import { CustomerInfoDTO } from 'src/app/model/CustomerInfoDTO';
 import { CommonService } from '../common/common.service';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class ContractService {
   callRefreshTable = new EventEmitter();
   subsVar: Subscription;
 
-  invokeRefreshTableFun() { 
+  invokeRefreshTableFun() {
     this.callRefreshTable.emit();
   }
 
@@ -27,63 +28,77 @@ export class ContractService {
     }),
   }
 
-  public getAllContract(code_em_support:string): Observable<any> {
+  public getAllContract(code_em_support: string): Observable<any> {
     const url = this.common.makeUrl("/contract/get_all_contract_of_employee");
     return this.httpClient
-      .post<any>(url,code_em_support,this.httpOptions)
+      .post<any>(url, code_em_support, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  public getAllContractForCustomer(data:any): Observable<any> {
+  public getAllContractEx(codes_em_support: Array<string>): Observable<any> {
+    const url = this.common.makeUrl("/contract/get_all_contract_of_employee_ex");
+    return this.httpClient
+      .post<any>(url, codes_em_support, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllContractForCustomer(data: any): Observable<any> {
     const url = this.common.makeUrlForCustomer("/customer-api/contract-list");
     return this.httpClient
-      .post<any>(url,data,this.httpOptions)
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  public searchAllContractForCustomer(id_customer:String,dateFrom:String,dateTo:String,searchValue:String): Observable<any> {
-    let data = {id_customer:id_customer,dateFrom:dateFrom,dateTo:dateTo,searchValue:searchValue};
+  public searchAllContractForCustomer(id_customer: String, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { id_customer: id_customer, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
     const url = this.common.makeUrlForCustomer("/customer-api/search-contract-list");
     return this.httpClient
-      .post<any>(url,data,this.httpOptions)
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  public getOneContractDetailForCustomer(data:any): Observable<any> {
+  public getOneContractDetailForCustomer(data: any): Observable<any> {
     const url = this.common.makeUrlForCustomer("/customer-api/get_detail_contract_for_customer");
     return this.httpClient
-      .post<any>(url,data,this.httpOptions)
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  public searchAllContract(code_em_support:string,dateFrom:String,dateTo:String,searchValue:String ): Observable<any> {
-    let data = {code_em_support:code_em_support,dateFrom:dateFrom,dateTo:dateTo,searchValue:searchValue};
+  public searchAllContract(code_em_support: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { code_em_support: code_em_support, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
     const url = this.common.makeUrl("/contract/search_all_contract_of_employee");
     return this.httpClient
-      .post<any>(url,data,this.httpOptions)
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
- 
-  public getDetailContract(data:any): Observable<any> {
+  public searchAllContractEx(codes_em_support: Array<string>, dateFrom: string, dateTo: string, searchValue: string): Observable<any> {
+    let data = new CustomerInfoDTO(codes_em_support, dateFrom, dateTo, searchValue);
+    const url = this.common.makeUrl("/contract/search_all_contract_of_employee_ex");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getDetailContract(data: any): Observable<any> {
     const url = this.common.makeUrl("/contract/get_detail_contract/");
     return this.httpClient
-      .post<any>(url,data,this.httpOptions)
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  public getDetailContractForCustomer(data:any): Observable<any> {
+  public getDetailContractForCustomer(data: any): Observable<any> {
     const url = this.common.makeUrl("/contract/get_detail_contract_for_customer/");
     return this.httpClient
-      .post<any>(url,data,this.httpOptions)
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  public setStatusContract(id_contract: number,id_request:number,description:String,approval_status:string): Observable<any> {
+  public setStatusContract(id_contract: number, id_request: number, description: String, approval_status: string): Observable<any> {
     const url = this.common.makeUrl("/contract/set_active_contract");
-    let data = {id_contract:id_contract,id_request:id_request,description:description,approval_status};
+    let data = { id_contract: id_contract, id_request: id_request, description: description, approval_status };
     return this.httpClient
-      .post<any>(url,data,this.httpOptions)
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
@@ -129,12 +144,12 @@ export class ContractService {
       .pipe(catchError(this.handleError));
   }
 
-  public getAllCountContract(code_em_support:String,monthDate:number):Observable<any>{
+  public getAllCountContract(code_em_support: String, monthDate: number): Observable<any> {
     const url = this.common.makeUrl("/contract/get_all_count_contract");
-    let data = {code_em_support:code_em_support,monthDate:monthDate}
+    let data = { code_em_support: code_em_support, monthDate: monthDate }
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError))
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError))
   }
 
   private handleError(error: HttpErrorResponse) {

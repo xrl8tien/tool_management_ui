@@ -25,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let revenue of listRevenueEmployee">
+                        <tr *ngFor="let revenue of listRevenueEmployee | paginate: { id: 'listing_pagination' ,itemsPerPage: 6, currentPage: page, totalItems: totalRecords}">
                             <td>#HD{{revenue.id_contract}}</td>
                             <td>{{revenue.income | currency :"VND"}}</td>
                             <td>{{revenue.revenue_val | currency :"VND"}}</td>

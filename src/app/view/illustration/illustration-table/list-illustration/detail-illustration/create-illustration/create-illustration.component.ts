@@ -243,7 +243,7 @@ export class CreateIllustrationComponent implements OnInit {
 
   getInfoCustomer() {
     this.activeRoute.queryParams.subscribe(params => {
-      this.customerService.getOneCustomerInfoBySaler(params['id'], this.common.getCookie('token_key')).subscribe((data => {
+      this.customerService.getOneCustomerInfoByEx(params['id']).subscribe((data => {
         this.customerInfo = data[0];
         this.illustrationMainBenifit.full_name_insurance_buyer = this.customerInfo.full_name;
         this.illustrationMainBenifit.id_illustration = params['id'];

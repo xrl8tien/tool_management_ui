@@ -5,4 +5,5 @@ export class CustomerOwnIllustration{
     create_time:Date;
     id_customer:number;
     end_time:Date;
+    code_em_support:string;
 } 

@@ -31,6 +31,7 @@
             <th (click)="sort('status')">Trạng Thái&nbsp;<i class="fa fa-sort"></i></th>
             <th (click)="sort('workadd_no_street')">Nơi Làm Viêc&nbsp;<i class="fa fa-sort"></i></th>
             <th (click)="sort('created_time')">Ngày Đăng Ký&nbsp;<i class="fa fa-sort"></i></th>
+            <th *ngIf="id_role == '5'" (click)="sort('code_em_support')">Sale&nbsp;<i class="fa fa-sort"></i></th>
             <th>Chi Tiết</th>
         </tr>
     </thead>
@@ -45,6 +46,7 @@
             <td>{{customerinfo.status==true?'Hoạt Động' : 'Tạm Ngưng'}}</td>
             <td>{{customerinfo.workadd_no_street}} {{customerinfo.workadd_district}} {{customerinfo.workadd_city}}</td>
             <td>{{customerinfo.created_time | date: 'dd-MM-yyyy'}}</td>
+            <td *ngIf="id_role == '5'">{{customerinfo.code_em_support}}</td>
             <button *ngIf="customerinfo.status" (click)="customerDetail(customerinfo.id)" class="btn btn-info" style="height: 40px; width: 100px; margin: 10px; color: white;">Chi Tiết</button>
             <button *ngIf="!customerinfo.status" (click)="editDrafCustomerInfo(customerinfo)" class="btn btn-success" style="height: 40px; width: 100px; margin: 10px; color: white;">Chỉnh Sửa</button>
         </tr>
@@ -60,6 +62,7 @@
             <th>Trạng Thái</th>
             <th>Nơi Làm Viêc</th>
             <th>Ngày Đăng Ký</th>
+            <th *ngIf="id_role == '5'">Sale</th>
             <th>Chi Tiết</th>
         </tr>
     </tfoot>

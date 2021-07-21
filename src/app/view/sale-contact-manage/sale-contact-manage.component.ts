@@ -9,6 +9,11 @@ import { NotificationConfirmDialogComponent } from '../dialog/notification-confi
 import { CustomerAddInfoDialogComponent } from '../dialog/customer-add-info-dialog/customer-add-info-dialog.component';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
 import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
+import { EmployeeService } from 'src/app/services/employee/employee.service';
+import { Province } from 'src/app/model/Province';
+import { District } from 'src/app/model/District';
+import { element } from 'protractor';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-sale-contact-manage',
@@ -23,7 +28,8 @@ export class SaleContactManageComponent implements OnInit {
     public customerService: CustomerService,
     private spinner: NgxSpinnerService,
     private common: CommonService,
-    public snackbar: SnackbarService) { }
+    public snackbar: SnackbarService,
+    private employeeService: EmployeeService) { }
 
   district_name: string = "";
   page: number = 1;
@@ -36,10 +42,17 @@ export class SaleContactManageComponent implements OnInit {
   searchValueOld: String = "";
   dateFromOld: Date;
   dateToOld: Date;
+  pageDistrict: number = 1;
+  totalRecordsDistrict: number;
 
   listId: Array<number>;
   listContact: Array<Contact>
   listContactOld: Array<Contact>
+  listDistrict: Array<District>
+
+  id_role = "";
+  codes_sale: Array<string> = [];
+  province_ex: Province;
 
   ngOnInit(): void {
     this.customerService.subsVar = this.customerService.
@@ -51,25 +64,48 @@ export class SaleContactManageComponent implements OnInit {
 
   refresh() {
     this.spinner.show();
-    this.customerService.getAllDistrictByCodeSale(jwt_decode(this.common.getCookie('token_key'))['sub'])
-      .subscribe((ids => {
-        this.listId = ids;
-        this.customerService.getDistrictNameById(this.listId).subscribe((data => {
-          for (let i = 0; i < data.length; i++) {
-            if (i < data.length - 1)
-              this.district_name += " " + data[i] +", "
-            else
-              this.district_name += " " + data[i]
-          }
+    this.employeeService.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {
+      this.id_role = data['id_role'];
+      if (this.id_role == '2') {
+        this.customerService.getAllDistrictByCodeSale(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((ids => {
+          this.listId = ids;
+          this.customerService.getDistrictNameById(this.listId).subscribe((data => {
+            for (let i = 0; i < data.length; i++) {
+              if (i < data.length - 1)
+                this.district_name += " " + data[i] + ", "
+              else
+                this.district_name += " " + data[i]
+            }
+          }))
+          this.customerService.getAllNewContactByDistrictIds(this.listId).subscribe((data => {
+            this.listContact = data;
+          }))
+          this.customerService.getAllOldContactByDistrictIds(this.listId).subscribe((data => {
+            this.listContactOld = data;
+          }))
+          this.spinner.hide();
         }))
-        this.customerService.getAllNewContactByDistrictIds(this.listId).subscribe((data => {
-          this.listContact = data;
+      } else if (this.id_role == '5') {
+        this.customerService.getProvinceByCodeEx(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((province => {
+          this.province_ex = province;
+          this.district_name = this.province_ex.name;
+          this.customerService.getAllNewContactByProvince(this.province_ex.id).subscribe((data => {
+            this.listContact = data;
+          }))
+          this.customerService.getAllOldContactByProvince(this.province_ex.id).subscribe((data => {
+            this.listContactOld = data;
+          }))
+          this.customerService.getAllDistrictByProvince(this.province_ex.id).subscribe((data => {
+            this.listDistrict = data;
+            this.totalRecordsDistrict = this.listDistrict.length;
+          }))
+          this.customerService.getAllCodeSaleByCodeEx(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((codes => {
+            this.codes_sale = codes;
+          }))
+          this.spinner.hide();
         }))
-        this.customerService.getAllOldContactByDistrictIds(this.listId).subscribe((data => {
-          this.listContactOld = data;
-        }))
-        this.spinner.hide();
-      }))
+      }
+    }))
   }
 
   Search() {
@@ -88,19 +124,27 @@ export class SaleContactManageComponent implements OnInit {
 
       if (dateToValue == "") {
         this.dateTo = new Date();
-        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + (this.dateTo.getDate() +1)
+        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + (this.dateTo.getDate() + 1)
       }
       else {
         dateTo1 = this.dateTo.toString();
       }
       let searchText = "%" + this.searchValue + "%";
-      this.customerService.searchAllNewContact(this.listId, dateFrom1.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
-        this.listContact = data;
-        this.totalRecords = this.listContact.length;
-        this.spinner.hide();
-        this.page = 1;
-      }))
-
+      if (this.id_role == '2') {
+        this.customerService.searchAllNewContact(this.listId, dateFrom1.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
+          this.listContact = data;
+          this.totalRecords = this.listContact.length;
+          this.spinner.hide();
+          this.page = 1;
+        }))
+      } else if (this.id_role == '5') {
+        this.customerService.searchAllNewContactByIdProvince(this.province_ex.id, dateFrom1.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
+          this.listContact = data;
+          this.totalRecords = this.listContact.length;
+          this.spinner.hide();
+          this.page = 1;
+        }))
+      }
     } catch (error) {
       console.log(error);
     }
@@ -127,13 +171,21 @@ export class SaleContactManageComponent implements OnInit {
         dateTo1 = this.dateToOld.toString();
       }
       let searchText = "%" + this.searchValueOld + "%";
-      this.customerService.searchAllOldContact(this.listId, dateFrom1.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
-        this.listContactOld = data;
-        this.totalRecordsOld = this.listContactOld.length;
-        this.spinner.hide();
-        this.pageOld = 1;
-      }))
-
+      if (this.id_role == '2') {
+        this.customerService.searchAllOldContact(this.listId, dateFrom1.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
+          this.listContactOld = data;
+          this.totalRecordsOld = this.listContactOld.length;
+          this.spinner.hide();
+          this.pageOld = 1;
+        }))
+      } else if (this.id_role == '5') {
+        this.customerService.searchAllOldContactByIdProvince(this.province_ex.id, dateFrom1.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
+          this.listContactOld = data;
+          this.totalRecordsOld = this.listContactOld.length;
+          this.spinner.hide();
+          this.pageOld = 1;
+        }))
+      }
     } catch (error) {
       console.log(error);
     }
@@ -165,7 +217,7 @@ export class SaleContactManageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result == true) {
-        this.customerService.updateContact('Đã thêm vào KHTN', id).subscribe((data => {
+        this.customerService.updateContact(jwt_decode(this.common.getCookie('token_key'))['sub'], 'Đã thêm vào KHTN', id).subscribe((data => {
           if (data != null) {
             this.refresh();
             this.snackbar.openSnackBar("Đã thêm vào KHTN", "Đóng");
@@ -188,8 +240,35 @@ export class SaleContactManageComponent implements OnInit {
     })
   }
 
-  checkKHTN(status: string): boolean{
-    if(status == "Đã thêm vào KHTN"){
+  Save() {
+    this.listDistrict.forEach((element => {
+      this.customerService.updateDistrict(element).subscribe((data => {
+      }))
+    }))
+    this.snackbar.openSnackBar("Đã lưu thông tin", "Đóng");
+    this.refresh();
+  }
+
+  countContact(id_district: number): number {
+    let count = 0;
+    this.listContact.forEach((element => {
+      if (element.id_district == id_district) {
+        count++;
+      }
+    }))
+    return count;
+  }
+
+  findDistrictName(id: number): string {
+    let name = "";
+    this.customerService.findDistrictById(id).subscribe((data => {
+      name = data.name;
+    }))
+    return name;
+  }
+
+  checkKHTN(status: string): boolean {
+    if (status == "Đã thêm vào KHTN") {
       return true;
     }
     return false;

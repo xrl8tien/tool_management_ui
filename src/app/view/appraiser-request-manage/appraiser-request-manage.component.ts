@@ -52,9 +52,8 @@ export class AppraiserRequestManageComponent implements OnInit {
   }
 
   contract: Contract;
-  public openDialogContractDetail(id_contract: number, code1: string) {
-    let data = { id: id_contract, code: code1 }
-    this.contractService.getDetailContract(data).subscribe((dataReturn => {
+  public openDialogContractDetail(id_contract: number) {
+    this.contractService.getDetailContract(id_contract).subscribe((dataReturn => {
       this.contract = dataReturn;
       let dialogRef = this.dialog.open(ContractDetailDialogComponent, {
         height: '80%',

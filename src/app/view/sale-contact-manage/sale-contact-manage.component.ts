@@ -14,6 +14,7 @@ import { Province } from 'src/app/model/Province';
 import { District } from 'src/app/model/District';
 import { element } from 'protractor';
 import { data } from 'jquery';
+import { ContactInfoDTO } from 'src/app/model/ContactInfoDTO';
 
 @Component({
   selector: 'app-sale-contact-manage',
@@ -46,8 +47,8 @@ export class SaleContactManageComponent implements OnInit {
   totalRecordsDistrict: number;
 
   listId: Array<number>;
-  listContact: Array<Contact>
-  listContactOld: Array<Contact>
+  listContact: Array<ContactInfoDTO>
+  listContactOld: Array<ContactInfoDTO>
   listDistrict: Array<District>
 
   id_role = "";
@@ -72,9 +73,9 @@ export class SaleContactManageComponent implements OnInit {
           this.customerService.getDistrictNameById(this.listId).subscribe((data => {
             for (let i = 0; i < data.length; i++) {
               if (i < data.length - 1)
-                this.district_name += " " + data[i] + ", "
+                this.district_name += " " + data[i].name + ", "
               else
-                this.district_name += " " + data[i]
+                this.district_name += " " + data[i].name
             }
           }))
           this.customerService.getAllNewContactByDistrictIds(this.listId).subscribe((data => {
@@ -257,14 +258,6 @@ export class SaleContactManageComponent implements OnInit {
       }
     }))
     return count;
-  }
-
-  findDistrictName(id: number): string {
-    let name = "";
-    this.customerService.findDistrictById(id).subscribe((data => {
-      name = data.name;
-    }))
-    return name;
   }
 
   checkKHTN(status: string): boolean {

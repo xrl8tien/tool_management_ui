@@ -90,6 +90,8 @@
                                                 <th (click)="sort('phone')">Số Điện Thoại&nbsp;<i
                                                         class="fa fa-sort"></i>
                                                 </th>
+                                                <th (click)="sort('name')">Quận/Huyện&nbsp;<i class="fa fa-sort"></i>
+                                                </th>
                                                 <th (click)="sort('question')">Yêu Cầu&nbsp;<i class="fa fa-sort"></i>
                                                 </th>
                                                 <th (click)="sort('create_time')">Thời Gian&nbsp;<i
@@ -107,6 +109,7 @@
                                                 *ngFor="let contact of listContact | orderBy: key:reverse | paginate: { id: 'listing_pagination' ,itemsPerPage: 5, currentPage: page, totalItems: totalRecords} ">
                                                 <td>{{contact.customer_name}}</td>
                                                 <td>{{contact.phone}}</td>
+                                                <td>{{contact.name}}</td>
                                                 <td>{{contact.question}}</td>
                                                 <td *ngIf="calculateDiff(contact.create_time) > 0">
                                                     {{calculateDiff(contact.create_time)}} ngày trước</td>
@@ -126,6 +129,7 @@
                                             <tr>
                                                 <th>Tên Khách Hàng</th>
                                                 <th>Số Điện Thoại</th>
+                                                <th>Quận/Huyện</th>
                                                 <th>Yêu Cầu</th>
                                                 <th>Thời Gian</th>
                                                 <th *ngIf="id_role == '5'">Sale</th>
@@ -178,6 +182,8 @@
                                                 <th (click)="sort('phone')">Số Điện Thoại&nbsp;<i
                                                         class="fa fa-sort"></i>
                                                 </th>
+                                                <th (click)="sort('name')">Quận/Huyện&nbsp;<i class="fa fa-sort"></i>
+                                                </th>
                                                 <th (click)="sort('question')">Yêu Cầu&nbsp;<i class="fa fa-sort"></i>
                                                 </th>
                                                 <th (click)="sort('status')">Trạng Thái&nbsp;<i class="fa fa-sort"></i>
@@ -195,6 +201,7 @@
                                                 *ngFor="let contact of listContactOld | orderBy: key:reverse | paginate: { id: 'listing_pagination_old' ,itemsPerPage: 5, currentPage: pageOld, totalItems: totalRecordsOld} ">
                                                 <td>{{contact.customer_name}}</td>
                                                 <td>{{contact.phone}}</td>
+                                                <td>{{contact.name}}</td>
                                                 <td>{{contact.question}}</td>
                                                 <td>{{contact.status}}</td>
                                                 <td *ngIf="calculateDiff(contact.create_time) > 0">
@@ -213,6 +220,7 @@
                                             <tr>
                                                 <th>Tên Khách Hàng</th>
                                                 <th>Số Điện Thoại</th>
+                                                <th>Quận/Huyện</th>
                                                 <th>Yêu Cầu</th>
                                                 <th>Trạng Thái</th>
                                                 <th>Thời Gian</th>

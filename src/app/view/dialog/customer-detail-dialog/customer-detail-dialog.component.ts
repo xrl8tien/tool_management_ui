@@ -20,7 +20,7 @@ export class CustomerDetailDialogComponent implements OnInit {
   custInfoList:Array<CustomerInfo>;
   ngOnInit(): void {
     this.spinner.show();
-    this.customerService.getOneCustomerInfoBySaler(this.id_customer,this.common.getCookie("token_key")).subscribe((data =>{
+    this.customerService.getOneCustomerInfoByEx(this.id_customer).subscribe((data =>{
       this.customerInfo = data[0];
       this.custInfoList = data;
       this.spinner.hide();

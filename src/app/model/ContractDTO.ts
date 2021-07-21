@@ -27,7 +27,7 @@ export class ContractDTO{
     id_request:number;
     payment_amount_fee:String;
     payment_amount_interset:String;
-    id_employee:number;
+    code_em_support:String;
     id_change_history:number;
     code:string;
 }

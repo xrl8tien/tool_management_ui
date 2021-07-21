@@ -10,6 +10,7 @@ import { ContractDTO } from 'src/app/model/ContractDTO';
 import { CustomerAcc } from 'src/app/model/CustomerAcc';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
 import { CustomerInfoDTO } from 'src/app/model/CustomerInfoDTO';
+import { District } from 'src/app/model/District';
 import { Request } from 'src/app/model/Request';
 import { CommonService } from '../common/common.service';
 
@@ -133,6 +134,52 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  public searchAllOldContact(ids: Array<number>, dateFrom: string, dateTo: string, searchValue: string): Observable<any> {
+    let data = new ContactDTO(ids, dateFrom, dateTo, searchValue);
+    const url = this.common.makeUrl("/customer/search_all_old_contact");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .
+      pipe(catchError(this.handleError));
+  }
+
+  public getAllNewContactByProvince(data: any): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_all_new_contact_by_id_province");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllNewContactByIdProvince(id_province: number, dateFrom: string, dateTo: string, searchValue: string): Observable<any> {
+    let data = { id_province: id_province, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
+    const url = this.common.makeUrl("/customer/search_all_new_contact_by_id_province");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllOldContactByProvince(data: any): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_all_old_contact_by_id_province");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllOldContactByIdProvince(id_province: number, dateFrom: string, dateTo: string, searchValue: string): Observable<any> {
+    let data = { id_province: id_province, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
+    const url = this.common.makeUrl("/customer/search_all_old_contact_by_id_province");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getProvinceByCodeEx(code_ex: string): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_province_by_code_ex");
+    return this.httpClient
+      .post<any>(url, code_ex, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   public getDistrictNameById(ids: Array<number>): Observable<any> {
     const url = this.common.makeUrl("/customer/get_district_name_by_id");
     return this.httpClient
@@ -140,11 +187,17 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
-  public searchAllOldContact(ids: Array<number>, dateFrom: string, dateTo: string, searchValue: string): Observable<any> {
-    let data = new ContactDTO(ids, dateFrom, dateTo, searchValue);
-    const url = this.common.makeUrl("/customer/search_all_old_contact");
+  public updateDistrict(district: District): Observable<any> {
+    const url = this.common.makeUrl("/customer/update_district");
     return this.httpClient
-      .post<any>(url, data, this.httpOptions)
+      .post<any>(url, district, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public findDistrictById(id: number): Observable<any> {
+    const url = this.common.makeUrl("/customer/find_district_by_id");
+    return this.httpClient
+      .post<any>(url, id, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
@@ -155,8 +208,8 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
-  public updateContact(status: string, id: number): Observable<any> {
-    let data = { status: status, id: id };
+  public updateContact(code_sale: string, status: string, id: number): Observable<any> {
+    let data = { code_sale: code_sale, status: status, id: id };
     const url = this.common.makeUrl("/customer/update_contact");
     return this.httpClient
       .post<any>(url, data, this.httpOptions)
@@ -198,6 +251,20 @@ export class CustomerService {
     let data = { id: id, token_key: token_key };
     return this.httpClient
       .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getOneCustomerInfoByEx(id: number) {
+    const url = this.common.makeUrl("/customer/get_one_customer_info_ex");
+    return this.httpClient
+      .post<any>(url, id, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllDistrictByProvince(id_province: number): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_all_district_by_id_province");
+    return this.httpClient
+      .post<any>(url, id_province, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

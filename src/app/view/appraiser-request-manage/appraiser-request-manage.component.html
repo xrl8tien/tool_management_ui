@@ -45,7 +45,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let contractRequest of contractRequests | orderBy: key:reverse | paginate: { id: 'listing_pagination_request' ,itemsPerPage: 8, currentPage: pageRequest, totalItems: totalRecordsRequest}">
-                                        <td><a style="color: rgb(19, 149, 255); cursor: pointer;" (click)="openDialogContractDetail(contractRequest.id_contract,contractRequest.code_sender)">#HD{{contractRequest.id_contract}}</a></td>
+                                        <td><a style="color: rgb(19, 149, 255); cursor: pointer;" (click)="openDialogContractDetail(contractRequest.id_contract)">#HD{{contractRequest.id_contract}}</a></td>
                                         <td>{{contractRequest.name}}</td>
                                         <td>{{contractRequest.priority}}</td>
                                         <td>{{contractRequest.date | date: 'dd-MM-yyyy'}}</td>
@@ -105,7 +105,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let contractRequestsApproval of contractRequestsApprovals | orderBy: key:reverse | paginate: { id: 'listing_pagination_approved' ,itemsPerPage: 8, currentPage: pageApprovals, totalItems: totalRecordsApprovals}">
-                                        <td><a style="color: rgb(19, 149, 255);cursor: pointer;" (click)="openDialogContractDetail(contractRequestsApproval.id_contract,contractRequestsApproval.code_sender)">#HD{{contractRequestsApproval.id_contract}}</a></td>
+                                        <td><a style="color: rgb(19, 149, 255);cursor: pointer;" (click)="openDialogContractDetail(contractRequestsApproval.id_contract)">#HD{{contractRequestsApproval.id_contract}}</a></td>
                                         <td>
                                             <p class="description">{{contractRequestsApproval.description}}</p>
                                         </td>

@@ -37,7 +37,7 @@ export class GetContactInfoComponent implements OnInit {
   }
 
   sendContact(){
-    let contact = new Contact(0, this.name, this.phone, this.selectProvince.value, this.selectDistrict.value, this.question, 'kcj', new Date());
+    let contact = new Contact(0, this.name, this.phone, this.selectProvince.value, this.selectDistrict.value, this.question, 'kcj', new Date(), null);
     this.customerSer.addOneContact(contact).subscribe((data => {}));
     this.snackBar.openSnackBar("Gửi Yêu Cầu Thành Công", "Đóng");
   }

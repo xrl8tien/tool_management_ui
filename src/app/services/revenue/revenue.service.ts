@@ -11,7 +11,7 @@ import { CommonService } from '../common/common.service';
 })
 export class RevenueService {
 
-  constructor(private httpClient: HttpClient, private common: CommonService,private route: Router) { }
+  constructor(private httpClient: HttpClient, private common: CommonService, private route: Router) { }
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -20,50 +20,65 @@ export class RevenueService {
     }),
   }
 
-  public addOneRevenue(data:Revenue):Observable<any>{
+  public addOneRevenue(data: Revenue): Observable<any> {
     const url = this.common.makeUrl("/revenue/save_one_revenue");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError))
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError))
   }
-  public getAllRevenue(code_em_support:String):Observable<any>{
+
+  public getAllRevenue(code_em_support: String): Observable<any> {
     const url = this.common.makeUrl("/revenue/get_all_revenue_employee");
     return this.httpClient
-    .post<any>(url,code_em_support,this.httpOptions)
-    .pipe(catchError(this.handleError))
+      .post<any>(url, code_em_support, this.httpOptions)
+      .pipe(catchError(this.handleError))
   }
 
-  public getAllRevenueMonthBefore(code_em_support:String,monthDate:number,yearDate:number):Observable<any>{
+  public getAllRevenueEx(codes_em_support: Array<String>): Observable<any> {
+    const url = this.common.makeUrl("/revenue/get_all_revenue_employee_ex");
+    return this.httpClient
+      .post<any>(url, codes_em_support, this.httpOptions)
+      .pipe(catchError(this.handleError))
+  }
+
+  public getAllRevenueMonthBefore(code_em_support: String, monthDate: number, yearDate: number): Observable<any> {
     const url = this.common.makeUrl("/revenue/get_all_revenue_employee_month_before");
-    let data = {code_em_support:code_em_support,monthDate:monthDate,yearDate:yearDate}
+    let data = { code_em_support: code_em_support, monthDate: monthDate, yearDate: yearDate }
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError))
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError))
   }
 
-  public getAllRevenueYearBefore(code_em_support:String,yearDate:number):Observable<any>{
+  public getAllRevenueYearBefore(code_em_support: String, yearDate: number): Observable<any> {
     const url = this.common.makeUrl("/revenue/get_all_revenue_employee_year_before");
-    let data = {code_em_support:code_em_support,yearDate:yearDate}
+    let data = { code_em_support: code_em_support, yearDate: yearDate }
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError))
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError))
   }
 
-  public getAllIncomeSaler(data:any):Observable<any>{
+  public getAllIncomeSaler(data: any): Observable<any> {
     const url = this.common.makeUrl("/revenue/get_all_income_saler");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError))
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError))
   }
 
-  public getAllKpi(code_employee:String):Observable<any>{
+  public getAllIncomeSalerEx(data: any): Observable<any> {
+    const url = this.common.makeUrl("/revenue/get_all_income_saler_ex");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError))
+  }
+
+  public getAllKpi(code_employee: String): Observable<any> {
     const url = this.common.makeUrl("/revenue/get_all_kpi_employee");
     return this.httpClient
-    .post<any>(url,code_employee,this.httpOptions)
-    .pipe(catchError(this.handleError))
+      .post<any>(url, code_employee, this.httpOptions)
+      .pipe(catchError(this.handleError))
   }
 
-  
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

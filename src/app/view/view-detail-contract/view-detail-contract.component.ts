@@ -127,8 +127,7 @@ export class ViewDetailContractComponent implements OnInit {
   public refresh() {
     this.spinner.show();
     this.id = this.route.snapshot.params['id'];
-    let data = { id: this.id, code: jwtDecode(this.common.getCookie('token_key'))['sub'] }
-    this.contractService.getDetailContract(data).subscribe((data => {
+    this.contractService.getDetailContract(this.id).subscribe((data => {
       this.contracts = data;
       switch (this.contracts.approval_status) {
         case "CXD": this.contracts.approval_status = "Chưa Xét Duyệt"; break;

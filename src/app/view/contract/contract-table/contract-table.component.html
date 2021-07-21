@@ -29,6 +29,7 @@
             <th (click)="sort('id_illustration')">Mã Bảng Minh Họa&nbsp;<i class="fas fa-sort"></i></th>
             <th (click)="sort('status')">Trạng Thái&nbsp;<i class="fas fa-sort"></i></th>
             <th (click)="sort('start_time')">Ngày Đăng Ký&nbsp;<i class="fas fa-sort"></i></th>
+            <th *ngIf="id_role == '5'" (click)="sort('code_em_support')">Sale&nbsp;<i class="fas fa-sort"></i></th>
             <th>Chi Tiết</th>
         </tr>
     </thead>
@@ -49,6 +50,7 @@
             </td>
             <td>{{contract.approval_status}}</td>
             <td>{{contract.start_time | date: 'dd-MM-yyyy'}}</td>
+            <td *ngIf="id_role == '5'">{{contract.code_em_support}}</td>
             <td>
                 <button (click)="contractDetail(contract.id)" class="btn btn-info" style="color: white;">Chi Tiết</button>
             </td>
@@ -64,8 +66,9 @@
             <th>Mã Bảng Minh Họa</th>
             <th>Trạng Thái</th>
             <th>Ngày Đăng Ký</th>
+            <th *ngIf="id_role == '5'">Sale</th>
             <th>Chi Tiết</th>
         </tr>
     </tfoot>
 </table>
-<pagination-controls style="float: right;" id="listing_pagination" maxSize="2" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+<pagination-controls style="float: right;" id="listing_pagination" maxSize="6" directionLinks="true" (pageChange)="page = $event"></pagination-controls>

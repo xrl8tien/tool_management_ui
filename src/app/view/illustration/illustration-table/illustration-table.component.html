@@ -27,6 +27,7 @@
             <th (click)="sort('full_name')">Tên Khách Hàng&nbsp;<i class="fas fa-sort"></i></th>
             <th (click)="sort('create_time')">Ngày Tạo&nbsp;<i class="fas fa-sort"></i></th>
             <th (click)="sort('end_time')">Ngày Dự Kiến Kết Thúc Chiến Dịch&nbsp;<i class="fas fa-sort"></i></th>
+            <th *ngIf="id_role == '5'" (click)="sort('code_em_support')">Sale&nbsp;<i class="fas fa-sort"></i></th>
             <th>Danh Sách Bản Minh Hoạ</th>
         </tr>
     </thead>
@@ -40,6 +41,7 @@
             <td>{{ customerOwnIllustration.full_name }}</td>
             <td>{{ customerOwnIllustration.create_time | date : 'dd-MM-yyyy' }}</td>
             <td>{{ customerOwnIllustration.end_time | date : 'dd-MM-yyyy' }}</td>
+            <td *ngIf="id_role == '5'">{{ customerOwnIllustration.code_em_support }}</td>
             <td>
                 <button (click)="listIllustration(customerOwnIllustration.id_customer)" class="btn btn-info" style="width: 100%;color: white;">Chi Tiết</button>
             </td>

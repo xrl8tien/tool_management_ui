@@ -371,6 +371,7 @@ export class DashboardComponent implements OnInit {
           },
           yaxis: [
             {
+              seriesName: "KPI",
               axisTicks: {
                 show: true
               },

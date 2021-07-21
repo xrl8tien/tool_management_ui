@@ -30,7 +30,7 @@ export class ViewDetailCustomerComponent implements OnInit {
   ngOnInit(): void {
     this.common.titlePage = "Thông Tin Chi Tiết Khách Hàng";
     this.spinner.show();
-    this.customerService.getOneCustomerInfoBySaler(this.activateRoute.snapshot.params['id'],this.common.getCookie("token_key")).subscribe((data =>{
+    this.customerService.getOneCustomerInfoByEx(this.activateRoute.snapshot.params['id']).subscribe((data =>{
     this.customerInfo = data[0];
     this.custInfoList = data;
     this.spinner.hide();
@@ -58,8 +58,7 @@ export class ViewDetailCustomerComponent implements OnInit {
 
   contract: Contract;
   public openDialogContractDetail(id_contract: number) {
-    let data = { id: id_contract, code: jwt_decode(this.common.getCookie('token_key'))['sub'] }
-    this.contractService.getDetailContract(data).subscribe((dataReturn => {
+    this.contractService.getDetailContract(id_contract).subscribe((dataReturn => {
       this.contract = dataReturn;
       let dialogRef = this.dialog.open(ContractDetailDialogComponent, {
         height:'80%',

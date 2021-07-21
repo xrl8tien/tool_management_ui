@@ -1,3 +1,57 @@
+/* .form-row{
+    display: flex;
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.col-md-6 {
+    flex:  0 0 50%;
+    max-width: 50%;
+} */
+
+.form-container {
+    padding-left: 20rem;
+    padding-right: 20rem;
+}
+
+
+.card-header {
+    text-align: center;
+    text-transform: uppercase;
+    /* font-weight: 600; */
+    font-size: .5rem;
+    color:cornflowerblue;
+    margin-top: .5rem;
+    margin-right: 3.5rem;
+    margin-left: 3.5rem;
+}
+
+.png-logo{
+    width: 8%;
+    margin-bottom: 1rem;
+}
+
+.name-sys{
+    font-weight: 400;
+    font-size: .7rem;
+}
+
+.order-info{
+    margin-top: 1rem;
+    background: cornflowerblue ;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.note {
+    margin-top: 0;
+    text-transform: lowercase;
+    font-size: .8rem;
+}
+
 .form-container {
     max-width: 95%;
     margin-left: 2.5rem;

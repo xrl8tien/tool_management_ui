@@ -30,11 +30,26 @@
                             </div>
 
                             <div class="info-box-content">
-                                <span class="info-box-number" style="font-size: 1.5rem;">
-                                    {{listIncomePredic[month-1].kpi - this.listIncomePredic[this.month - 1].revenue |
-                                    currency : "VND"}}
-                                </span>
-                                <span class="info-box-text">Tiền cần để đạt KPI</span>
+                                <div class="money"
+                                    *ngIf="(listIncomePredic[month-1].kpi - this.listIncomePredic[this.month - 1].revenue) > 0">
+                                    <span class="info-box-number" style="font-size: 1.5rem; color: red;">
+                                        {{listIncomePredic[month-1].kpi - this.listIncomePredic[this.month - 1].revenue
+                                        |
+                                        currency : "VND"}}
+                                    </span>
+                                    <span class="info-box-text">Tiền cần để đạt KPI</span>
+                                </div>
+
+                                <div class="money"
+                                    *ngIf="(listIncomePredic[month-1].revenue - this.listIncomePredic[this.month - 1].kpi) > 0"
+                                    style="color: green;">
+                                    <span class="info-box-number" style="font-size: 1.5rem; color: green;">
+                                        {{listIncomePredic[month-1].revenue - this.listIncomePredic[this.month - 1].kpi
+                                        |
+                                        currency : "VND"}}
+                                    </span>
+                                    <span class="info-box-text">Thu nhập vượt KPI</span>
+                                </div>
                             </div>
                         </div>
                     </a>

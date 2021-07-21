@@ -24,6 +24,8 @@ import { Contract } from 'src/app/model/Contract';
 import { SubBenefitScale } from 'src/app/model/SubBenefitScale';
 import { MainBenefitScale } from 'src/app/model/MainBenefitScale';
 import { IllustrationService } from 'src/app/services/illustration/illustration.service';
+import { data } from 'jquery';
+import { CustomerInfo } from 'src/app/model/CustomerInfo';
 
 @Component({
   selector: 'app-help-customer-send-claim-request',
@@ -48,34 +50,62 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
   listMainBenefitScale: Array<MainBenefitScale> = [];
   listSubScale: Array<SubBenefitScale> = [];
 
+  customerinfos: Array<CustomerInfo>;
+  id_role = "";
+
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,
     private common: CommonService, private spinner: NgxSpinnerService,
     private referTable: RefertableService, public authenService: AuthenService,
     private route: ActivatedRoute, private router: Router, private contractService: ContractService,
-    private dialog: MatDialog, private EmAccService: EmployeeService) { }
+    private dialog: MatDialog, private EmAccService: EmployeeService, private employeeService: EmployeeService,
+    public customerService: CustomerService,) { }
 
   ngOnInit(): void {
-    // let token_customer = this.common.getCookie('token_customer');
-    // if (!token_customer) {
-    // this.router.navigate(['login-customerweb']);
-    // } else {
-    // this.code_sender = this.common.getCookie('name_customer');
-    // this.contractService.getAllContractForCustomer(jwt_decode(this.common.getCookie('token_customer'))['sub']).subscribe((data => {
-    //   this.listContracts = data;
-    // }));
-
-    this.contractService.getAllContract(this.id_customer).subscribe((data => {
-      this.listContracts = data;
+    this.employeeService.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {
+      this.id_role = data['id_role'];
+      if (this.id_role == '2') {
+        this.customerService.getAllCustomerInfo(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+          this.customerinfos = data;
+          // this.totalRecords = data.length;
+          this.spinner.hide();
+        }))
+      }
     }))
-    // }
+  }
 
+  onChangeCustomerId(id_customer: number) {
+    this.contractService.getAllContractForCustomer(id_customer).subscribe((data => {
+      this.listContracts = data;
+      this.cusService.getDetailContractForCustomer(this.id_contract).subscribe((data => {
+        this.contract = data;
+        this.cusService.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
+          for (var i = 0; i < data.length; i++) {
+            this.cusService.getAllSubBenefitScaleBySubBenefitId(data[i].id_sub_benifit).subscribe((data1 => {
+              this.listSubScale = data1;
+              for (var j = 0; j < this.listSubScale.length; j++) {
+                let subBenefitScale = new SubBenefitScale(
+                  this.listSubScale[j].id,
+                  this.listSubScale[j].name,
+                  this.listSubScale[j].scale,
+                  this.listSubScale[j].id_sub_benefit
+                )
+                this.listSubBenefitScale.push(subBenefitScale);
+              }
+            }))
+          }
+        }))
+        this.cusService.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {
+          this.listMainBenefitScale = data;
+        }))
+      }))
+    }))
   }
 
   onChangeContract(id_contract: number) {
+    this.listSubBenefitScale = [];
     this.cusService.getDetailContractForCustomer(id_contract).subscribe((data => {
       this.contract = data;
-
       this.cusService.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
         for (var i = 0; i < data.length; i++) {
           this.cusService.getAllSubBenefitScaleBySubBenefitId(data[i].id_sub_benifit).subscribe((data1 => {
@@ -142,7 +172,7 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
       }
       this.spinner.hide();
       this.snackBar.openSnackBar("Gửi Yêu Cầu Thành Công", "Đóng");
-      this.router.navigate(['list-request-customer']);
+      // this.router.navigate(['list-request-customer']);
     }))
   }
 

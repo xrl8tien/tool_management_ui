@@ -52,6 +52,9 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
 
   customerinfos: Array<CustomerInfo>;
   id_role = "";
+  code_sender_cus: string;
+  fullName: string;
+  cusInfo: CustomerInfo;
 
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,
@@ -62,41 +65,35 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
     public customerService: CustomerService,) { }
 
   ngOnInit(): void {
-    this.employeeService.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {
-      this.id_role = data['id_role'];
-      if (this.id_role == '2') {
-        this.customerService.getAllCustomerInfo(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
-          this.customerinfos = data;
-          // this.totalRecords = data.length;
-          this.spinner.hide();
-        }))
-      }
-    }))
   }
 
   onChangeCustomerId(id_customer: number) {
-    this.contractService.getAllContractForCustomer(id_customer).subscribe((data => {
-      this.listContracts = data;
-      this.cusService.getDetailContractForCustomer(this.id_contract).subscribe((data => {
-        this.contract = data;
-        this.cusService.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
-          for (var i = 0; i < data.length; i++) {
-            this.cusService.getAllSubBenefitScaleBySubBenefitId(data[i].id_sub_benifit).subscribe((data1 => {
-              this.listSubScale = data1;
-              for (var j = 0; j < this.listSubScale.length; j++) {
-                let subBenefitScale = new SubBenefitScale(
-                  this.listSubScale[j].id,
-                  this.listSubScale[j].name,
-                  this.listSubScale[j].scale,
-                  this.listSubScale[j].id_sub_benefit
-                )
-                this.listSubBenefitScale.push(subBenefitScale);
-              }
-            }))
-          }
-        }))
-        this.cusService.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {
-          this.listMainBenefitScale = data;
+    this.cusService.getOneCustomerInfoByEx(id_customer).subscribe((data => {
+      this.cusInfo = data[0];
+      this.fullName = this.cusInfo.full_name;
+      this.contractService.getAllContractForCustomer(id_customer).subscribe((data => {
+        this.listContracts = data;
+        this.cusService.getDetailContractForCustomer(this.id_contract).subscribe((data => {
+          this.contract = data;
+          this.cusService.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
+            for (var i = 0; i < data.length; i++) {
+              this.cusService.getAllSubBenefitScaleBySubBenefitId(data[i].id_sub_benifit).subscribe((data1 => {
+                this.listSubScale = data1;
+                for (var j = 0; j < this.listSubScale.length; j++) {
+                  let subBenefitScale = new SubBenefitScale(
+                    this.listSubScale[j].id,
+                    this.listSubScale[j].name,
+                    this.listSubScale[j].scale,
+                    this.listSubScale[j].id_sub_benefit
+                  )
+                  this.listSubBenefitScale.push(subBenefitScale);
+                }
+              }))
+            }
+          }))
+          this.cusService.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {
+            this.listMainBenefitScale = data;
+          }))
         }))
       }))
     }))
@@ -149,8 +146,8 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
 
   sendReq() {
     this.spinner.show();
+    this.code_sender = this.cusInfo.code;
     this.req = new Request(0, this.name, 2, new Date(), 1, this.code_sender, '', '', 'Cao', this.selectContract.value, 'CXD');
-
     this.cusService.addOneCustomerRequest(this.req).subscribe((reqData => {
       if (this.selectedFile.length != 0) {
         const uploadImageData = new FormData();

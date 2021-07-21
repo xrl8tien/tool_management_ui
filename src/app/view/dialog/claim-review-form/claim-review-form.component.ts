@@ -105,7 +105,7 @@ export class ClaimReviewFormComponent implements OnInit {
 
     this.spinner.show();
     this.requestClaim = new RequestClaimApprove(0, this.req.name, this.dateNow, this.req.code_sender,
-      this.description, this.amountMoney, this.req.id_contract, this.approveStatus, this.priority);
+      this.description, this.amountMoney, this.req.id_contract, this.approveStatus, "Cao");
     if (this.approveStatus == "DX") {
       this.contractRequestService.setStatusRequest(this.req.id, this.description, this.approveStatus).subscribe((data => {
         this.contractRequestService.addClaimRequest(this.requestClaim).subscribe((data => {

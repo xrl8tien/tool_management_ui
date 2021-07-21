@@ -165,7 +165,7 @@ export class SaleContactManageTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result == true) {
-        this.customerService.updateContact('Đã thêm vào KHTN', id).subscribe((data => {
+        this.customerService.updateContact(jwt_decode(this.common.getCookie('token_key'))['sub'], 'Đã thêm vào KHTN', id).subscribe((data => {
           if (data != null) {
             this.refresh();
             this.snackbar.openSnackBar("Đã thêm vào KHTN", "Đóng");

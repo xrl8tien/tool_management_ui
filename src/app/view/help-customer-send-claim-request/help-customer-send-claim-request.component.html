@@ -35,10 +35,10 @@
                     <input type="text" class="form-control" id="inputCustomerID" name="id_customer"
                         (change)="onChangeCustomerId($event.target.value)" required>
                 </div>
-                <div class="col-md-3 mb-3" *ngFor="let contractDetail of listContracts">
+                <div class="col-md-3 mb-3">
                     <label for="inputName">Họ và tên</label>
-                    <input type="text" class="form-control" id="inputName" name="code_sender"
-                        [value]="contractDetail.name_contract_owner" required>
+                    <input type="text" class="form-control" id="inputName" name="code_sender" [(ngModel)]="fullName"
+                        required>
                 </div>
 
                 <div class="col-md-3 mb-3">

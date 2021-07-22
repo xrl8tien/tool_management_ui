@@ -14,6 +14,7 @@ import { ContractService } from 'src/app/services/contract/contract.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
 import { RevenueService } from 'src/app/services/revenue/revenue.service';
+import { SaleExecutiveSetKpiComponent } from '../sale-executive-set-kpi/sale-executive-set-kpi.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -396,6 +397,15 @@ export class SaleDashboardComponent implements OnInit {
       date.setDate(0);
     }
     return date;
+  }
+
+  dashboardSaleExecutiveSetKPI() {
+    let dialogRef2 = this.dialog.open(SaleExecutiveSetKpiComponent, {
+      width: '25%'
+    });
+    dialogRef2.afterClosed().subscribe(result => {
+
+    })
   }
 
   transformPeriod(data: any) {

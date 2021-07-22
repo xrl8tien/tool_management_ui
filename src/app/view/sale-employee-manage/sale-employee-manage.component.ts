@@ -92,6 +92,7 @@ export class SaleEmployeeManageComponent implements OnInit {
     })
   }
 
+
   ResetDate() {
     this.dateFrom = null;
     this.dateTo = null;

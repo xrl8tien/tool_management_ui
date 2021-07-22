@@ -27,6 +27,7 @@ import { DayNotificationDialogComponent } from '../dialog/day-notification-dialo
 import { Contact } from 'src/app/model/Contact';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
+import { EmployeeInfoDTO } from 'src/app/model/EmployeeInfoDTO';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -116,10 +117,13 @@ export class DashboardComponent implements OnInit {
   id_role = "";
   codes_sale: Array<string> = [];
 
+  employeeList: Array<EmployeeInfoDTO>;
+
   ngOnInit(): void {
     this.common.titlePage = "Tổng Quan";
     this.CalculateIncomeForThisYear();
     this.refresh();
+    this.getEmployeeList();
 
     this.employeeService.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {
       this.id_role = data['id_role'];
@@ -157,6 +161,11 @@ export class DashboardComponent implements OnInit {
           }))
         }))
       }
+    }))
+  }
+  getEmployeeList() {
+    this.employeeService.getAllInfoAccEx(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+      this.employeeList = data;
     }))
   }
   refresh() {

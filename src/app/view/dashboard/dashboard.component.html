@@ -104,19 +104,20 @@
                             </a>
                         </div>
                         <div *ngIf="id_role == '5'" class="col-lg-3 col-6">
-                            <a [routerLink]="" (click)="openDayNotificationDialog()" class="small-box-footer">
+                            <a href="sale-employee-manage" class="small-box-footer">
                                 <div class="info-box mb-3">
                                     <span class="info-box-icon bg-success elevation-1"><i
                                             class="fas fa-users"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-number" style="font-size: 1.5rem;"></span>
-                                        <span class="info-box-text"></span>
+                                        <span class="info-box-number"
+                                            style="font-size: 1.5rem;">{{employeeList.length}}</span>
+                                        <span class="info-box-text">Quản lý DS nhân viên kinh doanh</span>
                                     </div>
 
-                                    <div class="info-box-content">
+                                    <!-- <div class="info-box-content">
                                         <span class="info-box-number" style="font-size: 1.5rem;"></span>
                                         <span class="info-box-text"></span>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </a>
                         </div>

@@ -56,6 +56,7 @@ export class SaleContactManageComponent implements OnInit {
   province_ex: Province;
 
   ngOnInit(): void {
+    this.common.titlePage="Danh Sách Liên Hệ";
     this.customerService.subsVar = this.customerService.
       callRefreshTable.subscribe((name: string) => {
         this.refresh();

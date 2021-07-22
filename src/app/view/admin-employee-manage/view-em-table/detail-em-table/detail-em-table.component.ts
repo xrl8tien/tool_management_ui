@@ -22,13 +22,17 @@ export class DetailEmTableComponent implements OnInit {
   statusDeactiveAccDialog: boolean = false;
   listAcc: Array<EmployeeAcc>;
   showDelayButton: boolean = true;
-  constructor(private common:CommonService,private spinner: NgxSpinnerService, private employeeService: EmployeeService, private activateRoute: ActivatedRoute, private dialog: MatDialog) { }
+  constructor(private common: CommonService, private spinner: NgxSpinnerService, private employeeService: EmployeeService, private activateRoute: ActivatedRoute, private dialog: MatDialog) { }
   employeinfoDTO: EmployeeInfoDTO;
+  id_role = "";
   ngOnInit(): void {
-    this.common.subsVar = this.common.    
-      callRefreshTable.subscribe((name:string) => {    
+    this.employeeService.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {
+      this.id_role = data['id_role'];
+    }))
+    this.common.subsVar = this.common.
+      callRefreshTable.subscribe((name: string) => {
         this.refresh();
-      });   
+      });
     this.refresh();
   }
 
@@ -40,15 +44,15 @@ export class DetailEmTableComponent implements OnInit {
     })
   }
 
-  public refresh(){
+  public refresh() {
     this.common.titlePage = "Chi Tiết Nhân Viên";
     this.employeeService.getDetailEmployebyID(this.activateRoute.snapshot.params['id']).subscribe((data => {
       this.spinner.show();
       this.employeinfoDTO = data;
-      if(this.employeinfoDTO.id_acc == null){
+      if (this.employeinfoDTO.id_acc == null) {
         this.showDelayButton = false;
         this.spinner.hide();
-      }else{
+      } else {
         this.employeeService.getAllAcc().subscribe((data => {
           this.listAcc = data;
           if (this.listAcc.filter(x => x.id == this.employeinfoDTO.id_acc)[0].id_role == 3 || this.listAcc.filter(x => x.id == this.employeinfoDTO.id_acc)[0].id_role == 1 || this.listAcc.filter(x => x.id == this.employeinfoDTO.id_acc)[0].status == false) {
@@ -61,7 +65,7 @@ export class DetailEmTableComponent implements OnInit {
     }))
   }
 
-  public openDialogPauseEmployee(data:EmployeeInfoDTO) {
+  public openDialogPauseEmployee(data: EmployeeInfoDTO) {
     let dialogRef = this.dialog.open(AdminPauseEmployeeDialogComponent, { data: data });
     dialogRef.afterClosed().subscribe(data => {
       this.common.invokeRefreshTableFun();

@@ -32,3 +32,6 @@ th {
     margin-left: 75%;
     margin-bottom: 10px;
 }
+.content-wrapper-modify {
+    min-height: 671px;
+}

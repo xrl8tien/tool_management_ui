@@ -1,133 +1,150 @@
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <div class="content-wrapper-modify">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
-            <div class="row">
-                <div class="col-lg-3 col-6">
-                    <a href="income" class="small-box-footer">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-info elevation-1"><i
-                                    class="fas fa-hand-holding-usd"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-number" style="font-size: 1.5rem;">
-                                    {{incomeStatus}} {{percentBetweenIncome}}
-                                </span>
-                                <span class="info-box-text">Thu nhập so với tháng trước</span>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+                            <a href="income" class="small-box-footer">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-info elevation-1"><i
+                                            class="fas fa-hand-holding-usd"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-number" style="font-size: 1.5rem;">
+                                            {{incomeStatus}} {{percentBetweenIncome}}
+                                        </span>
+                                        <span class="info-box-text">Thu nhập so với tháng trước</span>
 
 
-                            </div>
+                                    </div>
 
-                            <div class="info-box-content">
-                                <div class="money"
-                                    *ngIf="(listIncomePredic[month-1].kpi - this.listIncomePredic[this.month - 1].revenue) > 0">
-                                    <span class="info-box-number" style="font-size: 1.5rem; color: red;">
-                                        {{listIncomePredic[month-1].kpi - this.listIncomePredic[this.month - 1].revenue
-                                        |
-                                        currency : "VND"}}
-                                    </span>
-                                    <span class="info-box-text">Tiền cần để đạt KPI</span>
+                                    <div class="info-box-content">
+                                        <div class="money"
+                                            *ngIf="(listIncomePredic[month-1].kpi - this.listIncomePredic[this.month - 1].revenue) > 0">
+                                            <span class="info-box-number" style="font-size: 1.5rem; color: red;">
+                                                {{listIncomePredic[month-1].kpi - this.listIncomePredic[this.month -
+                                                1].revenue
+                                                |
+                                                currency : "VND"}}
+                                            </span>
+                                            <span class="info-box-text">Tiền cần để đạt KPI</span>
+                                        </div>
+
+                                        <div class="money"
+                                            *ngIf="(listIncomePredic[month-1].revenue - this.listIncomePredic[this.month - 1].kpi) > 0"
+                                            style="color: green;">
+                                            <span class="info-box-number" style="font-size: 1.5rem; color: green;">
+                                                {{listIncomePredic[month-1].revenue - this.listIncomePredic[this.month -
+                                                1].kpi
+                                                |
+                                                currency : "VND"}}
+                                            </span>
+                                            <span class="info-box-text" style="color: black;">Thu nhập vượt KPI</span>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="money"
-                                    *ngIf="(listIncomePredic[month-1].revenue - this.listIncomePredic[this.month - 1].kpi) > 0"
-                                    style="color: green;">
-                                    <span class="info-box-number" style="font-size: 1.5rem; color: green;">
-                                        {{listIncomePredic[month-1].revenue - this.listIncomePredic[this.month - 1].kpi
-                                        |
-                                        currency : "VND"}}
-                                    </span>
-                                    <span class="info-box-text" style="color: black;">Thu nhập vượt KPI</span>
+                            </a>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <a href="contract" class="small-box-footer">
+                                <div class="info-box mb-3">
+                                    <span class="info-box-icon bg-danger elevation-1"><i
+                                            class="fas fa-file-contract"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-number"
+                                            style="font-size: 1.5rem;">{{ContractApproved}}</span>
+                                        <span class="info-box-text">HĐ đã xác nhận</span>
+                                    </div>
+                                    <div class="info-box-content">
+                                        <span class="info-box-number"
+                                            style="font-size: 1.5rem; ">{{ContractNotApproved}}</span>
+                                        <span class="info-box-text">HĐ chờ xác nhận</span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <a href="contract" class="small-box-footer">
-                        <div class="info-box mb-3">
-                            <span class="info-box-icon bg-danger elevation-1"><i
-                                    class="fas fa-file-contract"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-number" style="font-size: 1.5rem;">{{ContractApproved}}</span>
-                                <span class="info-box-text">HĐ đã xác nhận</span>
-                            </div>
-                            <div class="info-box-content">
-                                <span class="info-box-number" style="font-size: 1.5rem; ">{{ContractNotApproved}}</span>
-                                <span class="info-box-text">HĐ chờ xác nhận</span>
-                            </div>
+                        <div *ngIf="id_role == '2'" class="col-lg-3 col-6">
+                            <a [routerLink]="" (click)="openDayNotificationDialog()" class="small-box-footer">
+                                <div class="info-box mb-3">
+                                    <span class="info-box-icon bg-success elevation-1"><i
+                                            class="fas fa-users"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-number"
+                                            style="font-size: 1.5rem;">{{listBirthdayCus.length}}</span>
+                                        <span class="info-box-text">KH có sinh nhật hôm nay</span>
+                                    </div>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-number"
+                                            style="font-size: 1.5rem;">{{listExpiredContract.length}}</span>
+                                        <span class="info-box-text">HĐ sắp hết hạn</span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <div *ngIf="id_role == '2'" class="col-lg-3 col-6">
-                    <a [routerLink]="" (click)="openDayNotificationDialog()" class="small-box-footer">
-                        <div class="info-box mb-3">
-                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-number"
-                                    style="font-size: 1.5rem;">{{listBirthdayCus.length}}</span>
-                                <span class="info-box-text">KH có sinh nhật hôm nay</span>
-                            </div>
+                        <div *ngIf="id_role == '5'" class="col-lg-3 col-6">
+                            <a [routerLink]="" (click)="openDayNotificationDialog()" class="small-box-footer">
+                                <div class="info-box mb-3">
+                                    <span class="info-box-icon bg-success elevation-1"><i
+                                            class="fas fa-users"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-number" style="font-size: 1.5rem;"></span>
+                                        <span class="info-box-text"></span>
+                                    </div>
 
-                            <div class="info-box-content">
-                                <span class="info-box-number"
-                                    style="font-size: 1.5rem;">{{listExpiredContract.length}}</span>
-                                <span class="info-box-text">HĐ sắp hết hạn</span>
-                            </div>
+                                    <div class="info-box-content">
+                                        <span class="info-box-number" style="font-size: 1.5rem;"></span>
+                                        <span class="info-box-text"></span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <div *ngIf="id_role == '5'" class="col-lg-3 col-6">
-                    <a [routerLink]="" (click)="openDayNotificationDialog()" class="small-box-footer">
-                        <div class="info-box mb-3">
-                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-number" style="font-size: 1.5rem;"></span>
-                                <span class="info-box-text"></span>
-                            </div>
+                        <div class="col-lg-3 col-6">
+                            <a href="sale-contact-manage" class="small-box-footer">
+                                <div class="info-box mb-3">
+                                    <span class="info-box-icon bg-warning elevation-1"><i
+                                            class="fas fa-user-plus"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-number" style="font-size: 1.5rem;"></span>
-                                <span class="info-box-text"></span>
-                            </div>
+                                    <div class="info-box-content">
+                                        <span class="info-box-number"
+                                            style="font-size: 1.5rem;">{{listContact.length}}</span>
+                                        <span class="info-box-text">Thông tin liên hệ mới</span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <a href="sale-contact-manage" class="small-box-footer">
-                        <div class="info-box mb-3">
-                            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-plus"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-number" style="font-size: 1.5rem;">{{listContact.length}}</span>
-                                <span class="info-box-text">Thông tin liên hệ mới</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+                    </div>
 
 
-            <!-- /.row -->
-            <!-- Main row -->
-            <div class="row">
-                <!-- Left col -->
-                <section class="col-lg-12 connectedSortable ui-sortable">
+                    <!-- /.row -->
+                    <!-- Main row -->
+                    <div class="row">
+                        <!-- Left col -->
+                        <section class="col-lg-12 connectedSortable ui-sortable">
 
-                    <!-- Custom tabs (Charts with tabs)-->
-                    <!-- <div class="card bg-gradient-info">
+                            <!-- Custom tabs (Charts with tabs)-->
+                            <!-- <div class="card bg-gradient-info">
                         <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
                             <h3 class="card-title">
                                 <i class="fas fa-th mr-1"></i>Thu Nhập
@@ -138,35 +155,41 @@
                             </canvas>
                         </div>
                     </div> -->
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-6 col-6">
-                                <div id="chart">
-                                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
-                                        [xaxis]="chartOptions.xaxis" [markers]="chartOptions.markers"
-                                        [stroke]="chartOptions.stroke" [yaxis]="chartOptions.yaxis"
-                                        [dataLabels]="chartOptions.dataLabels" [title]="chartOptions.title"
-                                        [fill]="chartOptions.fill" [tooltip]="chartOptions.tooltip"
-                                        [legend]="chartOptions.legend"></apx-chart>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-6 col-6">
+                                        <h2 class="chart-title">Biều đồ thu nhập năm {{year}}</h2>
+                                        <div id="chart">
+                                            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                                                [xaxis]="chartOptions.xaxis" [markers]="chartOptions.markers"
+                                                [stroke]="chartOptions.stroke" [yaxis]="chartOptions.yaxis"
+                                                [dataLabels]="chartOptions.dataLabels" [fill]="chartOptions.fill"
+                                                [tooltip]="chartOptions.tooltip" [legend]="chartOptions.legend">
+                                            </apx-chart>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-6">
+                                        <h2 class="chart-title">Biều đồ doanh thu - KPI năm {{year}}</h2>
+                                        <div id="chart1">
+                                            <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                                                [xaxis]="chartOptions1.xaxis" [markers]="chartOptions1.markers"
+                                                [stroke]="chartOptions1.stroke" [yaxis]="chartOptions1.yaxis"
+                                                [dataLabels]="chartOptions1.dataLabels" [fill]="chartOptions1.fill"
+                                                [tooltip]="chartOptions1.tooltip" [legend]="chartOptions1.legend">
+                                            </apx-chart>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-6">
-                                <div id="chart1">
-                                    <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
-                                        [xaxis]="chartOptions1.xaxis" [markers]="chartOptions1.markers"
-                                        [stroke]="chartOptions1.stroke" [yaxis]="chartOptions1.yaxis"
-                                        [dataLabels]="chartOptions1.dataLabels" [title]="chartOptions1.title"
-                                        [fill]="chartOptions1.fill" [tooltip]="chartOptions1.tooltip"
-                                        [legend]="chartOptions1.legend"></apx-chart>
-                                </div>
-                            </div>
-                        </div>
+                        </section>
                     </div>
-                </section>
-            </div>
-            <!-- /.row (main row) -->
+                    <!-- /.row (main row) -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-</div>
+    </div>
+</body>
+
+</html>

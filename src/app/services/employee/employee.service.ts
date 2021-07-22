@@ -15,12 +15,12 @@ export class EmployeeService {
   callRefreshTable = new EventEmitter();
   subsVar: Subscription;
 
-  invokeRefreshTableFun() { 
+  invokeRefreshTableFun() {
     this.callRefreshTable.emit();
   }
 
 
-  constructor(private httpClient: HttpClient, private common: CommonService) {  }
+  constructor(private httpClient: HttpClient, private common: CommonService) { }
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -28,119 +28,134 @@ export class EmployeeService {
       // Authorization: 'my-auth-token',
     }),
   }
-  
-  public resetPassEmployee(data:any): Observable<any>{
+
+  public resetPassEmployee(data: any): Observable<any> {
     const url = this.common.makeUrl("/employee/reset_acc_password_for_employee");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public PauseEmployee(codeEmployeeNew:String,id_employee_old:number,listAttackment:Array<Attachment>): Observable<any>{
-    let data = {codeEmployeeNew:codeEmployeeNew,id_employee_old:id_employee_old,listFileAttackment:listAttackment};
+  public PauseEmployee(codeEmployeeNew: String, id_employee_old: number, listAttackment: Array<Attachment>): Observable<any> {
+    let data = { codeEmployeeNew: codeEmployeeNew, id_employee_old: id_employee_old, listFileAttackment: listAttackment };
     const url = this.common.makeUrl("/employee/pause_employee_acc");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public PauseEmployeeReason(data:any): Observable<any>{
+  public PauseEmployeeReason(data: any): Observable<any> {
     const url = this.common.makeUrl("/employee/pause_reason_employee");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
 
-  public getAllAcc(): Observable<any>{
+  public getAllAcc(): Observable<any> {
     const url = this.common.makeUrl("/employee/get_all_employee_acc");
     return this.httpClient
-    .get<any>(url,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .get<any>(url, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public getAllAccByIDRole(data:any): Observable<any>{
+  public getAllAccByIDRole(data: any): Observable<any> {
     const url = this.common.makeUrl("/employee/get_all_employee_acc_by_idRole");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public getAllInfo(): Observable<any>{
+  public getAllInfo(): Observable<any> {
     const url = this.common.makeUrl("/employee/get_all_employee_info");
     return this.httpClient
-    .get<any>(url,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .get<any>(url, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public getAllInfoAcc(): Observable<any>{
+  public getAllInfoAcc(): Observable<any> {
     const url = this.common.makeUrl("/employee/get_all_employee_info_acc");
     return this.httpClient
-    .get<any>(url,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .get<any>(url, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public searchAllInfoAcc(dateFrom:String,dateTo:String,searchValue:String): Observable<any>{
-    let data = {dateFrom:dateFrom,dateTo:dateTo,searchValue:searchValue};
+  public searchAllInfoAcc(dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
     const url = this.common.makeUrl("/employee/search_all_employee_info_acc");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
-  
-  public addOneAccEmployee(data:any): Observable<any>{
+
+  public getAllInfoAccEx(code_sale_executive: string): Observable<any> {
+    const url = this.common.makeUrl("/employee/get_all_employee_info_acc_ex");
+    return this.httpClient
+      .post<any>(url, code_sale_executive, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllInfoAccEx(code_sale_executive: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { code_sale_executive: code_sale_executive, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
+    const url = this.common.makeUrl("/employee/search_all_employee_info_acc_ex");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public addOneAccEmployee(data: any): Observable<any> {
     const url = this.common.makeUrl("/employee/add_employee_acc");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public getDetailEmployebyID(id:number): Observable<any>{
-    const url = this.common.makeUrl("/employee/get_detail_employee_info/"+id);
+  public getDetailEmployebyID(id: number): Observable<any> {
+    const url = this.common.makeUrl("/employee/get_detail_employee_info/" + id);
     return this.httpClient
-    .get<any>(url,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .get<any>(url, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public getDetailEmployebyCode(code:string): Observable<any>{
+  public getDetailEmployebyCode(code: string): Observable<any> {
     const url = this.common.makeUrl("/employee/get_detail_employee_info_by_code/");
     return this.httpClient
-    .post<any>(url,code,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, code, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
-  public UpdateEmployeeInfo(employeeInfoDTO :EmployeeInfoDTO): Observable<any>{
+  public UpdateEmployeeInfo(employeeInfoDTO: EmployeeInfoDTO): Observable<any> {
     const url = this.common.makeUrl("/employee/update_employee_info");
     return this.httpClient
-    .post<any>(url,employeeInfoDTO,this.httpOptions)
-    .pipe(catchError(this.handleError));
-  }
- 
-  public getAccByCode(data:any): Observable<any>{
-    const url = this.common.makeUrl("/employee/get_one_employee_acc/"+data);
-    return this.httpClient
-    .get<any>(url,this.httpOptions)
-    .pipe(catchError(this.handleError));
+      .post<any>(url, employeeInfoDTO, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
-  public addEmployeeAccount(data : EmployeeAcc) : Observable<any>{
+  public getAccByCode(data: any): Observable<any> {
+    const url = this.common.makeUrl("/employee/get_one_employee_acc/" + data);
+    return this.httpClient
+      .get<any>(url, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public addEmployeeAccount(data: EmployeeAcc): Observable<any> {
     const url = this.common.makeUrl("/employee/add_employee_acc");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions) 
-    .pipe(catchError(this.handleError));
-  } 
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
 
-  public updateEmployeeAccount(data : EmployeeAcc) : Observable<any>{
+  public updateEmployeeAccount(data: EmployeeAcc): Observable<any> {
     const url = this.common.makeUrl("/employee/update_employee_acc");
     return this.httpClient
-    .post<any>(url,data,this.httpOptions) 
-    .pipe(catchError(this.handleError));
-  } 
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
 
-  public addEmployeeInfo(employeeInfoDTO:EmployeeInfoDTO) : Observable<any>{
+  public addEmployeeInfo(employeeInfoDTO: EmployeeInfoDTO): Observable<any> {
     const url = this.common.makeUrl("/employee/add_employee_info");
     return this.httpClient
-    .post<any>(url,employeeInfoDTO,this.httpOptions) 
-    .pipe(catchError(this.handleError));
+      .post<any>(url, employeeInfoDTO, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

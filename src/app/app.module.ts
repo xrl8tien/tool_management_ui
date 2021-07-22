@@ -120,6 +120,8 @@ import { HelpCustomerSendClaimRequestComponent } from './view/help-customer-send
 import { ReceiveMethodsComponent } from './customerwebsite/receive-methods/receive-methods.component';
 import { ContactBirthdayInfoComponent } from './view/contact-birthday-info/contact-birthday-info.component';
 import { DayNotificationDialogComponent } from './view/dialog/day-notification-dialog/day-notification-dialog.component';
+import { SaleEmployeeManageComponent } from './view/sale-employee-manage/sale-employee-manage.component';
+import { SaleDashboardComponent } from './view/dialog/sale-dashboard/sale-dashboard.component';
 
 
 
@@ -219,6 +221,8 @@ import { DayNotificationDialogComponent } from './view/dialog/day-notification-d
     ReceiveMethodsComponent,
     ContactBirthdayInfoComponent,
     DayNotificationDialogComponent,
+    SaleEmployeeManageComponent,
+    SaleDashboardComponent,
 
   ],
   imports: [

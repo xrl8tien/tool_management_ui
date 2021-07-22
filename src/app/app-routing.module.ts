@@ -55,6 +55,7 @@ import { SaleContactManageComponent } from './view/sale-contact-manage/sale-cont
 
 import { HelpCustomerSendClaimRequestComponent } from './view/help-customer-send-claim-request/help-customer-send-claim-request.component';
 import { ContactBirthdayInfoComponent } from './view/contact-birthday-info/contact-birthday-info.component';
+import { SaleEmployeeManageComponent } from './view/sale-employee-manage/sale-employee-manage.component';
 
 
 const routes: Routes = [
@@ -111,6 +112,7 @@ const routes: Routes = [
   { path: "sale-contact-manage", component: SaleContactManageComponent },
   { path: "help-customer-send-claim-request", component: HelpCustomerSendClaimRequestComponent },
   { path: "contact-birthday-info", component: ContactBirthdayInfoComponent },
+  { path: "sale-employee-manage", component: SaleEmployeeManageComponent },
 
 ];
 

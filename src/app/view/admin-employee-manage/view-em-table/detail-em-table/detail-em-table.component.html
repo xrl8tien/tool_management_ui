@@ -148,7 +148,7 @@
                                         </mat-tab>
                                     </mat-tab-group>
                                 </div>
-                                <div class="custom-foot">
+                                <div *ngIf="id_role != '5'" class="custom-foot">
                                     <button *ngIf="showDelayButton" type="button " class="btn btn-danger btn-function" (click)="openDialogPauseEmployee(employeinfoDTO)">Tạm Ngưng</button>
                                     <button type="button " class="btn btn-success btn-function" (click)="openDialogEdit()">Chỉnh Sửa Thông Tin</button>
                                 </div>

@@ -1,243 +1,273 @@
-<div class="content-wrapper">
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <mat-tab-group>
-                            <mat-tab *ngIf="id_role == '5'" label="Quản Lý Liên Hệ">
-                                <div class="card-header">
-                                    <h2 class="card-title">Quản Lý Liên Hệ Khu Vực: {{district_name}}</h2>
-                                    <div class="left">
-                                    </div>
-                                    <div class="right">
-                                        <button type="button" class="btn btn-info btn-save" (click)="Save()">
-                                            Lưu
-                                        </button>
-                                    </div>
-                                    <table style="text-align: center;" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Quận/Huyện</th>
-                                                <th>Số Liên Hệ Mới</th>
-                                                <th>Sale Phụ Trách</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                *ngFor="let district of listDistrict | orderBy: key:reverse | paginate: { id: 'listing_pagination_district' ,itemsPerPage: 10, currentPage: pageDistrict, totalItems: totalRecordsDistrict} ">
-                                                <td>{{district.name}}</td>
-                                                <td>{{countContact(district.id)}}</td>
-                                                <td>
-                                                    <mat-select [(value)]="district.code_sale">
-                                                        <mat-option>None</mat-option>
-                                                        <mat-option *ngFor="let code of codes_sale" [value]="code">
-                                                            {{code}}
-                                                        </mat-option>
-                                                    </mat-select>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Quận/Huyện</th>
-                                                <th>Số Liên Hệ Mới</th>
-                                                <th>Sale Phụ Trách</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                    <pagination-controls style="float: right;" id="listing_pagination_district"
-                                        maxSize="6" directionLinks="true" (pageChange)="pageDistrict = $event">
-                                    </pagination-controls>
-                                </div>
-                            </mat-tab>
-                            <mat-tab label="Liên Hệ Mới">
-                                <div class="card-header">
-                                    <h2 class="card-title">Danh Sách Liên Hệ Mới</h2>
-                                    <div class="searchWithDateandValue">
-                                        <div class="left">
-                                        </div>
-                                        <div class="right">
-                                            <div class="input-group searchBar">
-                                                <input type="search" class="form-control form-control-lg"
-                                                    [(ngModel)]="searchValue" placeholder="Nhập từ khóa cần tìm">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <div class="content-wrapper-modify">
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <mat-tab-group>
+                                    <mat-tab *ngIf="id_role == '5'" label="Quản Lý Liên Hệ">
+                                        <div class="card-header">
+                                            <h2 class="card-title">Quản Lý Liên Hệ Khu Vực: {{district_name}}</h2>
+                                            <div class="left">
                                             </div>
-                                            <div class="date">
-                                                <label>Từ Ngày<input id="RfromSearch" type="date" name="dateFrom"
-                                                        [(ngModel)]="dateFrom" class="form-control form-control-sm"
-                                                        placeholder="" aria-controls="example1"></label>
-                                                <label style="margin-left: 2%;"> Đến Ngày<input id="RtoSearch"
-                                                        type="date" name="dateTo" [(ngModel)]="dateTo"
-                                                        class="form-control form-control-sm" placeholder=""
-                                                        aria-controls="example1"></label>
-                                                <button type="button" class="btn btn-danger btn-date"
-                                                    (click)="ResetDate()">Xóa
-                                                    ngày</button>
-                                                <button type="button" class="btn btn-info btn-date"
-                                                    (click)="Search()">Tìm
-                                                    kiếm
+                                            <div class="right">
+                                                <button type="button" class="btn btn-info btn-save" (click)="Save()">
+                                                    Lưu
                                                 </button>
                                             </div>
+                                            <table style="text-align: center;"
+                                                class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Quận/Huyện</th>
+                                                        <th>Số Liên Hệ Mới</th>
+                                                        <th>Sale Phụ Trách</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr
+                                                        *ngFor="let district of listDistrict | orderBy: key:reverse | paginate: { id: 'listing_pagination_district' ,itemsPerPage: 10, currentPage: pageDistrict, totalItems: totalRecordsDistrict} ">
+                                                        <td>{{district.name}}</td>
+                                                        <td>{{countContact(district.id)}}</td>
+                                                        <td>
+                                                            <mat-select [(value)]="district.code_sale">
+                                                                <mat-option>None</mat-option>
+                                                                <mat-option *ngFor="let code of codes_sale"
+                                                                    [value]="code">
+                                                                    {{code}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Quận/Huyện</th>
+                                                        <th>Số Liên Hệ Mới</th>
+                                                        <th>Sale Phụ Trách</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <pagination-controls style="float: right;" id="listing_pagination_district"
+                                                maxSize="6" directionLinks="true" (pageChange)="pageDistrict = $event">
+                                            </pagination-controls>
                                         </div>
-                                    </div>
-                                    <h2 class="card-title">{{district_name}}</h2>
-                                    <table style="text-align: center;" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th (click)="sort('name')">Tên Khách Hàng&nbsp;<i
-                                                        class="fas fa-sort"></i>
-                                                </th>
-                                                <th (click)="sort('phone')">Số Điện Thoại&nbsp;<i
-                                                        class="fa fa-sort"></i>
-                                                </th>
-                                                <th (click)="sort('name')">Quận/Huyện&nbsp;<i class="fa fa-sort"></i>
-                                                </th>
-                                                <th (click)="sort('question')">Yêu Cầu&nbsp;<i class="fa fa-sort"></i>
-                                                </th>
-                                                <th (click)="sort('create_time')">Thời Gian&nbsp;<i
-                                                        class="fa fa-sort"></i>
-                                                </th>
-                                                <th *ngIf="id_role == '5'" (click)="sort('code_sale')">Sale&nbsp;<i
-                                                        class="fa fa-sort"></i>
-                                                </th>
-                                                <th></th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                *ngFor="let contact of listContact | orderBy: key:reverse | paginate: { id: 'listing_pagination' ,itemsPerPage: 5, currentPage: page, totalItems: totalRecords} ">
-                                                <td>{{contact.customer_name}}</td>
-                                                <td>{{contact.phone}}</td>
-                                                <td>{{contact.name}}</td>
-                                                <td>{{contact.question}}</td>
-                                                <td *ngIf="calculateDiff(contact.create_time) > 0">
-                                                    {{calculateDiff(contact.create_time)}} ngày trước</td>
-                                                <td *ngIf="calculateDiff(contact.create_time) == 0">Hôm nay</td>
-                                                <td *ngIf="id_role == '5'">{{contact.code_sale}}</td>
-                                                <td><button type="button" class="btn btn-block btn-success btn-flat"
-                                                        (click)="yesDialog(contact.id)">
-                                                        Đồng ý
-                                                    </button></td>
-                                                <td><button type="button" class="btn btn-block btn-danger btn-flat"
-                                                        (click)="noDialog(contact.id)">
-                                                        Từ chối
-                                                    </button></td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Tên Khách Hàng</th>
-                                                <th>Số Điện Thoại</th>
-                                                <th>Quận/Huyện</th>
-                                                <th>Yêu Cầu</th>
-                                                <th>Thời Gian</th>
-                                                <th *ngIf="id_role == '5'">Sale</th>
-                                                <th></th>
-                                                <th></th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                    <pagination-controls style="float: right;" id="listing_pagination" maxSize="9"
-                                        directionLinks="true" (pageChange)="page = $event">
-                                    </pagination-controls>
-                                </div>
-                            </mat-tab>
-                            <mat-tab label="Lịch sử tư vấn">
-                                <div class="card-header">
-                                    <h2 class="card-title">Danh Sách Lịch Sử Tư Vấn</h2>
-                                    <div class="searchWithDateandValue">
-                                        <div class="left">
-                                        </div>
-                                        <div class="right">
-                                            <div class="input-group searchBar">
-                                                <input type="search" class="form-control form-control-lg"
-                                                    [(ngModel)]="searchValueOld" placeholder="Nhập từ khóa cần tìm">
+                                    </mat-tab>
+                                    <mat-tab label="Liên Hệ Mới">
+                                        <div class="card-header">
+                                            <h2 class="card-title">Danh Sách Liên Hệ Mới</h2>
+                                            <div class="searchWithDateandValue">
+                                                <div class="left">
+                                                </div>
+                                                <div class="right">
+                                                    <div class="input-group searchBar">
+                                                        <input type="search" class="form-control form-control-lg"
+                                                            [(ngModel)]="searchValue"
+                                                            placeholder="Nhập từ khóa cần tìm">
+                                                    </div>
+                                                    <div class="date">
+                                                        <label>Từ Ngày<input id="RfromSearch" type="date"
+                                                                name="dateFrom" [(ngModel)]="dateFrom"
+                                                                class="form-control form-control-sm" placeholder=""
+                                                                aria-controls="example1"></label>
+                                                        <label style="margin-left: 2%;"> Đến Ngày<input id="RtoSearch"
+                                                                type="date" name="dateTo" [(ngModel)]="dateTo"
+                                                                class="form-control form-control-sm" placeholder=""
+                                                                aria-controls="example1"></label>
+                                                        <button type="button" class="btn btn-danger btn-date"
+                                                            (click)="ResetDate()">Xóa
+                                                            ngày</button>
+                                                        <button type="button" class="btn btn-info btn-date"
+                                                            (click)="Search()">Tìm
+                                                            kiếm
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="date">
-                                                <label>Từ Ngày<input id="RfromSearchOld" type="date" name="dateFromOld"
-                                                        [(ngModel)]="dateFromOld" class="form-control form-control-sm"
-                                                        placeholder="" aria-controls="example1"></label>
-                                                <label style="margin-left: 2%;"> Đến Ngày<input id="RtoSearchOld"
-                                                        type="date" name="dateToOld" [(ngModel)]="dateToOld"
-                                                        class="form-control form-control-sm" placeholder=""
-                                                        aria-controls="example1"></label>
-                                                <button type="button" class="btn btn-danger btn-date"
-                                                    (click)="ResetDateOld()">Xóa
-                                                    ngày</button>
-                                                <button type="button" class="btn btn-info btn-date"
-                                                    (click)="SearchOld()">Tìm
-                                                    kiếm
-                                                </button>
-                                            </div>
+                                            <h2 class="card-title">{{district_name}}</h2>
+                                            <table style="text-align: center;"
+                                                class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th (click)="sort('name')">Tên Khách Hàng&nbsp;<i
+                                                                class="fas fa-sort"></i>
+                                                        </th>
+                                                        <th (click)="sort('phone')">Số Điện Thoại&nbsp;<i
+                                                                class="fa fa-sort"></i>
+                                                        </th>
+                                                        <th (click)="sort('name')">Quận/Huyện&nbsp;<i
+                                                                class="fa fa-sort"></i>
+                                                        </th>
+                                                        <th (click)="sort('question')">Yêu Cầu&nbsp;<i
+                                                                class="fa fa-sort"></i>
+                                                        </th>
+                                                        <th (click)="sort('create_time')">Thời Gian&nbsp;<i
+                                                                class="fa fa-sort"></i>
+                                                        </th>
+                                                        <th *ngIf="id_role == '5'" (click)="sort('code_sale')">
+                                                            Sale&nbsp;<i class="fa fa-sort"></i>
+                                                        </th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr
+                                                        *ngFor="let contact of listContact | orderBy: key:reverse | paginate: { id: 'listing_pagination' ,itemsPerPage: 5, currentPage: page, totalItems: totalRecords} ">
+                                                        <td>{{contact.customer_name}}</td>
+                                                        <td>{{contact.phone}}</td>
+                                                        <td>{{contact.name}}</td>
+                                                        <td>{{contact.question}}</td>
+                                                        <td *ngIf="calculateDiff(contact.create_time) > 0">
+                                                            {{calculateDiff(contact.create_time)}} ngày trước</td>
+                                                        <td *ngIf="calculateDiff(contact.create_time) == 0">Hôm nay</td>
+                                                        <td *ngIf="id_role == '5'">{{contact.code_sale}}</td>
+                                                        <td><button type="button"
+                                                                class="btn btn-block btn-success btn-flat"
+                                                                (click)="yesDialog(contact.id)">
+                                                                Đồng ý
+                                                            </button></td>
+                                                        <td><button type="button"
+                                                                class="btn btn-block btn-danger btn-flat"
+                                                                (click)="noDialog(contact.id)">
+                                                                Từ chối
+                                                            </button></td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Tên Khách Hàng</th>
+                                                        <th>Số Điện Thoại</th>
+                                                        <th>Quận/Huyện</th>
+                                                        <th>Yêu Cầu</th>
+                                                        <th>Thời Gian</th>
+                                                        <th *ngIf="id_role == '5'">Sale</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <pagination-controls style="float: right;" id="listing_pagination"
+                                                maxSize="9" directionLinks="true" (pageChange)="page = $event">
+                                            </pagination-controls>
                                         </div>
-                                    </div>
-                                    <h2 class="card-title">{{district_name}}</h2>
-                                    <table style="text-align: center;" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th (click)="sort('name')">Tên Khách Hàng&nbsp;<i
-                                                        class="fas fa-sort"></i>
-                                                </th>
-                                                <th (click)="sort('phone')">Số Điện Thoại&nbsp;<i
-                                                        class="fa fa-sort"></i>
-                                                </th>
-                                                <th (click)="sort('name')">Quận/Huyện&nbsp;<i class="fa fa-sort"></i>
-                                                </th>
-                                                <th (click)="sort('question')">Yêu Cầu&nbsp;<i class="fa fa-sort"></i>
-                                                </th>
-                                                <th (click)="sort('status')">Trạng Thái&nbsp;<i class="fa fa-sort"></i>
-                                                </th>
-                                                <th (click)="sort('create_time')">Thời Gian&nbsp;<i
-                                                        class="fa fa-sort"></i>
-                                                </th>
-                                                <th *ngIf="id_role == '5'" (click)="sort('code_sale')">Sale&nbsp;<i
-                                                        class="fa fa-sort"></i>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                *ngFor="let contact of listContactOld | orderBy: key:reverse | paginate: { id: 'listing_pagination_old' ,itemsPerPage: 5, currentPage: pageOld, totalItems: totalRecordsOld} ">
-                                                <td>{{contact.customer_name}}</td>
-                                                <td>{{contact.phone}}</td>
-                                                <td>{{contact.name}}</td>
-                                                <td>{{contact.question}}</td>
-                                                <td>{{contact.status}}</td>
-                                                <td *ngIf="calculateDiff(contact.create_time) > 0">
-                                                    {{calculateDiff(contact.create_time)}} ngày trước</td>
-                                                <td *ngIf="calculateDiff(contact.create_time) == 0">Hôm nay</td>
-                                                <td *ngIf="id_role == '5'">{{contact.code_sale}}</td>
-                                                <td *ngIf="!checkKHTN(contact.status)"><button type="button"
-                                                        class="btn btn-block btn-success btn-flat"
-                                                        (click)="yesDialog(contact.id)">
-                                                        Thêm KHTN
-                                                    </button></td>
-                                                <td *ngIf="checkKHTN(contact.status)"></td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Tên Khách Hàng</th>
-                                                <th>Số Điện Thoại</th>
-                                                <th>Quận/Huyện</th>
-                                                <th>Yêu Cầu</th>
-                                                <th>Trạng Thái</th>
-                                                <th>Thời Gian</th>
-                                                <th *ngIf="id_role == '5'">Sale</th>
-                                                <th></th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                    <pagination-controls style="float: right;" id="listing_pagination_old" maxSize="9"
-                                        directionLinks="true" (pageChange)="pageOld = $event">
-                                    </pagination-controls>
-                                </div>
-                            </mat-tab>
-                        </mat-tab-group>
+                                    </mat-tab>
+                                    <mat-tab label="Lịch sử tư vấn">
+                                        <div class="card-header">
+                                            <h2 class="card-title">Danh Sách Lịch Sử Tư Vấn</h2>
+                                            <div class="searchWithDateandValue">
+                                                <div class="left">
+                                                </div>
+                                                <div class="right">
+                                                    <div class="input-group searchBar">
+                                                        <input type="search" class="form-control form-control-lg"
+                                                            [(ngModel)]="searchValueOld"
+                                                            placeholder="Nhập từ khóa cần tìm">
+                                                    </div>
+                                                    <div class="date">
+                                                        <label>Từ Ngày<input id="RfromSearchOld" type="date"
+                                                                name="dateFromOld" [(ngModel)]="dateFromOld"
+                                                                class="form-control form-control-sm" placeholder=""
+                                                                aria-controls="example1"></label>
+                                                        <label style="margin-left: 2%;"> Đến Ngày<input
+                                                                id="RtoSearchOld" type="date" name="dateToOld"
+                                                                [(ngModel)]="dateToOld"
+                                                                class="form-control form-control-sm" placeholder=""
+                                                                aria-controls="example1"></label>
+                                                        <button type="button" class="btn btn-danger btn-date"
+                                                            (click)="ResetDateOld()">Xóa
+                                                            ngày</button>
+                                                        <button type="button" class="btn btn-info btn-date"
+                                                            (click)="SearchOld()">Tìm
+                                                            kiếm
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h2 class="card-title">{{district_name}}</h2>
+                                            <table style="text-align: center;"
+                                                class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th (click)="sort('name')">Tên Khách Hàng&nbsp;<i
+                                                                class="fas fa-sort"></i>
+                                                        </th>
+                                                        <th (click)="sort('phone')">Số Điện Thoại&nbsp;<i
+                                                                class="fa fa-sort"></i>
+                                                        </th>
+                                                        <th (click)="sort('name')">Quận/Huyện&nbsp;<i
+                                                                class="fa fa-sort"></i>
+                                                        </th>
+                                                        <th (click)="sort('question')">Yêu Cầu&nbsp;<i
+                                                                class="fa fa-sort"></i>
+                                                        </th>
+                                                        <th (click)="sort('status')">Trạng Thái&nbsp;<i
+                                                                class="fa fa-sort"></i>
+                                                        </th>
+                                                        <th (click)="sort('create_time')">Thời Gian&nbsp;<i
+                                                                class="fa fa-sort"></i>
+                                                        </th>
+                                                        <th *ngIf="id_role == '5'" (click)="sort('code_sale')">
+                                                            Sale&nbsp;<i class="fa fa-sort"></i>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr
+                                                        *ngFor="let contact of listContactOld | orderBy: key:reverse | paginate: { id: 'listing_pagination_old' ,itemsPerPage: 5, currentPage: pageOld, totalItems: totalRecordsOld} ">
+                                                        <td>{{contact.customer_name}}</td>
+                                                        <td>{{contact.phone}}</td>
+                                                        <td>{{contact.name}}</td>
+                                                        <td>{{contact.question}}</td>
+                                                        <td>{{contact.status}}</td>
+                                                        <td *ngIf="calculateDiff(contact.create_time) > 0">
+                                                            {{calculateDiff(contact.create_time)}} ngày trước</td>
+                                                        <td *ngIf="calculateDiff(contact.create_time) == 0">Hôm nay</td>
+                                                        <td *ngIf="id_role == '5'">{{contact.code_sale}}</td>
+                                                        <td *ngIf="!checkKHTN(contact.status)"><button type="button"
+                                                                class="btn btn-block btn-success btn-flat"
+                                                                (click)="yesDialog(contact.id)">
+                                                                Thêm KHTN
+                                                            </button></td>
+                                                        <td *ngIf="checkKHTN(contact.status)"></td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Tên Khách Hàng</th>
+                                                        <th>Số Điện Thoại</th>
+                                                        <th>Quận/Huyện</th>
+                                                        <th>Yêu Cầu</th>
+                                                        <th>Trạng Thái</th>
+                                                        <th>Thời Gian</th>
+                                                        <th *ngIf="id_role == '5'">Sale</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <pagination-controls style="float: right;" id="listing_pagination_old"
+                                                maxSize="9" directionLinks="true" (pageChange)="pageOld = $event">
+                                            </pagination-controls>
+                                        </div>
+                                    </mat-tab>
+                                </mat-tab-group>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
-</div>
+    </div>
+</body>
+
+</html>

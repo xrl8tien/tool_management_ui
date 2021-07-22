@@ -112,7 +112,6 @@ export class DashboardComponent implements OnInit {
 
   listId: Array<number>;
   listContact: Array<Contact>;
-  listContactOld: Array<Contact>;
 
   id_role = "";
   codes_sale: Array<string> = [];
@@ -309,7 +308,7 @@ export class DashboardComponent implements OnInit {
                 width: [1, 1, 4]
               },
               title: {
-                text: "Biều đồ thu nhập năm 2021",
+                text: "",
                 align: "left",
                 offsetX: 110
               },
@@ -390,7 +389,7 @@ export class DashboardComponent implements OnInit {
                 width: [1, 7, 4]
               },
               title: {
-                text: "Biều đồ doanh thu - KPI năm 2021",
+                text: "",
                 align: "left",
                 offsetX: 110
               },
@@ -790,6 +789,4 @@ class itemIncomePredic {
     this.revenue = revenue;
     this.kpi = kpi;
   }
-
-
 }

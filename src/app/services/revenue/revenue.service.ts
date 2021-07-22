@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Kpi } from 'src/app/model/Kpi';
 import { Revenue } from 'src/app/model/Revenue';
 import { CommonService } from '../common/common.service';
 
@@ -78,7 +79,12 @@ export class RevenueService {
       .pipe(catchError(this.handleError))
   }
 
-
+  public addOneKpi(data: Kpi): Observable<any> {
+    const url = this.common.makeUrl("/revenue/save_one_kpi");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError))
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

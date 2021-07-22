@@ -14,7 +14,7 @@ import { ContractService } from 'src/app/services/contract/contract.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
 import { RevenueService } from 'src/app/services/revenue/revenue.service';
-import { SaleExecutiveSetKpiComponent } from '../sale-executive-set-kpi/sale-executive-set-kpi.component';
+import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -59,7 +59,7 @@ export class SaleDashboardComponent implements OnInit {
     private common: CommonService, private contractService: ContractService,
     private customerService: CustomerService, private dialog: MatDialog,
     private spinner: NgxSpinnerService, private employeeService: EmployeeService,
-    @Inject(MAT_DIALOG_DATA) public code_sale) { }
+    private snackBar: SnackbarService, @Inject(MAT_DIALOG_DATA) public code_sale) { }
 
   listIncomePredic = Array<itemIncomePredic>();
   // danh sách thu nhập trong năm nay bao gồm các thu nhập dự đoán trước, danh sách này lấy từ API
@@ -86,7 +86,7 @@ export class SaleDashboardComponent implements OnInit {
 
   listId: Array<number>;
   listContact: Array<Contact>;
-
+  kpiNumber: number;
 
   ngOnInit(): void {
     this.CalculateIncomeForThisYear();
@@ -150,6 +150,7 @@ export class SaleDashboardComponent implements OnInit {
   }
 
   CalculateIncomeForThisYear() {
+    this.listIncomePredic = [];
     for (let i = 0; i < 12; i++) {
       let incomePredic = new itemIncomePredic(i + 1, 0, 0, 0);
       this.listIncomePredic.push(incomePredic);
@@ -390,6 +391,21 @@ export class SaleDashboardComponent implements OnInit {
     }))
   }
 
+  setKpi() {
+    let kpi = new Kpi(0, this.code_sale, this.kpiNumber, new Date());
+    if (this.kpiNumber < 1000000) {
+      this.snackBar.openSnackBar("KPI phải lơn hơn 1,000,000đ", "Đóng");
+    } else if (this.kpiNumber == null) {
+      this.snackBar.openSnackBar("Vui lòng nhập KPI", "Đóng");
+    } else {
+      this.revenueService.addOneKpi(kpi).subscribe((data => {
+        this.kpiNumber = null;
+        this.CalculateIncomeForThisYear();
+        this.snackBar.openSnackBar("Set KPI Thành Công", "Đóng");
+      }))
+    }
+  }
+
   addMonths(date: Date, months: number) {
     var d = date.getDate();
     date.setMonth(date.getMonth() + +months);
@@ -397,15 +413,6 @@ export class SaleDashboardComponent implements OnInit {
       date.setDate(0);
     }
     return date;
-  }
-
-  dashboardSaleExecutiveSetKPI() {
-    let dialogRef2 = this.dialog.open(SaleExecutiveSetKpiComponent, {
-      width: '25%'
-    });
-    dialogRef2.afterClosed().subscribe(result => {
-
-    })
   }
 
   transformPeriod(data: any) {

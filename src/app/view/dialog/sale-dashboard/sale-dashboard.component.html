@@ -128,5 +128,13 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end" style="margin-left: 15rem;">
-    <button type="submit" class="btn btn-primary" (click)="dashboardSaleExecutiveSetKPI()">Set KPI</button>
+    <form class="formKPI">
+        <div class="left">
+            <input type="text" class="form-control" name="kpiNumber" [(ngModel)]="kpiNumber"
+                placeholder="Nhập KPI" required>
+        </div>
+        <div class="right">
+            <button type="submit" class="btn btn-primary" (click)="setKpi()">Set KPI</button>
+        </div>
+    </form>
 </mat-dialog-actions>

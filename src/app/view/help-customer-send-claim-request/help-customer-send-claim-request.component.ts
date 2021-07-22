@@ -55,6 +55,11 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
   code_sender_cus: string;
   fullName: string;
   cusInfo: CustomerInfo;
+  id_card: string;
+  address2: string;
+  phone_no: string;
+  email_id: string;
+  dateOfBirth: Date;
 
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,
@@ -71,6 +76,11 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
     this.cusService.getOneCustomerInfoByEx(id_customer).subscribe((data => {
       this.cusInfo = data[0];
       this.fullName = this.cusInfo.full_name;
+      this.id_card = this.cusInfo.id_card;
+      this.dateOfBirth = this.cusInfo.birth_date;
+      this.address2 = this.cusInfo.conadd_no_street + " , " + this.cusInfo.conadd_district + " , " + this.cusInfo.conadd_city;
+      this.phone_no = this.cusInfo.phone_1;
+      this.email_id = this.cusInfo.email;
       this.contractService.getAllContractForCustomer(id_customer).subscribe((data => {
         this.listContracts = data;
         this.cusService.getDetailContractForCustomer(this.id_contract).subscribe((data => {

@@ -61,6 +61,13 @@ export class ContractrequestService {
       .pipe(catchError(this.handleError));
   }
 
+  public getDetailClaimRequest(id: number) {
+    const url = this.common.makeUrl("/request/get_detail_claim_request");
+    return this.httpClient
+      .post<any>(url, id, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   public addOneRequest(req: Request) {
     const url = this.common.makeUrl("/request/add_one_request");
     return this.httpClient
@@ -140,6 +147,21 @@ export class ContractrequestService {
   public searchAllCheckManagerReq(code_appraiser: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
     let data = { code_appraiser: code_appraiser, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
     const url = this.common.makeUrl("/request/search_all_check_manager_req");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllApprovalManagerReq(code_appraiser: string): Observable<any> {
+    const url = this.common.makeUrl("/request/get_all_approval_manager_req");
+    return this.httpClient
+      .post<any>(url, code_appraiser, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllApprovalManagerReq(code_appraiser: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { code_appraiser: code_appraiser, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
+    const url = this.common.makeUrl("/request/search_all_approval_manager_req");
     return this.httpClient
       .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));

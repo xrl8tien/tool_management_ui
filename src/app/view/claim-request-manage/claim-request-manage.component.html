@@ -126,6 +126,8 @@
                                                         Hợp Đồng&nbsp;<i class="fas fa-sort"></i></th>
                                                     <th (click)="sort('contractRequestsApproved.description')">Ghi
                                                         chú</th>
+                                                        <th (click)="sort('amount_main')">Tổng Chi Trả&nbsp;<i
+                                                            class="fas fa-sort"></i></th>
                                                     <th (click)="sort('contractRequestsApproved.date')">Ngày
                                                         Gửi&nbsp;<i class="fas fa-sort"></i></th>
                                                     <th (click)="sort('contractRequestsApproved.code_sender')">Người
@@ -143,10 +145,12 @@
                                                         <p class="description">
                                                             {{contractRequestsApproved.description}}</p>
                                                     </td>
+                                                    <td>{{contractRequestsApproved.amount_main +
+                                                        contractRequestsApproved.amount_sub}}</td>
                                                     <td>{{contractRequestsApproved.date | date:'dd-MM-yyyy'}}</td>
                                                     <td>{{contractRequestsApproved.code_sender}}</td>
                                                     <td>{{contractRequestsApproved.status}}</td>
-                                                    <td><button (click)="requestDetail(contractRequestsApproved.id)"
+                                                    <td><button (click)="requestDetail(contractRequestsApproved.id_request)"
                                                             class="btn btn-info"
                                                             style="height: 40px; width: 100px; margin: 10px; color: white;">Chi
                                                             Tiết</button></td>
@@ -156,6 +160,7 @@
                                                 <tr>
                                                     <th>Mã Hợp Đồng</th>
                                                     <th>Ghi chú</th>
+                                                    <th>Tổng Chi Trả</th>
                                                     <th>Ngày Gửi</th>
                                                     <th>Người Gửi</th>
                                                     <th>Trạng Thái</th>

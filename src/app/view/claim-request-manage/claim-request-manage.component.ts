@@ -45,7 +45,7 @@ export class ClaimRequestManageComponent implements OnInit {
   totalManagerUncheck: number;
   contractRequests: Array<Request>
   contractRequestsApprovals: Array<Request>
-  contractRequestsApproveds: Array<Request>
+  contractRequestsApproveds: Array<RequestClaimApprove>
   requestManagerCheck: Array<RequestClaimApprove>
   requestManagerUncheck: Array<RequestClaimApprove>
   id_role = "";
@@ -66,7 +66,7 @@ export class ClaimRequestManageComponent implements OnInit {
           });
           this.totalRecordsApprovals = this.contractRequestsApprovals.length;
         }))
-        this.contractRequestService.getAllApprovedClaimRequest(jwtDecode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+        this.contractRequestService.getAllApprovalManagerReq(jwtDecode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
           this.contractRequestsApproveds = data;
           this.contractRequestsApproveds.forEach(element => {
             element.status = this.common.transformStatus(element.status);
@@ -213,7 +213,7 @@ export class ClaimRequestManageComponent implements OnInit {
         dateTo1 = this.dateToApproved.toString();
       }
       let searchText = "%" + this.searchValueApproved + "%";
-      this.contractRequestService.searchAllApprovedClaimRequest(jwtDecode(this.common.getCookie('token_key'))['sub'], dateFrom1, dateTo1, searchText).subscribe((data => {
+      this.contractRequestService.searchAllApprovalManagerReq(jwtDecode(this.common.getCookie('token_key'))['sub'], dateFrom1, dateTo1, searchText).subscribe((data => {
         this.contractRequestsApproveds = data;
         this.totalRecordsApproveds = this.contractRequestsApproveds.length;
         this.spinner.hide();

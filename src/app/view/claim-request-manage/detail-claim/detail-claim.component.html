@@ -1,9 +1,7 @@
 <div class="content-wrapper custom-wraper">
-    <div class="col-6 left">
+    <div class="col-6 left card-custom">
         <div class="card">
-
             <mat-tab-group>
-
                 <mat-tab label="Thông tin cá nhân">
                     <mat-tab-group>
                         <mat-tab label="Thông tin Cơ Bản">
@@ -207,7 +205,6 @@
                             </div>
                         </mat-tab>
                         <mat-tab label="Thông Tin Liên Lạc">
-
                             <div class="col-6">
                                 <h3>ĐT cố Định và Email</h3>
                                 <div class="form-group ">
@@ -226,180 +223,209 @@
                         </mat-tab>
                     </mat-tab-group>
                 </mat-tab>
-
-
             </mat-tab-group>
-
-
         </div>
     </div>
-    <div class="col-6 right">
+    <div class="col-6 right card-custom">
         <div class="card">
             <mat-tab-group>
                 <mat-tab label="Bảng minh họa">
-                    <div class="col-12">
-                        <div class="card-header">
-                            <h2><b>Thông Tin Bên Mua Bảo Hiểm</b></h2>
-                        </div>
-                        <table id="example1" class="table table-bordered table-striped">
-                            <tr>
-                                <th>Họ Và Tên</th>
-                                <td>{{illustration?.illustrationMainBenifit.full_name_insurance_buyer}}</td>
-                            </tr>
-                            <tr>
-                                <th>Mối Quan Hệ Với NĐBH Sản Phẩm Chính</th>
-                                <td>{{illustration?.illustrationMainBenifit.insurance_buyer_relation_insured_person}}
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="card-header">
-                            <h2><b>Người Được Bảo Hiểm Của Hợp Đồng Chính</b></h2>
-                        </div>
-                        <table id="example1" class="table table-bordered table-striped">
-                            <tr>
-                                <th>Họ Và Tên</th>
-                                <td>{{illustration?.illustrationMainBenifit.full_name_insured_person}}</td>
-                            </tr>
-                            <tr>
-                                <th>Nhóm Nghề</th>
-                                <td>{{illustration?.illustrationMainBenifit.carrier_group_insured_person}}</td>
-                            </tr>
-                            <tr>
-                                <th>Ngày Sinh</th>
-                                <td>{{illustration?.illustrationMainBenifit.birth_date_insured_person | date:
-                                    'dd-MM-yyyy'}}</td>
-                            </tr>
-                            <tr>
-                                <th>Giới Tính</th>
-                                <td>
-                                    <span *ngIf="illustration?.illustrationMainBenifit.gender_insured_person">Nam</span>
-                                    <span *ngIf="!illustration?.illustrationMainBenifit.gender_insured_person">Nữ</span>
-                                </td>
-
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="card-header">
-                            <h2><b>Thông Tin Hợp Đồng Chính</b></h2>
-                        </div>
-                        <table id="example1" class="table table-bordered table-striped">
-                            <tr>
-                                <th>Chương Trình</th>
-                                <td>{{illustration?.benifit_name}}</td>
-                            </tr>
-                            <tr>
-                                <th>Thời Hạn</th>
-                                <td *ngIf="illustration?.payment_period_id==4">Tháng</td>
-                                <td *ngIf="illustration?.payment_period_id==3">Quý</td>
-                                <td *ngIf="illustration?.payment_period_id==2">Nửa năm</td>
-                                <td *ngIf="illustration?.payment_period_id==1">Năm</td>
-                            </tr>
-                            <tr>
-                                <th>Số Tiền Bảo Hiểm (VNĐ)</th>
-                                <td>{{illustration?.illustrationMainBenifit.denominations | currency : "VND"}}</td>
-                            </tr>
-                            <tr>
-                                <th>Phí Bảo Hiểm (VNĐ)</th>
-                                <td>{{illustration?.illustrationMainBenifit.fee_value | currency : "VND"}}</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="col-12" *ngFor="let RelatedPerSonInfo of listRelatedPerSonInfo">
-                        <div class="card-header">
-                            <h2><b>Bảo Hiểm Bổ Sung của {{RelatedPerSonInfo.full_name_insured_persion_extra}}</b></h2>
-                        </div>
-                        <table id="example1" class="table table-bordered table-striped">
-                            <tr>
-                                <th>Họ Và Tên</th>
-                                <td>{{RelatedPerSonInfo?.full_name_insured_persion_extra}}</td>
-                            </tr>
-                            <tr>
-                                <th>Mối Quan hệ với NĐBH sản phẩm chính</th>
-                                <td>{{RelatedPerSonInfo?.insurance_buyer_relation_extra_insured_person}}</td>
-                            </tr>
-                            <tr>
-                                <th>Ngày Sinh</th>
-                                <td>{{RelatedPerSonInfo?.dob_extra_insured_person | date: 'dd-MM-yyyy'}}</td>
-                            </tr>
-                            <tr>
-                                <th>Giới Tính</th>
-                                <td>
-                                    <span *ngIf="RelatedPerSonInfo?.gender_extra_insured_person">Nam</span>
-                                    <span *ngIf="!RelatedPerSonInfo?.gender_extra_insured_person">Nữ</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Nhóm Nghề</th>
-                                <td>{{RelatedPerSonInfo?.carrier_group_extra_insured_person}}</td>
-                            </tr>
-                        </table>
-
-
-                        <div class="card-header">
-                            <h2>
-                                <b>Thông Tin Quyền Lợi Bảo Hiểm Bổ Sung</b>
-                            </h2>
-                        </div>
-                        <table id="example1" class="table table-bordered table-striped">
-                            <tr>
-                                <th>Tên Quyền Lợi</th>
-                                <th>Nhóm Nghề Nghiệp</th>
-                                <th>Số Tiền Bảo Hiểm</th>
-                                <th>Phí Bảo Hiểm</th>
-                            </tr>
-                            <tr *ngFor="let detail of RelatedPerSonInfo.listSubInterset">
-                                <td>{{listSubBenifit[detail?.id_sub_benifit-1].benifit_name}}</td>
-                                <td>{{detail?.carrier_group_extra_insured_person}}</td>
-                                <td>{{detail?.denominations | currency : "VND"}}</td>
-                                <td>{{detail?.fee_value | currency : "VND"}}</td>
-                            </tr>
-                            <!-- <tr *ngFor="let mainBenefitScale of listMainBenefitScale">
-                                <td>{{mainBenefitScale.name}}</td>
-                                <td>{{mainBenefitScale.scale}}</td>
-                            </tr>
-                            <tr *ngFor="let subBenefitScale of listSubBenefitScale">
-                                <td>{{subBenefitScale.name}}</td>
-                                <td>{{subBenefitScale.scale}}</td>
-                            </tr> -->
-                            
-                        </table>
-
-                    </div>
-
-                    <div class="col-12">
-                        <div class="card-header">
-                            <h2><b>Tổng Phí Bảo Hiểm</b></h2>
-                        </div>
-                        <table id="example1" class="table table-bordered table-striped">
-                            <tr>
-                                <th>{{illustration?.total_fee | currency : "VND"}}</th>
-                            </tr>
-                        </table>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Giấy Tờ Liên Quan">
                     <mat-tab-group>
-                        <mat-tab label="Tài liệu khách hàng">
-                            <p class="form-control-custom" *ngFor="let doc of listDocument"><a
-                                    href="{{doc.url}}">{{doc.name_document}}</a></p>
+                        <mat-tab label="Sản phẩm chính">
+                            <div class="col-12">
+                                <div class="card-header">
+                                    <h2><b>Người Được Bảo Hiểm Của Hợp Đồng Chính</b></h2>
+                                </div>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>Họ Và Tên</th>
+                                        <td>{{illustration?.illustrationMainBenifit.full_name_insured_person}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nhóm Nghề</th>
+                                        <td>{{illustration?.illustrationMainBenifit.carrier_group_insured_person}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ngày Sinh</th>
+                                        <td>{{illustration?.illustrationMainBenifit.birth_date_insured_person | date:
+                                            'dd-MM-yyyy'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Giới Tính</th>
+                                        <td>
+                                            <span
+                                                *ngIf="illustration?.illustrationMainBenifit.gender_insured_person">Nam</span>
+                                            <span
+                                                *ngIf="!illustration?.illustrationMainBenifit.gender_insured_person">Nữ</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-12">
+                                <div class="card-header">
+                                    <h2><b>Thông Tin Hợp Đồng Chính</b></h2>
+                                </div>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>Chương Trình</th>
+                                        <td>{{illustration?.benifit_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Thời Hạn</th>
+                                        <td *ngIf="illustration?.payment_period_id==4">Tháng</td>
+                                        <td *ngIf="illustration?.payment_period_id==3">Quý</td>
+                                        <td *ngIf="illustration?.payment_period_id==2">Nửa năm</td>
+                                        <td *ngIf="illustration?.payment_period_id==1">Năm</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Số Tiền Bảo Hiểm (VNĐ)</th>
+                                        <td>{{illustration?.illustrationMainBenifit.denominations | currency : "VND"}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phí Bảo Hiểm (VNĐ)</th>
+                                        <td>{{illustration?.illustrationMainBenifit.fee_value | currency : "VND"}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-12">
+                                <div class="card-header">
+                                    <h2><b>Bảng quyền lợi sản phẩm chính</b></h2>
+                                </div>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>Tên quyền lợi</th>
+                                        <th>Mức bồi thường</th>
+                                    </tr>
+                                    <tr *ngFor="let mainBenefitScale of listMainBenefitScale">
+                                        <td>{{mainBenefitScale.name}}</td>
+                                        <td id="tienChinh">{{mainBenefitScale.scale * mainBenefit.denominations |
+                                            currency : "VND"}}</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </mat-tab>
-                        <mat-tab label="Tài liệu bồi thường">
-                            <p class="form-control-custom" *ngFor="let doc of listClaimDocument"><a
-                                    href="{{doc.url}}">{{doc.name_document}}</a></p>
+                        <mat-tab label="Sản phẩm phụ">
+                            <div class="col-12" *ngFor="let RelatedPerSonInfo of listRelatedPerSonInfo">
+                                <div class="card-header">
+                                    <h2><b>Bảo Hiểm Bổ Sung của
+                                            {{RelatedPerSonInfo.full_name_insured_persion_extra}}</b>
+                                    </h2>
+                                </div>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>Họ Và Tên</th>
+                                        <td>{{RelatedPerSonInfo?.full_name_insured_persion_extra}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mối Quan hệ với NĐBH sản phẩm chính</th>
+                                        <td>{{RelatedPerSonInfo?.insurance_buyer_relation_extra_insured_person}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ngày Sinh</th>
+                                        <td>{{RelatedPerSonInfo?.dob_extra_insured_person | date: 'dd-MM-yyyy'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Giới Tính</th>
+                                        <td>
+                                            <span *ngIf="RelatedPerSonInfo?.gender_extra_insured_person">Nam</span>
+                                            <span *ngIf="!RelatedPerSonInfo?.gender_extra_insured_person">Nữ</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nhóm Nghề</th>
+                                        <td>{{RelatedPerSonInfo?.carrier_group_extra_insured_person}}</td>
+                                    </tr>
+                                </table>
+                                <div class="card-header">
+                                    <h2>
+                                        <b>Thông Tin Hợp Đồng Bảo Hiểm Bổ Sung</b>
+                                    </h2>
+                                </div>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>Tên Quyền Lợi</th>
+                                        <th>Nhóm Nghề Nghiệp</th>
+                                        <th>Số Tiền Bảo Hiểm</th>
+                                        <th>Phí Bảo Hiểm</th>
+                                    </tr>
+                                    <tr *ngFor="let detail of RelatedPerSonInfo.listSubInterset">
+                                        <td>{{listSubBenifit[detail?.id_sub_benifit-1].benifit_name}}</td>
+                                        <td>{{detail?.carrier_group_extra_insured_person}}</td>
+                                        <td>{{detail?.denominations | currency : "VND"}}</td>
+                                        <td>{{detail?.fee_value | currency : "VND"}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-12">
+                                <div class="card-header">
+                                    <h2><b>Bảng quyền lợi sản phẩm phụ</b></h2>
+                                </div>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>Tên quyền lợi</th>
+                                        <th>Mức bồi thường</th>
+                                    </tr>
+                                    <ng-container *ngFor="let subBenefitItem of listSubBenfitItem">
+                                        <tr *ngFor=" let subBenefitScale of subBenefitItem.listSubBenefitScale">
+                                            <td>{{subBenefitScale.name}}</td>
+                                            <td>{{subBenefitScale.scale * subBenefitItem.denominations|currency :
+                                                "VND"}}</td>
+                                        </tr>
+                                    </ng-container>
+                                </table>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Thông tin chung">
+                            <div class="col-12">
+                                <div class="card-header">
+                                    <h2><b>Thông Tin Bên Mua Bảo Hiểm</b></h2>
+                                </div>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>Họ Và Tên</th>
+                                        <td>{{illustration?.illustrationMainBenifit.full_name_insurance_buyer}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mối Quan Hệ Với NĐBH Sản Phẩm Chính</th>
+                                        <td>{{illustration?.illustrationMainBenifit.insurance_buyer_relation_insured_person}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-12">
+                                <div class="card-header">
+                                    <h2><b>Tổng Phí Bảo Hiểm</b></h2>
+                                </div>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>{{illustration?.total_fee | currency : "VND"}}</th>
+                                    </tr>
+                                </table>
+                            </div>
                         </mat-tab>
                     </mat-tab-group>
+                    <!-- Giấy tờ -->
+                    <mat-tab label="Giấy Tờ Liên Quan">
+                        <mat-tab-group>
+                            <mat-tab label="Tài liệu khách hàng">
+                                <p class="form-control-custom" *ngFor="let doc of listDocument"><a
+                                        href="{{doc.url}}">{{doc.name_document}}</a></p>
+                            </mat-tab>
+                            <mat-tab label="Tài liệu bồi thường">
+                                <p class="form-control-custom" *ngFor="let doc of listClaimDocument"><a
+                                        href="{{doc.url}}">{{doc.name_document}}</a></p>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </mat-tab>
                 </mat-tab>
             </mat-tab-group>
         </div>
     </div>
 </div>
 <div class="custom-div">
-    <button *ngIf="req?.status=='CXD'" class="btn btn-success custom-bnt" (click)="displayConfirmDialog()">XÉT
+    <button *ngIf="req.status=='CXD'" class="btn btn-success custom-bnt" (click)="displayConfirmDialog()">XÉT
         DUYỆT</button>
+    <button *ngIf="req.status=='DD'" class="btn btn-success custom-bnt" (click)="dowloadPDF()"> In
+        PDF</button>
 </div>

@@ -82,11 +82,19 @@ export class ContractrequestService {
       .pipe(catchError(this.handleError));
   }
 
-  public setStatusRequest(id_request:number,description:String,approval_status:string): Observable<any> {
+  public setStatusRequest(id_request: number, description: String, approval_status: string): Observable<any> {
     const url = this.common.makeUrl("/request/set_status_request");
-    let data = {id_request:id_request,description:description,approval_status};
+    let data = { id_request: id_request, description: description, approval_status };
     return this.httpClient
-      .post<any>(url,data,this.httpOptions)
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public setStatusClaimRequest(id: number, description: String, approval_status: string): Observable<any> {
+    const url = this.common.makeUrl("/request/set_status_claim_request");
+    let data = { id: id, description: description, approval_status };
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
@@ -116,6 +124,37 @@ export class ContractrequestService {
   public searchAllClaimRequestApproval(code_appraiser: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
     let data = { code_appraiser: code_appraiser, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
     const url = this.common.makeUrl("/request/search_all_claim_request_approval");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  //manager
+  public getAllCheckManagerReq(code_appraiser: string): Observable<any> {
+    const url = this.common.makeUrl("/request/get_all_check_manager_req");
+    return this.httpClient
+      .post<any>(url, code_appraiser, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllCheckManagerReq(code_appraiser: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { code_appraiser: code_appraiser, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
+    const url = this.common.makeUrl("/request/search_all_check_manager_req");
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getAllUncheckManagerReq(code_appraiser: string): Observable<any> {
+    const url = this.common.makeUrl("/request/get_all_uncheck_manager_req");
+    return this.httpClient
+      .post<any>(url, code_appraiser, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllUncheckManagerReq(code_appraiser: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
+    let data = { code_appraiser: code_appraiser, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
+    const url = this.common.makeUrl("/request/search_all_uncheck_manager_req");
     return this.httpClient
       .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));

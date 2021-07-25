@@ -1,0 +1,36 @@
+<mat-dialog-content class="mat-typography">
+    <form #reviewForm="ngForm">
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Quyền lợi</th>
+                <th>Số Tiền Chi Trả</th>
+            </tr>
+            <tr>
+                <th>Quyền Lợi Chính</th>
+                <td>{{claimRequest.main_benefit}}</td>
+                <td>{{claimRequest.amount_main|currency : "VND"}}</td>
+            </tr>
+            <tr>
+                <th>Quyền Lợi Phụ</th>
+                <td>{{claimRequest.sub_benefit}}</td>
+                <td>{{claimRequest.amount_sub|currency : "VND"}}</td>
+            </tr>
+        </table>
+        <label>Tổng Tiền Chi Trả</label>
+        <p>{{claimRequest.amount_main + claimRequest.amount_sub|currency : "VND"}}</p>
+        <label>Quyết Định Xét Duyệt</label>
+        <select class="custom-select" [(ngModel)]="approveStatus" name="approveStatus" required>
+            <option value="DD">Phê Duyệt</option>
+            <option value="TC">Từ Chối</option>
+        </select>
+        <label>Ghi Chú</label>
+        <textarea class="form-control" rows="3" maxlength="2000" placeholder="Enter ..." name="description"
+            [(ngModel)]="description" #note="ngModel" required>
+            </textarea>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Hủy</button>
+    <button mat-button mat-dialog-close type="submit" [disabled]="reviewForm.invalid" (click)="Review()">Lưu</button>
+</mat-dialog-actions>

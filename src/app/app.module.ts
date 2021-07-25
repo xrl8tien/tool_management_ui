@@ -122,6 +122,7 @@ import { ContactBirthdayInfoComponent } from './view/contact-birthday-info/conta
 import { DayNotificationDialogComponent } from './view/dialog/day-notification-dialog/day-notification-dialog.component';
 import { SaleEmployeeManageComponent } from './view/sale-employee-manage/sale-employee-manage.component';
 import { SaleDashboardComponent } from './view/dialog/sale-dashboard/sale-dashboard.component';
+import { ClaimManagerFormComponent } from './view/dialog/claim-manager-form/claim-manager-form.component';
 
 
 
@@ -223,6 +224,7 @@ import { SaleDashboardComponent } from './view/dialog/sale-dashboard/sale-dashbo
     DayNotificationDialogComponent,
     SaleEmployeeManageComponent,
     SaleDashboardComponent,
+    ClaimManagerFormComponent,
 
   ],
   imports: [

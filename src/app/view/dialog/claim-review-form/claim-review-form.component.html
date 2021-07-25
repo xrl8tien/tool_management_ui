@@ -9,28 +9,29 @@
                     <th class="td1" colspan="3">Loại chính</th>
                     <tr *ngFor="let mainBenefitScale of listMainBenefitScale">
                         <td>{{mainBenefitScale.name}}</td>
-                        <td id="tienChinh">{{mainBenefitScale.scale * mainBenefit.denominations}}</td>
+                        <td id="tienChinh">{{mainBenefitScale.scale * mainBenefit.denominations|currency : "VND"}}</td>
                         <td>
                             <input type="radio" name="chinh"
-                                (change)="handleChange1(mainBenefitScale.scale * mainBenefit.denominations)">
+                                (change)="handleChange1(mainBenefitScale.scale * mainBenefit.denominations, mainBenefitScale.name)">
                         </td>
                     </tr>
                     <th class="td1" colspan="3">Loại phụ</th>
-                    <tr *ngFor=" let subBenefitScale of listSubBenefitScale">
-                        <td>{{subBenefitScale.name}}</td>
-                        <td>{{subBenefitScale.scale * listSub[0].denominations}}</td>
-                        <td>
-                            <input type="radio" name="phu" id="phu"
-                                (change)="handleChange2(subBenefitScale.scale * listSub[0].denominations)">
-                        </td>
-                    </tr>
+                    <ng-container *ngFor="let subBenefitItem of listSubBenfitItem">
+                        <tr *ngFor=" let subBenefitScale of subBenefitItem.listSubBenefitScale">
+                            <td>{{subBenefitScale.name}}</td>
+                            <td>{{subBenefitScale.scale * subBenefitItem.denominations|currency : "VND"}}</td>
+                            <td>
+                                <input type="radio" name="phu" id="phu"
+                                    (change)="handleChange2(subBenefitScale.scale * subBenefitItem.denominations, subBenefitScale.name)">
+                            </td>
+                        </tr>
+                    </ng-container>
                 </tbody>
             </table>
         </div>
         <div class="col-12 col-md-6 col-lg-6">
             <form #reviewForm="ngForm">
                 <table class="table">
-
                     <tr>
                         <th>Quyết Định Xét Duyệt</th>
                         <td>

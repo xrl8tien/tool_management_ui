@@ -1,12 +1,12 @@
 <mat-dialog-content class="mat-typography">
     <div class="card-header">
-        <h2><b>Form Xét Duyệt</b></h2>
+        <h2><b>Biểu mẫu xét duyệt yêu cầu giải quyết quyền lợi bảo hiểm</b></h2>
     </div>
     <div class="row flex">
         <div class="col-12 col-md-6 col-lg-6">
             <table id="table1">
                 <tbody>
-                    <th class="td1" colspan="3">Loại chính</th>
+                    <th class="td1" colspan="3" style="background-color: lightskyblue;">Loại chính</th>
                     <tr *ngFor="let mainBenefitScale of listMainBenefitScale">
                         <td>{{mainBenefitScale.name}}</td>
                         <td id="tienChinh">{{mainBenefitScale.scale * mainBenefit.denominations}}</td>
@@ -15,7 +15,7 @@
                                 (change)="handleChange1(mainBenefitScale.scale * mainBenefit.denominations)">
                         </td>
                     </tr>
-                    <th class="td1" colspan="3">Loại phụ</th>
+                    <th class="td1" colspan="3" style="background-color: lightskyblue;">Loại phụ</th>
                     <tr *ngFor=" let subBenefitScale of listSubBenefitScale">
                         <td>{{subBenefitScale.name}}</td>
                         <td>{{subBenefitScale.scale * listSub[0].denominations}}</td>
@@ -27,12 +27,11 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-12 col-md-6 col-lg-6">
+        <div class="col-12 col-md-6 col-lg-4">
             <form #reviewForm="ngForm">
                 <table class="table">
-
                     <tr>
-                        <th>Quyết Định Xét Duyệt</th>
+                        <th style="height: 10%;">Quyết định xét duyệt</th>
                         <td>
                             <select class="custom-select" [(ngModel)]="approveStatus" name="approveStatus" required>
                                 <option value="DX">Đề Xuất</option>
@@ -42,14 +41,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Số tiền chi trả</th>
+                        <th style="height: 10%;">Số tiền chi trả</th>
                         <td class="td-table2"><input class="form-control" type="number" placeholder="VND"
                                 [(ngModel)]="amountMoney" name="amountMoney"></td>
                     </tr>
                     <tr>
                         <th>Ghi Chú</th>
-                        <td class="td-table2"><textarea class="form-control" rows="3" maxlength="2000"
-                                placeholder="Enter ..." name="description" [(ngModel)]="description" #note="ngModel"
+                        <td class="td-table2"><textarea class="form-control" rows="8" maxlength="2000"
+                                placeholder="Nhập..." name="description" [(ngModel)]="description" #note="ngModel"
                                 required>
                         <span id="errorMessagename" style="color: red;" *ngIf="note.errors?.required && note.touched">Ghi Chú không được để trống</span>
                     </textarea>

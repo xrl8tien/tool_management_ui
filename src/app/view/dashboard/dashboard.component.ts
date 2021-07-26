@@ -421,7 +421,7 @@ export class DashboardComponent implements OnInit {
                     }
                   },
                   title: {
-                    text: "Revenue (Đồng)",
+                    text: "Revenue (VNĐ)",
                     style: {
                       color: "#008FFB"
                     }
@@ -446,7 +446,7 @@ export class DashboardComponent implements OnInit {
                     }
                   },
                   title: {
-                    text: "KPI (Đồng)",
+                    text: "KPI (VNĐ)",
                     style: {
                       color: "#FEB019"
                     }

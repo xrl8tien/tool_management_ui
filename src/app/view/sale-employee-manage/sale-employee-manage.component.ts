@@ -85,7 +85,8 @@ export class SaleEmployeeManageComponent implements OnInit {
 
   dashboardDialog(code_sale: string) {
     let dialogRef = this.dialog.open(SaleDashboardComponent, {
-      width: '100%',
+      // maxWidth: '250vw',
+      // maxHeight: '250vh',
       data: code_sale
     });
     dialogRef.afterClosed().subscribe(result => {

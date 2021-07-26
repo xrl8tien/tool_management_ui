@@ -2,7 +2,8 @@
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-            <div class="col-lg-3 col-6">
+            <!-- <div class="col-lg-3 col-6"> -->
+            <div class="income-box">
                 <a class="small-box-footer">
                     <div class="info-box">
                         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
@@ -10,7 +11,7 @@
                             <span class="info-box-number" style="font-size: 1.2rem;">
                                 {{incomeStatus}} {{percentBetweenIncome}}
                             </span>
-                            <span class="info-box-text" style="font-size: 13px;">Thu nhập so với tháng trước</span>
+                            <span class="info-box-text" style="font-size: 11px;">Thu nhập so với tháng trước</span>
 
 
                         </div>
@@ -18,13 +19,13 @@
                         <div class="info-box-content">
                             <div class="money"
                                 *ngIf="(listIncomePredic[month-1].kpi - this.listIncomePredic[this.month - 1].revenue) > 0">
-                                <span class="info-box-number" style="font-size: 1.5rem; color: red;">
+                                <span class="info-box-number" style="font-size: 1.2rem; color: red;">
                                     {{listIncomePredic[month-1].kpi - this.listIncomePredic[this.month -
                                     1].revenue
                                     |
                                     currency : "VND"}}
                                 </span>
-                                <span class="info-box-text" style="font-size: 13px;">Tiền cần để đạt KPI</span>
+                                <span class="info-box-text" style="font-size: 11px;">Tiền cần để đạt KPI</span>
                             </div>
 
                             <div class="money"
@@ -36,7 +37,7 @@
                                     |
                                     currency : "VND"}}
                                 </span>
-                                <span class="info-box-text" style="color: black; font-size: 13px;">Thu nhập vượt
+                                <span class="info-box-text" style="color: black; font-size: 11px;">Thu nhập vượt
                                     KPI</span>
                             </div>
                         </div>
@@ -49,12 +50,12 @@
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-file-contract"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-number" style="font-size: 1.5rem;">{{ContractApproved}}</span>
-                            <span class="info-box-text" style="font-size: 13px;">HĐ đã xác nhận</span>
+                            <span class="info-box-number" style="font-size: 1.2rem;">{{ContractApproved}}</span>
+                            <span class="info-box-text" style="font-size: 11px;">HĐ đã xác nhận</span>
                         </div>
                         <div class="info-box-content">
-                            <span class="info-box-number" style="font-size: 1.5rem; ">{{ContractNotApproved}}</span>
-                            <span class="info-box-text" style="font-size: 13px;">HĐ chờ xác nhận</span>
+                            <span class="info-box-number" style="font-size: 1.2rem; ">{{ContractNotApproved}}</span>
+                            <span class="info-box-text" style="font-size: 11px;">HĐ chờ xác nhận</span>
                         </div>
                     </div>
                 </a>
@@ -64,14 +65,14 @@
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-number" style="font-size: 1.5rem;">{{listBirthdayCus.length}}</span>
-                            <span class="info-box-text" style="font-size: 13px;">KH có sinh nhật hôm nay</span>
+                            <span class="info-box-number" style="font-size: 1.2rem;">{{listBirthdayCus.length}}</span>
+                            <span class="info-box-text" style="font-size: 11px;">KH có sinh nhật hôm nay</span>
                         </div>
 
                         <div class="info-box-content">
                             <span class="info-box-number"
-                                style="font-size: 1.5rem;">{{listExpiredContract.length}}</span>
-                            <span class="info-box-text" style="font-size: 13px;">HĐ sắp hết hạn</span>
+                                style="font-size: 1.2rem;">{{listExpiredContract.length}}</span>
+                            <span class="info-box-text" style="font-size: 11px;">HĐ sắp hết hạn</span>
                         </div>
                     </div>
                 </a>
@@ -82,8 +83,8 @@
                         <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-plus"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-number" style="font-size: 1.5rem;">{{listContact.length}}</span>
-                            <span class="info-box-text" style="font-size: 13px;">Thông tin liên hệ mới</span>
+                            <span class="info-box-number" style="font-size: 1.2rem;">{{listContact.length}}</span>
+                            <span class="info-box-text" style="font-size: 11px;">Thông tin liên hệ mới</span>
                         </div>
                     </div>
                 </a>
@@ -130,8 +131,8 @@
 <mat-dialog-actions align="end" style="margin-left: 15rem;">
     <form class="formKPI">
         <div class="left">
-            <input type="text" class="form-control" name="kpiNumber" [(ngModel)]="kpiNumber"
-                placeholder="Nhập KPI" required>
+            <input type="text" class="form-control" name="kpiNumber" [(ngModel)]="kpiNumber" placeholder="Nhập KPI"
+                required>
         </div>
         <div class="right">
             <button type="submit" class="btn btn-primary" (click)="setKpi()">Set KPI</button>

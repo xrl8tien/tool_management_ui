@@ -12,8 +12,8 @@
 } */
 
 .form-container {
-    padding-left: 20rem;
-    padding-right: 20rem;
+    padding-left: 11rem;
+    padding-right: 11rem;
 }
 
 
@@ -86,3 +86,4 @@ input#file {
     font-weight: bold;
     color: white;
 }
+

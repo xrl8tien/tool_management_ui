@@ -1,10 +1,11 @@
-.mat-typography{
+/* .mat-typography{
     width: 1500px;
     height: 500px;
-}
+} */
 
 .card-header{
     text-align: center;
+    text-transform: uppercase;
 }
 
 .col-12{
@@ -12,8 +13,8 @@
 }
 
 .col-lg-6{
-    flex: 0 0 50%;
-    max-width: 50%;
+    flex: 0 0 66%;
+    max-width: 80%;
 }
 
 table, th, td {
@@ -34,4 +35,9 @@ table, th, td {
     height: 40px;
     margin-left: 10px;
     margin-top: 20px;
+}
+
+.td1{
+    text-align: center;
+    text-transform: uppercase;
 }

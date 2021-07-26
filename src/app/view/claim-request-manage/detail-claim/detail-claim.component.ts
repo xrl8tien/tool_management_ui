@@ -25,6 +25,7 @@ import { ClaimReviewFormComponent } from '../../dialog/claim-review-form/claim-r
 import { RequestAttachment } from 'src/app/model/RequestAttachment';
 import { MainBenefitScale } from 'src/app/model/MainBenefitScale';
 import { SubBenefitScale } from 'src/app/model/SubBenefitScale';
+import { IllustrationMainBenifit } from 'src/app/model/IllustrationMainBenifit';
 
 @Component({
   selector: 'app-detail-claim',
@@ -50,6 +51,10 @@ export class DetailClaimComponent implements OnInit {
   req: Request;
   contract: Contract;
   custInfo: Array<CustomerInfo>;
+  mainBenefit: IllustrationMainBenifit;
+  listSubScale: Array<SubBenefitScale> = [];
+  listSubBenfitItem: Array<SubBenefitItem> = [];
+
   constructor(private common: CommonService, private benifitSer: BenifitService, private illustrationService: IllustrationService, private custService: CustomerService,
     private contractService: ContractService, private dialog: MatDialog, private fileService: FileManagementService, private spinner: NgxSpinnerService,
     private contractRequestService: ContractrequestService, private activateRoute: ActivatedRoute) { }
@@ -112,17 +117,6 @@ export class DetailClaimComponent implements OnInit {
             }
           }
 
-          // this.illustrationService.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
-          //   this.listSub = data;
-          //   this.illustrationService.getAllSubBenefitScaleBySubBenefitId(this.listSub[0].id_sub_benifit).subscribe((data => {
-          //     this.listSubBenefitScale = data;
-          //   }))
-          // }))
-
-          // this.illustrationService.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {
-          //   this.listMainBenefitScale = data;
-          // }))
-
           this.benifitSer.getAllSubBenifit().subscribe((data => {
             this.listSubBenifit = data;
           }))
@@ -146,6 +140,38 @@ export class DetailClaimComponent implements OnInit {
         this.custService.getDetailCustomerInfoAdmin(this.contract.id_customer).subscribe((data2 => {
           this.custInfo = data2;
         }))
+
+        this.illustrationService.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
+          this.listSub = data;
+          for (var i = 0; i < this.listSub.length; i++) {
+            let subBenefitItem = new SubBenefitItem(this.listSub[i].denominations, []);
+            this.illustrationService.getAllSubBenefitScaleBySubBenefitId(this.listSub[i].id_sub_benifit).subscribe((data1 => {
+              this.listSubScale = data1;
+              for (var j = 0; j < this.listSubScale.length; j++) {
+                let subBenefitScale = new SubBenefitScale(
+                  this.listSubScale[j].id,
+                  this.listSubScale[j].name,
+                  this.listSubScale[j].scale,
+                  this.listSubScale[j].id_sub_benefit
+                )
+                this.listSubBenefitScale.push(subBenefitScale);
+              }
+              subBenefitItem.listSubBenefitScale = this.listSubBenefitScale;
+              this.listSubBenefitScale = [];
+            }))
+            this.listSubBenfitItem.push(subBenefitItem);
+          }
+        }))
+  
+        //lay illMainBenefit
+        this.illustrationService.getMainBenefitById(this.contract.id_illustration).subscribe((data => {
+          this.mainBenefit = data;
+        }))
+  
+        this.illustrationService.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {
+          this.listMainBenefitScale = data;
+        }))
+
       }))
 
     }))
@@ -157,7 +183,6 @@ export class DetailClaimComponent implements OnInit {
   displayConfirmDialog(): void {
     let dialogRef = this.dialog.open(ClaimReviewFormComponent, { data: this.req });
     dialogRef.afterClosed().subscribe(result => {
-
     })
   }
 
@@ -172,6 +197,7 @@ export class DetailClaimComponent implements OnInit {
       });
     }))
   }
+
   openillustrationDetailDialog(id_illustration: number) {
     let dialogRef = this.dialog.open(IllustrationDetailDialogComponent, {
       height: '80%',
@@ -180,4 +206,20 @@ export class DetailClaimComponent implements OnInit {
     });
   }
 
+  dowloadPDF() {
+    window.print();
+  }
+
+}
+
+class SubBenefitItem {
+  denominations: number;
+  listSubBenefitScale: Array<SubBenefitScale>;
+  constructor(
+    denominations: number,
+    listSubBenefitScale: Array<SubBenefitScale>,
+  ) {
+    this.denominations = denominations;
+    this.listSubBenefitScale = listSubBenefitScale;
+  }
 }

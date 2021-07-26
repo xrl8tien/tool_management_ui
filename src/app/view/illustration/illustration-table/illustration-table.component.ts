@@ -18,9 +18,8 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 export class IllustrationTableComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private common: CommonService, private router: Router,
-    private illustration: IllustrationService, private spinner: NgxSpinnerService,
-    private illustrationService: IllustrationService, private employeeService: EmployeeService,
-    private customerService: CustomerService) { }
+    private customerService: CustomerService, private spinner: NgxSpinnerService,
+    private illustrationService: IllustrationService, private employeeService: EmployeeService) { }
 
   listCustomerOwnIllustration: Array<CustomerOwnIllustration>
   page: number = 1;

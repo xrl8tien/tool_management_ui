@@ -5,16 +5,6 @@
     color: white;
 }
 
-.content-move-right {
-    margin-left: 278px !important;
-    transition: ease 0.2s;
-}
-
-.content-move-left {
-    margin-left: 0px !important;
-    transition: ease 0.1s;
-}
-
 .active-link {
     background: blue;
     color: white;
@@ -53,8 +43,3 @@
 mat-sidenav-content {
     overflow: hidden;
 }
-
-
-/* .nav-list-fixed {
-    padding-top: 67px;
-} */

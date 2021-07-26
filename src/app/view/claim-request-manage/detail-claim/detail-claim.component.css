@@ -49,3 +49,7 @@ img {
 .right {
     float: right;
 }
+
+.card-custom {
+    padding-bottom: 50px;
+}

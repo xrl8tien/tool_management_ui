@@ -61,24 +61,28 @@ export class IncomeComponent implements OnInit {
             //Bước 1: cộng income vào tháng mà hợp đồng này bắt đầu hoạt động
             var startTime = new Date(item.start_time);
             if (startTime.getFullYear() == this.year) {
-              this.listIncomePredic[startTime.getMonth()].income += item.income;
+              this.listIncomePredic[startTime.getMonth()].income += (item.income * 0.9);
               this.listIncomePredic[startTime.getMonth()].revenue += item.revenue_val;
             }
             //Bước 2: Tính Income cho các tháng tiếp theo trong năm đó
             var startTime = new Date(item.start_time);// tháng mà khach hàng bắt đầu ký hợp đồng và trao tiền
-            var desTime = this.addMonths(new Date(item.start_time), 12); // thời gian 1 năm đầu tiên của hợp đồng tính từ ngày đầu tiên
             var nextTime = this.addMonths(new Date(item.start_time), this.transformPeriod(item.description));
             while (true) {
               if (nextTime.getFullYear() > this.year) break;
               else if (nextTime.getFullYear() == this.year) {
                 this.listIncomePredic.forEach(element => {
                   if (element.month == (nextTime.getMonth() + 1)) {
-                    if (nextTime > startTime && nextTime <= desTime) { // nếu là các năm tiếp theo thì income giảm 5 lần còn trong năm đầu tiên thì giữ nguyên income
-                      element.income += (item.income * 0.9);
-                      element.revenue += item.revenue_val;
-                    } else {
-                      element.income += (item.income / 5 * 0.9);
-                      element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 5));
+                    if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 1) {
+                      element.income += ((item.income / 1.5) * 0.9);
+                      element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 1.5));
+                    } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 2) {
+                      element.income += ((item.income / 3) * 0.9);
+                      element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 3));
+                    } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 3) {
+                      element.income += ((item.income / 6) * 0.9);
+                      element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 6));
+                    } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) > 3) {
+                      element.revenue += (item.revenue_val * 95 / 15);
                     }
                   }
                 })
@@ -119,19 +123,23 @@ export class IncomeComponent implements OnInit {
                 }
                 //Bước 2: Tính Income cho các tháng tiếp theo trong năm đó
                 var startTime = new Date(item.start_time);// tháng mà khach hàng bắt đầu ký hợp đồng và trao tiền
-                var desTime = this.addMonths(new Date(item.start_time), 12); // thời gian 1 năm đầu tiên của hợp đồng tính từ ngày đầu tiên
                 var nextTime = this.addMonths(new Date(item.start_time), this.transformPeriod(item.description));
                 while (true) {
                   if (nextTime.getFullYear() > this.year) break;
                   else if (nextTime.getFullYear() == this.year) {
                     this.listIncomePredic.forEach(element => {
                       if (element.month == (nextTime.getMonth() + 1)) {
-                        if (nextTime > startTime && nextTime <= desTime) { // nếu là các năm tiếp theo thì income giảm 5 lần còn trong năm đầu tiên thì giữ nguyên income
-                          element.income += item.income;
-                          element.revenue += item.revenue_val;
-                        } else {
-                          element.income += (item.income / 5);
-                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 5));
+                        if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 1) {
+                          element.income += (item.income / 1.5);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 1.5));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 2) {
+                          element.income += (item.income / 3);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 3));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 3) {
+                          element.income += (item.income / 6);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 6));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) > 3) {
+                          element.revenue += (item.revenue_val * 95 / 15);
                         }
                       }
                     })
@@ -147,19 +155,23 @@ export class IncomeComponent implements OnInit {
                 }
                 //Bước 2: Tính Income cho các tháng tiếp theo trong năm đó
                 var startTime = new Date(item.start_time);// tháng mà khach hàng bắt đầu ký hợp đồng và trao tiền
-                var desTime = this.addMonths(new Date(item.start_time), 12); // thời gian 1 năm đầu tiên của hợp đồng tính từ ngày đầu tiên
                 var nextTime = this.addMonths(new Date(item.start_time), this.transformPeriod(item.description));
                 while (true) {
                   if (nextTime.getFullYear() > this.year) break;
                   else if (nextTime.getFullYear() == this.year) {
                     this.listIncomePredic.forEach(element => {
                       if (element.month == (nextTime.getMonth() + 1)) {
-                        if (nextTime > startTime && nextTime <= desTime) { // nếu là các năm tiếp theo thì income giảm 5 lần còn trong năm đầu tiên thì giữ nguyên income
-                          element.income += (item.income * 0.1);
-                          element.revenue += item.revenue_val;
-                        } else {
-                          element.income += (item.income / 5 * 0.1);
-                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 5));
+                        if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 1) {
+                          element.income += ((item.income / 1.5) * 0.1);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 1.5));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 2) {
+                          element.income += ((item.income / 3) * 0.1);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 3));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 3) {
+                          element.income += ((item.income / 6) * 0.1);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 6));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) > 3) {
+                          element.revenue += (item.revenue_val * 95 / 15);
                         }
                       }
                     })
@@ -180,12 +192,25 @@ export class IncomeComponent implements OnInit {
         }))
       }
     }))
-
   }
+
   public IncomeDetailLastYear(month: number) {
     this.router.navigate(['employee-detail-income', month]);
   }
 
+  calculateDate(dateNext, dateStart, payment_period) {
+    dateNext = new Date(dateNext);
+    dateStart = new Date(dateStart);
+    if (payment_period == 12) {
+      return (Math.floor((Date.UTC(dateNext.getFullYear(), dateNext.getMonth(), dateNext.getDate()) - Date.UTC(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate())) / (1000 * 60 * 60 * 24))) / 365;
+    } else if (payment_period == 6) {
+      return (Math.floor((Date.UTC(dateNext.getFullYear(), dateNext.getMonth(), dateNext.getDate()) - Date.UTC(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate())) / (1000 * 60 * 60 * 24))) / 182;
+    } else if (payment_period == 3) {
+      return (Math.floor((Date.UTC(dateNext.getFullYear(), dateNext.getMonth(), dateNext.getDate()) - Date.UTC(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate())) / (1000 * 60 * 60 * 24))) / 91;
+    } else {
+      return (Math.floor((Date.UTC(dateNext.getFullYear(), dateNext.getMonth(), dateNext.getDate()) - Date.UTC(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate())) / (1000 * 60 * 60 * 24))) / 30;
+    }
+  }
 
   addMonths(date: Date, months: number) {
     var d = date.getDate();

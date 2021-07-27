@@ -1,0 +1,64 @@
+.container {
+    background-color: white;
+    width: 50%;
+}
+
+.card-header {
+    text-align: center;
+    text-transform: uppercase;
+    /* font-weight: 600; */
+    font-size: .5rem;
+    color:cornflowerblue;
+    /* margin-top: .5rem; */
+    /* margin-right: 3.5rem;
+    margin-left: 3.5rem; */
+}
+
+p{
+    margin-left: 3rem;
+}
+
+.dear1{
+    margin-left: 1.8rem;
+}
+
+.dear2{
+    margin-left: 6rem;
+}
+
+.png-logo{
+    width: 8%;
+    margin-bottom: 1rem;
+}
+
+.name-sys{
+    font-weight: 400;
+    font-size: .7rem;
+}
+
+.order-info{
+    margin-top: 1rem;
+    background: cornflowerblue ;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+h2{
+    margin-top: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.claim-info-title{
+    text-transform: uppercase;
+    text-indent: 1em;
+    font-size: 17px;
+    background-color: cornflowerblue;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    color: white;
+}
+

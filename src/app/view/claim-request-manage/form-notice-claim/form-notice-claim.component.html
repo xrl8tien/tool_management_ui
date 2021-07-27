@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <title>HTML Backgorund Color</title> -->
+</head>
+
+<body style="background-color: gray;">
+    <div class="container">
+        <div class="card-header">
+            <div class="form-row">
+                <div class="col-md-6 mb-1">
+                    <img src="assets/images/favicon.png" class="png-logo"><br>
+                    <span class="name-sys">HỆ THỐNG BẢO HIỂM ISOLUTION</span>
+                </div>
+                <div class="col-md-6 mb-1">
+                    <h2><b>Giấy yêu cầu bồi thường bảo hiểm <br>"Bảo hiểm ISolution"</b></h2>
+                    <span class="note"><em>Vui lòng đọc kỹ và điền đầy đủ thông tin theo những nội dung dưới
+                            đây</em></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-detail">
+            <div class="title-card">
+                <h2>Phiếu thông báo sự kiện bảo hiểm</h2>
+                <p><b>Kính gửi: </b> <span class="dear1"> - Ban giám đốc Hệ thống Bảo hiểm ISolution Việt Nam</span><br>
+                    <span class="dear2"> - Bộ phận giải quyết quyền lợi bảo hiểm</span>
+                </p>
+            </div>
+
+            <div class="info-claim">
+                <span style="margin-left: 3rem;">Tôi tên là: </span><br>
+                <span style="margin-left: 3rem;">Số CMND/CCCD/Mã số nhân viên tư vấn: </span>
+                <span style="margin-left: 16rem;">Điện thoại: </span><br>
+                <span style="margin-left: 3rem;">Địa chỉ liên hệ: </span><br>
+                <span style="margin-left: 3rem;">Quan hệ với người rủi ro:</span><br>
+                <p>Xin thông báo cho ISolution Việt Nam thông tin sự kiện bảo hiểm (SKBH) sau đây: </p>
+            </div>
+
+            <div class="claim-info" style="margin-bottom: 1rem;">
+                <p class="claim-info-title"><b> Sự kiện bảo hiểm (SKBH): {{req.name}}</b></p>
+                <p><b>Loại sự kiện bảo hiểm: </b></p>
+                <span style="margin-left: 3rem; text-indent: 1em;"> + Loại chính: </span><br>
+                <span style="margin-left: 3rem; text-indent: 1em;"> + Loại phụ (nếu có): </span><br>
+            </div>
+
+            <div class="claim-info" style="margin-bottom: 1rem;">
+                <p class="claim-info-title"><b>Thông tin liên quan khác</b></p>
+                <span style="margin-left: 3rem;">Người được bảo hiểm (NĐBH):</span><br>
+                <span style="margin-left: 3rem;">Điện thoại: </span>
+                <span style="margin-left: 16rem;">Địa chỉ liên hệ: </span><br>
+                <span style="margin-left: 3rem;">Số hồ sơ/ HĐBH:</span>
+                <span style="margin-left: 13.5rem;">Họ tên BMBH: </span><br>
+                <span style="margin-left: 3rem;">Thời điểm xảy ra SKBH:</span><br>
+                <span style="margin-left: 3rem;">Địa điểm xảy ra SKBH:</span><br>
+                <span style="margin-left: 3rem;">Quyền lợi yêu cầu cần giải quyết:</span><br>
+                <span style="margin-left: 3rem;">Số tiền từ yêu cầu giải quyết quyền lợi: </span>
+            </div>
+
+            <div class="claim-info" style="margin-bottom: 1rem;">
+                <p class="claim-info-title"><b>Hình thức tiếp nhận thông tin</b></p>
+
+                <div class="form-check" style="margin-left: 3rem;">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Qua điện thoại
+                    </label>
+                </div>
+
+                <div class="form-check" style="margin-left: 3rem;">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Qua email
+                    </label>
+                </div>
+
+                <div class="form-check" style="margin-left: 3rem;">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
+                    <label class="form-check-label" for="flexRadioDefault4">
+                        Người thông báo gửi trực tuyến trên website ISolution.asia
+                    </label>
+                </div>
+
+                <div class="form-check" style="margin-left: 3rem;">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                        Người thông báo nộp tại quầy Dịch vụ khách hàng
+                    </label>
+                </div>
+
+            </div>
+            <p>
+                <span style="margin-left: 1rem;">..................., ngày ..... tháng ..... năm ........</span>
+                <span style="margin-left: 15rem;">..................., ngày ..... tháng ..... năm ........</span><br>
+            </p>
+            <p>
+                <span style="margin-left: 6rem;"><b>Người thông báo</b></span>
+                <span style="margin-left: 26rem;"><b>Người tiếp nhận</b></span><br>
+                <span style="margin-left: 5rem;"><i>(Ký và ghi rõ họ tên)</i></span>
+                <span style="margin-left: 25rem;"><i>(Ký và ghi rõ họ tên)</i></span>
+            </p>
+            <br><br><br><br><br><br><br>
+
+        </div>
+    </div>
+</body>
+
+</html>

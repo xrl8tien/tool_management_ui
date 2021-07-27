@@ -15,6 +15,7 @@ import { IllustrationService } from 'src/app/services/illustration/illustration.
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { RequestClaimApprove } from 'src/app/model/RequestClaimApprove';
 import { ClaimManagerFormComponent } from '../dialog/claim-manager-form/claim-manager-form.component';
+import { EmployeeInfoDTO } from 'src/app/model/EmployeeInfoDTO';
 
 @Component({
   selector: 'app-claim-request-manage',
@@ -49,6 +50,7 @@ export class ClaimRequestManageComponent implements OnInit {
   requestManagerCheck: Array<RequestClaimApprove>
   requestManagerUncheck: Array<RequestClaimApprove>
   id_role = "";
+  employeinfoDTO: EmployeeInfoDTO;
 
   ngOnInit(): void {
     this.common.titlePage = "Danh Sách Yêu Cầu Bồi Thường Bảo Hiểm";
@@ -91,6 +93,10 @@ export class ClaimRequestManageComponent implements OnInit {
 
   public requestDetail(id_request: number) {
     this.router.navigate(['claim-request-detail', id_request]);
+  }
+
+  public claimNoticeForm(id_request: number) {
+    this.router.navigate(['form-notice-claim', id_request]);
   }
 
   contract: Contract;
@@ -223,7 +229,7 @@ export class ClaimRequestManageComponent implements OnInit {
       console.log(error);
     }
   }
-  
+
   ResetDateApproved() {
     this.dateFromApproved = null;
     this.dateToApproved = null;

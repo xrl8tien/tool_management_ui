@@ -123,6 +123,7 @@ import { DayNotificationDialogComponent } from './view/dialog/day-notification-d
 import { SaleEmployeeManageComponent } from './view/sale-employee-manage/sale-employee-manage.component';
 import { SaleDashboardComponent } from './view/dialog/sale-dashboard/sale-dashboard.component';
 import { ClaimManagerFormComponent } from './view/dialog/claim-manager-form/claim-manager-form.component';
+import { FormNoticeClaimComponent } from './view/claim-request-manage/form-notice-claim/form-notice-claim.component';
 
 
 
@@ -225,6 +226,7 @@ import { ClaimManagerFormComponent } from './view/dialog/claim-manager-form/clai
     SaleEmployeeManageComponent,
     SaleDashboardComponent,
     ClaimManagerFormComponent,
+    FormNoticeClaimComponent,
 
   ],
   imports: [

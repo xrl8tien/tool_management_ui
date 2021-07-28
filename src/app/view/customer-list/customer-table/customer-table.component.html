@@ -43,7 +43,7 @@
             <td>{{customerinfo.birth_date | date:'dd-MM-yyyy'}}</td>
             <td>{{customerinfo.conadd_city}}</td>
             <td>{{customerinfo.phone_1}}</td>
-            <td>{{customerinfo.status==true?'Hoạt Động' : 'Tạm Ngưng'}}</td>
+            <td>{{customerinfo.status==true?'Đang Hoạt Động' : 'Chưa Hoạt Động'}}</td>
             <td>{{customerinfo.workadd_no_street}} {{customerinfo.workadd_district}} {{customerinfo.workadd_city}}</td>
             <td>{{customerinfo.created_time | date: 'dd-MM-yyyy'}}</td>
             <td *ngIf="id_role == '5'">{{customerinfo.code_em_support}}</td>

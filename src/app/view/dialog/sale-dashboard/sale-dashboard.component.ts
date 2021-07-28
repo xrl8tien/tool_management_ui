@@ -83,6 +83,9 @@ export class SaleDashboardComponent implements OnInit {
   listBirthdayCus: Array<CustomerInfo> = [];
   listExpiredContract: Array<Contract> = [];
   customerinfos: Array<CustomerInfo> = [];
+  dateKpi: Date = new Date(this.dateNow.setDate(1));
+  listDateKpi: Array<Date> = [];
+  selectedMonth: Date;
 
   listId: Array<number>;
   listContact: Array<Contact>;
@@ -91,6 +94,9 @@ export class SaleDashboardComponent implements OnInit {
   codes_sale: Array<string> = [];
 
   ngOnInit(): void {
+    for (var i = 0; i < 3; i++) {
+      this.listDateKpi.push(this.addMonths(new Date(this.dateKpi), i));
+    }
     this.CalculateIncomeForThisYear();
     this.refresh();
     this.employeeService.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {
@@ -731,14 +737,19 @@ export class SaleDashboardComponent implements OnInit {
   }
 
   setKpi() {
-    let kpi = new Kpi(0, this.code_sale, this.kpiNumber, new Date());
+    let kpi: Kpi;
+    let selected = new Date(this.selectedMonth);
     if (this.kpiNumber < 1000000) {
       this.snackBar.openSnackBar("KPI phải lơn hơn 1,000,000đ", "Đóng");
-    } else if (this.kpiNumber == null) {
-      this.snackBar.openSnackBar("Vui lòng nhập KPI", "Đóng");
     } else {
+      if (selected.getMonth() == (this.month - 1)) {
+        kpi = new Kpi(0, this.code_sale, this.kpiNumber, new Date());
+      } else {
+        kpi = new Kpi(0, this.code_sale, this.kpiNumber, new Date(this.selectedMonth));
+      }
       this.revenueService.addOneKpi(kpi).subscribe((data => {
         this.kpiNumber = null;
+        this.selectedMonth = undefined;
         this.CalculateIncomeForThisYear();
         this.snackBar.openSnackBar("Set KPI Thành Công", "Đóng");
       }))

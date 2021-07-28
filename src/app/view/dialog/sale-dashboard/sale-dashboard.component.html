@@ -144,13 +144,26 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end" style="margin-left: 15rem;">
-    <form class="formKPI">
+    <form class="formKPI" #kpiForm="ngForm">
         <div class="left">
-            <input type="text" class="form-control" name="kpiNumber" [(ngModel)]="kpiNumber" placeholder="Nhập KPI"
-                required>
+            <div class="formKPI">
+                <div class="left">
+                    <select matNativeControl [(ngModel)]="selectedMonth" name="month" class="form-control" required>
+                        <option value="undefined">Chọn Tháng</option>
+                        <option *ngFor="let month of listDateKpi" [value]="month">
+                            {{month | date: 'MM-yyyy'}}
+                        </option>
+                    </select>
+                </div>
+                <div class="right">
+                    <input type="number" class="form-control" name="kpiNumber" [(ngModel)]="kpiNumber"
+                        placeholder="Nhập KPI"  required>
+                </div>
+            </div>
         </div>
         <div class="right">
-            <button type="submit" class="btn btn-primary" (click)="setKpi()">Set KPI</button>
+            <button type="submit" class="btn btn-primary" [disabled]="kpiForm.invalid" (click)="setKpi()">Set
+                KPI</button>
         </div>
     </form>
 </mat-dialog-actions>

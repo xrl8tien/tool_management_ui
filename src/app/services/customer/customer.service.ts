@@ -81,6 +81,13 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  public getAllCodeSale(code_manager: string): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_all_code_sale");
+    return this.httpClient
+      .post<any>(url, code_manager, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   public searchAllCustomerEx(codes_em_support: Array<string>, dateFrom: string, dateTo: string, searchValue: string): Observable<any> {
     let data = new CustomerInfoDTO(codes_em_support, dateFrom, dateTo, searchValue);
     const url = this.common.makeUrl("/customer/search_all_customer_info_ex");

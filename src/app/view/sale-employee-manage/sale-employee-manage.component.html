@@ -13,7 +13,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
+                            <div *ngIf="id_role == '5'" class="card">
                                 <div class="searchWithDateandValue">
                                     <div class="left">
                                     </div>
@@ -57,12 +57,12 @@
                                                 <th (click)="sort('status')">Trạng Thái&nbsp;<i class="fas fa-sort"></i>
                                                 </th>
                                                 <th>Chi Tiết</th>
-                                                <th>Thao Tác</th>
+                                                <th>Tổng Quan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr
-                                                *ngFor="let employeeinfo of data| orderBy: key:reverse | paginate: { id: 'listing_pagination' ,itemsPerPage: 5, currentPage: page, totalItems: totalRecords};let i = index">
+                                                *ngFor="let employeeinfo of listEmployee| orderBy: key:reverse | paginate: { id: 'listing_pagination' ,itemsPerPage: 5, currentPage: page, totalItems: totalRecords};let i = index">
                                                 <td>#NV{{employeeinfo.id}}</td>
                                                 <td>{{employeeinfo.code}}</td>
                                                 <td>{{employeeinfo.name}}</td>
@@ -98,12 +98,76 @@
                                                 <th>Email</th>
                                                 <th>Trạng Thái</th>
                                                 <th>Chi Tiết</th>
-                                                <th>Thao Tác</th>
+                                                <th>Tổng Quan</th>
                                             </tr>
                                         </tfoot>
                                     </table>
                                     <pagination-controls style="float: right;" id="listing_pagination" maxSize="5"
                                         directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                </div>
+                            </div>
+                            <div *ngIf="id_role == '6'" class="card">
+                                <div class="searchWithDateandValue">
+                                    <div class="left">
+                                    </div>
+                                    <div class="right">
+                                        <div class="input-group searchBar">
+                                            <input type="search" class="form-control form-control-lg"
+                                                [(ngModel)]="searchValueGroup" placeholder="Nhập từ khóa cần tìm">
+                                        </div>
+                                        <div class="date">
+                                            <button type="button" class="btn btn-info btn-date right"
+                                                (click)="SearchGroup()">Tìm
+                                                kiếm
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th (click)="sort('id')">Mã Nhóm&nbsp;<i class="fas fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('code_sale_executive')">Tên Trưởng Nhóm&nbsp;<i
+                                                        class="fas fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('type')">Loại Tỉnh/Thành Phố&nbsp;<i
+                                                        class="fas fa-sort"></i>
+                                                </th>
+                                                <th (click)="sort('name')">Tên Tỉnh/Thành Phố&nbsp;<i
+                                                        class="fas fa-sort"></i>
+                                                </th>
+                                                <th>Tổng Quan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr
+                                                *ngFor="let group of listGroup| orderBy: key:reverse | paginate: { id: 'listing_pagination_group' ,itemsPerPage: 5, currentPage: pageGroup, totalItems: totalRecordsGroup};let i = index">
+                                                <td>#N{{group.id}}</td>
+                                                <td>{{group.code_sale_executive}}</td>
+                                                <td>{{group.type}}</td>
+                                                <td>{{group.name}}</td>
+                                                <td>
+                                                    <button class="btn btn-block btn-success"
+                                                        style="height: 40px; width: 150px; color: white;"
+                                                        (click)="dashboardDialog(group.code_sale_executive)">
+                                                        Tổng Quan</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Mã Nhóm</th>
+                                                <th>Tên Trưởng Nhóm</th>
+                                                <th>Loại Tỉnh/Thành Phố</th>
+                                                <th>Tên Tỉnh/Thành Phố</th>
+                                                <th>Tổng Quan</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <pagination-controls style="float: right;" id="listing_pagination_group" maxSize="5"
+                                        directionLinks="true" (pageChange)="pageGroup = $event"></pagination-controls>
                                 </div>
                             </div>
                         </div>

@@ -124,6 +124,8 @@ import { SaleEmployeeManageComponent } from './view/sale-employee-manage/sale-em
 import { SaleDashboardComponent } from './view/dialog/sale-dashboard/sale-dashboard.component';
 import { ClaimManagerFormComponent } from './view/dialog/claim-manager-form/claim-manager-form.component';
 import { FormNoticeClaimComponent } from './view/claim-request-manage/form-notice-claim/form-notice-claim.component';
+import { DashboardManagerComponent } from './view/dashboard-manager/dashboard-manager.component';
+// import { DashboardManagerComponent } from './view/dashboard-manager/dashboard-manager.component';
 
 
 
@@ -227,6 +229,7 @@ import { FormNoticeClaimComponent } from './view/claim-request-manage/form-notic
     SaleDashboardComponent,
     ClaimManagerFormComponent,
     FormNoticeClaimComponent,
+    DashboardManagerComponent,
 
   ],
   imports: [

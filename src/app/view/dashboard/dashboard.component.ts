@@ -66,26 +66,12 @@ export class DashboardComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   @ViewChild("chart1") chart1: ChartComponent;
-  public chartOptions1: Partial<ChartOptions>;
-  // chartOptions = {
-  //   responsive: true
-  // };
-  // chartData = [];
-
-  // public chartColors: Array<any> = [
-  //   {
-  //     // first color
-  //     backgroundColor: 'rgb(255,59,59)',
-  //     borderColor: 'rgb(255,255,255)'
-  //   }
-  // ];
-  // chartLabels = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+  public chartOptions1: Partial<ChartOptions1>;
 
   constructor(private router: Router, private revenueService: RevenueService,
     private common: CommonService, private contractService: ContractService,
     private customerService: CustomerService, private dialog: MatDialog,
     private spinner: NgxSpinnerService, private employeeService: EmployeeService) {
-
   }
   // danh sách này để hiển thị
   listIncomePredic = Array<itemIncomePredic>();
@@ -96,15 +82,11 @@ export class DashboardComponent implements OnInit {
   dateNow: Date = new Date();
   month: number = this.dateNow.getMonth() + 1;
   year: number = this.dateNow.getFullYear();
-  listRevenueEmployeeYearBefore: Array<Revenue> = [];
   listContract: Array<Contract> = [];
-  monthRevenueList: Array<number> = [];
   ContractApproved: number = 0;
   ContractNotApproved: number = 0;
   IncomeLastMonth: number = 0;
   IncomeThisMonth: number = 0;
-  listRevenueEmployeeMonthBefore: Array<Revenue> = [];
-  listRevenueEmployeeMonthNow: Array<Revenue> = [];
   percentBetweenIncome: String;
   incomeStatus: String;
   listBirthdayCus: Array<CustomerInfo> = [];
@@ -226,6 +208,20 @@ export class DashboardComponent implements OnInit {
     return Math.floor((Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) - Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())) / (1000 * 60 * 60 * 24));
   }
 
+  calculateDate(dateNext, dateStart, payment_period) {
+    dateNext = new Date(dateNext);
+    dateStart = new Date(dateStart);
+    if (payment_period == 12) {
+      return (Math.floor((Date.UTC(dateNext.getFullYear(), dateNext.getMonth(), dateNext.getDate()) - Date.UTC(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate())) / (1000 * 60 * 60 * 24))) / 365;
+    } else if (payment_period == 6) {
+      return (Math.floor((Date.UTC(dateNext.getFullYear(), dateNext.getMonth(), dateNext.getDate()) - Date.UTC(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate())) / (1000 * 60 * 60 * 24))) / 182;
+    } else if (payment_period == 3) {
+      return (Math.floor((Date.UTC(dateNext.getFullYear(), dateNext.getMonth(), dateNext.getDate()) - Date.UTC(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate())) / (1000 * 60 * 60 * 24))) / 91;
+    } else {
+      return (Math.floor((Date.UTC(dateNext.getFullYear(), dateNext.getMonth(), dateNext.getDate()) - Date.UTC(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate())) / (1000 * 60 * 60 * 24))) / 30;
+    }
+  }
+
   CalculateIncomeForThisYear() {
     this.employeeService.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {
       this.id_role = data['id_role'];
@@ -240,24 +236,28 @@ export class DashboardComponent implements OnInit {
             //Bước 1: cộng income vào tháng mà hợp đồng này bắt đầu hoạt động
             var startTime = new Date(item.start_time);
             if (startTime.getFullYear() == this.year) {
-              this.listIncomePredic[startTime.getMonth()].income += item.income;
+              this.listIncomePredic[startTime.getMonth()].income += (item.income * 0.9);
               this.listIncomePredic[startTime.getMonth()].revenue += item.revenue_val;
             }
             //Bước 2: Tính Income cho các tháng tiếp theo trong năm đó
             var startTime = new Date(item.start_time);// tháng mà khach hàng bắt đầu ký hợp đồng và trao tiền
-            var desTime = this.addMonths(new Date(item.start_time), 12); // thời gian 1 năm đầu tiên của hợp đồng tính từ ngày đầu tiên
             var nextTime = this.addMonths(new Date(item.start_time), this.transformPeriod(item.description));
             while (true) {
               if (nextTime.getFullYear() > this.year) break;
               else if (nextTime.getFullYear() == this.year) {
                 this.listIncomePredic.forEach(element => {
                   if (element.month == (nextTime.getMonth() + 1)) {
-                    if (nextTime > startTime && nextTime <= desTime) { // nếu là các năm tiếp theo thì income giảm 5 lần còn trong năm đầu tiên thì giữ nguyên income
-                      element.income += (item.income * 0.9);
-                      element.revenue += item.revenue_val;
-                    } else {
-                      element.income += (item.income / 5 * 0.9);
-                      element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 5));
+                    if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 1) {
+                      element.income += ((item.income / 1.5) * 0.9);
+                      element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 1.5));
+                    } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 2) {
+                      element.income += ((item.income / 3) * 0.9);
+                      element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 3));
+                    } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 3) {
+                      element.income += ((item.income / 6) * 0.9);
+                      element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 6));
+                    } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) > 3) {
+                      element.revenue += (item.revenue_val * 95 / 15);
                     }
                   }
                 })
@@ -296,12 +296,12 @@ export class DashboardComponent implements OnInit {
                 {
                   name: "Income",
                   type: "column",
-                  data: [this.listIncomePredic[0].income, this.listIncomePredic[1].income,
-                  this.listIncomePredic[2].income, this.listIncomePredic[3].income,
-                  this.listIncomePredic[4].income, this.listIncomePredic[5].income,
-                  this.listIncomePredic[6].income, this.listIncomePredic[7].income,
-                  this.listIncomePredic[8].income, this.listIncomePredic[9].income,
-                  this.listIncomePredic[10].income, this.listIncomePredic[11].income]
+                  data: [Math.round(this.listIncomePredic[0].income), Math.round(this.listIncomePredic[1].income),
+                  Math.round(this.listIncomePredic[2].income), Math.round(this.listIncomePredic[3].income),
+                  Math.round(this.listIncomePredic[4].income), Math.round(this.listIncomePredic[5].income),
+                  Math.round(this.listIncomePredic[6].income), Math.round(this.listIncomePredic[7].income),
+                  Math.round(this.listIncomePredic[8].income), Math.round(this.listIncomePredic[9].income),
+                  Math.round(this.listIncomePredic[10].income), Math.round(this.listIncomePredic[11].income)]
                 }
               ],
               chart: {
@@ -367,22 +367,22 @@ export class DashboardComponent implements OnInit {
                 {
                   name: "Revenue",
                   type: "column",
-                  data: [this.listIncomePredic[0].revenue, this.listIncomePredic[1].revenue,
-                  this.listIncomePredic[2].revenue, this.listIncomePredic[3].revenue,
-                  this.listIncomePredic[4].revenue, this.listIncomePredic[5].revenue,
-                  this.listIncomePredic[6].revenue, this.listIncomePredic[7].revenue,
-                  this.listIncomePredic[8].revenue, this.listIncomePredic[9].revenue,
-                  this.listIncomePredic[10].revenue, this.listIncomePredic[11].revenue]
+                  data: [Math.round(this.listIncomePredic[0].revenue), Math.round(this.listIncomePredic[1].revenue),
+                  Math.round(this.listIncomePredic[2].revenue), Math.round(this.listIncomePredic[3].revenue),
+                  Math.round(this.listIncomePredic[4].revenue), Math.round(this.listIncomePredic[5].revenue),
+                  Math.round(this.listIncomePredic[6].revenue), Math.round(this.listIncomePredic[7].revenue),
+                  Math.round(this.listIncomePredic[8].revenue), Math.round(this.listIncomePredic[9].revenue),
+                  Math.round(this.listIncomePredic[10].revenue), Math.round(this.listIncomePredic[11].revenue)]
                 },
                 {
                   name: "KPI",
                   type: "line",
-                  data: [this.listIncomePredic[0].kpi, this.listIncomePredic[1].kpi,
-                  this.listIncomePredic[2].kpi, this.listIncomePredic[3].kpi,
-                  this.listIncomePredic[4].kpi, this.listIncomePredic[5].kpi,
-                  this.listIncomePredic[6].kpi, this.listIncomePredic[7].kpi,
-                  this.listIncomePredic[8].kpi, this.listIncomePredic[9].kpi,
-                  this.listIncomePredic[10].kpi, this.listIncomePredic[11].kpi]
+                  data: [Math.round(this.listIncomePredic[0].kpi), Math.round(this.listIncomePredic[1].kpi),
+                  Math.round(this.listIncomePredic[2].kpi), Math.round(this.listIncomePredic[3].kpi),
+                  Math.round(this.listIncomePredic[4].kpi), Math.round(this.listIncomePredic[5].kpi),
+                  Math.round(this.listIncomePredic[6].kpi), Math.round(this.listIncomePredic[7].kpi),
+                  Math.round(this.listIncomePredic[8].kpi), Math.round(this.listIncomePredic[9].kpi),
+                  Math.round(this.listIncomePredic[10].kpi), Math.round(this.listIncomePredic[11].kpi)]
                 }
               ],
               chart: {
@@ -488,19 +488,23 @@ export class DashboardComponent implements OnInit {
                 }
                 //Bước 2: Tính Income cho các tháng tiếp theo trong năm đó
                 var startTime = new Date(item.start_time);// tháng mà khach hàng bắt đầu ký hợp đồng và trao tiền
-                var desTime = this.addMonths(new Date(item.start_time), 12); // thời gian 1 năm đầu tiên của hợp đồng tính từ ngày đầu tiên
                 var nextTime = this.addMonths(new Date(item.start_time), this.transformPeriod(item.description));
                 while (true) {
                   if (nextTime.getFullYear() > this.year) break;
                   else if (nextTime.getFullYear() == this.year) {
                     this.listIncomePredic.forEach(element => {
                       if (element.month == (nextTime.getMonth() + 1)) {
-                        if (nextTime > startTime && nextTime <= desTime) { // nếu là các năm tiếp theo thì income giảm 5 lần còn trong năm đầu tiên thì giữ nguyên income
-                          element.income += item.income;
-                          element.revenue += item.revenue_val;
-                        } else {
-                          element.income += (item.income / 5);
-                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 5));
+                        if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 1) {
+                          element.income += (item.income / 1.5);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 1.5));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 2) {
+                          element.income += (item.income / 3);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 3));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 3) {
+                          element.income += (item.income / 6);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 6));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) > 3) {
+                          element.revenue += (item.revenue_val * 95 / 15);
                         }
                       }
                     })
@@ -516,19 +520,23 @@ export class DashboardComponent implements OnInit {
                 }
                 //Bước 2: Tính Income cho các tháng tiếp theo trong năm đó
                 var startTime = new Date(item.start_time);// tháng mà khach hàng bắt đầu ký hợp đồng và trao tiền
-                var desTime = this.addMonths(new Date(item.start_time), 12); // thời gian 1 năm đầu tiên của hợp đồng tính từ ngày đầu tiên
                 var nextTime = this.addMonths(new Date(item.start_time), this.transformPeriod(item.description));
                 while (true) {
                   if (nextTime.getFullYear() > this.year) break;
                   else if (nextTime.getFullYear() == this.year) {
                     this.listIncomePredic.forEach(element => {
                       if (element.month == (nextTime.getMonth() + 1)) {
-                        if (nextTime > startTime && nextTime <= desTime) { // nếu là các năm tiếp theo thì income giảm 5 lần còn trong năm đầu tiên thì giữ nguyên income
-                          element.income += (item.income * 0.1);
-                          element.revenue += item.revenue_val;
-                        } else {
-                          element.income += (item.income / 5 * 0.1);
-                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 5));
+                        if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 1) {
+                          element.income += ((item.income / 1.5) * 0.1);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 1.5));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 2) {
+                          element.income += ((item.income / 3) * 0.1);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 3));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) == 3) {
+                          element.income += ((item.income / 6) * 0.1);
+                          element.revenue += ((item.revenue_val * 95 / 15) - (item.income / 6));
+                        } else if (nextTime > startTime && this.calculateDate(nextTime, startTime, this.transformPeriod(item.description)) > 3) {
+                          element.revenue += (item.revenue_val * 95 / 15);
                         }
                       }
                     })
@@ -568,12 +576,12 @@ export class DashboardComponent implements OnInit {
                   {
                     name: "Income",
                     type: "column",
-                    data: [this.listIncomePredic[0].income, this.listIncomePredic[1].income,
-                    this.listIncomePredic[2].income, this.listIncomePredic[3].income,
-                    this.listIncomePredic[4].income, this.listIncomePredic[5].income,
-                    this.listIncomePredic[6].income, this.listIncomePredic[7].income,
-                    this.listIncomePredic[8].income, this.listIncomePredic[9].income,
-                    this.listIncomePredic[10].income, this.listIncomePredic[11].income]
+                    data: [Math.round(this.listIncomePredic[0].income), Math.round(this.listIncomePredic[1].income),
+                    Math.round(this.listIncomePredic[2].income), Math.round(this.listIncomePredic[3].income),
+                    Math.round(this.listIncomePredic[4].income), Math.round(this.listIncomePredic[5].income),
+                    Math.round(this.listIncomePredic[6].income), Math.round(this.listIncomePredic[7].income),
+                    Math.round(this.listIncomePredic[8].income), Math.round(this.listIncomePredic[9].income),
+                    Math.round(this.listIncomePredic[10].income), Math.round(this.listIncomePredic[11].income)]
                   }
                 ],
                 chart: {
@@ -639,22 +647,22 @@ export class DashboardComponent implements OnInit {
                   {
                     name: "Revenue",
                     type: "column",
-                    data: [this.listIncomePredic[0].revenue, this.listIncomePredic[1].revenue,
-                    this.listIncomePredic[2].revenue, this.listIncomePredic[3].revenue,
-                    this.listIncomePredic[4].revenue, this.listIncomePredic[5].revenue,
-                    this.listIncomePredic[6].revenue, this.listIncomePredic[7].revenue,
-                    this.listIncomePredic[8].revenue, this.listIncomePredic[9].revenue,
-                    this.listIncomePredic[10].revenue, this.listIncomePredic[11].revenue]
+                    data: [Math.round(this.listIncomePredic[0].revenue), Math.round(this.listIncomePredic[1].revenue),
+                    Math.round(this.listIncomePredic[2].revenue), Math.round(this.listIncomePredic[3].revenue),
+                    Math.round(this.listIncomePredic[4].revenue), Math.round(this.listIncomePredic[5].revenue),
+                    Math.round(this.listIncomePredic[6].revenue), Math.round(this.listIncomePredic[7].revenue),
+                    Math.round(this.listIncomePredic[8].revenue), Math.round(this.listIncomePredic[9].revenue),
+                    Math.round(this.listIncomePredic[10].revenue), Math.round(this.listIncomePredic[11].revenue)]
                   },
                   {
                     name: "KPI",
                     type: "line",
-                    data: [this.listIncomePredic[0].kpi, this.listIncomePredic[1].kpi,
-                    this.listIncomePredic[2].kpi, this.listIncomePredic[3].kpi,
-                    this.listIncomePredic[4].kpi, this.listIncomePredic[5].kpi,
-                    this.listIncomePredic[6].kpi, this.listIncomePredic[7].kpi,
-                    this.listIncomePredic[8].kpi, this.listIncomePredic[9].kpi,
-                    this.listIncomePredic[10].kpi, this.listIncomePredic[11].kpi]
+                    data: [Math.round(this.listIncomePredic[0].kpi), Math.round(this.listIncomePredic[1].kpi),
+                    Math.round(this.listIncomePredic[2].kpi), Math.round(this.listIncomePredic[3].kpi),
+                    Math.round(this.listIncomePredic[4].kpi), Math.round(this.listIncomePredic[5].kpi),
+                    Math.round(this.listIncomePredic[6].kpi), Math.round(this.listIncomePredic[7].kpi),
+                    Math.round(this.listIncomePredic[8].kpi), Math.round(this.listIncomePredic[9].kpi),
+                    Math.round(this.listIncomePredic[10].kpi), Math.round(this.listIncomePredic[11].kpi)]
                   }
                 ],
                 chart: {
@@ -679,7 +687,7 @@ export class DashboardComponent implements OnInit {
                 },
                 yaxis: [
                   {
-                    seriesName: "KPI",
+                    seriesName: "Revenue",
                     axisTicks: {
                       show: true
                     },

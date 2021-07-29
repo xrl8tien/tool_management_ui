@@ -127,11 +127,11 @@
             </div>
             <!-- sale manager -->
             <div *ngIf="authenService.id_role=='6'" (click)="openLeftSide()">
-                <a mat-list-item [routerLink]="['/dashboard']">
+                <a mat-list-item [routerLink]="['/dashboard-manager']">
                     <mat-icon mat-list-icon>dashboard</mat-icon>Tổng Quan
                 </a>
                 <a mat-list-item [routerLink]="['/sale-employee-manage']">
-                    <mat-icon mat-list-icon>supervisor_account</mat-icon>Quản lý phòng kinh doanh
+                    <mat-icon mat-list-icon>supervisor_account</mat-icon>Quản Lý Phòng Kinh Doanh
                 </a>
                 <a mat-list-item [routerLink]="['/claim-request-manage']">
                     <mat-icon mat-list-icon>table_chart</mat-icon>Quản Lý Yêu Cầu Xét Duyệt

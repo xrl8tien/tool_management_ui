@@ -95,6 +95,20 @@ export class EmployeeService {
       .pipe(catchError(this.handleError));
   }
 
+  public getAllGroup(code_sale_manager: string): Observable<any> {
+    const url = this.common.makeUrl("/employee/get_all_group");
+    return this.httpClient
+      .post<any>(url, code_sale_manager, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchAllGroup(searchValue: string): Observable<any> {
+    const url = this.common.makeUrl("/employee/search_all_group");
+    return this.httpClient
+      .post<any>(url, searchValue, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   public searchAllInfoAccEx(code_sale_executive: string, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
     let data = { code_sale_executive: code_sale_executive, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
     const url = this.common.makeUrl("/employee/search_all_employee_info_acc_ex");

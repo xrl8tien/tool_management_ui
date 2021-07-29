@@ -51,7 +51,7 @@ export class AppComponent {
           } else if (this.authenService.id_role == '5') {
             this.router.navigate(['dashboard']);
           } else if (this.authenService.id_role == '6') {
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['dashboard-manager']);
           }
           
           return;

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EmployeeInfoDTO } from 'src/app/model/EmployeeInfoDTO';
+import { GroupDTO } from 'src/app/model/GroupDTO';
 import { CommonService } from 'src/app/services/common/common.service';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
 import { ServerHttpService } from 'src/app/services/http/server-http.service';
@@ -22,10 +23,13 @@ export class SaleEmployeeManageComponent implements OnInit {
 
   page: number = 1;
   totalRecords: number;
-  data: Array<EmployeeInfoDTO>;
+  listEmployee: Array<EmployeeInfoDTO>;
+  id_role = "";
+  pageGroup: number = 1;
+  totalRecordsGroup: number;
+  listGroup: Array<GroupDTO>;
 
   ngOnInit(): void {
-    this.common.titlePage = "Danh Sách Nhân Viên Kinh Doanh";
     this.employeeService.subsVar = this.employeeService.
       callRefreshTable.subscribe((name: string) => {
         this.refresh();
@@ -39,10 +43,23 @@ export class SaleEmployeeManageComponent implements OnInit {
 
   public refresh() {
     this.spinner.show();
-    this.employeeService.getAllInfoAccEx(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
-      this.data = data;
-      this.totalRecords = data.length;
-      this.spinner.hide();
+    this.employeeService.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {
+      this.id_role = data['id_role'];
+      if (this.id_role == '5') {
+        this.common.titlePage = "Danh Sách Nhân Viên Kinh Doanh";
+        this.employeeService.getAllInfoAccEx(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+          this.listEmployee = data;
+          this.totalRecords = data.length;
+          this.spinner.hide();
+        }))
+      } else if (this.id_role == '6') {
+        this.common.titlePage = "Danh Sách Nhóm";
+        this.employeeService.getAllGroup(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+          this.listGroup = data;
+          this.totalRecordsGroup = data.length;
+          this.spinner.hide();
+        }))
+      }
     }))
   }
 
@@ -72,10 +89,32 @@ export class SaleEmployeeManageComponent implements OnInit {
       }
       let searchText = "%" + this.searchValue + "%";
       this.employeeService.searchAllInfoAccEx(jwt_decode(this.common.getCookie('token_key'))['sub'], dateFrom1, dateTo1, searchText).subscribe((data => {
-        this.data = data;
+        this.listEmployee = data;
         this.totalRecords = data.length;
         this.spinner.hide();
         this.page = 1;
+      }))
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  ResetDate() {
+    this.dateFrom = null;
+    this.dateTo = null;
+  }
+
+  searchValueGroup: String = "";
+  SearchGroup() {
+    this.spinner.show();
+    try {
+      let searchText = "%" + this.searchValueGroup + "%";
+      this.employeeService.searchAllGroup(searchText).subscribe((data => {
+        this.listGroup = data;
+        this.totalRecordsGroup = data.length;
+        this.spinner.hide();
+        this.pageGroup = 1;
       }))
 
     } catch (error) {
@@ -92,13 +131,6 @@ export class SaleEmployeeManageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     })
   }
-
-
-  ResetDate() {
-    this.dateFrom = null;
-    this.dateTo = null;
-  }
-
 
   key = '';
   reverse: boolean = true;

@@ -52,11 +52,11 @@ import { GetContactInfoComponent } from './customerwebsite/get-contact-info/get-
 import { ListRequestCustomerComponent } from './customerwebsite/list-request-customer/list-request-customer.component';
 import { PaymentGuideComponent } from './customerwebsite/payment-guide/payment-guide.component';
 import { SaleContactManageComponent } from './view/sale-contact-manage/sale-contact-manage.component';
-
 import { HelpCustomerSendClaimRequestComponent } from './view/help-customer-send-claim-request/help-customer-send-claim-request.component';
 import { ContactBirthdayInfoComponent } from './view/contact-birthday-info/contact-birthday-info.component';
 import { SaleEmployeeManageComponent } from './view/sale-employee-manage/sale-employee-manage.component';
 import { FormNoticeClaimComponent } from './view/claim-request-manage/form-notice-claim/form-notice-claim.component';
+import { DashboardManagerComponent } from './view/dashboard-manager/dashboard-manager.component';
 
 
 const routes: Routes = [
@@ -114,7 +114,9 @@ const routes: Routes = [
   { path: "help-customer-send-claim-request", component: HelpCustomerSendClaimRequestComponent },
   { path: "contact-birthday-info", component: ContactBirthdayInfoComponent },
   { path: "sale-employee-manage", component: SaleEmployeeManageComponent },
-  { path: "form-notice-claim/:id", component: FormNoticeClaimComponent }
+  { path: "form-notice-claim/:id", component: FormNoticeClaimComponent },
+  { path: "dashboard-manager", component: DashboardManagerComponent },
+
 
 ];
 

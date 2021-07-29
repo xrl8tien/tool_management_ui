@@ -151,7 +151,7 @@
     <form class="formKPI" #kpiForm="ngForm">
         <div class="left">
             <div class="formKPI">
-                <div class="left">
+                <div class="left" style="margin-right: 10px;">
                     <select matNativeControl [(ngModel)]="selectedMonth" name="month" class="form-control" required>
                         <option value="undefined">Chọn Tháng</option>
                         <option *ngFor="let month of listDateKpi" [value]="month">
@@ -159,7 +159,7 @@
                         </option>
                     </select>
                 </div>
-                <div class="right">
+                <div class="right" style="margin-right: 10px;">
                     <input type="number" class="form-control" name="kpiNumber" [(ngModel)]="kpiNumber"
                         placeholder="Nhập KPI" required>
                 </div>

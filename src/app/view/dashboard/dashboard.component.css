@@ -41,6 +41,17 @@
 
 .new-info{
     /* margin-right: 5rem; */
-    width: 330px;
-    padding-left: 10px;
+    width: 355px;
+    padding-left: 13px;
 }
+
+.saler-info{
+    width: 350px;
+    padding-left: 7px;
+}
+
+.customer-info{
+    width: 350px;
+    padding-left: 7px;
+}
+

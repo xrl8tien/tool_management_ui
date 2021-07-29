@@ -26,6 +26,7 @@ import { MainBenefitScale } from 'src/app/model/MainBenefitScale';
 import { IllustrationService } from 'src/app/services/illustration/illustration.service';
 import { data } from 'jquery';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
+// import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-help-customer-send-claim-request',
@@ -67,7 +68,7 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
     private referTable: RefertableService, public authenService: AuthenService,
     private route: ActivatedRoute, private router: Router, private contractService: ContractService,
     private dialog: MatDialog, private EmAccService: EmployeeService, private employeeService: EmployeeService,
-    public customerService: CustomerService,) { }
+    public customerService: CustomerService) { }
 
   ngOnInit(): void {
   }
@@ -78,6 +79,7 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
       this.fullName = this.cusInfo.full_name;
       this.id_card = this.cusInfo.id_card;
       this.dateOfBirth = this.cusInfo.birth_date;
+      // this.datepipe.transform(this.cusInfo.birth_date, 'yyyy/MM/dd');
       this.address2 = this.cusInfo.conadd_no_street + " , " + this.cusInfo.conadd_district + " , " + this.cusInfo.conadd_city;
       this.phone_no = this.cusInfo.phone_1;
       this.email_id = this.cusInfo.email;

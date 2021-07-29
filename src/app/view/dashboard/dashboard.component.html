@@ -59,8 +59,7 @@
                                                 |
                                                 currency : "VND"}}
                                             </span>
-                                            <span class="info-box-text" style="font-size: 13px;">Tiền cần để đạt
-                                                KPI</span>
+                                            <span class="info-box-text" style="font-size: 13px;">KPI còn thiếu</span>
                                         </div>
 
                                         <div class="money"
@@ -97,7 +96,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div *ngIf="id_role == '2'" class="col-lg-3 col-6">
+                        <div *ngIf="id_role == '2'" class="customer-info">
                             <a [routerLink]="" (click)="openDayNotificationDialog()" class="small-box-footer">
                                 <div class="info-box mb-3">
                                     <span class="info-box-icon bg-success elevation-1"><i
@@ -117,7 +116,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div *ngIf="id_role == '5'" class="col-lg-3 col-6">
+                        <div *ngIf="id_role == '5'" class="saler-info">
                             <a href="sale-employee-manage" class="small-box-footer">
                                 <div class="info-box mb-3">
                                     <span class="info-box-icon bg-success elevation-1"><i
@@ -125,14 +124,9 @@
                                     <div class="info-box-content">
                                         <span class="info-box-number"
                                             style="font-size: 1.5rem;">{{employeeList.length}}</span>
-                                        <span class="info-box-text" style="font-size: 13px;">Quản lý DS nhân viên kinh
+                                        <span class="info-box-text" style="font-size: 13px;">Nhân viên kinh
                                             doanh</span>
                                     </div>
-
-                                    <!-- <div class="info-box-content">
-                                        <span class="info-box-number" style="font-size: 1.5rem;"></span>
-                                        <span class="info-box-text"></span>
-                                    </div> -->
                                 </div>
                             </a>
                         </div>

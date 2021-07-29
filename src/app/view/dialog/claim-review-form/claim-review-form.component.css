@@ -3,7 +3,7 @@
     height: 500px;
 } */
 
-.card-header{
+h2{
     text-align: center;
     text-transform: uppercase;
 }
@@ -15,29 +15,48 @@
 .col-lg-6{
     flex: 0 0 66%;
     max-width: 80%;
+    margin-right: 0;
 }
 
+.table-money{
+    width: 310px;
+}
+/* 
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
-  }
-
+  } */
+/* 
   table{
       height: 350px;
-  }
+  } */
 
 .btn-primary {
     margin-top: 2rem;
 }
 
-.form-control1 {
+/* .form-control1 {
     width: 535px;
     height: 40px;
     margin-left: 10px;
     margin-top: 20px;
-}
+} */
 
 .td1{
     text-align: center;
     text-transform: uppercase;
+    background-color: #666666;
+    color: white;
 }
+
+table{
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 1em;
+    background: #ddd;
+    border-bottom: 2px solid white; 
+  }

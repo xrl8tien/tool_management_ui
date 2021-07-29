@@ -1,12 +1,12 @@
 <mat-dialog-content class="mat-typography">
-    <div class="card-header">
-        <h2><b>Biểu mẫu xét duyệt yêu cầu giải quyết quyền lợi bảo hiểm</b></h2>
-    </div>
+    <!-- <div class="card-header"> -->
+    <h2><b>Xét duyệt yêu cầu giải quyết quyền lợi bảo hiểm</b></h2>
+    <!-- </div> -->
     <div class="row flex">
         <div class="col-12 col-md-6 col-lg-6">
             <table id="table1">
                 <tbody>
-                    <th class="td1" colspan="3" style="background-color: lightskyblue;">Loại chính</th>
+                    <th class="td1" colspan="3">Loại chính</th>
                     <tr *ngFor="let mainBenefitScale of listMainBenefitScale">
                         <td>{{mainBenefitScale.name}}</td>
                         <td id="tienChinh">{{mainBenefitScale.scale * mainBenefit.denominations|currency : "VND"}}</td>
@@ -29,13 +29,15 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
+        <!-- <div class="col-12 col-md-6 col-lg-4"> -->
+        <div class="table-money">
             <form #reviewForm="ngForm">
                 <table class="table">
                     <tr>
-                        <th style="height: 10%;">Quyết định xét duyệt</th>
+                        <th style="height: 20%;">Quyết định xét duyệt</th>
                         <td>
-                            <select class="custom-select" [(ngModel)]="approveStatus" name="approveStatus" required>
+                            <select class="custom-select" [(ngModel)]="approveStatus" name="approveStatus" required
+                                style="font-size: 14px;">
                                 <option value="DX">Đề Xuất</option>
                                 <option value="YCT">Yêu Cầu Bổ Sung</option>
                                 <option value="TC">Từ Chối</option>
@@ -43,7 +45,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th style="height: 10%;">Số tiền chi trả</th>
+                        <th style="height: 20%;">Số tiền chi trả</th>
                         <td class="td-table2"><input class="form-control" type="number" placeholder="VND"
                                 [(ngModel)]="amountMoney" name="amountMoney"></td>
                     </tr>

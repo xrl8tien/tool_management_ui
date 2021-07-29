@@ -46,6 +46,7 @@ export class ClaimSubmitFormComponent implements OnInit {
   listSubBenefitScale: Array<SubBenefitScale> = [];
   listMainBenefitScale: Array<MainBenefitScale> = [];
   listSubScale: Array<SubBenefitScale> = [];
+  fullName: string;
 
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,

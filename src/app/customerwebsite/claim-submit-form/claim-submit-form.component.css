@@ -1,19 +1,9 @@
-/* .form-row{
-    display: flex;
-    margin-left: -5px;
-    margin-right: -5px;
-}
-.form-group {
-    margin-bottom: 1rem;
-}
-.col-md-6 {
-    flex:  0 0 50%;
-    max-width: 50%;
-} */
-
 .form-container {
-    padding-left: 20rem;
-    padding-right: 20rem;
+    padding-left: 11rem;
+    padding-right: 11rem;
+    max-width: 95%;
+    margin-left: 2.5rem;
+    margin-top: 2.5rem;
 }
 
 

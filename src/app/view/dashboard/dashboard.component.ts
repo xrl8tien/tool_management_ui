@@ -145,11 +145,13 @@ export class DashboardComponent implements OnInit {
       }
     }))
   }
+
   getEmployeeList() {
     this.employeeService.getAllInfoAccEx(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
       this.employeeList = data;
     }))
   }
+
   refresh() {
     this.spinner.show();
     this.employeeService.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {

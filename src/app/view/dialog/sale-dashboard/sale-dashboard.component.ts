@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Contact } from 'src/app/model/Contact';
 import { Contract } from 'src/app/model/Contract';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
+import { EmployeeInfoDTO } from 'src/app/model/EmployeeInfoDTO';
 import { Income } from 'src/app/model/Income';
 import { Kpi } from 'src/app/model/Kpi';
 import { Revenue } from 'src/app/model/Revenue';
@@ -92,8 +93,10 @@ export class SaleDashboardComponent implements OnInit {
   kpiNumber: number;
   id_role = "";
   codes_sale: Array<string> = [];
+  employeeList: Array<EmployeeInfoDTO>;
 
   ngOnInit(): void {
+    this.getEmployeeList();
     for (var i = 0; i < 3; i++) {
       this.listDateKpi.push(this.addMonths(new Date(this.dateKpi), i));
     }
@@ -135,6 +138,12 @@ export class SaleDashboardComponent implements OnInit {
           }))
         }))
       }
+    }))
+  }
+
+  getEmployeeList() {
+    this.employeeService.getAllInfoAccEx(this.code_sale).subscribe((data => {
+      this.employeeList = data;
     }))
   }
 

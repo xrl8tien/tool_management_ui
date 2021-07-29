@@ -62,7 +62,7 @@
                 </a>
             </div>
             <!-- <div class="col-lg-3 col-6"> -->
-            <div class="birthday-info">
+            <div *ngIf="id_role == '5'" class="birthday-info">
                 <a class="small-box-footer">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
@@ -79,18 +79,13 @@
                     </div>
                 </a>
             </div>
-            <div *ngIf="id_role == '6'" class="col-lg-3 col-6">
-                <a [routerLink]="" class="small-box-footer">
+            <div *ngIf="id_role == '6'" class="contract-box">
+                <a class="small-box-footer">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-number" style="font-size: 1.2rem;"></span>
-                            <span class="info-box-text"></span>
-                        </div>
-
-                        <div class="info-box-content">
-                            <span class="info-box-number" style="font-size: 1.2rem;"></span>
-                            <span class="info-box-text"></span>
+                            <span class="info-box-number" style="font-size: 1.2rem;">{{employeeList.length}}</span>
+                            <span class="info-box-text" style="font-size: 11px;">Nhân viên kinh doanh</span>
                         </div>
                     </div>
                 </a>

@@ -1,5 +1,12 @@
 <div class="searchWithDateandValue">
     <div class="left">
+        <select *ngIf="id_role == '5'" matNativeControl [(ngModel)]="selectedCode"
+            (change)="onChangeCode()" name="code" class="form-control">
+            <option value="tat_ca">Tất cả</option>
+            <option *ngFor="let code of codes_sale" [value]="code">
+                {{code}}
+            </option>
+        </select>
     </div>
     <div class="right">
         <div class="input-group searchBar">

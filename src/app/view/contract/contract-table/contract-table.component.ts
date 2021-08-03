@@ -31,6 +31,7 @@ export class ContractTableComponent implements OnInit {
   contracts: Array<ContractDTO>;
   id_role = "";
   codes_sale: Array<string> = [];
+  selectedCode: string;
 
   ngOnInit(): void {
     this.contractService.subsVar = this.contractService.
@@ -38,6 +39,27 @@ export class ContractTableComponent implements OnInit {
         this.refresh();
       });
     this.refresh();
+  }
+
+  onChangeCode() {
+    if (this.selectedCode == 'tat_ca') {
+      this.contractService.getAllContractEx(this.codes_sale).subscribe((data => {
+        this.contracts = data;
+        this.contracts.forEach(element => {
+          element.approval_status = this.transformStatus(element.approval_status);
+        });
+        this.totalRecords = this.contracts.length;
+      }))
+    } else {
+      let list_code_sale: Array<string> = [this.selectedCode];
+      this.contractService.getAllContractEx(list_code_sale).subscribe((data => {
+        this.contracts = data;
+        this.contracts.forEach(element => {
+          element.approval_status = this.transformStatus(element.approval_status);
+        });
+        this.totalRecords = this.contracts.length;
+      }))
+    }
   }
 
   public contractDetail(id: number) {
@@ -133,12 +155,22 @@ export class ContractTableComponent implements OnInit {
           this.page = 1;
         }))
       } else if (this.id_role == '5') {
-        this.contractService.searchAllContractEx(this.codes_sale, dateFrom1.toString(), dateTo1.toString(), searchText).subscribe((data => {
-          this.contracts = data;
-          this.totalRecords = this.contracts.length;
-          this.spinner.hide();
-          this.page = 1;
-        }))
+        if (this.selectedCode == 'tat_ca') {
+          this.contractService.searchAllContractEx(this.codes_sale, dateFrom1.toString(), dateTo1.toString(), searchText).subscribe((data => {
+            this.contracts = data;
+            this.totalRecords = this.contracts.length;
+            this.spinner.hide();
+            this.page = 1;
+          }))
+        } else {
+          let list_code_sale: Array<string> = [this.selectedCode];
+          this.contractService.searchAllContractEx(list_code_sale, dateFrom1.toString(), dateTo1.toString(), searchText).subscribe((data => {
+            this.contracts = data;
+            this.totalRecords = this.contracts.length;
+            this.spinner.hide();
+            this.page = 1;
+          }))
+        }
       }
     } catch (error) {
       console.log(error);

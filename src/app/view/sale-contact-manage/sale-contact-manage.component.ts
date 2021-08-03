@@ -15,6 +15,7 @@ import { District } from 'src/app/model/District';
 import { element } from 'protractor';
 import { data } from 'jquery';
 import { ContactInfoDTO } from 'src/app/model/ContactInfoDTO';
+import { DistrictDTO } from 'src/app/model/DistrictDTO';
 
 @Component({
   selector: 'app-sale-contact-manage',
@@ -50,13 +51,14 @@ export class SaleContactManageComponent implements OnInit {
   listContact: Array<ContactInfoDTO>
   listContactOld: Array<ContactInfoDTO>
   listDistrict: Array<District>
+  listDistrictDTO: Array<DistrictDTO> = []
 
   id_role = "";
   codes_sale: Array<string> = [];
   province_ex: Province;
 
   ngOnInit(): void {
-    this.common.titlePage="Danh Sách Liên Hệ";
+    this.common.titlePage = "Danh Sách Liên Hệ";
     this.customerService.subsVar = this.customerService.
       callRefreshTable.subscribe((name: string) => {
         this.refresh();
@@ -97,9 +99,22 @@ export class SaleContactManageComponent implements OnInit {
           this.customerService.getAllOldContactByProvince(this.province_ex.id).subscribe((data => {
             this.listContactOld = data;
           }))
+          this.listDistrictDTO = [];
           this.customerService.getAllDistrictByProvince(this.province_ex.id).subscribe((data => {
             this.listDistrict = data;
-            this.totalRecordsDistrict = this.listDistrict.length;
+            for (let i = 0; i < this.listDistrict.length; i++) {
+              this.customerService.getAllCodeSaleByDistrictId(this.listDistrict[i].id).subscribe((data => {
+                let districtDTO = new DistrictDTO(
+                  this.listDistrict[i].id,
+                  this.listDistrict[i].name,
+                  this.listDistrict[i].type,
+                  this.listDistrict[i].id_province,
+                  data
+                )
+                this.listDistrictDTO.push(districtDTO);
+              }))
+            }
+            this.totalRecordsDistrict = this.listDistrictDTO.length;
           }))
           this.customerService.getAllCodeSaleByCodeEx(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((codes => {
             this.codes_sale = codes;
@@ -243,8 +258,10 @@ export class SaleContactManageComponent implements OnInit {
   }
 
   Save() {
-    this.listDistrict.forEach((element => {
-      this.customerService.updateDistrict(element).subscribe((data => {
+    this.customerService.deleteAllSaleDistrict(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+    }))
+    this.listDistrictDTO.forEach((element => {
+      this.customerService.updateSaleDistrict(element).subscribe((data => {
       }))
     }))
     this.snackbar.openSnackBar("Đã lưu thông tin", "Đóng");

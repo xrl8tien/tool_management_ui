@@ -70,6 +70,44 @@
                     </tfoot>
                 </table>
             </mat-tab>
+
+            <mat-tab label="Tạo Thông Báo Mới Đến KH">
+                <form #reviewForm="ngForm">
+                    <label>Khách Hàng Nhận Thông Báo</label>
+                    <ng-multiselect-dropdown [placeholder]="'Chọn Khách Hàng'" [settings]="dropdownSettings"
+                        [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)" (onDeSelect)="onItemDeSelect($event)" 
+                        (onDeSelectAll)="onItemDeSelectAll($event)">
+                    </ng-multiselect-dropdown>
+                    <label>Loại Thông Báo</label>
+                    <mat-select [(ngModel)]="type" name="type" required>
+                        <mat-option [value]="1">
+                            Yêu cầu bồi thường
+                        </mat-option>
+                        <mat-option [value]="2">
+                            Nhắc nhở đến hạn thanh toán bảo hiểm
+                        </mat-option>
+                        <mat-option [value]="3">
+                            Khuyến mại
+                        </mat-option>
+                        <mat-option [value]="4">
+                            Chúc mừng sinh nhật khách hàng
+                        </mat-option>
+                    </mat-select>
+                    <label>Link</label>
+                    <input *ngIf="type == 4 || type == 2 || type == 3" type="text" class="form-control"
+                        placeholder="Enter ..." name="url" [(ngModel)]="url">
+                    <label>Tiêu Đề</label>
+                    <textarea class="form-control" rows="2" maxlength="1000" placeholder="Enter ..." name="title"
+                        [(ngModel)]="title" #note="ngModel" required>
+                        </textarea>
+                    <label>Nội Dung</label>
+                    <textarea class="form-control" rows="5" maxlength="3000" placeholder="Enter ..." name="description"
+                        [(ngModel)]="description" #note="ngModel" required>
+                        </textarea>
+                </form>
+                <button type="submit" [disabled]="reviewForm.invalid" (click)="sendNotification()">Gửi</button>
+            </mat-tab>
         </mat-tab-group>
     </div>
 </mat-dialog-content>

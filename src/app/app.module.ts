@@ -14,6 +14,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
 // material
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -259,7 +260,8 @@ import { DashboardManagerComponent } from './view/dashboard-manager/dashboard-ma
     Ng2SearchPipeModule,
     Ng2OrderModule,
     NgbModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   entryComponents: [AdminResetPasswordComponent, AppraiserReviewFormComponent, EmployeeEditInfoDialogComponent, ContractPauseDialogComponent, ContractChangeInfoDialogComponent, ReportCustomerDialogComponent, CustomerEditInfoComponent, AdminAddEmployeeInfoComponent, AdminAddAccountEmployeeComponent, AddCustomerIllustrationDialogComponent, CustomerAddInfoDialogComponent, ContractAddDialogComponent, NotificationConfirmDialogComponent, PauseCustomerDialogComponent],
   providers: [AdminDataServiceService],

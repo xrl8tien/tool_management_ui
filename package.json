@@ -43,6 +43,7 @@
     "jwt-decode": "^3.1.2",
     "mat-table-exporter": "^1.2.5",
     "ng-apexcharts": "^1.5.12",
+    "ng-multiselect-dropdown": "^0.3.4",
     "ng2-charts": "^2.4.2",
     "ng2-order-pipe": "^0.1.5",
     "ng2-search-filter": "^0.5.1",

@@ -24,6 +24,8 @@ import { Contract } from 'src/app/model/Contract';
 import { SubBenefitScale } from 'src/app/model/SubBenefitScale';
 import { MainBenefitScale } from 'src/app/model/MainBenefitScale';
 import { IllustrationService } from 'src/app/services/illustration/illustration.service';
+import { CustomerInfo } from 'src/app/model/CustomerInfo';
+import moment from 'moment';
 
 @Component({
   selector: 'app-claim-submit-form',
@@ -46,14 +48,26 @@ export class ClaimSubmitFormComponent implements OnInit {
   listSubBenefitScale: Array<SubBenefitScale> = [];
   listMainBenefitScale: Array<MainBenefitScale> = [];
   listSubScale: Array<SubBenefitScale> = [];
+
   fullName: string;
+  id_card: string;
+  address: string;
+  phoneNo: string;
+  format1: string = "";
+  date: any;
+  email: string;
+  customerInfoList: Array<CustomerInfo>;
+  customerInfo: CustomerInfo;
 
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,
     private common: CommonService, private spinner: NgxSpinnerService,
     private referTable: RefertableService, public authenService: AuthenService,
     private route: ActivatedRoute, private router: Router, private contractService: ContractService,
-    private dialog: MatDialog, private EmAccService: EmployeeService) { }
+    private dialog: MatDialog, private EmAccService: EmployeeService) {
+    let now = moment().format("DD-MM-YYYY");
+    this.format1 = now;
+  }
 
   ngOnInit(): void {
     let token_customer = this.common.getCookie('token_customer');
@@ -64,6 +78,15 @@ export class ClaimSubmitFormComponent implements OnInit {
       this.contractService.getAllContractForCustomer(jwt_decode(this.common.getCookie('token_customer'))['sub']).subscribe((data => {
         this.listContracts = data;
       }));
+      this.cusService.getOneInfoCustomer(jwt_decode(this.common.getCookie('token_customer'))['sub']).subscribe((data => {
+        this.customerInfoList = data;
+        this.customerInfo = this.customerInfoList[0];
+        this.fullName = this.customerInfo.full_name;
+        this.id_card = this.customerInfo.id_card;
+        this.address = this.customerInfo.conadd_no_street + " , " + this.customerInfo.conadd_district + " , " + this.customerInfo.conadd_city;
+        this.phoneNo = this.customerInfo.phone_1;
+        this.email = this.customerInfo.email;
+      }))
     }
 
   }

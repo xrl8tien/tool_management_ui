@@ -24,9 +24,10 @@ export class FormNoticeClaimComponent implements OnInit {
     private contractRequestService: ContractrequestService, private contractService: ContractService) { }
 
   ngOnInit(): void {
-    // this.employeeService.getDetailEmployebyCode(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
-    //   this.employeinfoDTO = data;
-    // }))
+
+    this.employeeService.getDetailEmployebyCode(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+      this.employeinfoDTO = data;
+    }))
 
     this.contractRequestService.getDetailClaimRequest(this.activateRoute.snapshot.params['id']).subscribe((data => {
       this.req = data;
@@ -35,6 +36,7 @@ export class FormNoticeClaimComponent implements OnInit {
         this.contract = data1;
       }))
     }))
+
   }
 
 }

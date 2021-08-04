@@ -1,26 +1,15 @@
-/* .form-row{
-    display: flex;
-    margin-left: -5px;
-    margin-right: -5px;
-}
-.form-group {
-    margin-bottom: 1rem;
-}
-.col-md-6 {
-    flex:  0 0 50%;
-    max-width: 50%;
-} */
-
 .form-container {
     padding-left: 11rem;
     padding-right: 11rem;
+    max-width: 95%;
+    margin-left: 2.5rem;
+    margin-top: 2.5rem;
 }
 
 
 .card-header {
     text-align: center;
     text-transform: uppercase;
-    /* font-weight: 600; */
     font-size: .5rem;
     color:cornflowerblue;
     margin-top: .5rem;
@@ -42,8 +31,11 @@
     margin-top: 1rem;
     background: cornflowerblue ;
     color: white;
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 400;
+    padding-top: 8px;
+    height: 40px;
+    padding-left: 3px;
 }
 
 .note {
@@ -87,3 +79,47 @@ input#file {
     color: white;
 }
 
+table{
+    border-spacing: 7px;
+    border-collapse: separate;
+    border-radius: 2em;
+    border-color: black;
+}
+
+.table-info{
+    text-align: center;
+    font-size: 15px;
+    color:blue;
+}
+
+.momentDeath{
+    padding-top: 45px;
+    margin-left: 12px;
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.label-dateDeath{
+    margin-right: 10px;
+    padding-left: 20px;
+}
+
+.label-deathPlace{
+    margin-top: 10px;
+    margin-right: 10px;
+    padding-left: 20px;
+}
+
+.info-customer{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+span{
+    margin-left: 10px;
+}
+
+.sign-name{
+    font-weight: 600;
+    margin-left: 20px;
+}

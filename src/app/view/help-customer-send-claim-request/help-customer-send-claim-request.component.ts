@@ -26,6 +26,8 @@ import { MainBenefitScale } from 'src/app/model/MainBenefitScale';
 import { IllustrationService } from 'src/app/services/illustration/illustration.service';
 import { data } from 'jquery';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
+import moment from 'moment';
+import { EmployeeInfoDTO } from 'src/app/model/EmployeeInfoDTO';
 // import { DatePipe } from '@angular/common';
 
 @Component({
@@ -61,6 +63,10 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
   phone_no: string;
   email_id: string;
   dateOfBirth: Date;
+  format1: string = "";
+  employeinfoDTO: EmployeeInfoDTO;
+  district_name: string = "";
+  listId: Array<number>;
 
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,
@@ -68,9 +74,26 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
     private referTable: RefertableService, public authenService: AuthenService,
     private route: ActivatedRoute, private router: Router, private contractService: ContractService,
     private dialog: MatDialog, private EmAccService: EmployeeService, private employeeService: EmployeeService,
-    public customerService: CustomerService) { }
+    public customerService: CustomerService) {
+    let now = moment().format("DD-MM-YYYY");
+    this.format1 = now;
+  }
 
   ngOnInit(): void {
+    this.employeeService.getDetailEmployebyCode(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+      this.employeinfoDTO = data;
+    }))
+    this.cusService.getAllDistrictByCodeSale(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((ids => {
+      this.listId = ids;
+      this.cusService.getDistrictNameById(this.listId).subscribe((data => {
+        for (let i = 0; i < data.length; i++) {
+          if (i < data.length - 1)
+            this.district_name += " " + data[i].name + ", "
+          else
+            this.district_name += " " + data[i].name
+        }
+      }))
+    }))
   }
 
   onChangeCustomerId(id_customer: number) {

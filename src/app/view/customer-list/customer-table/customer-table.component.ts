@@ -33,14 +33,29 @@ export class CustomerTableComponent implements OnInit {
   dateTo: Date;
   id_role = "";
   codes_sale: Array<string> = [];
+  selectedCode: string;
 
   ngOnInit(): void {
-
     this.customerService.subsVar = this.customerService.
       callRefreshTable.subscribe((name: string) => {
         this.refresh();
       });
     this.refresh();
+  }
+
+  onChangeCode() {
+    if (this.selectedCode == 'tat_ca') {
+      this.customerService.getAllCustomerInfoEx(this.codes_sale).subscribe((data => {
+        this.customerinfos = data;
+        this.totalRecords = data.length;
+      }))
+    } else {
+      let list_code_sale: Array<string> = [this.selectedCode];
+      this.customerService.getAllCustomerInfoEx(list_code_sale).subscribe((data => {
+        this.customerinfos = data;
+        this.totalRecords = data.length;
+      }))
+    }
   }
 
   Search() {
@@ -73,12 +88,22 @@ export class CustomerTableComponent implements OnInit {
           this.page = 1;
         }))
       } else if (this.id_role == '5') {
-        this.customerService.searchAllCustomerEx(this.codes_sale, dateFrom1.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
-          this.customerinfos = data;
-          this.totalRecords = this.customerinfos.length;
-          this.spinner.hide();
-          this.page = 1;
-        }))
+        if (this.selectedCode == 'tat_ca') {
+          this.customerService.searchAllCustomerEx(this.codes_sale, dateFrom1.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
+            this.customerinfos = data;
+            this.totalRecords = this.customerinfos.length;
+            this.spinner.hide();
+            this.page = 1;
+          }))
+        }else{
+          let list_code_sale: Array<string> = [this.selectedCode];
+          this.customerService.searchAllCustomerEx(list_code_sale, dateFrom1.toString(), dateTo1.toString(), searchText.toString()).subscribe((data => {
+            this.customerinfos = data;
+            this.totalRecords = this.customerinfos.length;
+            this.spinner.hide();
+            this.page = 1;
+          }))
+        }
       }
 
     } catch (error) {

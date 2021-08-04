@@ -88,6 +88,13 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  public getAllCodeSaleByDistrictId(id_district: number): Observable<any> {
+    const url = this.common.makeUrl("/customer/get_all_code_sale_by_district_id");
+    return this.httpClient
+      .post<any>(url, id_district, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   public searchAllCustomerEx(codes_em_support: Array<string>, dateFrom: string, dateTo: string, searchValue: string): Observable<any> {
     let data = new CustomerInfoDTO(codes_em_support, dateFrom, dateTo, searchValue);
     const url = this.common.makeUrl("/customer/search_all_customer_info_ex");
@@ -194,10 +201,17 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
-  public updateDistrict(district: District): Observable<any> {
-    const url = this.common.makeUrl("/customer/update_district");
+  public updateSaleDistrict(district: District): Observable<any> {
+    const url = this.common.makeUrl("/customer/update_sale_district");
     return this.httpClient
       .post<any>(url, district, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public deleteAllSaleDistrict(code_sale: string): Observable<any> {
+    const url = this.common.makeUrl("/customer/delete_all_sale_district");
+    return this.httpClient
+      .post<any>(url, code_sale, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

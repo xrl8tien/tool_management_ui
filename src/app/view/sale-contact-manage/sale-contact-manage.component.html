@@ -29,19 +29,22 @@
                                                 class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>Quận/Huyện</th>
+                                                        <th (click)="sort('id')">Quận/Huyện&nbsp;<i
+                                                                class="fas fa-sort"></i>
+                                                        </th>
                                                         <th>Số Liên Hệ Mới</th>
-                                                        <th>Sale Phụ Trách</th>
+                                                        <th (click)="sort('codes_sale')">Sale Phụ Trách&nbsp;<i
+                                                                class="fa fa-sort"></i>
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr
-                                                        *ngFor="let district of listDistrict | orderBy: key:reverse | paginate: { id: 'listing_pagination_district' ,itemsPerPage: 10, currentPage: pageDistrict, totalItems: totalRecordsDistrict} ">
+                                                        *ngFor="let district of listDistrictDTO | orderBy: key:reverse | paginate: { id: 'listing_pagination_district' ,itemsPerPage: 10, currentPage: pageDistrict, totalItems: totalRecordsDistrict} ">
                                                         <td>{{district.name}}</td>
                                                         <td>{{countContact(district.id)}}</td>
                                                         <td>
-                                                            <mat-select [(value)]="district.code_sale">
-                                                                <mat-option>None</mat-option>
+                                                            <mat-select [(value)]="district.codes_sale" multiple>
                                                                 <mat-option *ngFor="let code of codes_sale"
                                                                     [value]="code">
                                                                     {{code}}
@@ -114,9 +117,6 @@
                                                         <th (click)="sort('create_time')">Thời Gian&nbsp;<i
                                                                 class="fa fa-sort"></i>
                                                         </th>
-                                                        <th *ngIf="id_role == '5'" (click)="sort('code_sale')">
-                                                            Sale&nbsp;<i class="fa fa-sort"></i>
-                                                        </th>
                                                         <th></th>
                                                         <th></th>
                                                     </tr>
@@ -131,7 +131,6 @@
                                                         <td *ngIf="calculateDiff(contact.create_time) > 0">
                                                             {{calculateDiff(contact.create_time)}} ngày trước</td>
                                                         <td *ngIf="calculateDiff(contact.create_time) == 0">Hôm nay</td>
-                                                        <td *ngIf="id_role == '5'">{{contact.code_sale}}</td>
                                                         <td><button type="button"
                                                                 class="btn btn-block btn-success btn-flat"
                                                                 (click)="yesDialog(contact.id)">
@@ -151,7 +150,6 @@
                                                         <th>Quận/Huyện</th>
                                                         <th>Yêu Cầu</th>
                                                         <th>Thời Gian</th>
-                                                        <th *ngIf="id_role == '5'">Sale</th>
                                                         <th></th>
                                                         <th></th>
                                                     </tr>

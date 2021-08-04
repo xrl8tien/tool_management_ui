@@ -29,6 +29,7 @@ export class IllustrationTableComponent implements OnInit {
   dateTo: Date;
   id_role = "";
   codes_sale: Array<string> = [];
+  selectedCode: string;
 
   ngOnInit(): void {
     this.illustrationService.subsVar = this.illustrationService.
@@ -37,6 +38,22 @@ export class IllustrationTableComponent implements OnInit {
       });
     this.refresh();
   }
+
+  onChangeCode() {
+    if (this.selectedCode == 'tat_ca') {
+      this.illustrationService.getAllCustomerOwnIllustrationEx(this.codes_sale).subscribe((data => {
+        this.listCustomerOwnIllustration = data;
+        this.totalRecords = this.listCustomerOwnIllustration.length;
+      }))
+    } else {
+      let list_code_sale: Array<string> = [this.selectedCode];
+      this.illustrationService.getAllCustomerOwnIllustrationEx(list_code_sale).subscribe((data => {
+        this.listCustomerOwnIllustration = data;
+        this.totalRecords = this.listCustomerOwnIllustration.length;
+      }))
+    }
+  }
+
   public refresh() {
     this.spinner.show();
     this.employeeService.getAccByCode(this.common.getCookie('token_key')).subscribe((data => {
@@ -95,12 +112,22 @@ export class IllustrationTableComponent implements OnInit {
           this.page = 1;
         }))
       } else if (this.id_role == '5') {
-        this.illustrationService.searchAllCustomerOwnIllustrationEx(this.codes_sale, dateFrom1.toString(), dateTo1.toString(), searchText).subscribe((data => {
-          this.listCustomerOwnIllustration = data;
-          this.totalRecords = this.listCustomerOwnIllustration.length;
-          this.spinner.hide();
-          this.page = 1;
-        }))
+        if (this.selectedCode == 'tat_ca') {
+          this.illustrationService.searchAllCustomerOwnIllustrationEx(this.codes_sale, dateFrom1.toString(), dateTo1.toString(), searchText).subscribe((data => {
+            this.listCustomerOwnIllustration = data;
+            this.totalRecords = this.listCustomerOwnIllustration.length;
+            this.spinner.hide();
+            this.page = 1;
+          }))
+        } else {
+          let list_code_sale: Array<string> = [this.selectedCode];
+          this.illustrationService.searchAllCustomerOwnIllustrationEx(list_code_sale, dateFrom1.toString(), dateTo1.toString(), searchText).subscribe((data => {
+            this.listCustomerOwnIllustration = data;
+            this.totalRecords = this.listCustomerOwnIllustration.length;
+            this.spinner.hide();
+            this.page = 1;
+          }))
+        }
       }
 
     } catch (error) {

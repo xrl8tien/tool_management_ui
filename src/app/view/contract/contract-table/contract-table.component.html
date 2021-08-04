@@ -1,22 +1,27 @@
 <div class="searchWithDateandValue">
     <div class="left">
-        <select *ngIf="id_role == '5'" matNativeControl [(ngModel)]="selectedCode"
-            (change)="onChangeCode()" name="code" class="form-control">
-            <option value="tat_ca">Tất cả</option>
-            <option *ngFor="let code of codes_sale" [value]="code">
-                {{code}}
-            </option>
-        </select>
+        <form *ngIf="id_role == '5'" class="col-md-4" style="margin-left: 20rem;">
+            <span style="margin-left: 50px; font-size: 16; font-weight: 500;">Tìm kiếm theo mã nhân viên</span>
+            <select *ngIf="id_role == '5'" matNativeControl [(ngModel)]="selectedCode" (change)="onChangeCode()"
+                name="code" class="form-control form-control-lg">
+                <option value="tat_ca">Tất cả</option>
+                <option *ngFor="let code of codes_sale" [value]="code">
+                    {{code}}
+                </option>
+            </select>
+        </form>
     </div>
     <div class="right">
         <div class="input-group searchBar">
-            <input type="search" class="form-control form-control-lg" [(ngModel)]="searchValue" placeholder="Nhập từ khóa cần tìm">
+            <input type="search" class="form-control form-control-lg" [(ngModel)]="searchValue"
+                placeholder="Nhập từ khóa cần tìm">
         </div>
         <div class="date">
             <label>Từ Ngày<input id="RfromSearch" type="date" name="dateFrom" [(ngModel)]="dateFrom"
                     class="form-control form-control-sm" placeholder="" aria-controls="example1"></label>
-            <label style="margin-left: 2%;"> Đến Ngày<input id="RtoSearch" type="date" name="dateTo" [(ngModel)]="dateTo"
-                    class="form-control form-control-sm" placeholder="" aria-controls="example1"></label>
+            <label style="margin-left: 2%;"> Đến Ngày<input id="RtoSearch" type="date" name="dateTo"
+                    [(ngModel)]="dateTo" class="form-control form-control-sm" placeholder=""
+                    aria-controls="example1"></label>
             <button type="button" class="btn btn-danger btn-date" (click)="ResetDate()">Xóa
                 ngày</button>
             <button type="button" class="btn btn-info btn-date" (click)="Search()">Tìm kiếm
@@ -41,17 +46,20 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let contract of contracts | orderBy: key:reverse | paginate: { id: 'listing_pagination' ,itemsPerPage: 6, currentPage: page, totalItems: totalRecords}">
+        <tr
+            *ngFor="let contract of contracts | orderBy: key:reverse | paginate: { id: 'listing_pagination' ,itemsPerPage: 6, currentPage: page, totalItems: totalRecords}">
             <td>#HD{{contract.id}}</td>
             <td>
-                <a *ngIf="contract.id_customer" (click)="openDialogCustomerDetail(contract.id_customer)">#KH{{contract.id_customer}}</a>
+                <a *ngIf="contract.id_customer"
+                    (click)="openDialogCustomerDetail(contract.id_customer)">#KH{{contract.id_customer}}</a>
                 <a *ngIf="!contract.id_customer"></a>
             </td>
             <td>{{contract.name_contract_owner}}</td>
             <td>{{contract.insurance_type}}</td>
             <td>#G{{contract.id_main_benifit}}</td>
             <td>
-                <a *ngIf="contract.id_illustration" (click)="openDialogIllustrationDetail(contract.id_illustration)">#BMH{{contract.id_illustration}}</a>
+                <a *ngIf="contract.id_illustration"
+                    (click)="openDialogIllustrationDetail(contract.id_illustration)">#BMH{{contract.id_illustration}}</a>
                 <a *ngIf="!contract.id_illustration"></a>
 
             </td>
@@ -59,7 +67,8 @@
             <td>{{contract.start_time | date: 'dd-MM-yyyy'}}</td>
             <td *ngIf="id_role == '5'">{{contract.code_em_support}}</td>
             <td>
-                <button (click)="contractDetail(contract.id)" class="btn btn-info" style="color: white;">Chi Tiết</button>
+                <button (click)="contractDetail(contract.id)" class="btn btn-info" style="color: white;">Chi
+                    Tiết</button>
             </td>
         </tr>
     </tbody>
@@ -78,4 +87,5 @@
         </tr>
     </tfoot>
 </table>
-<pagination-controls style="float: right;" id="listing_pagination" maxSize="6" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+<pagination-controls style="float: right;" id="listing_pagination" maxSize="6" directionLinks="true"
+    (pageChange)="page = $event"></pagination-controls>

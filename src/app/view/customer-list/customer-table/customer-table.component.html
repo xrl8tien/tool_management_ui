@@ -1,13 +1,19 @@
 <div class="searchWithDateandValue">
     <div class="left">
-        <select *ngIf="id_role == '5'" matNativeControl [(ngModel)]="selectedCode"
-            (change)="onChangeCode()" name="code" class="form-control">
-            <option value="tat_ca">Tất cả</option>
-            <option *ngFor="let code of codes_sale" [value]="code">
-                {{code}}
-            </option>
-        </select>
+        <form *ngIf="id_role == '5'" class="col-md-4" style="margin-left: 20rem;">
+            <span style="margin-left: 50px; font-size: 16; font-weight: 500;">Tìm kiếm theo mã nhân viên</span>
+            <select *ngIf="id_role == '5'" matNativeControl [(ngModel)]="selectedCode" (change)="onChangeCode()"
+                name="code" class="form-control form-control-lg">
+                <span style="margin-left: 50px; font-size: 16; font-weight: 500;">Tìm kiếm theo mã nhân viên</span>
+                <option value="" disabled selected>Chọn mã nhân viên</option>
+                <option value="tat_ca">Tất cả</option>
+                <option *ngFor="let code of codes_sale" [value]="code">
+                    {{code}}
+                </option>
+            </select>
+        </form>
     </div>
+
     <div class="right">
         <div class="input-group searchBar">
             <input type="search" class="form-control form-control-lg" [(ngModel)]="searchValue"

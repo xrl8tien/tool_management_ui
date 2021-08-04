@@ -14,7 +14,8 @@ th {
     width: 100%;
 }
 .left{
-    width: 50%;
+    float: left;
+    width: 100%;
 }
 .right{    
     float: right;

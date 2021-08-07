@@ -152,6 +152,13 @@ export class ContractService {
       .pipe(catchError(this.handleError))
   }
 
+  public getAllProductDTO(code_em_support: string): Observable<any> {
+    const url = this.common.makeUrl("/contract/get_all_product_dto");
+    return this.httpClient
+      .post<any>(url, code_em_support, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

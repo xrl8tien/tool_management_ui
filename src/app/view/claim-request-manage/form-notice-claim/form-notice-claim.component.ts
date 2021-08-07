@@ -8,6 +8,7 @@ import { ContractrequestService } from 'src/app/services/contractRequest/contrac
 import { ContractService } from 'src/app/services/contract/contract.service';
 import { Request } from 'src/app/model/Request';
 import { Contract } from 'src/app/model/Contract';
+import { RequestClaimApprove } from 'src/app/model/RequestClaimApprove';
 
 @Component({
   selector: 'app-form-notice-claim',
@@ -17,7 +18,7 @@ import { Contract } from 'src/app/model/Contract';
 export class FormNoticeClaimComponent implements OnInit {
 
   employeinfoDTO: EmployeeInfoDTO;
-  req: Request;
+  req: RequestClaimApprove;
   contract: Contract;
 
   constructor(private common: CommonService, private employeeService: EmployeeService, private activateRoute: ActivatedRoute,

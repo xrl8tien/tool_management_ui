@@ -26,8 +26,9 @@
         <div class="col-md-9">
             <label style="font-size: 18px;">
                 <i class="fas fa-caret-right"></i> Bên mua bảo hiểm:
-            </label>
-            <input type="text" class="form-control" id="inputName" name="code_sender" [(ngModel)]="fullName" required>
+            </label><br>
+            <!-- <input type="text" class="form-control" id="inputName" name="code_sender" [(ngModel)]="fullName" required> -->
+            <span>Họ và tên: </span>{{cusInfo.full_name}}
         </div>
         <div class="col-md-3">
             <label for="inputCMNDBMBH">Số CMND/CCCD</label>

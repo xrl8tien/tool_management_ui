@@ -13,7 +13,7 @@ h2{
 }
 
 .col-lg-6{
-    flex: 0 0 66%;
+    flex: 0 0 60%;
     max-width: 80%;
     margin-right: 0;
 }

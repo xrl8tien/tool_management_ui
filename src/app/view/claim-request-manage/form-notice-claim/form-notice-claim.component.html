@@ -23,39 +23,52 @@
 
         <div class="card-detail">
             <div class="title-card">
-                <h2>Phiếu thông báo sự kiện bảo hiểm</h2>
+                <h2>Phiếu đề xuất thanh toán</h2>
                 <p><b>Kính gửi: </b> <span class="dear1"> - Ban giám đốc Hệ thống Bảo hiểm ISolution Việt Nam</span><br>
                     <span class="dear2"> - Bộ phận giải quyết quyền lợi bảo hiểm</span>
                 </p>
             </div>
 
             <div class="info-claim">
-                <span style="margin-left: 3rem;">Tôi tên là: {{ employeinfoDTO.name }}</span><br>
-                <span style="margin-left: 3rem;">Số CMND/CCCD/Mã số nhân viên tư vấn: </span>
-                <span style="margin-left: 16rem;">Điện thoại: </span><br>
-                <span style="margin-left: 3rem;">Địa chỉ liên hệ: </span><br>
-                <span style="margin-left: 3rem;">Quan hệ với người rủi ro:</span><br>
+                <span style="margin-left: 3rem;">Tôi tên là: {{ employeinfoDTO.name }}</span>
+                <span style="margin-left: 12.8rem;">Mã số nhân viên: {{employeinfoDTO.id}}</span><br>
+                <span style="margin-left: 3rem;">Số CMND/CCCD: {{employeinfoDTO.id_card}} </span>
+                <span style="margin-left: 10rem;">Điện thoại: {{employeinfoDTO.phone}}</span><br>
+                <span style="margin-left: 3rem;">Địa chỉ liên hệ: {{employeinfoDTO.conadd_no_street}},
+                    {{employeinfoDTO.conadd_district}}, {{employeinfoDTO.conadd_city}}</span><br>
+                <span style="margin-left: 3rem;">Chức vụ: Thẩm định viên giải quyết quyền lợi bảo hiểm</span><br>
                 <p>Xin thông báo cho ISolution Việt Nam thông tin sự kiện bảo hiểm (SKBH) sau đây: </p>
             </div>
 
             <div class="claim-info" style="margin-bottom: 1rem;">
-                <p class="claim-info-title"><b> Sự kiện bảo hiểm (SKBH): {{req.name}}</b></p>
+                <p class="claim-info-title"><b> Sự kiện bảo hiểm (SKBH): <span
+                            style="color: black;">{{req.name}}</span></b></p>
                 <p><b>Loại sự kiện bảo hiểm: </b></p>
-                <span style="margin-left: 3rem; text-indent: 1em;"> + Loại chính: </span><br>
-                <span style="margin-left: 3rem; text-indent: 1em;"> + Loại phụ (nếu có): </span><br>
+                <span style="margin-left: 3rem; text-indent: 1em;"> + Loại chính: {{req.main_benefit}}</span><br>
+                <span style="margin-left: 3rem; text-indent: 1em;"> + Số tiền bồi thường cho loại chính:
+                    {{req.amount_main}} (VNĐ)</span><br>
+                <span style="margin-left: 3rem; text-indent: 1em;"> + Loại phụ (nếu có): {{req.sub_benefit}}</span><br>
+                <span style="margin-left: 3rem; text-indent: 1em;"> + Số tiền bồi thường cho loại phụ (nếu có):
+                    {{req.amount_sub}} (VNĐ)</span><br>
             </div>
 
             <div class="claim-info" style="margin-bottom: 1rem;">
                 <p class="claim-info-title"><b>Thông tin liên quan khác</b></p>
-                <span style="margin-left: 3rem;">Người được bảo hiểm (NĐBH):</span><br>
-                <span style="margin-left: 3rem;">Điện thoại: </span>
-                <span style="margin-left: 16rem;">Địa chỉ liên hệ: </span><br>
-                <span style="margin-left: 3rem;">Số hồ sơ/ HĐBH:</span>
-                <span style="margin-left: 13.5rem;">Họ tên BMBH: </span><br>
-                <span style="margin-left: 3rem;">Thời điểm xảy ra SKBH:</span><br>
-                <span style="margin-left: 3rem;">Địa điểm xảy ra SKBH:</span><br>
-                <span style="margin-left: 3rem;">Quyền lợi yêu cầu cần giải quyết:</span><br>
-                <span style="margin-left: 3rem;">Số tiền từ yêu cầu giải quyết quyền lợi: </span>
+                <span style="margin-left: 3rem;">Bên mua bảo hiểm: {{contract.name_contract_owner}}</span>
+                <span style="margin-left: 7rem;">Số CMND/CCCD: {{ custInfo[0]?.id_card }}</span><br>
+                <span style="margin-left: 3rem;">Điện thoại: {{ custInfo[0]?.phone_1 }}</span><br>
+                <span style="margin-left: 3rem;">Địa chỉ liên hệ: {{ custInfo[0]?.curadd_no_street }}, {{
+                    custInfo[0]?.curadd_wards }}, {{ custInfo[0]?.curadd_district }}, {{ custInfo[0]?.curadd_city
+                    }}</span><br>
+                <span style="margin-left: 3rem;">Số hồ sơ/ HĐBH: #HD{{contract.id}}</span>
+                <span style="margin-left: 13.5rem;">Số bảng minh họa tương ứng:
+                    #BMH{{contract.id_illustration}}</span><br>
+                <!-- <span style="margin-left: 3rem;">Thời điểm xảy ra SKBH:</span><br>
+                <span style="margin-left: 3rem;">Địa điểm xảy ra SKBH:</span><br> -->
+                <span style="margin-left: 3rem;">Quyền lợi yêu cầu cần giải quyết thuộc loại bảo hiểm:
+                    {{contract.insurance_type}}</span><br>
+                <span style="margin-left: 3rem;">Tổng số tiền từ yêu cầu giải quyết quyền lợi: {{req.amount_main +
+                    req.amount_sub}} (VNĐ)</span>
             </div>
 
             <div class="claim-info" style="margin-bottom: 1rem;">
@@ -92,17 +105,24 @@
             </div>
             <p>
                 <span style="margin-left: 1rem;">..................., ngày ..... tháng ..... năm ........</span>
-                <span style="margin-left: 15rem;">..................., ngày ..... tháng ..... năm ........</span><br>
+                <span style="margin-left: 6rem;">..................., ngày ..... tháng ..... năm ........</span><br>
             </p>
             <p>
                 <span style="margin-left: 6rem;"><b>Người thông báo</b></span>
-                <span style="margin-left: 26rem;"><b>Người tiếp nhận</b></span><br>
+                <span style="margin-left: 17rem;"><b>Người tiếp nhận</b></span><br>
                 <span style="margin-left: 5rem;"><i>(Ký và ghi rõ họ tên)</i></span>
-                <span style="margin-left: 25rem;"><i>(Ký và ghi rõ họ tên)</i></span>
+                <span style="margin-left: 16rem;"><i>(Ký và ghi rõ họ tên)</i></span>
             </p>
             <br><br><br><br><br><br><br>
 
+            <p style="margin-left: 6rem; padding-bottom: 3rem;">Họ và tên: {{employeinfoDTO.name}}</p>
         </div>
+    </div>
+
+    <div class="btn-end" style="margin-left: 20rem; padding-bottom: 20px;">
+        <!-- <button type="submit" class="btn btn-primary" [disabled]="requestForm.invalid" (click)="sendReq()">Xác
+            nhận</button> -->
+        <button type="button" class="btn btn-info" (click)="dowloadPDF()">Xuất tài liệu PDF</button>
     </div>
 </body>
 

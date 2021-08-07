@@ -15,7 +15,9 @@ import {
   ApexLegend,
   ApexDataLabels,
   ApexTitleSubtitle,
-  ApexYAxis
+  ApexYAxis,
+  ApexNonAxisChartSeries,
+  ApexResponsive,
 } from "ng-apexcharts";
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -36,6 +38,27 @@ export type ChartOptions1 = {
   legend: ApexLegend;
   fill: ApexFill;
   tooltip: ApexTooltip;
+  colors: string[];
+};
+export type ChartOptions2 = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
+};
+export type ChartOptions3 = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  markers: any; //ApexMarkers;
+  stroke: any; //ApexStroke;
+  yaxis: ApexYAxis | ApexYAxis[];
+  dataLabels: ApexDataLabels;
+  title: ApexTitleSubtitle;
+  legend: ApexLegend;
+  fill: ApexFill;
+  tooltip: ApexTooltip;
+  colors: string[];
 };
 
 @Component({
@@ -47,6 +70,10 @@ export class DashboardManagerComponent implements OnInit {
 
   @ViewChild("chart1") chart1: ChartComponent;
   public chartOptions1: Partial<ChartOptions1>;
+  @ViewChild("chart2") chart2: ChartComponent;
+  public chartOptions2: Partial<ChartOptions2>;
+  @ViewChild("chart3") chart3: ChartComponent;
+  public chartOptions3: Partial<ChartOptions3>;
 
   constructor(private router: Router, private revenueService: RevenueService,
     private common: CommonService, private contractService: ContractService,
@@ -63,6 +90,7 @@ export class DashboardManagerComponent implements OnInit {
   listPayment: Array<RequestClaimApprove>;
 
   ngOnInit(): void {
+    this.common.titlePage = "Tổng Quan";
     this.CalculateRevenueThisYear();
   }
 
@@ -115,39 +143,25 @@ export class DashboardManagerComponent implements OnInit {
             series: [
               {
                 name: "Revenue",
-                type: "column",
+                type: "area",
                 data: [Math.round(this.listPredic[0].revenue), Math.round(this.listPredic[1].revenue),
                 Math.round(this.listPredic[2].revenue), Math.round(this.listPredic[3].revenue),
                 Math.round(this.listPredic[4].revenue), Math.round(this.listPredic[5].revenue),
                 Math.round(this.listPredic[6].revenue), Math.round(this.listPredic[7].revenue),
                 Math.round(this.listPredic[8].revenue), Math.round(this.listPredic[9].revenue),
                 Math.round(this.listPredic[10].revenue), Math.round(this.listPredic[11].revenue)]
-              },
-              {
-                name: "Payment",
-                type: "column",
-                data: [Math.round(this.listPredic[0].payment), Math.round(this.listPredic[1].payment),
-                Math.round(this.listPredic[2].payment), Math.round(this.listPredic[3].payment),
-                Math.round(this.listPredic[4].payment), Math.round(this.listPredic[5].payment),
-                Math.round(this.listPredic[6].payment), Math.round(this.listPredic[7].payment),
-                Math.round(this.listPredic[8].payment), Math.round(this.listPredic[9].payment),
-                Math.round(this.listPredic[10].payment), Math.round(this.listPredic[11].payment)]
               }
             ],
             chart: {
-              height: 430,
-              type: "bar",
+              // height: 430,
+              type: "area",
               stacked: false,
-              fontFamily: 'Times New Roman, sans-serif'
+              fontFamily: 'Times New Roman, sans-serif',
             },
             dataLabels: {
               enabled: false,
             },
-            stroke: {
-              width: [1, 7, 4]
-            },
             title: {
-              text: "Biều đồ doanh thu - chi trả năm 2021",
               align: "left",
               offsetX: 110
             },
@@ -178,7 +192,52 @@ export class DashboardManagerComponent implements OnInit {
                 tooltip: {
                   enabled: true
                 }
-              },
+              }
+            ],
+            tooltip: {
+              fixed: {
+                enabled: true,
+                position: "topLeft", // topRight, topLeft, bottomRight, bottomLeft
+                offsetY: 30,
+                offsetX: 60
+              }
+            },
+            legend: {
+              horizontalAlign: "left",
+              offsetX: 40
+            }
+          };
+          this.chartOptions3 = {
+            series: [
+              {
+                name: "Payment",
+                type: "area",
+                data: [Math.round(this.listPredic[0].payment), Math.round(this.listPredic[1].payment),
+                Math.round(this.listPredic[2].payment), Math.round(this.listPredic[3].payment),
+                Math.round(this.listPredic[4].payment), Math.round(this.listPredic[5].payment),
+                Math.round(this.listPredic[6].payment), Math.round(this.listPredic[7].payment),
+                Math.round(this.listPredic[8].payment), Math.round(this.listPredic[9].payment),
+                Math.round(this.listPredic[10].payment), Math.round(this.listPredic[11].payment)]
+              }
+            ],
+            colors: ['#F44336', '#E91E63', '#9C27B0'],
+            chart: {
+              // height: 430,
+              type: "area",
+              stacked: false,
+              fontFamily: 'Times New Roman, sans-serif'
+            },
+            dataLabels: {
+              enabled: false,
+            },
+            title: {
+              align: "left",
+              offsetX: 110
+            },
+            xaxis: {
+              categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
+            },
+            yaxis: [
               {
                 seriesName: "Payment",
                 opposite: true,
@@ -215,6 +274,20 @@ export class DashboardManagerComponent implements OnInit {
               offsetX: 40
             }
           };
+          this.chartOptions2 = {
+            series: [],
+            chart: {
+              // height: 430,
+              type: "donut"
+            },
+            labels: [],
+          };
+          this.contractService.getAllProductDTO(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+            for (let i = 0; i < data.length; i++) {
+              this.chartOptions2.series.push(data[i].number_products);
+              this.chartOptions2.labels.push(data[i].benifit_name);
+            }
+          }))
         }))
       }))
       this.spinner.hide();

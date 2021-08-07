@@ -93,19 +93,37 @@
                     <!-- Main row -->
                     <div class="row">
                         <!-- Left col -->
-                        <section class="col-lg-12 connectedSortable ui-sortable">
-                            <div class="div-modify">
-                                <h2 class="chart-title">Biều đồ doanh thu - chi trả năm {{year}}</h2>
-                                <div id="chart1">
-                                    <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
-                                        [xaxis]="chartOptions1.xaxis" [markers]="chartOptions1.markers"
-                                        [stroke]="chartOptions1.stroke" [yaxis]="chartOptions1.yaxis"
-                                        [dataLabels]="chartOptions1.dataLabels" [fill]="chartOptions1.fill"
-                                        [tooltip]="chartOptions1.tooltip" [legend]="chartOptions1.legend">
-                                    </apx-chart>
-                                </div>
+                        <div class="col-lg-4 col-4">
+                            <h2 class="chart-title">Biều đồ tỷ lệ sản phẩm bán được năm {{year}}</h2>
+                            <div id="chart2">
+                                <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
+                                    [labels]="chartOptions2.labels" [responsive]="chartOptions2.responsive"></apx-chart>
                             </div>
-                        </section>
+                        </div>
+                        <div class="col-lg-4 col-4">
+                            <h2 class="chart-title">Biều đồ doanh thu năm {{year}}</h2>
+                            <div id="chart1">
+                                <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                                    [xaxis]="chartOptions1.xaxis" [markers]="chartOptions1.markers"
+                                    [stroke]="chartOptions1.stroke" [yaxis]="chartOptions1.yaxis"
+                                    [dataLabels]="chartOptions1.dataLabels" [fill]="chartOptions1.fill"
+                                    [tooltip]="chartOptions1.tooltip" [legend]="chartOptions1.legend"
+                                    [colors]="chartOptions1.colors">
+                                </apx-chart>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-4">
+                            <h2 class="chart-title">Biều đồ chi trả năm {{year}}</h2>
+                            <div id="chart3">
+                                <apx-chart [series]="chartOptions3.series" [chart]="chartOptions3.chart"
+                                    [xaxis]="chartOptions3.xaxis" [markers]="chartOptions3.markers"
+                                    [stroke]="chartOptions3.stroke" [yaxis]="chartOptions3.yaxis"
+                                    [dataLabels]="chartOptions3.dataLabels" [fill]="chartOptions3.fill"
+                                    [tooltip]="chartOptions3.tooltip" [legend]="chartOptions3.legend"
+                                    [colors]="chartOptions3.colors">
+                                </apx-chart>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.row (main row) -->
                 </div>

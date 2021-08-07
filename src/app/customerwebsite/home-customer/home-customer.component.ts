@@ -48,7 +48,7 @@ export class HomeCustomerComponent implements OnInit {
             this.router.navigate(['dashboard']);
           } else if (this.id_role == '6') {
             this.spinner.hide();
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['dashboard-manager']);
           }
           this.spinner.hide();
         }));

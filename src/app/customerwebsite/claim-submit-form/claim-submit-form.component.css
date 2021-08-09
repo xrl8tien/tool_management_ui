@@ -1,13 +1,12 @@
-.form-container {
+/* .form-container {
     padding-left: 11rem;
     padding-right: 11rem;
     max-width: 95%;
     margin-left: 2.5rem;
     margin-top: 2.5rem;
-}
+} */
 
-
-.card-header {
+/* .card-header {
     text-align: center;
     text-transform: uppercase;
     font-size: .5rem;
@@ -15,7 +14,25 @@
     margin-top: .5rem;
     margin-right: 3.5rem;
     margin-left: 3.5rem;
+} */
+
+.container{
+    width: 73%;
+    background-color: white;
 }
+
+.card-header {
+    text-align: center;
+    text-transform: uppercase;
+    /* font-weight: 600; */
+    font-size: .5rem;
+    color:cornflowerblue;
+    /* margin-top: .5rem; */
+    /* margin-right: 3.5rem;
+    margin-left: 3.5rem; */
+}
+
+
 
 .png-logo{
     width: 8%;
@@ -45,8 +62,8 @@
 }
 
 .form-container {
-    max-width: 95%;
-    margin-left: 2.5rem;
+    max-width: 100%;
+    margin-left: 1rem;
     margin-top: 2.5rem;
 }
 

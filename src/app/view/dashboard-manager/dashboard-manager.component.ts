@@ -18,6 +18,7 @@ import {
   ApexYAxis,
   ApexNonAxisChartSeries,
   ApexResponsive,
+  ApexGrid
 } from "ng-apexcharts";
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -53,6 +54,7 @@ export type ChartOptions3 = {
   markers: any; //ApexMarkers;
   stroke: any; //ApexStroke;
   yaxis: ApexYAxis | ApexYAxis[];
+  grid: ApexGrid;
   dataLabels: ApexDataLabels;
   title: ApexTitleSubtitle;
   legend: ApexLegend;
@@ -88,6 +90,10 @@ export class DashboardManagerComponent implements OnInit {
   listIncome: Array<Income> = [];
   codes_sale: Array<string> = [];
   listPayment: Array<RequestClaimApprove>;
+  RevenueThisMonth: number = 0;
+  progressColor = 'green'
+  remainingProgressColor = 'red';
+
 
   ngOnInit(): void {
     this.common.titlePage = "Tổng Quan";
@@ -129,8 +135,10 @@ export class DashboardManagerComponent implements OnInit {
               })
             }
             nextTime = this.addMonths(new Date(nextTime), this.transformPeriod(item.description));
+            this.RevenueThisMonth = this.listPredic[this.month - 1].revenue;
           }
         })
+
         this.contractRequestService.getAllApprovalManagerReq(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
           this.listPayment = data;
           this.listPayment.forEach(item => {
@@ -153,7 +161,7 @@ export class DashboardManagerComponent implements OnInit {
               }
             ],
             chart: {
-              // height: 430,
+              height: 300,
               type: "area",
               stacked: false,
               fontFamily: 'Times New Roman, sans-serif',
@@ -190,7 +198,7 @@ export class DashboardManagerComponent implements OnInit {
                   }
                 },
                 tooltip: {
-                  enabled: true
+                  enabled: false
                 }
               }
             ],
@@ -211,7 +219,7 @@ export class DashboardManagerComponent implements OnInit {
             series: [
               {
                 name: "Payment",
-                type: "area",
+                type: "line",
                 data: [Math.round(this.listPredic[0].payment), Math.round(this.listPredic[1].payment),
                 Math.round(this.listPredic[2].payment), Math.round(this.listPredic[3].payment),
                 Math.round(this.listPredic[4].payment), Math.round(this.listPredic[5].payment),
@@ -222,13 +230,34 @@ export class DashboardManagerComponent implements OnInit {
             ],
             colors: ['#F44336', '#E91E63', '#9C27B0'],
             chart: {
-              // height: 430,
-              type: "area",
+              height: 300,
+              type: "line",
               stacked: false,
-              fontFamily: 'Times New Roman, sans-serif'
+              fontFamily: 'Times New Roman, sans-serif',
+              dropShadow: {
+                enabled: true,
+                color: "#000",
+                top: 18,
+                left: 7,
+                blur: 10,
+                opacity: 0.2
+              },
+              toolbar: {
+                show: false
+              }
+            },
+            stroke: {
+              curve: "smooth"
+            },
+            grid: {
+              borderColor: "#e7e7e7",
+              row: {
+                colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+                opacity: 0.5
+              }
             },
             dataLabels: {
-              enabled: false,
+              enabled: true,
             },
             title: {
               align: "left",
@@ -269,9 +298,13 @@ export class DashboardManagerComponent implements OnInit {
                 offsetX: 60
               }
             },
+            markers: {
+              size: 1
+            },
             legend: {
               horizontalAlign: "left",
-              offsetX: 40
+              offsetX: 40,
+              floating: true,
             }
           };
           this.chartOptions2 = {

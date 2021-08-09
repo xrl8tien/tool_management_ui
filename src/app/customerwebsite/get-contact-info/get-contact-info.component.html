@@ -17,7 +17,7 @@
 
             <!--Grid column-->
             <div class="col-md-9 mb-md-0 mb-5">
-                <form id="contact-form" name="contact-form">
+                <form #contactForm="ngForm">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="md-form mb-0">
@@ -29,8 +29,14 @@
                         <div class="col-md-6">
                             <div class="md-form mb-0">
                                 <label for="phone" class="">Số điện thoại liên hệ</label>
-                                <input type="text" id="phone" name="phone" class="form-control" [(ngModel)]="phone"
-                                    required>
+                                <input type="text" id="phone" name="phone" class="form-control"
+                                    required #phone="ngModel" pattern="((09|03|07|08|05)+([0-9]{8})\b)" [(ngModel)]="phoneNumber">
+                                <span id="errorMessagename" style="color: red;"
+                                    *ngIf="phone.errors?.required && phone.touched">Điện Thoại Di Động không được
+                                    để trống</span>
+                                <span id="errorMessagename" style="color: red;"
+                                    *ngIf="phone.errors?.pattern && phone.touched">Điện Thoại Di Động phải có định
+                                    dạng 09|03|07|08|05 và có 10 chữ số </span>
                             </div>
                         </div>
                     </div>
@@ -92,7 +98,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Hủy</button>
-    <button mat-button mat-dialog-close type="submit" class="btn btn-primary" (click)="sendContact()">Gửi yêu cầu
+    <button mat-button mat-dialog-close type="submit" [disabled]="contactForm.invalid" class="btn btn-primary" (click)="sendContact()">Gửi yêu cầu
         liên
         hệ</button>
 </mat-dialog-actions>

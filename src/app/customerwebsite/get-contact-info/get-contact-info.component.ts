@@ -16,7 +16,7 @@ export class GetContactInfoComponent implements OnInit {
   listProvince: Array<Province> = [];
   listDistrict: Array<District> = [];
   name: string;
-  phone: string;
+  phoneNumber: string;
   question: string;
   selectProvince:FormControl = new FormControl();
   selectDistrict:FormControl = new FormControl();
@@ -37,7 +37,7 @@ export class GetContactInfoComponent implements OnInit {
   }
 
   sendContact(){
-    let contact = new Contact(0, this.name, this.phone, this.selectProvince.value, this.selectDistrict.value, this.question, 'kcj', new Date(), null);
+    let contact = new Contact(0, this.name, this.phoneNumber, this.selectProvince.value, this.selectDistrict.value, this.question, 'kcj', new Date(), null);
     this.customerSer.addOneContact(contact).subscribe((data => {}));
     this.snackBar.openSnackBar("Gửi Yêu Cầu Thành Công", "Đóng");
   }

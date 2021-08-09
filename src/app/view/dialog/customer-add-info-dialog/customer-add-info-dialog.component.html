@@ -389,7 +389,7 @@
                                 <!-- <p style="color: black; ">{{ customerInfo.phone_1 }}</p> -->
                                 <input type="text" class="form-control" name="phone_1" required #phone_1="ngModel" pattern="((09|03|07|08|05)+([0-9]{8})\b)" [(ngModel)]="customerInfo.phone_1">
                                 <span id="errorMessagename" style="color: red;" *ngIf="phone_1.errors?.required && phone_1.touched">Điện Thoại Di Động 1 không được để trống</span>
-                                <span id="errorMessagename" style="color: red;" *ngIf="phone_1.errors?.pattern && phone_1.touched">Điện Thoại Di Động 1 phải có định dạng 09|03|07|08|05 và có 9 chữ số </span>
+                                <span id="errorMessagename" style="color: red;" *ngIf="phone_1.errors?.pattern && phone_1.touched">Điện Thoại Di Động 1 phải có định dạng 09|03|07|08|05 và có 10 chữ số </span>
                             </div>
                             <!-- <div class="form-group ">
                                 <label for="exampleInputEmail1 ">Điện Thoại Di Động 2:</label>

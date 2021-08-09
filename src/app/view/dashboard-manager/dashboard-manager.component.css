@@ -40,7 +40,39 @@
     max-width: 1300px;
 }
 
-.col-lg-3{
-    border: solid 1 black;
+.info-box{
+    margin-top: 3rem;
 }
 
+.col-lg-2{
+    margin-left: 1.5rem;
+}
+
+.increaseRevenue{
+    text-align: center;
+    font-size: 1.5rem;
+    color: green;
+    margin-left: 6.5rem;
+}
+
+.decreaseRevenue{
+    text-align: center;
+    font-size: 1.5rem;
+    color: red;
+    margin-left: 9rem;
+}
+
+
+.increasePayment{
+    text-align: center;
+    font-size: 1.5rem;
+    color: green;
+    margin-left: 8rem;
+}
+
+.decreasePayment{
+    text-align: center;
+    font-size: 1.5rem;
+    color: red;
+    margin-left: 8rem;
+}

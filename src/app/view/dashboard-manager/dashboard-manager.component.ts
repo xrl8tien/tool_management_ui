@@ -54,7 +54,7 @@ export type ChartOptions3 = {
   markers: any; //ApexMarkers;
   stroke: any; //ApexStroke;
   yaxis: ApexYAxis | ApexYAxis[];
-  grid: ApexGrid;
+  // grid: ApexGrid;
   dataLabels: ApexDataLabels;
   title: ApexTitleSubtitle;
   legend: ApexLegend;
@@ -219,7 +219,7 @@ export class DashboardManagerComponent implements OnInit {
             series: [
               {
                 name: "Payment",
-                type: "line",
+                type: "area",
                 data: [Math.round(this.listPredic[0].payment), Math.round(this.listPredic[1].payment),
                 Math.round(this.listPredic[2].payment), Math.round(this.listPredic[3].payment),
                 Math.round(this.listPredic[4].payment), Math.round(this.listPredic[5].payment),
@@ -231,36 +231,21 @@ export class DashboardManagerComponent implements OnInit {
             colors: ['#F44336', '#E91E63', '#9C27B0'],
             chart: {
               height: 300,
-              type: "line",
+              type: "area",
               stacked: false,
               fontFamily: 'Times New Roman, sans-serif',
-              dropShadow: {
-                enabled: true,
-                color: "#000",
-                top: 18,
-                left: 7,
-                blur: 10,
-                opacity: 0.2
-              },
-              toolbar: {
-                show: false
-              }
+              // toolbar: {
+              //   show: true
+              // }
             },
             stroke: {
               curve: "smooth"
             },
-            grid: {
-              borderColor: "#e7e7e7",
-              row: {
-                colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-                opacity: 0.5
-              }
-            },
             dataLabels: {
-              enabled: true,
+              enabled: false,
             },
             title: {
-              align: "left",
+              align: "right",
               offsetX: 110
             },
             xaxis: {
@@ -298,19 +283,19 @@ export class DashboardManagerComponent implements OnInit {
                 offsetX: 60
               }
             },
-            markers: {
-              size: 1
-            },
+            // markers: {
+            //   size: 1
+            // },
             legend: {
-              horizontalAlign: "left",
+              horizontalAlign: "right",
               offsetX: 40,
-              floating: true,
+              floating: false,
             }
           };
           this.chartOptions2 = {
             series: [],
             chart: {
-              // height: 430,
+              height: 300,
               type: "donut"
             },
             labels: [],

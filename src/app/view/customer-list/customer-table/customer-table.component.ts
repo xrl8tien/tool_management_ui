@@ -118,7 +118,10 @@ export class CustomerTableComponent implements OnInit {
 
 
   public customerDetail(id: number) {
-    this.router.navigate(['customer-detail', id]);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/customer-detail/${id}`])
+    );
+    window.open(url, '_blank');
   }
 
   public editDrafCustomerInfo(customerInfo: CustomerInfo) {

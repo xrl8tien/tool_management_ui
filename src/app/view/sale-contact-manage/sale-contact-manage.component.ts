@@ -24,7 +24,6 @@ import { DistrictDTO } from 'src/app/model/DistrictDTO';
 })
 export class SaleContactManageComponent implements OnInit {
 
-  customerInfo = new CustomerInfo(0, new Date(), 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, 0, '', new Date(), 0, new Date(), '', 0);
 
   constructor(public dialog: MatDialog,
     public customerService: CustomerService,
@@ -226,10 +225,11 @@ export class SaleContactManageComponent implements OnInit {
   }
 
   public yesDialog(id: number) {
+    let customerInfo = new CustomerInfo(0, new Date(), 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, 0, '', new Date(), 0, new Date(), '', 0);
     let dialogRef = this.dialog.open(CustomerAddInfoDialogComponent, {
       height: '80%',
       width: 'fit-content',
-      data: this.customerInfo
+      data: customerInfo
     });
 
     dialogRef.afterClosed().subscribe(result => {

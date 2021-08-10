@@ -15,13 +15,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class CustomerAddInfoDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<CustomerAddInfoDialogComponent>, public snackbar: SnackbarService,private spinner:NgxSpinnerService,
+  constructor(public dialogRef: MatDialogRef<CustomerAddInfoDialogComponent>, public snackbar: SnackbarService, private spinner: NgxSpinnerService,
     @Inject(MAT_DIALOG_DATA) public customerInfo: CustomerInfo, private common: CommonService, private router: Router, private customerService: CustomerService, private notiService: SnackbarService) { }
   selectedDeal: Date;
 
   user = jwt_decode(this.common.getCookie('token_key'));
+  formValid: Boolean = false;
 
-  
 
   genders = Array[2] = [
     { value: 1, viewValue: 'Nam' },
@@ -49,18 +49,22 @@ export class CustomerAddInfoDialogComponent implements OnInit {
     this.spinner.show();
     this.customerInfo.code_em_support = this.user['sub'];
     this.customerService.addCustomerInfo(this.customerInfo).subscribe((data => {
-      if(data){
-        this.customerService.invokeRefreshTableFun(); 
-        
+      if (data) {
+        this.customerService.invokeRefreshTableFun();
+        this.formValid = true;
       } else {
-        this.snackbar.openSnackBar("Email Hoặc CMT Bị Trùng","Đóng");
+        this.snackbar.openSnackBar("Email Hoặc CMT Bị Trùng", "Đóng");
+        this.formValid = false;
       }
       this.spinner.hide();
     }))
   }
+  public onClose() {
+    this.formValid = false;
+  }
 
-  caculateAge(date:any){
+  caculateAge(date: any) {
     this.customerInfo.birth_date = new Date(date);
-    this.customerInfo.age =this.common.calculateAge(new Date(date));
+    this.customerInfo.age = this.common.calculateAge(new Date(date));
   }
 }

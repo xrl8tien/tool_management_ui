@@ -46,7 +46,10 @@ illustrations : Array<Illustration>;
   }
 
   public illustrationDetail(id:number){
-    this.router.navigate(['detail-illustration',id]);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/detail-illustration/${id}`])
+    );
+    window.open(url, '_blank');
   }
 
   searchValue: String = "";

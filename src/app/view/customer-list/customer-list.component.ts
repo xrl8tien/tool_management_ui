@@ -12,13 +12,12 @@ import { CustomerAddInfoDialogComponent } from '../dialog/customer-add-info-dial
 export class CustomerListComponent implements OnInit {
 
   status: boolean = false;
-  
-  
 
-  customerInfo = new CustomerInfo(0,new Date(),0,'','','','','','','','','','','','','','',0,0,0,0,'','','',0,'','','','','','','','','','','','','','','','','','',0,'',0,0,'',new Date(),0,new Date(),'',0);
 
-  constructor(private common:CommonService,public dialog : MatDialog) { }
-  
+
+
+  constructor(private common: CommonService, public dialog: MatDialog) { }
+
   ngOnInit(): void {
     this.common.titlePage = "Danh Sách Khách Hàng";
   }
@@ -27,13 +26,14 @@ export class CustomerListComponent implements OnInit {
     this.status = !this.status;
   }
 
-  public openDialog(){
-    let dialogRef = this.dialog.open(CustomerAddInfoDialogComponent,{
-      height:'80%',
-      width:'fit-content',
-      data:this.customerInfo
+  public openDialog() {
+    let customerInfo = new CustomerInfo(0, new Date(), 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0, 0, '', new Date(), 0, new Date(), '', 0);
+    let dialogRef = this.dialog.open(CustomerAddInfoDialogComponent, {
+      height: '80%',
+      width: 'fit-content',
+      data: customerInfo
     });
-    
+
     dialogRef.afterClosed().subscribe(result => {
     })
   }

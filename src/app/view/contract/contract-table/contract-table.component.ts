@@ -63,7 +63,10 @@ export class ContractTableComponent implements OnInit {
   }
 
   public contractDetail(id: number) {
-    this.router.navigate(['contract-detail', id]);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/contract-detail/${id}`])
+    );
+    window.open(url, '_blank');
   }
 
   public refresh() {

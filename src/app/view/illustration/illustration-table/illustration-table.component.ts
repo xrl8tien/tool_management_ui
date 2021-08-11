@@ -80,7 +80,10 @@ export class IllustrationTableComponent implements OnInit {
 
 
   public listIllustration(id: number) {
-    this.router.navigate(['list-illustration', id]);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/list-illustration/${id}`])
+    );
+    window.open(url, '_blank');
   }
 
   Search() {

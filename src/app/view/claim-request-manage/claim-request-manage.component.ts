@@ -92,11 +92,17 @@ export class ClaimRequestManageComponent implements OnInit {
   }
 
   public requestDetail(id_request: number) {
-    this.router.navigate(['claim-request-detail', id_request]);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/claim-request-detail/${id_request}`])
+    );
+    window.open(url, '_blank');
   }
 
   public claimNoticeForm(id_request: number) {
-    this.router.navigate(['form-notice-claim', id_request]);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/form-notice-claim/${id_request}`])
+    );
+    window.open(url, '_blank');
   }
 
   contract: Contract;

@@ -25,6 +25,7 @@ export class HomeCustomerComponent implements OnInit {
   empolyeeInfo: EmployeeInfoDTO;
   ngOnInit(): void {
     var code_em = this.common.getCookie('token_key');
+    var code_cus = this.common.getCookie('token_customer');
     if (code_em) {
       this.spinner.show();
       this.employeeSer.getDetailEmployebyCode(jwt_decode(code_em)['sub']).subscribe((data => {
@@ -53,7 +54,8 @@ export class HomeCustomerComponent implements OnInit {
           this.spinner.hide();
         }));
       }))
-    } else {
+    }
+    if (!code_em && !code_cus) {
       if (this.common.getSession('contact') == null) {
         let dialogRef = this.dialog.open(GetContactInfoComponent, {});
         this.common.setSession('contact', 'ok');

@@ -288,7 +288,7 @@ export class DashboardManagerComponent implements OnInit {
           this.chartOptions2 = {
             series: [],
             chart: {
-              height: 338,
+              height: 347,
               type: "donut"
             },
             labels: [],

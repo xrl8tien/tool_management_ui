@@ -27,22 +27,22 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="inputName">Họ và tên: </label>
-                    <span>{{customerInfo.full_name}}</span>
-                    <!-- <input type="text" class="form-control" id="inputName" name="code_sender" [(ngModel)]="fullName"
-                        required> -->
+                    <!-- <span>{{customerInfo.full_name}}</span> -->
+                    <input type="text" class="form-control" id="inputName" name="code_sender" [(ngModel)]="fullName"
+                        required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label>Ngày sinh: </label>
-                    <!-- <input class="form-control" type="date" name="birthday"> -->
-                    <span>{{customerInfo.birth_date | date:'dd/MM/yyyy'}}</span>
+                    <input class="form-control" type="date" name="birthday">
+                    <!-- <span>{{customerInfo.birth_date | date:'dd/MM/yyyy'}}</span> -->
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label for="inputCMND">Số CMND/CCCD: </label>
-                    <span>{{customerInfo.id_card}}</span>
-                    <!-- <input type="text" class="form-control" id="inputCMND" name="inputCMND" [(ngModel)]="id_card"
-                        required> -->
+                    <!-- <span>{{customerInfo.id_card}}</span> -->
+                    <input type="text" class="form-control" id="inputCMND" name="inputCMND" [(ngModel)]="id_card"
+                        required>
                 </div>
             </div>
 
@@ -59,14 +59,14 @@
                 </div>
                 <div class="col-md-2 mb-3" *ngFor="let contract of listContracts">
                     <label>Có hiệu lực từ: </label>
-                    <span>{{contract.start_time | date:'dd/MM/yyyy'}}</span>
-                    <!-- <input class="form-control" type="date" name="start_date"> -->
+                    <!-- <span>{{contract.start_time | date:'dd/MM/yyyy'}}</span> -->
+                    <input class="form-control" type="date" name="start_date">
                 </div>
                 <div class="col-md-2 mb-3" *ngFor="let contract of listContracts">
                     <label>đến</label>
                     <br>
-                    <span>{{contract.end_time | date:'dd/MM/yyyy'}}</span>
-                    <!-- <input class="form-control" type="date" name="end_date"> -->
+                    <!-- <span>{{contract.end_time | date:'dd/MM/yyyy'}}</span> -->
+                    <input class="form-control" type="date" name="end_date">
                 </div>
 
                 <div class="form-group col-md-6">
@@ -108,24 +108,24 @@
 
             <div class="form-row">
                 <label for="inputAddress">Địa chỉ liên hệ: </label>
-                <span>{{customerInfo.conadd_no_street + " , " + customerInfo.conadd_district + " , " +
-                    customerInfo.conadd_city}}</span>
-                <!-- <input type="text" class="form-control" id="inputAddress" name="inputAddress" [(ngModel)]="address"
-                    required> -->
+                <!-- <span>{{customerInfo.conadd_no_street + " , " + customerInfo.conadd_district + " , " +
+                    customerInfo.conadd_city}}</span> -->
+                <input type="text" class="form-control" id="inputAddress" name="inputAddress" [(ngModel)]="address"
+                    required>
             </div>
 
             <div class="form-row" style="margin-top: 1rem;">
                 <div class="col-md-6 mb-1">
                     <label for="inputPhone">Số ĐT: </label>
-                    <span>{{ customerInfo.phone_1}}</span>
-                    <!-- <input type="text" class="form-control" id="inputPhone" name="inputPhone" [(ngModel)]="phoneNo"
-                        required> -->
+                    <!-- <span>{{ customerInfo.phone_1}}</span> -->
+                    <input type="text" class="form-control" id="inputPhone" name="inputPhone" [(ngModel)]="phoneNo"
+                        required>
                 </div>
                 <div class="col-md-6 mb-1">
                     <label for="inputEmail">Email: </label>
-                    <span>{{customerInfo.email}}</span>
-                    <!-- <input type="email" class="form-control" id="inputEmail" name="inputEmail" [(ngModel)]="email"
-                        required> -->
+                    <!-- <span>{{customerInfo.email}}</span> -->
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" [(ngModel)]="email"
+                        required>
                 </div>
             </div>
 
@@ -316,6 +316,12 @@
         được ủy quyền của NĐBH cho pháp Bảo hiểm ISolution và/hoặc đại diện của họ tiếp cận với các bên thứ ba
         để thu thập thông tin cần thiết cho việc xét bồi thường này bao gồm, nhưng không giới hạn ở việc tiếp
         cận bác sỹ và đang điều trị cho NĐBH.</p> -->
+
+            <p class="sign-name">NGƯỜI YÊU CẦU GIẢI QUYẾT QUYỀN LỢI BẢO HIỂM</p>
+            <p style="margin-left: 60px;"><i>(ký tên và ghi họ tên bằng chữ thường)</i></p>
+            <br><br><br><br><br><br><br><br><br>
+            <p style="margin-left: 130px; font-size: 20px;">{{fullName}}</p>
+
             <div class="form-group">
                 <div class="custom-upload-div">
                     <label for="inputFile">Giấy tờ kèm theo</label>
@@ -326,16 +332,10 @@
                     <input id="file" type="file" (change)="onChangeFile($event)" />
                 </div>
             </div>
-            <br><br><br><br><br>
-            <p class="sign-name">NGƯỜI YÊU CẦU GIẢI QUYẾT QUYỀN LỢI BẢO HIỂM</p>
-            <p style="margin-left: 60px;"><i>(ký tên và ghi họ tên bằng chữ thường)</i></p>
-            <br><br><br><br><br><br><br><br><br>
-            <p style="margin-left: 130px; font-size: 20px;">{{fullName}}</p>
-            <!-- Thêm tên tự động -->
-            <!-- <p style="margin-left: 40px; font-size: 16px;">Ngày: {{format1}}</p> -->
-            <!-- Lấy ngày hiện tại -->
+            <!-- <br><br><br><br><br> -->
         </form>
         <div class="btn-end" style="margin-left: 20rem; padding-bottom: 20px;">
+            <a href="/" type="submit" class="btn btn-warning">Trở về</a>
             <button type="submit" class="btn btn-primary" [disabled]="requestForm.invalid" (click)="sendReq()">Xác
                 nhận</button>
             <button type="button" class="btn btn-info" (click)="dowloadPDF()">Xuất tài liệu PDF</button>

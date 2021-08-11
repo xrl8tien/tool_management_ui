@@ -161,7 +161,7 @@ export class DashboardManagerComponent implements OnInit {
               }
             ],
             chart: {
-              height: 300,
+              height: 250,
               type: "area",
               stacked: false,
               fontFamily: 'Times New Roman, sans-serif',
@@ -230,7 +230,7 @@ export class DashboardManagerComponent implements OnInit {
             ],
             colors: ['#F44336', '#E91E63', '#9C27B0'],
             chart: {
-              height: 300,
+              height: 250,
               type: "area",
               stacked: false,
               fontFamily: 'Times New Roman, sans-serif',
@@ -295,7 +295,7 @@ export class DashboardManagerComponent implements OnInit {
           this.chartOptions2 = {
             series: [],
             chart: {
-              height: 300,
+              height: 308,
               type: "donut"
             },
             labels: [],

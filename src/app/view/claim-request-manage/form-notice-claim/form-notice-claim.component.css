@@ -64,3 +64,9 @@ h2{
     padding-top: 8px;
 }
 
+@media print {
+    button {
+      display: none;
+    }
+}
+

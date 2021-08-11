@@ -123,3 +123,26 @@ span{
     font-weight: 600;
     margin-left: 20px;
 }
+
+@media print {
+    button {
+        display: none;
+      }
+  
+      input{
+          border: none;
+      }
+  
+      textarea{
+          border: none;
+      }
+  
+      a{
+          display: none;
+      }
+  
+      select{
+          border: none;
+      }
+
+}

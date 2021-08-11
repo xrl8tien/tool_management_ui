@@ -230,8 +230,7 @@ import { DashboardManagerComponent } from './view/dashboard-manager/dashboard-ma
     SaleDashboardComponent,
     ClaimManagerFormComponent,
     FormNoticeClaimComponent,
-    DashboardManagerComponent,
-
+    DashboardManagerComponent
   ],
   imports: [
     DataTablesModule,

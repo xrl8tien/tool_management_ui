@@ -161,7 +161,7 @@ export class DashboardManagerComponent implements OnInit {
               }
             ],
             chart: {
-              height: 250,
+              height: 257,
               type: "area",
               stacked: false,
               fontFamily: 'Times New Roman, sans-serif',
@@ -230,22 +230,16 @@ export class DashboardManagerComponent implements OnInit {
             ],
             colors: ['#F44336', '#E91E63', '#9C27B0'],
             chart: {
-              height: 250,
+              height: 257,
               type: "area",
               stacked: false,
               fontFamily: 'Times New Roman, sans-serif',
-              // toolbar: {
-              //   show: true
-              // }
-            },
-            stroke: {
-              curve: "smooth"
             },
             dataLabels: {
               enabled: false,
             },
             title: {
-              align: "right",
+              align: "left",
               offsetX: 110
             },
             xaxis: {
@@ -254,13 +248,12 @@ export class DashboardManagerComponent implements OnInit {
             yaxis: [
               {
                 seriesName: "Payment",
-                opposite: true,
                 axisTicks: {
                   show: true
                 },
                 axisBorder: {
                   show: true,
-                  color: "#FEB019"
+                  color: "#F44336"
                 },
                 labels: {
                   style: {
@@ -270,7 +263,7 @@ export class DashboardManagerComponent implements OnInit {
                 title: {
                   text: "Payment (Đồng)",
                   style: {
-                    color: "#FEB019"
+                    color: "#E91E63"
                   }
                 }
               }
@@ -295,7 +288,7 @@ export class DashboardManagerComponent implements OnInit {
           this.chartOptions2 = {
             series: [],
             chart: {
-              height: 308,
+              height: 338,
               type: "donut"
             },
             labels: [],

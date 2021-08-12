@@ -65,32 +65,31 @@
                         </a>
                     </li>
                     <ng-template [ngIf]="common.getCookie('token_customer')">
+
                         <li class="nav-item dropdown">
-                            <button type="button" class="icon-button">
-                                <span class="material-icons">
-                                    notifications
-                                </span>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a *ngFor="let noti of listNotifications" class="dropdown-item" href="{{noti.url}}">
-                                        <i *ngIf="noti.type == 1" class="fas fa-folder-plus fa-2x">
-                                            <p class="notitile">{{noti.title}}</p>
-                                        </i>
-                                        <i *ngIf="noti.type == 2" class="fas fa-comment-dollar fa-2x">
-                                            <p class="notitile">{{noti.title}}</p>
-                                        </i>
-                                        <i *ngIf="noti.type == 3" class="fas fa-ad fa-2x">
-                                            <p class="notitile">{{noti.title}}</p>
-                                        </i>
-                                        <i *ngIf="noti.type == 4" class="fas fa-birthday-cake fa-2x">
-                                            <p class="notitile">{{noti.title}}</p>
-                                        </i>
-                                        <p>{{noti.description}}<br>
-                                            {{noti.date | date}}
-                                        </p>
-                                    </a>
-                                </div>
-                                <span git initclass="icon-button_badge">{{listNotifications.length}}</span>
-                            </button>
+                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                <span class="dropdown-item dropdown-header">{{listNotifications.length}} thông
+                                    báo</span>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item" *ngFor="let noti of listNotifications">
+                                    <i *ngIf="noti.type == 1">
+                                        <img src="assets/images/money-transfer.png"> {{noti.title}}</i>
+                                    <i *ngIf="noti.type == 2">
+                                        <img src="assets/images/add-file.png"> {{noti.title}}</i>
+                                    <i *ngIf="noti.type == 3">
+                                        <img src="assets/images/online-advertising (1).png"> {{noti.title}}</i>
+                                    <i *ngIf="noti.type == 4">
+                                        <img src="assets/images/cake.png"> {{noti.title}}</i>
+                                    <span class="text-muted text-sm">{{noti.description}}</span>
+                                    <span class="text-muted text-sm"><i class="far fa-clock mr-1">{{noti.date |
+                                            date}}</i></span>
+                                </a>
+                            </div>
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <i class="far fa-bell"></i>
+                                <span class="badge badge-warning navbar-badge"
+                                    *ngFor="let noti of listNotifications">{{listNotifications.length}}</span>
+                            </a>
                         </li>
                         <li class="nav-item dropdown container-image-cust">
                             <img src="../../assets/images/profile_man.png" class="img_customer">

@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,139 +6,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body class="hold-transition sidebar-mini"> -->
-<div class="wrapper">
-    <div class="content-wrapper-modify">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <div class="content-wrapper-modify">
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Main row -->
+                    <div class="row">
+                        <!-- Left col -->
+                        <!-- Process Group -->
+                        <div class="col-lg-3 col-6" style="margin-bottom: 60px;">
+                            <div class="info-box mb-3" style="padding-bottom: 34px;">
+                                <div class="info-box-content">
+                                    <div>
+                                        <span class="left" style="font-size: 16px;"><b>Tổng doanh
+                                                thu</b></span>
+                                        <span class="right" style="font-size: 16px;"><b>Tháng {{month}}</b></span>
+                                    </div>
+                                    <p class="money">{{listPredic[month
+                                        -1].revenue | currency:"VND"}}</p>
+                                    <div *ngIf="(listPredic[month - 1].revenue - listPredic[month - 2].revenue) > 0"
+                                        class="increseMoney">
+                                        <span class="increaseRevenue">
+                                            <p class="center">
+                                                + {{listPredic[month
+                                                -1].revenue / listPredic[month - 2].revenue * 100 | number}} %
+                                            </p>
+                                        </span>
+                                        <span>
+                                            <p class="center">
+                                                <i>(So với tháng trước)</i>
+                                            </p>
+                                        </span>
+                                    </div>
+
+                                    <div *ngIf="(listPredic[month - 1].revenue - listPredic[month - 2].revenue) < 0">
+                                        <span class="decreaseRevenue">
+                                            <p class="center">
+                                                - {{listPredic[month
+                                                -1].revenue / listPredic[month - 2].revenue * 100 | number}} %
+                                            </p>
+                                        </span>
+                                        <span>
+                                            <p class="center">
+                                                <i>(So với tháng trước)</i>
+                                            </p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6" style="margin-bottom: 60px;">
+                            <div class="info-box mb-3" style="padding-bottom: 34px;">
+                                <div class="info-box-content">
+                                    <div>
+                                        <span class="left" style="font-size: 16px;"><b>Tổng chi trả</b></span>
+                                        <span class="right" style="font-size: 16px;"><b>Tháng {{month}}</b></span>
+                                    </div>
+                                    <p class="money">
+                                        {{listPredic[month
+                                        -1].payment | currency:"VND"}}</p>
+                                    <div *ngIf="(listPredic[month - 1].payment - listPredic[month - 2].payment) > 0">
+                                        <span class="increasePayment">
+                                            <p class="center">
+                                                + {{listPredic[month
+                                                -1].payment / listPredic[month - 2].payment * 100 | number}} %
+                                            </p>
+                                        </span>
+                                        <span>
+                                            <p class="center">
+                                                <i>(So với tháng trước)</i>
+                                            </p>
+                                        </span>
+                                    </div>
+
+                                    <div *ngIf="(listPredic[month - 1].payment - listPredic[month - 2].payment) < 0"
+                                        class="increseMoney">
+                                        <span class="decreasePayment">
+                                            <p class="center">
+                                                - {{listPredic[month
+                                                -1].payment / listPredic[month - 2].payment * 100 | number}} %
+                                            </p>
+                                        </span>
+                                        <span>
+                                            <p class="center">
+                                                <i>(So với tháng trước)</i>
+                                            </p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" style="margin-top: 15px;">
+                            <div class="card">
+                                <div class="card-body" style="padding-bottom: 0;">
+                                    <h2 class="chart-title" style="margin-top: -10px;">Biều đồ doanh thu năm {{year}}
+                                    </h2>
+                                    <div id="chart1">
+                                        <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                                            [xaxis]="chartOptions1.xaxis" [markers]="chartOptions1.markers"
+                                            [stroke]="chartOptions1.stroke" [yaxis]="chartOptions1.yaxis"
+                                            [dataLabels]="chartOptions1.dataLabels" [fill]="chartOptions1.fill"
+                                            [tooltip]="chartOptions1.tooltip" [legend]="chartOptions1.legend"
+                                            [colors]="chartOptions1.colors">
+                                        </apx-chart>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6" style="margin-top: -78px;">
+                            <div class="card">
+                                <div class="card-body" style="padding-bottom: 0;">
+                                    <h2 class="chart-title" style="margin-top: -10px;">Biều đồ tỷ lệ sản phẩm bán được
+                                        năm
+                                        {{year}}</h2>
+                                    <div id="chart2">
+                                        <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
+                                            [labels]="chartOptions2.labels" [responsive]="chartOptions2.responsive">
+                                        </apx-chart>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body" style="padding-bottom: 0;">
+                                    <h2 class="chart-title" style="margin-top: -10px;">Biều đồ chi trả năm {{year}}</h2>
+                                    <div id="chart3">
+                                        <apx-chart [series]="chartOptions3.series" [chart]="chartOptions3.chart"
+                                            [xaxis]="chartOptions3.xaxis" [markers]="chartOptions3.markers"
+                                            [stroke]="chartOptions3.stroke" [yaxis]="chartOptions3.yaxis"
+                                            [dataLabels]="chartOptions3.dataLabels" [fill]="chartOptions3.fill"
+                                            [tooltip]="chartOptions3.tooltip" [legend]="chartOptions3.legend"
+                                            [colors]="chartOptions3.colors">
+                                        </apx-chart>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- </div> -->
+                    </div>
+                    <!-- /.row (main row) -->
                 </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- /.content-header -->
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <!-- Main row -->
-                <div class="row">
-                    <!-- Left col -->
-                    <!-- Process Group -->
-                    <div class="col-lg-3 col-6" style="margin-top: -75px; margin-bottom: 60px;">
-                        <div class="info-box mb-3" style="padding-bottom: 60px; padding-top: 20px;">
-                            <div class="info-box-content">
-                                <span style="font-size: 16px; margin-bottom: 3rem;"><b>Tổng doanh thu</b></span>
-                                <p style="text-align: center; font-weight: 500; font-size: 36px;">{{listPredic[month
-                                    -1].revenue | currency:"VND"}}</p>
-                                <div *ngIf="(listPredic[month - 1].revenue - listPredic[month - 2].revenue) > 0"
-                                    class="increseMoney">
-                                    <span class="increaseRevenue">
-                                        + {{listPredic[month
-                                        -1].revenue / listPredic[month - 2].revenue * 100 | number}} %
-                                    </span><br>
-                                    <span style="margin-left: 7rem;"><i>(So với tháng trước)</i></span>
-                                </div>
-
-                                <div *ngIf="(listPredic[month - 1].revenue - listPredic[month - 2].revenue) < 0">
-                                    <span class="decreaseRevenue">
-                                        - {{listPredic[month
-                                        -1].revenue / listPredic[month - 2].revenue * 100 | number}} %
-                                    </span><br>
-                                    <span style="margin-left: 7rem;"><i>(So với tháng trước)</i></span>
-                                </div>
-                            </div>
-                            <span style="font-size: 16px;"><b>Tháng {{month}}</b></span>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-6" style="margin-top: -75px; margin-bottom: 60px;">
-                        <div class="info-box mb-3" style="padding-bottom: 60px; padding-top: 20px;">
-                            <div class="info-box-content">
-                                <span style="font-size: 16px; margin-bottom: 3rem;"><b>Tổng chi trả</b></span>
-                                <p style="text-align: center; font-weight: 500; font-size: 36px;" class="predicMoney">
-                                    {{listPredic[month
-                                    -1].payment | currency:"VND"}}</p>
-                                <div *ngIf="(listPredic[month - 1].payment - listPredic[month - 2].payment) > 0">
-                                    <span class="increasePayment">
-                                        + {{listPredic[month
-                                        -1].payment / listPredic[month - 2].payment * 100 | number}} %
-                                    </span><br>
-                                    <span style="margin-left: 7rem;"><i>(So với tháng trước)</i></span>
-                                </div>
-
-                                <div *ngIf="(listPredic[month - 1].payment - listPredic[month - 2].payment) < 0"
-                                    class="increseMoney">
-                                    <span class="decreasePayment">
-                                        - {{listPredic[month
-                                        -1].payment / listPredic[month - 2].payment * 100 | number}} %
-                                    </span><br>
-                                    <span style="margin-left: 7rem;"><i>(So với tháng trước)</i></span>
-                                </div>
-                            </div>
-                            <span style="font-size: 16px;"><b>Tháng {{month}}</b></span>
-                        </div>
-                    </div>
-                    <div class="col-lg-6" style="margin-top: -30px;">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="chart-title" style="margin-top: -10px;">Biều đồ doanh thu năm {{year}}</h2>
-                                <div id="chart1">
-                                    <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
-                                        [xaxis]="chartOptions1.xaxis" [markers]="chartOptions1.markers"
-                                        [stroke]="chartOptions1.stroke" [yaxis]="chartOptions1.yaxis"
-                                        [dataLabels]="chartOptions1.dataLabels" [fill]="chartOptions1.fill"
-                                        [tooltip]="chartOptions1.tooltip" [legend]="chartOptions1.legend"
-                                        [colors]="chartOptions1.colors">
-                                    </apx-chart>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6" style="margin-top: -62px;">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="chart-title" style="margin-top: -10px;">Biều đồ tỷ lệ sản phẩm bán được năm
-                                    {{year}}</h2>
-                                <div id="chart2">
-                                    <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
-                                        [labels]="chartOptions2.labels" [responsive]="chartOptions2.responsive">
-                                    </apx-chart>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6" style="margin-top: -17px;">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="chart-title" style="margin-top: -10px;">Biều đồ chi trả năm {{year}}</h2>
-                                <div id="chart3">
-                                    <apx-chart [series]="chartOptions3.series" [chart]="chartOptions3.chart"
-                                        [xaxis]="chartOptions3.xaxis" [markers]="chartOptions3.markers"
-                                        [stroke]="chartOptions3.stroke" [yaxis]="chartOptions3.yaxis"
-                                        [dataLabels]="chartOptions3.dataLabels" [fill]="chartOptions3.fill"
-                                        [tooltip]="chartOptions3.tooltip" [legend]="chartOptions3.legend"
-                                        [colors]="chartOptions3.colors">
-                                    </apx-chart>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <!-- </div> -->
-                </div>
-                <!-- /.row (main row) -->
-            </div>
-            <!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
     </div>
-</div>
-<!-- </body>
+</body>
 
-</html> -->
+</html>

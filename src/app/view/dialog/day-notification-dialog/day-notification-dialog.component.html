@@ -27,8 +27,10 @@
                             <td>{{contract.contract_total_value}}</td>
                             <td>{{paymentPeriod(contract.payment_period_id)}}</td>
                             <td>{{contract.start_time | date: 'dd-MM-yyyy'}}</td>
-                            <button (click)="sendPaymentNotification(contract.id_customer)" class="btn btn-info"
-                                style="height: 40px; width: 130px; margin: 10px; color: white;">Gửi Thông Báo</button>
+                            <button
+                                (click)="sendPaymentNotification(contract.id_customer, contract.id, contract.insurance_type)"
+                                class="btn btn-info" style="height: 40px; width: 130px; margin: 10px; color: white;">Gửi
+                                Thông Báo</button>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -106,9 +108,18 @@
                         [(ngModel)]="description" #note="ngModel" required>
                         </textarea>
                 </form>
-                <button mat-button mat-dialog-close type="submit" [disabled]="reviewForm.invalid"
-                    (click)="sendNotification()" class="btn btn-outline-info">Gửi</button>
-                <button mat-button mat-dialog-close>Đóng</button>
+                <button mat-button type="submit" [disabled]="reviewForm.invalid" (click)="sendNotification()"
+                    class="btn btn-outline-info">Gửi</button>
+            </mat-tab>
+
+            <mat-tab label="Cài Đặt Gửi TB Tự Động">
+                <form #notiSetting="ngForm">
+                    <label class="label-title">Khách hàng sẽ nhận được thông báo trước:</label>
+                    <input type="number" name="date_setting" required 
+                        [(ngModel)]="notificationSetting.date_setting"> ngày
+                </form>
+                <button mat-button type="submit" [disabled]="notiSetting.invalid" (click)="saveSetting()"
+                    class="btn btn-outline-info">Lưu</button>
             </mat-tab>
         </mat-tab-group>
     </div>

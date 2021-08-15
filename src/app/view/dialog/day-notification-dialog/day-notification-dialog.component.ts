@@ -10,6 +10,8 @@ import { CommonService } from 'src/app/services/common/common.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { element } from 'protractor';
+import { NotificationSetting } from 'src/app/model/NotificationSetting';
+import { ContractService } from 'src/app/services/contract/contract.service';
 
 @Component({
   selector: 'app-day-notification-dialog',
@@ -20,7 +22,7 @@ export class DayNotificationDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { listBirthdayCus: Array<CustomerInfo>, listExpiredContract: Array<Contract> },
     private contractRequestService: ContractrequestService, private snackBar: SnackbarService, private customerService: CustomerService,
-    private common: CommonService) { }
+    private common: CommonService, private contractService: ContractService) { }
 
   type: number;
   title: string;
@@ -30,9 +32,15 @@ export class DayNotificationDialogComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings: IDropdownSettings = {};
+  notificationSetting: NotificationSetting = new NotificationSetting(0, jwt_decode(this.common.getCookie('token_key'))['sub'], 30);
 
   ngOnInit(): void {
     let tmp = [];
+    this.contractService.getNotificationSetting(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
+      if (data != null) {
+        this.notificationSetting = data;
+      }
+    }))
     this.customerService.getAllCustomerInfo(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
       for (let i = 0; i < data.length; i++) {
         tmp.push({ item_id: data[i].id, item_text: "#KH" + data[i].id + "|" + data[i].full_name });
@@ -80,9 +88,9 @@ export class DayNotificationDialogComponent implements OnInit {
     }))
   }
 
-  sendPaymentNotification(id: number) {
-    let noti = new CustomerNotification(0, id, "Hợp đồng của quý khách sắp đến hạn nộp tiền",
-      "Quý khách vui lòng đóng tiền đúng hạn theo hợp đồng!", "", 2, new Date());
+  sendPaymentNotification(id_customer: number, id_contract: number, insurance_type: string) {
+    let noti = new CustomerNotification(0, id_customer, "Nhắc nhở đóng tiền hợp đồng",
+      "Hợp đồng #HD" + id_contract + "-" + insurance_type + " của quý khách sắp đến hạn nộp tiền. Quý khách vui lòng đóng tiền đúng hạn theo hợp đồng!", "contract-customerweb", 2, new Date());
     this.contractRequestService.addOneNotification(noti).subscribe((noti => {
       this.snackBar.openSnackBar("Gửi Thông Báo Thành Công", "Đóng");
     }))
@@ -96,9 +104,21 @@ export class DayNotificationDialogComponent implements OnInit {
       let noti = new CustomerNotification(0, element.item_id, this.title,
         this.description, this.url, this.type, new Date());
       this.contractRequestService.addOneNotification(noti).subscribe((noti => {
+        this.ngOnInit();
         this.snackBar.openSnackBar("Gửi Thông Báo Thành Công", "Đóng");
       }))
     })
+  }
+
+  saveSetting() {
+    if (this.notificationSetting.date_setting >= 3 && this.notificationSetting.date_setting <= 30){
+      this.contractService.updateNotificationSetting(this.notificationSetting).subscribe((data => {
+        this.ngOnInit();
+        this.snackBar.openSnackBar("Lưu Cài Đặt Thành Công", "Đóng");
+      }))
+    } else {
+      this.snackBar.openSnackBar("Ngày Cài Đặt Phải Nằm Trong Khoảng 3 Đến 30 Ngày", "Đóng");
+    }
   }
 
   paymentPeriod(payment_id: number): string {

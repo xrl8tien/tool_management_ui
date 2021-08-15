@@ -5,6 +5,7 @@ import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Contract } from 'src/app/model/Contract';
 import { CustomerInfoDTO } from 'src/app/model/CustomerInfoDTO';
+import { NotificationSetting } from 'src/app/model/NotificationSetting';
 import { CommonService } from '../common/common.service';
 
 @Injectable({
@@ -39,6 +40,20 @@ export class ContractService {
     const url = this.common.makeUrl("/contract/get_all_contract_of_employee_ex");
     return this.httpClient
       .post<any>(url, codes_em_support, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public updateNotificationSetting(notificationSettting: NotificationSetting): Observable<any> {
+    const url = this.common.makeUrl("/contract/update_notification_setting");
+    return this.httpClient
+      .post<any>(url, notificationSettting, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getNotificationSetting(code_sale: string): Observable<any> {
+    const url = this.common.makeUrl("/contract/get_notification_setting");
+    return this.httpClient
+      .post<any>(url, code_sale, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

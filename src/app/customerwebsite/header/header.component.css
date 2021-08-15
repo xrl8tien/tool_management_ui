@@ -67,7 +67,11 @@
     font-weight: 600;
 }
 
-span{
+span{ 
     display:block;
-    /* margin-top: 20px; */
-} 
+    /* width: 300px; */
+}
+
+.drop-menu .dropdown-menu-sm .dropdown-menu-right{
+    width: 300px;
+}

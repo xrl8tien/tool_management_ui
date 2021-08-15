@@ -39,7 +39,7 @@ p{
 .order-info{
     margin-top: 1rem;
     background: cornflowerblue ;
-    color: white;
+    color: black;
     font-size: 1rem;
     font-weight: 400;
 }
@@ -59,7 +59,7 @@ h2{
     background-color: cornflowerblue;
     margin-left: 3rem;
     margin-right: 3rem;
-    color: white;
+    color: black;
     height: 40px;
     padding-top: 8px;
 }

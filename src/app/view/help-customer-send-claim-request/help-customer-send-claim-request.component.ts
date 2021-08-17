@@ -67,6 +67,7 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
   employeinfoDTO: EmployeeInfoDTO;
   district_name: string = "";
   listId: Array<number>;
+  options: boolean;
 
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,

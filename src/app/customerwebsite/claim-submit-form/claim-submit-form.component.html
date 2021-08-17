@@ -23,20 +23,18 @@
         </div>
 
         <form class="form-container" #requestForm="ngForm">
-            <p class="order-info">I. THÔNG TIN NGƯỜI ĐƯỢC BẢO HIỂM (NĐBH)</p>
+            <p class="order-info">I. THÔNG TIN BÊN MUA BẢO HIỂM (BMBH)</p>
             <div class="form-row">
-                <div class="col-md-4 mb-3">
+                <div class="col-md-8 mb-3">
                     <label for="inputName">Họ và tên: </label>
-                    <!-- <span>{{customerInfo.full_name}}</span> -->
                     <input type="text" class="form-control" id="inputName" name="code_sender" [(ngModel)]="fullName"
-                        required>
+                        required style="text-transform: uppercase;">
                 </div>
 
-                <div class="col-md-4 mb-3">
+                <!-- <div class="col-md-4 mb-3">
                     <label>Ngày sinh: </label>
                     <input class="form-control" type="date" name="birthday">
-                    <!-- <span>{{customerInfo.birth_date | date:'dd/MM/yyyy'}}</span> -->
-                </div>
+                </div> -->
 
                 <div class="col-md-4 mb-3">
                     <label for="inputCMND">Số CMND/CCCD: </label>
@@ -47,7 +45,7 @@
             </div>
 
             <div class="form-row">
-                <div class="col-md-2 mb-3">
+                <div class="col-md-4 mb-3">
                     <label for="inputContractID">Mã số hợp đồng</label>
                     <select id="inputContractID" class="form-control" [formControl]="selectContract" required
                         (change)="onChangeContract($event.target.value)">
@@ -57,19 +55,17 @@
                         </option>
                     </select>
                 </div>
-                <div class="col-md-2 mb-3" *ngFor="let contract of listContracts">
+                <!-- <div class="col-md-2 mb-3" *ngFor="let contract of listContracts">
                     <label>Có hiệu lực từ: </label>
-                    <!-- <span>{{contract.start_time | date:'dd/MM/yyyy'}}</span> -->
                     <input class="form-control" type="date" name="start_date">
                 </div>
                 <div class="col-md-2 mb-3" *ngFor="let contract of listContracts">
                     <label>đến</label>
                     <br>
-                    <!-- <span>{{contract.end_time | date:'dd/MM/yyyy'}}</span> -->
                     <input class="form-control" type="date" name="end_date">
-                </div>
+                </div> -->
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-8">
                     <label for="inputBenefit">Quyền lợi bảo hiểm</label>
                     <select id="inputBenefit" class="form-control" required>
                         <option selected>Chọn loại quyền lợi bảo hiểm...</option>
@@ -83,33 +79,8 @@
                 </div>
             </div>
 
-            <fieldset class="form-group">
-                <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0"><b>Giới tính</b></legend>
-
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridGender" id="gridMale" value="male"
-                                checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                Nam
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridGender" id="gridFemale"
-                                value="female">
-                            <label class="form-check-label" for="gridRadios2">
-                                Nữ
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-
             <div class="form-row">
                 <label for="inputAddress">Địa chỉ liên hệ: </label>
-                <!-- <span>{{customerInfo.conadd_no_street + " , " + customerInfo.conadd_district + " , " +
-                    customerInfo.conadd_city}}</span> -->
                 <input type="text" class="form-control" id="inputAddress" name="inputAddress" [(ngModel)]="address"
                     required>
             </div>
@@ -117,13 +88,11 @@
             <div class="form-row" style="margin-top: 1rem;">
                 <div class="col-md-6 mb-1">
                     <label for="inputPhone">Số ĐT: </label>
-                    <!-- <span>{{ customerInfo.phone_1}}</span> -->
                     <input type="text" class="form-control" id="inputPhone" name="inputPhone" [(ngModel)]="phoneNo"
                         required>
                 </div>
                 <div class="col-md-6 mb-1">
                     <label for="inputEmail">Email: </label>
-                    <!-- <span>{{customerInfo.email}}</span> -->
                     <input type="email" class="form-control" id="inputEmail" name="inputEmail" [(ngModel)]="email"
                         required>
                 </div>
@@ -133,13 +102,13 @@
 
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label>Ngày xảy ra</label>
+                    <label>Ngày xảy ra<span>(*)</span></label>
                     <input class="form-control" type="date" name="day_happen">
                 </div>
             </div>
 
             <div class="mb-4">
-                <label for="validationTextarea">Mô tả về sự kiện bảo hiểm</label>
+                <label for="validationTextarea">Mô tả về sự kiện bảo hiểm<span>(*)</span></label>
                 <textarea class="form-control" id="validationTextarea" name="name" [(ngModel)]="name"
                     required></textarea>
             </div>
@@ -294,7 +263,85 @@
                 </div>
             </div>
 
-            <p class="order-info">VI. CAM KẾT VÀ ĐỒNG Ý</p>
+            <p class="order-info">VI. PHƯƠNG THỨC THANH TOÁN</p>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" [value]="true"
+                    [checked]="options" [(ngModel)]="options">
+                <label class="custom-control-label" for="customRadio1">Chuyển vào tài khoản</label>
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem;" *ngIf="options">
+                <div class="col-md-4 mb-3">
+                    <label for="bankNumber">Số tài khoản</label>
+                    <input type="text" class="form-control" id="bankNumber" name="bankNumber">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="bankName">Tên chủ tài khoản</label>
+                    <input type="text" class="form-control" id="bankName" name="bankName">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="atBank">Tại ngân hàng</label>
+                    <input type="text" class="form-control" id="atBank" name="atBank">
+                </div>
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem;" *ngIf="options">
+                <label for="chiNhanh">Chi nhánh/ phòng Giao dịch</label>
+                <input type="text" class="form-control" id="chiNhanh">
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem;" *ngIf="options">
+                <label for="inputAddress3">Địa chỉ</label>
+                <input type="text" class="form-control" id="inputAddress3">
+            </div>
+
+
+            <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" [value]="false"
+                    [checked]="!options" [(ngModel)]="options">
+                <label class="custom-control-label" for="customRadio2">Nhận tiền mặt bằng CMND/CCCD</label>
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem;" *ngIf="!options">
+                <div class="col-md-3 mb-3">
+                    <label for="nameReceive">Người nhận tiền</label>
+                    <input type="text" class="form-control" id="nameReceive" name="nameReceive">
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label for="idCard">Số CMND/CCCD</label>
+                    <input type="text" class="form-control" id="idCard" name="idCard">
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label for="idCardDate">Ngày cấp</label>
+                    <input type="date" class="form-control" id="idCardDate" name="idCardDate">
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label for="idCardPlace">Nơi cấp</label>
+                    <input type="text" class="form-control" id="idCardPlace" name="idCardPlace">
+                </div>
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem;" *ngIf="!options">
+                <label for="inputAddress4">Tại ngân hàng</label>
+                <input type="text" class="form-control" id="inputAddress4">
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem;" *ngIf="!options">
+                <label for="chiNhanh2">Chi nhánh/ phòng Giao dịch</label>
+                <input type="text" class="form-control" id="chiNhanh2">
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem;" *ngIf="!options">
+                <label for="inputAddress5">Địa chỉ</label>
+                <input type="text" class="form-control" id="inputAddress5">
+            </div>
+
+            <p class="order-info">VII. CAM KẾT VÀ ĐỒNG Ý</p>
 
             <p>Tôi/chúng tôi cam kết những thông tin cung cấp trên đây là đầy đủ và đúng sự thật</p>
             <p>Tôi/chúng tôi ủy quyền cho bất kỳ tổ chức, công ty hay cá nhân nào có hồ sơ hay có hiểu biết về thông
@@ -309,6 +356,11 @@
             <p><span>- </span> Cho phép Công ty được quyền cung cấp các thông tin cá nhân của BMBH/ NĐBH/ NTH và các
                 thông tin liên quan đến hợp đồng bảo hiểm này và/hoặc các hợp đồng bảo hiểm khác có liên quan đến
                 BMBH/ NĐBH/ NTH cho bất kỳ cơ quan nhà nước có thẩm quyền nào.</p>
+            <br>
+
+            <span class="noting"><i>(*) Quý khách vui lòng điền đầy đủ thông tin bên trên. Sau khi điền đủ thông tin vui
+                    lòng xuất file về định dạng FDF và đính kèm file với những file cần thiết.</i></span>
+
             <br><br>
 
             <p class="sign-name">NGƯỜI YÊU CẦU GIẢI QUYẾT QUYỀN LỢI BẢO HIỂM</p>
@@ -326,7 +378,6 @@
                     <input id="file" type="file" (change)="onChangeFile($event)" multiple />
                 </div>
             </div>
-            <!-- <br><br><br><br><br> -->
         </form>
         <div class="btn-end" style="margin-left: 20rem; padding-bottom: 20px;">
             <a href="/" type="submit" class="btn btn-warning">Trở về</a>

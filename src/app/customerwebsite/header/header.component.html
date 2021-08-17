@@ -80,7 +80,8 @@
                                         <img src="assets/images/online-advertising (1).png"> {{noti.title}}</i>
                                     <i *ngIf="noti.type == 4">
                                         <img src="assets/images/cake.png"> {{noti.title}}</i>
-                                    <span class="text-muted text-sm">{{noti.description}}</span>
+                                    <br>
+                                    <span class="text-concat">{{noti.description}}</span>
                                     <span class="text-muted text-sm"><i class="far fa-clock mr-1">{{noti.date |
                                             date}}</i></span>
                                 </a>
@@ -91,6 +92,7 @@
                                     *ngFor="let noti of listNotifications">{{listNotifications.length}}</span>
                             </a>
                         </li>
+
                         <li class="nav-item dropdown container-image-cust">
                             <img src="../../assets/images/profile_man.png" class="img_customer">
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -99,6 +101,7 @@
                                 <a class="dropdown-item" (click)="exit()" style="cursor: pointer;">THOÁT</a>
                             </div>
                         </li>
+
                     </ng-template>
                 </ul>
             </div>

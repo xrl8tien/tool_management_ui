@@ -179,7 +179,7 @@
     <p class="order-info">I. QUYỀN LỢI BẢO HIỂM YÊU CẦU</p>
 
     <div class="form-row">
-        <div class="col-md-2 mb-3">
+        <div class="col-md-4 mb-3">
             <label for="inputContractID">Mã số hợp đồng</label>
             <select id="inputContractID" class="form-control" [formControl]="selectContract"
                 (change)="onChangeContract($event.target.value)" required>
@@ -189,16 +189,16 @@
                 </option>
             </select>
         </div>
-        <div class="col-md-3 mb-3">
+        <!-- <div class="col-md-3 mb-3">
             <label>Có hiệu lực từ</label>
             <input class="form-control" type="date" name="start_date">
         </div>
         <div class="col-md-3 mb-3">
             <label>đến</label>
             <input class="form-control" type="date" name="end_date">
-        </div>
+        </div> -->
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-8">
             <label for="inputBenefit">Quyền lợi bảo hiểm</label>
             <select id="inputBenefit" class="form-control" required>
                 <option selected>Chọn loại quyền lợi bảo hiểm...</option>
@@ -372,7 +372,85 @@
         </div>
     </div>
 
-    <p class="order-info">VI. CAM KẾT VÀ ĐỒNG Ý</p>
+    <p class="order-info">VI. PHƯƠNG THỨC THANH TOÁN</p>
+    <div class="custom-control custom-radio">
+        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" [value]="true"
+            [checked]="options" [(ngModel)]="options">
+        <label class="custom-control-label" for="customRadio1">Chuyển vào tài khoản</label>
+    </div>
+
+    <div class="form-row" style="margin-top: 1rem;" *ngIf="options">
+        <div class="col-md-4 mb-3">
+            <label for="bankNumber">Số tài khoản</label>
+            <input type="text" class="form-control" id="bankNumber" name="bankNumber">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="bankName">Tên chủ tài khoản</label>
+            <input type="text" class="form-control" id="bankName" name="bankName">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="atBank">Tại ngân hàng</label>
+            <input type="text" class="form-control" id="atBank" name="atBank">
+        </div>
+    </div>
+
+    <div class="form-row" style="margin-top: 1rem;" *ngIf="options">
+        <label for="chiNhanh">Chi nhánh/ phòng Giao dịch</label>
+        <input type="text" class="form-control" id="chiNhanh">
+    </div>
+
+    <div class="form-row" style="margin-top: 1rem;" *ngIf="options">
+        <label for="inputAddress3">Địa chỉ</label>
+        <input type="text" class="form-control" id="inputAddress3">
+    </div>
+
+
+    <div class="custom-control custom-radio">
+        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" [value]="false"
+            [checked]="!options" [(ngModel)]="options">
+        <label class="custom-control-label" for="customRadio2">Nhận tiền mặt bằng CMND/CCCD</label>
+    </div>
+
+    <div class="form-row" style="margin-top: 1rem;" *ngIf="!options">
+        <div class="col-md-3 mb-3">
+            <label for="nameReceive">Người nhận tiền</label>
+            <input type="text" class="form-control" id="nameReceive" name="nameReceive">
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <label for="idCard">Số CMND/CCCD</label>
+            <input type="text" class="form-control" id="idCard" name="idCard">
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <label for="idCardDate">Ngày cấp</label>
+            <input type="date" class="form-control" id="idCardDate" name="idCardDate">
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <label for="idCardPlace">Nơi cấP</label>
+            <input type="text" class="form-control" id="idCardPlace" name="idCardPlace">
+        </div>
+    </div>
+
+    <div class="form-row" style="margin-top: 1rem;" *ngIf="!options">
+        <label for="inputAddress4">Tại ngân hàng</label>
+        <input type="text" class="form-control" id="inputAddress4">
+    </div>
+
+    <div class="form-row" style="margin-top: 1rem;" *ngIf="!options">
+        <label for="chiNhanh2">Chi nhánh/ phòng Giao dịch</label>
+        <input type="text" class="form-control" id="chiNhanh2">
+    </div>
+
+    <div class="form-row" style="margin-top: 1rem;" *ngIf="!options">
+        <label for="inputAddress5">Địa chỉ</label>
+        <input type="text" class="form-control" id="inputAddress5">
+    </div>
+
+    <p class="order-info">VII. CAM KẾT VÀ ĐỒNG Ý</p>
 
     <p>Tôi/chúng tôi cam kết những thông tin cung cấp trên đây là đầy đủ và đúng sự thật</p>
     <p>Tôi/chúng tôi ủy quyền cho bất kỳ tổ chức, công ty hay cá nhân nào có hồ sơ hay có hiểu biết về thông
@@ -387,15 +465,11 @@
     <p><span>a. </span> cho phép Công ty được quyền cung cấp các thông tin cá nhân của BMBH/ NĐBH/ NTH và các
         thông tin liên quan đến hợp đồng bảo hiểm này và/hoặc các hợp đồng bảo hiểm khác có liên quan đến
         BMBH/ NĐBH/ NTH cho bất kỳ cơ quan nhà nước có thẩm quyền nào.</p>
+    <br>
+
+    <span class="noting"><i>(*) Quý khách vui lòng điền đầy đủ thông tin bên trên. Sau khi điền đủ thông tin vui
+            lòng xuất file về định dạng FDF và đính kèm file với những file cần thiết.</i></span>
     <br><br>
-
-    <!-- <p><em><strong>CAM KẾT:</strong></em> Người yêu cầu bồi thường cam đoan rằng những thông tin trên là chính
-        xác, đầy đủ và chịu trách nhiệm về các thông tin trên trước pháp luật. NĐBH và/hoặc Người đại diện/Người
-        được ủy quyền của NĐBH đồng ý rằng vớiGiấy yêu cầu bồi thường này, NĐBH và/hoặc Người đại diện/Người
-        được ủy quyền của NĐBH cho pháp Bảo hiểm ISolution và/hoặc đại diện của họ tiếp cận với các bên thứ ba
-        để thu thập thông tin cần thiết cho việc xét bồi thường này bao gồm, nhưng không giới hạn ở việc tiếp
-        cận bác sỹ và đang điều trị cho NĐBH.</p> -->
-
 
     <p class="sign-name">NGƯỜI YÊU CẦU GIẢI QUYẾT QUYỀN LỢI BẢO HIỂM</p>
     <p style="margin-left: 60px;"><i>(ký tên và ghi họ tên bằng chữ thường)</i></p>

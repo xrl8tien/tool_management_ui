@@ -58,6 +58,7 @@ export class ClaimSubmitFormComponent implements OnInit {
   email: string;
   customerInfoList: Array<CustomerInfo>;
   customerInfo: CustomerInfo;
+  options: boolean;
 
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,

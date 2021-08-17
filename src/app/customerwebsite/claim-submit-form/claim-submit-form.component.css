@@ -48,6 +48,7 @@
     max-width: 100%;
     margin-left: 1rem;
     margin-top: 2.5rem;
+    margin-right: .85rem;
 }
 
 button {
@@ -146,6 +147,6 @@ span{
     }
 }
 
-/* .form-control{
-    border: none;
-} */
+.noting{
+    color: red;
+}

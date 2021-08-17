@@ -77,7 +77,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="md-form">
-                                <label for="message">Thắc mắc</label>
+                                <label for="message">Bạn muốn nhận tư vấn về sản phẩm nào?</label>
                                 <textarea type="text" id="message" name="message" rows="2" [(ngModel)]="question"
                                     required class="form-control md-textarea"></textarea>
                             </div>
@@ -100,12 +100,13 @@
             </div>
         </div>
     </div>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
+    <!-- <mat-dialog-actions align="end"> -->
     <button mat-button mat-dialog-close>Hủy</button>
     <button mat-button mat-dialog-close type="submit" [disabled]="contactForm.invalid" class="btn btn-primary"
         (click)="sendContact()">Gửi yêu cầu
         liên
         hệ</button>
-</mat-dialog-actions>
+    <!-- </mat-dialog-actions> -->
+</mat-dialog-content>
+
 <!-- </div> -->

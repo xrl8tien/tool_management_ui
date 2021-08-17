@@ -45,7 +45,8 @@ export class CustomerAddInfoDialogComponent implements OnInit {
     this.customerInfo.types_identification = "Chứng Minh Thư";
   }
   listErrors = [];
-  public onSubmit() {
+
+  onSubmit() {
     this.spinner.show();
     this.customerInfo.code_em_support = this.user['sub'];
     this.customerService.addCustomerInfo(this.customerInfo).subscribe((data => {
@@ -56,11 +57,9 @@ export class CustomerAddInfoDialogComponent implements OnInit {
         this.snackbar.openSnackBar("Email Hoặc CMT Bị Trùng", "Đóng");
         this.formValid = false;
       }
+      this.dialogRef.close(this.formValid);
       this.spinner.hide();
     }))
-  }
-  public onClose() {
-    this.formValid = false;
   }
 
   caculateAge(date: any) {

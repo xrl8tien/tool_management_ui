@@ -64,6 +64,13 @@ export class ContractService {
       .pipe(catchError(this.handleError));
   }
 
+  public sendNotificationEmail(contract: Contract): Observable<any> {
+    const url = this.common.makeUrl("/contract/send_notification_email");
+    return this.httpClient
+      .post<any>(url, contract, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   public searchAllContractForCustomer(id_customer: String, dateFrom: String, dateTo: String, searchValue: String): Observable<any> {
     let data = { id_customer: id_customer, dateFrom: dateFrom, dateTo: dateTo, searchValue: searchValue };
     const url = this.common.makeUrlForCustomer("/customer-api/search-contract-list");

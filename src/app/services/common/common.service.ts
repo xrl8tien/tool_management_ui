@@ -9,6 +9,9 @@ export class CommonService {
   constructor() { }
 
   HOST = 'http://localhost:8080';
+  // HOST = 'http://localhost';
+  // HOST = 'http://34.87.135.175';
+  // HOST = 'http://157.230.245.186';
   // HOST = 'https://isolution.asia';
 
   callRefreshTable = new EventEmitter();

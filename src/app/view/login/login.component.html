@@ -6,7 +6,7 @@
         </div>
         <form (ngSubmit)="onSubmit(signInForm)" #signInForm="ngForm" style="margin-top: 19px;">
             <div class="input-group mb-3">
-                <input class="form-control" placeholder="Mã Đăng Nhập" id="code" name="code" ngModel/>
+                <input class="form-control" placeholder="Mã Đăng Nhập" id="code" name="code" ngModel />
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Mật Khẩu" id="pass" name="pass" ngModel/>
+                <input type="password" class="form-control" placeholder="Mật Khẩu" id="pass" name="pass" ngModel />
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-lock"></span>
@@ -26,6 +26,7 @@
             </div>
             <p class="mb-1 forget-pass">
                 <a [routerLink]="['/forget-password']" style="color: white;">Đặt Lại Mật Khẩu</a>
+                <a href="/" style="color: white; margin-left: 280px;">Quay lại</a>
             </p>
         </form>
     </div>

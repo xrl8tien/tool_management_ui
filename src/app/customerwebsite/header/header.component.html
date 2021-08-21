@@ -23,9 +23,8 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="nav-link" href="feature">
-                            </a><a class="dropdown-item" href="detail-page-customerweb/1"> Bảo hiểm chăm sóc y tế </a>
-                            <a class="dropdown-item" href="detail-page-customerweb/2">Bảo hiểm phẫu thuật và điều trị
-                                ngoại khoa</a>
+                            </a><a class="dropdown-item" href="detail-page-customerweb/1"> Bảo hiểm tử kỳ </a>
+                            <a class="dropdown-item" href="detail-page-customerweb/2"> Bảo hiểm bệnh hiểm nghèo </a>
                             <a class="dropdown-item" href="detail-page-customerweb/3">Chăm sóc sức khỏe dành cho phụ
                                 nữ</a>
                             <a class="dropdown-item" href="detail-page-customerweb/4">Bảo hiểm tai nạn toàn diện</a>
@@ -48,7 +47,7 @@
                         </a>
                     </li> -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="customer-help">
+                        <a class="nav-link" href="#">
                             Hỗ trợ khách hàng
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -59,10 +58,14 @@
 
                         </div>
                     </li>
-                    <li *ngIf="!common.getCookie('token_customer')" class="nav-item">
-                        <a class="nav-link" href="login-customerweb">
+                    <li *ngIf="!common.getCookie('token_customer')" class="nav-item dropdown">
+                        <a class="nav-link">
                             Đăng Nhập
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="login-customerweb">Cổng thông tin dành cho khách hàng</a>
+                            <a class="dropdown-item" href="login">Cổng thông tin dành cho nhân viên</a>
+                        </div>
                     </li>
                     <ng-template [ngIf]="common.getCookie('token_customer')">
 

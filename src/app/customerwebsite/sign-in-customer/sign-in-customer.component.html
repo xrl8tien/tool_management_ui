@@ -20,26 +20,37 @@
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
-                        <figure><img src="../../../assets/dist/img/img_cust/signin-image.jpg" alt="sing up image"></figure>
+                        <figure><img src="../../../assets/dist/img/img_cust/signin-image.jpg" alt="sing up image">
+                        </figure>
                     </div>
 
                     <div class="signin-form">
                         <h2 class="form-title">Đăng nhập</h2>
-                        <form method="POST" class="register-form" id="login-form" (ngSubmit)="onSubmit()" #loginForm='ngForm'>
+                        <form method="POST" class="register-form" id="login-form" (ngSubmit)="onSubmit()"
+                            #loginForm='ngForm'>
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="your_name" placeholder="Mã đăng nhập" [(ngModel)]="customerAcc.code" />
+                                <input type="text" name="your_name" id="your_name" placeholder="Mã đăng nhập"
+                                    [(ngModel)]="customerAcc.code" />
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="your_pass" placeholder="Mật khẩu" [(ngModel)]="customerAcc.pass"/>
+                                <input type="password" name="your_pass" id="your_pass" placeholder="Mật khẩu"
+                                    [(ngModel)]="customerAcc.pass" />
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Đăng nhập"/>
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Đăng nhập" />
+                                <!-- <input type="submit" class="form-submit" value="Quay lại"
+                                    style="margin-left: 20px; background-color:burlywood;"> -->
+                                <a href="/" class="form-submit"
+                                    style="margin-left: 20px; background-color:burlywood;">Quay lại</a>
                             </div>
+                            <!-- <div class="form-group form-button">   
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Quay lại" />
+                            </div> -->
                         </form>
                     </div>
                 </div>

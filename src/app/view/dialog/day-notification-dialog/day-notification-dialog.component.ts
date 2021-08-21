@@ -88,11 +88,13 @@ export class DayNotificationDialogComponent implements OnInit {
     }))
   }
 
-  sendPaymentNotification(id_customer: number, id_contract: number, insurance_type: string) {
-    let noti = new CustomerNotification(0, id_customer, "Nhắc nhở đóng tiền hợp đồng",
-      "Hợp đồng #HD" + id_contract + "-" + insurance_type + " của quý khách sắp đến hạn nộp tiền. Quý khách vui lòng đóng tiền đúng hạn theo hợp đồng!", "contract-customerweb", 2, new Date());
+  sendPaymentNotification(contract: Contract) {
+    let noti = new CustomerNotification(0, contract.id_customer, "Nhắc nhở đóng tiền hợp đồng",
+      "Hợp đồng #HD" + contract.id + "-" + contract.insurance_type + " của quý khách sắp đến hạn nộp tiền. Quý khách vui lòng đóng tiền đúng hạn theo hợp đồng!", "contract-customerweb", 2, new Date());
     this.contractRequestService.addOneNotification(noti).subscribe((noti => {
-      this.snackBar.openSnackBar("Gửi Thông Báo Thành Công", "Đóng");
+      this.contractService.sendNotificationEmail(contract).subscribe((email => {
+        this.snackBar.openSnackBar("Gửi Thông Báo Thành Công", "Đóng");
+      }))
     }))
   }
 
@@ -111,7 +113,7 @@ export class DayNotificationDialogComponent implements OnInit {
   }
 
   saveSetting() {
-    if (this.notificationSetting.date_setting >= 3 && this.notificationSetting.date_setting <= 30){
+    if (this.notificationSetting.date_setting >= 3 && this.notificationSetting.date_setting <= 30) {
       this.contractService.updateNotificationSetting(this.notificationSetting).subscribe((data => {
         this.ngOnInit();
         this.snackBar.openSnackBar("Lưu Cài Đặt Thành Công", "Đóng");

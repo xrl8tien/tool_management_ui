@@ -60,6 +60,7 @@ export class AuthenService {
 
           } else {
             this.snackBar.openSnackBar("Vui Lòng Xem Lại Tài Khoản Và Mật Khẩu", 'ĐÓNG');
+            this.common.deleteCookie("token_key");
             this.isAuthen = false;
             this.spinner.hide();
           }

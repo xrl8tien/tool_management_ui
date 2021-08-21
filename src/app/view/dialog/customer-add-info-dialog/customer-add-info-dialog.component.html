@@ -409,6 +409,6 @@
     </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="formValid" (click)="onClose()">Hủy</button>
-    <button mat-button type="submit" [mat-dialog-close]="formValid" [disabled]="userInfo.invalid" (click)="onSubmit()">Thêm</button>
+    <button mat-button [mat-dialog-close]="false">Hủy</button>
+    <button mat-button [disabled]="userInfo.invalid" (click)="onSubmit()">Thêm</button>
 </mat-dialog-actions>

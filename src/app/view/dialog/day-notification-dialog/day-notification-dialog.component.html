@@ -28,7 +28,7 @@
                             <td>{{paymentPeriod(contract.payment_period_id)}}</td>
                             <td>{{contract.start_time | date: 'dd-MM-yyyy'}}</td>
                             <button
-                                (click)="sendPaymentNotification(contract.id_customer, contract.id, contract.insurance_type)"
+                                (click)="sendPaymentNotification(contract)"
                                 class="btn btn-info" style="height: 40px; width: 130px; margin: 10px; color: white;">Gửi
                                 Thông Báo</button>
                         </tr>

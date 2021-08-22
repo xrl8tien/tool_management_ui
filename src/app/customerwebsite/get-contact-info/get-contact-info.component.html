@@ -1,111 +1,85 @@
-<!-- <div class="container" style="background-image: url(assets/image/saleflash.png);"> -->
-<mat-dialog-content class="mat-typography">
-    <!-- <div class="mb-3"> -->
-
-    <!--Section heading-->
-    <h2 class="h1-responsive font-weight-bold text-center my-4">ĐĂNG KÝ TƯ VẤN NGAY HÔM NAY ĐỂ NHẬN ĐƯỢC NHỮNG
-        ƯU
-        ĐÃI MỚI NHẤT</h2>
-    <!--Section description-->
-    <p class="text-center w-responsive mx-auto mb-5">Bạn có câu hỏi nào không? Xin đừng ngần ngại liên hệ trực
-        tiếp
-        với
-        chúng tôi. Chúng tôi sẽ quay lại với bạn trong vòng vài giờ để giúp bạn.</p>
-
-    <!-- <img src="assets/images/saleflash.png" class="img-sale"> -->
-    <div class="row">
-
-        <!--Grid column-->
-        <div class="col-md-9 mb-md-0 mb-5">
-            <form #contactForm="ngForm">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <label for="name" class="">Họ tên</label>
-                            <input type="text" id="name" name="name" class="form-control" [(ngModel)]="fullName"
-                                required #name="ngModel"
-                                pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$">
-                            <span id="errorMessagename" style="color: red;"
-                                *ngIf="name.errors?.required && name.touched">Họ và tên không được để trống</span>
-                            <span id="errorMessagename" style="color: red;"
-                                *ngIf="name.errors?.pattern && name.touched">Họ và tên không được để kí tự đặc biệt
-                                hoặc
-                                chữ số</span>
+<mat-dialog-content>
+    <div class="content-dialog">
+        <h2 class="h1-responsive font-weight-bold text-center my-4">ĐĂNG KÝ TƯ VẤN NGAY HÔM NAY ĐỂ NHẬN ĐƯỢC NHỮNG
+            ƯU ĐÃI MỚI NHẤT</h2>
+        <p class="text-center w-responsive mx-auto mb-5">Bạn có câu hỏi nào không? Xin đừng ngần ngại liên hệ trực
+            tiếp với chúng tôi. Chúng tôi sẽ quay lại với bạn trong vòng vài giờ để giúp bạn.</p>
+        <div class="input-info">
+            <div class="col-md-9 mb-md-0 mb-5">
+                <form #contactForm="ngForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <label for="name" class="">Họ tên</label>
+                                <input type="text" id="name" name="name" class="form-control" [(ngModel)]="fullName"
+                                    required #name="ngModel"
+                                    pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$">
+                                <span id="errorMessagename" style="color: red;"
+                                    *ngIf="name.errors?.required && name.touched">Họ và tên không được để trống</span>
+                                <span id="errorMessagename" style="color: red;"
+                                    *ngIf="name.errors?.pattern && name.touched">Họ và tên không được để kí tự đặc biệt
+                                    hoặc
+                                    chữ số</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <label for="phone" class="">Số điện thoại liên hệ</label>
+                                <input type="text" id="phone" name="phone" class="form-control" required
+                                    #phone="ngModel" pattern="((09|03|07|08|05)+([0-9]{8})\b)"
+                                    [(ngModel)]="phoneNumber">
+                                <span id="errorMessagename" style="color: red;"
+                                    *ngIf="phone.errors?.required && phone.touched">Điện Thoại Di Động không được
+                                    để trống</span>
+                                <span id="errorMessagename" style="color: red;"
+                                    *ngIf="phone.errors?.pattern && phone.touched">Số điện thoại phải có định
+                                    dạng 10 chữ số </span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <label for="phone" class="">Số điện thoại liên hệ</label>
-                            <input type="text" id="phone" name="phone" class="form-control" required #phone="ngModel"
-                                pattern="((09|03|07|08|05)+([0-9]{8})\b)" [(ngModel)]="phoneNumber">
-                            <span id="errorMessagename" style="color: red;"
-                                *ngIf="phone.errors?.required && phone.touched">Điện Thoại Di Động không được
-                                để trống</span>
-                            <span id="errorMessagename" style="color: red;"
-                                *ngIf="phone.errors?.pattern && phone.touched">Điện Thoại Di Động phải có định
-                                dạng 09|03|07|08|05 và có 10 chữ số </span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <label for="inputCity">Tỉnh/Thành phố</label>
+                                <select id="inputCity" class="form-control" [formControl]="selectProvince" required
+                                    (change)="onChangeProvince($event.target.value)">
+                                    <option selected><strong>CHỌN</strong></option>
+                                    <option *ngFor="let province of listProvince" [value]="province.id">
+                                        {{province.name}}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <label for="inputCity">Tỉnh/Thành phố</label>
-                            <select id="inputCity" class="form-control" [formControl]="selectProvince" required
-                                (change)="onChangeProvince($event.target.value)">
-                                <option selected><strong>CHỌN</strong></option>
-                                <option *ngFor="let province of listProvince" [value]="province.id">
-                                    {{province.name}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <label for="inputState">Quận/Huyện</label>
-                            <select id="inputState" class="form-control" [formControl]="selectDistrict" required>
-                                <option selected>CHỌN</option>
-                                <option *ngFor="let district of listDistrict" [value]="district.id">
-                                    {{district.name}}</option>
-                            </select>
+                        <div class="col-md-6">
+                            <div class="md-form mb-0">
+                                <label for="inputState">Quận/Huyện</label>
+                                <select id="inputState" class="form-control" [formControl]="selectDistrict" required>
+                                    <option selected>CHỌN</option>
+                                    <option *ngFor="let district of listDistrict" [value]="district.id">
+                                        {{district.name}}</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form">
-                            <label for="message">Bạn muốn nhận tư vấn về sản phẩm nào?</label>
-                            <textarea type="text" id="message" name="message" rows="2" [(ngModel)]="question" required
-                                class="form-control md-textarea"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form">
+                                <label for="message">Bạn muốn nhận tư vấn về sản phẩm nào?</label>
+                                <textarea type=" text" id="message" name="message" rows="2" [(ngModel)]="question"
+                                    required class="form-control md-textarea"></textarea>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-        <div class="col-md-3 text-center">
-            <ul class="list-unstyled mb-0">
-                <li><i class="fas fa-map-marker-alt fa-2x"></i>
-                    <p>ISolution System</p>
-                </li>
-                <li><i class="fas fa-phone mt-4 fa-2x"></i>
-                    <p>+84 969 457 031</p>
-                </li>
-                <li><i class="fas fa-envelope mt-4 fa-2x"></i>
-                    <p>saler@isolution.asia</p>
-                </li>
-            </ul>
-        </div>
+        <button mat-button mat-dialog-close style="background-color: sandybrown;">Hủy</button>
+        <button mat-button mat-dialog-close type="submit" [disabled]="contactForm.invalid"
+            style="background-color: seagreen; margin-left: 20px;" (click)="sendContact()">Gửi yêu
+            cầu
+            liên
+            hệ</button>
     </div>
-    <!-- </div> -->
-    <!-- <mat-dialog-actions align="end"> -->
-    <button mat-button mat-dialog-close>Hủy</button>
-    <button mat-button mat-dialog-close type="submit" [disabled]="contactForm.invalid" class="btn btn-primary"
-        (click)="sendContact()">Gửi yêu cầu
-        liên
-        hệ</button>
-    <!-- </mat-dialog-actions> -->
 </mat-dialog-content>
-
-<!-- </div> -->

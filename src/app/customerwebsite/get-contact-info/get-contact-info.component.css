@@ -10,13 +10,6 @@ textarea {
     border-color: darkslategrey;
 } 
 
-.mat-typography{
-    background: url(https://adecinc.com/wp-content/uploads/2019/07/Craft-Contact-Form-Background.jpg) left -80px;
-    /* min-height: 380px; */
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
+.content-dialog{
+    margin: px;
 }

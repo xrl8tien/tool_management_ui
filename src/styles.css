@@ -40,3 +40,13 @@ body {
     transition-duration: 0.4s;
     border-radius: 6px;
 }
+
+.custom-dialog-container .mat-dialog-container {
+    padding: 0 24px;
+    height: 500px;
+    background: url(https://web-dev.imgix.net/image/admin/K1IN7zWIjFLjZzJ4Us3J.jpg?auto=format); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}

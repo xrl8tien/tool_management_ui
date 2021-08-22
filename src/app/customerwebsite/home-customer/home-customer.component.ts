@@ -57,14 +57,14 @@ export class HomeCustomerComponent implements OnInit {
     }
     if (!code_em && !code_cus) {
       if (this.common.getSession('contact') == null) {
-        let dialogRef = this.dialog.open(GetContactInfoComponent, {});
+        let dialogRef = this.dialog.open(GetContactInfoComponent, { panelClass: 'custom-dialog-container' });
         this.common.setSession('contact', 'ok');
       }
     }
   }
 
   onClick() {
-    const dialogContact = this.dialog.open(GetContactInfoComponent);
+    const dialogContact = this.dialog.open(GetContactInfoComponent, { panelClass: 'custom-dialog-container' });
   }
 
   exit() {

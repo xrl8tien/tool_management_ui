@@ -25,11 +25,9 @@
                             <a class="nav-link" href="feature">
                             </a><a class="dropdown-item" href="detail-page-customerweb/1"> Bảo hiểm tử kỳ </a>
                             <a class="dropdown-item" href="detail-page-customerweb/2"> Bảo hiểm bệnh hiểm nghèo </a>
-                            <a class="dropdown-item" href="detail-page-customerweb/3">Chăm sóc sức khỏe dành cho phụ
-                                nữ</a>
-                            <a class="dropdown-item" href="detail-page-customerweb/4">Bảo hiểm tai nạn toàn diện</a>
-                            <a class="dropdown-item" href="detail-page-customerweb/5">Bảo hiểm các bệnh lý nghiêm
-                                trọng</a>
+                            <a class="dropdown-item" href="detail-page-customerweb/3">Kế hoạch hưu trí</a>
+                            <a class="dropdown-item" href="detail-page-customerweb/4">Bảo hiểm trọn đời</a>
+                            <a class="dropdown-item" href="detail-page-customerweb/5">Bảo hiểm đầu tư</a>
                         </div>
                     </li>
                     <li *ngIf="common.getCookie('token_customer')" class="nav-item dropdown">
@@ -63,8 +61,8 @@
                             Đăng Nhập
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="login-customerweb">Cổng thông tin dành cho khách hàng</a>
-                            <a class="dropdown-item" href="login">Cổng thông tin dành cho nhân viên</a>
+                            <a class="dropdown-item" href="login-customerweb">Đăng nhập khách hàng</a>
+                            <a class="dropdown-item" href="login">Đăng nhập nhân viên</a>
                         </div>
                     </li>
                     <ng-template [ngIf]="common.getCookie('token_customer')">

@@ -43,8 +43,10 @@ body {
 
 .custom-dialog-container .mat-dialog-container {
     padding: 0 24px;
-    height: 500px;
-    background: url(https://web-dev.imgix.net/image/admin/K1IN7zWIjFLjZzJ4Us3J.jpg?auto=format); 
+    height: 450px;
+    width: 900px;
+    /* background: url(assets/images/insurance-mbl-banner.png);  */
+    background: url(https://web-dev.imgix.net/image/admin/K1IN7zWIjFLjZzJ4Us3J.jpg?auto=format);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

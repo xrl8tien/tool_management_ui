@@ -1,9 +1,9 @@
 <mat-dialog-content>
     <div class="content-dialog">
-        <h2 class="h1-responsive font-weight-bold text-center my-4">ĐĂNG KÝ TƯ VẤN NGAY HÔM NAY ĐỂ NHẬN ĐƯỢC NHỮNG
+        <h2 class="h1-responsive font-weight-bold text-center my-4">ĐĂNG KÝ TƯ VẤN NGAY ĐỂ NHẬN ĐƯỢC
             ƯU ĐÃI MỚI NHẤT</h2>
-        <p class="text-center w-responsive mx-auto mb-5">Bạn có câu hỏi nào không? Xin đừng ngần ngại liên hệ trực
-            tiếp với chúng tôi. Chúng tôi sẽ quay lại với bạn trong vòng vài giờ để giúp bạn.</p>
+        <!-- <p class="text-center w-responsive mx-auto mb-5">Bạn có câu hỏi nào không? Xin đừng ngần ngại liên hệ trực
+            tiếp với chúng tôi. Chúng tôi sẽ quay lại với bạn trong vòng vài giờ để giúp bạn.</p> -->
         <div class="input-info">
             <div class="col-md-9 mb-md-0 mb-5">
                 <form #contactForm="ngForm">
@@ -77,7 +77,7 @@
         </div>
         <button mat-button mat-dialog-close style="background-color: sandybrown;">Hủy</button>
         <button mat-button mat-dialog-close type="submit" [disabled]="contactForm.invalid"
-            style="background-color: seagreen; margin-left: 20px;" (click)="sendContact()">Gửi yêu
+            style="margin-left: 20px; background-color: cornflowerblue;" (click)="sendContact()">Gửi yêu
             cầu
             liên
             hệ</button>

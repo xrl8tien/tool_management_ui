@@ -21,26 +21,10 @@ h2{
 .table-money{
     width: 310px;
 }
-/* 
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  } */
-/* 
-  table{
-      height: 350px;
-  } */
 
 .btn-primary {
     margin-top: 2rem;
 }
-
-/* .form-control1 {
-    width: 535px;
-    height: 40px;
-    margin-left: 10px;
-    margin-top: 20px;
-} */
 
 .td1{
     text-align: center;
@@ -51,7 +35,7 @@ table, th, td {
 
 table{
     border-collapse: collapse;
-    border-radius: 1em;
+    /* border-radius: 1em; */
     overflow: hidden;
 }
 

@@ -97,6 +97,46 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
     }))
   }
 
+
+  row = [
+    {
+      id: '',
+      name: '',
+      email: ''
+    },
+    {
+      id: '',
+      name: '',
+      email: ''
+    },
+    {
+      id: '',
+      name: '',
+      email: ''
+    }
+  ];
+
+  addTable() {
+    const obj = {
+      id: '',
+      name: '',
+      email: ''
+    }
+    this.row.push(obj)
+  }
+
+  deleteRow(x) {
+    // var delBtn = confirm(" Do you want to delete ?");
+    // if (delBtn == true) {
+
+    if (this.row.length <= 1) {
+      alert("Không thể xoá");
+    } else {
+      this.row.splice(x, 1);
+    }
+    // }
+  }
+
   onChangeCustomerId(id_customer: number) {
     this.cusService.getOneCustomerInfoByEx(id_customer).subscribe((data => {
       this.cusInfo = data[0];

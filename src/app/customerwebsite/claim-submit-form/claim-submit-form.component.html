@@ -114,7 +114,7 @@
             </div>
 
             <p class="order-info">III.THÔNG TIN Y TẾ <i>(từ trước đến nay)</i></p>
-            <div>
+            <div class="table-container">
                 <table class="table table-hover">
                     <tr class="table-info">
                         <th style="width: 100px;">Ngày khám/<br>
@@ -122,34 +122,18 @@
                         <th style="width: 100px;">Ngày xuất viện</th>
                         <th>Chuẩn đoán bệnh/thương tổn</th>
                         <th>Tên và địa chỉ bệnh viện</th>
+                        <th></th>
                     </tr>
-                    <tr class="table-light">
+                    <tr *ngFor="let item of row; let i = index" class="table-light">
                         <td><input class="form-control" type="date" name="inputDateIn"></td>
                         <td><input class="form-control" type="date" name="inputDateOut"></td>
                         <td><input class="form-control" type="text" name="namePataient"></td>
                         <td><input class="form-control" type="text" name="nameHospital"></td>
+                        <td> <button (click)="deleteRow(i)"><img
+                                    src="https://img.icons8.com/color/30/000000/delete-forever.png" /></button></td>
                     </tr>
-
-                    <tr class="table-light">
-                        <td><input class="form-control" type="date" name="inputDateIn"></td>
-                        <td><input class="form-control" type="date" name="inputDateOut"></td>
-                        <td><input class="form-control" type="text" name="namePataient"></td>
-                        <td><input class="form-control" type="text" name="nameHospital"></td>
-                    </tr>
-
-                    <tr class="table-light">
-                        <td><input class="form-control" type="date" name="inputDateIn"></td>
-                        <td><input class="form-control" type="date" name="inputDateOut"></td>
-                        <td><input class="form-control" type="text" name="namePataient"></td>
-                        <td><input class="form-control" type="text" name="nameHospital"></td>
-                    </tr>
-
-                    <tr class="table-light">
-                        <td><input class="form-control" type="date" name="inputDateIn"></td>
-                        <td><input class="form-control" type="date" name="inputDateOut"></td>
-                        <td><input class="form-control" type="text" name="namePataient"></td>
-                        <td><input class="form-control" type="text" name="nameHospital"></td>
-                    </tr>
+                    <button (click)="addTable()" class="btn-add-row"><img
+                            src="https://img.icons8.com/color/32/000000/add--v1.png" /></button><br>
                 </table>
             </div>
 

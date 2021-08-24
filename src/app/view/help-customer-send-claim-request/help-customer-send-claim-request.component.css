@@ -150,3 +150,8 @@ span{
 .noting{
     color: red;
 }
+
+.table-container{
+    display: grid;
+    margin: auto;
+}

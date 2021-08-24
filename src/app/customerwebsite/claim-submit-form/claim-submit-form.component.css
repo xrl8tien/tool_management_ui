@@ -195,3 +195,9 @@ span{
     font-size: 36px;
     line-height: 1;
 }
+
+
+.table-container{
+    display: grid;
+    margin: auto;
+}

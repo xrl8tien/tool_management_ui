@@ -19,7 +19,7 @@ import { ContractrequestService } from 'src/app/services/contractRequest/contrac
 import { CustomerWebServiceService } from 'src/app/services/customer-web-service/customer-web-service.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { ContractDTO } from 'src/app/model/ContractDTO';
-import { FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Contract } from 'src/app/model/Contract';
 import { SubBenefitScale } from 'src/app/model/SubBenefitScale';
 import { MainBenefitScale } from 'src/app/model/MainBenefitScale';
@@ -33,7 +33,6 @@ import moment from 'moment';
   styleUrls: ['./claim-submit-form.component.css']
 })
 export class ClaimSubmitFormComponent implements OnInit {
-
   contract: Contract;
   code_sender: string;
   id_contract: number;
@@ -59,6 +58,9 @@ export class ClaimSubmitFormComponent implements OnInit {
   customerInfoList: Array<CustomerInfo>;
   customerInfo: CustomerInfo;
   options: boolean;
+
+
+
 
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,
@@ -90,6 +92,45 @@ export class ClaimSubmitFormComponent implements OnInit {
       }))
     }
 
+  }
+
+  row = [
+    {
+      id: '',
+      name: '',
+      email: ''
+    },
+    {
+      id: '',
+      name: '',
+      email: ''
+    },
+    {
+      id: '',
+      name: '',
+      email: ''
+    }
+  ];
+
+  addTable() {
+    const obj = {
+      id: '',
+      name: '',
+      email: ''
+    }
+    this.row.push(obj)
+  }
+
+  deleteRow(x) {
+    // var delBtn = confirm(" Do you want to delete ?");
+    // if (delBtn == true) {
+
+    if (this.row.length <= 1) {
+      alert("Không thể xoá");
+    } else {
+      this.row.splice(x, 1);
+    }
+    // }
   }
 
   onChangeContract(id_contract: number) {

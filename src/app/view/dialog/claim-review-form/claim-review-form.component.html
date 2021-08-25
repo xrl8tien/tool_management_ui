@@ -15,6 +15,11 @@
                                 (change)="handleChange1(mainBenefitScale.scale * mainBenefit.denominations, mainBenefitScale.name)">
                         </td>
                     </tr>
+                </tbody>
+            </table>
+            <br>
+            <table *ngIf="listSubBenfitItem.length > 0" id="table1">
+                <tbody>
                     <th class="td1" colspan="3">Loại phụ</th>
                     <ng-container *ngFor="let subBenefitItem of listSubBenfitItem">
                         <tr *ngFor=" let subBenefitScale of subBenefitItem.listSubBenefitScale">

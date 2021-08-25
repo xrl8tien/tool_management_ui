@@ -155,3 +155,7 @@ span{
     display: grid;
     margin: auto;
 }
+
+.noting{
+    color: red;
+}

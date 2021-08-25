@@ -26,7 +26,7 @@
             <p class="order-info">I. THÔNG TIN BÊN MUA BẢO HIỂM (BMBH)</p>
             <div class="form-row">
                 <div class="col-md-8 mb-3">
-                    <label for="inputName">Họ và tên: </label>
+                    <label for="inputName">Họ và tên<span class="noting">(*)</span></label>
                     <input type="text" class="form-control" id="inputName" name="code_sender" [(ngModel)]="fullName"
                         required style="text-transform: uppercase;">
                 </div>
@@ -37,7 +37,7 @@
                 </div> -->
 
                 <div class="col-md-4 mb-3">
-                    <label for="inputCMND">Số CMND/CCCD: </label>
+                    <label for="inputCMND">Số CMND/CCCD<span class="noting">(*)</span></label>
                     <!-- <span>{{customerInfo.id_card}}</span> -->
                     <input type="text" class="form-control" id="inputCMND" name="inputCMND" [(ngModel)]="id_card"
                         required>
@@ -46,7 +46,7 @@
 
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="inputContractID">Mã số hợp đồng</label>
+                    <label for="inputContractID">Mã số hợp đồng<span class="noting">(*)</span></label>
                     <select id="inputContractID" class="form-control" [formControl]="selectContract" required
                         (change)="onChangeContract($event.target.value)">
                         <option selected>Chọn hợp đồng...</option>
@@ -66,7 +66,7 @@
                 </div> -->
 
                 <div class="form-group col-md-8">
-                    <label for="inputBenefit">Quyền lợi bảo hiểm</label>
+                    <label for="inputBenefit">Quyền lợi bảo hiểm<span class="noting">(*)</span></label>
                     <select id="inputBenefit" class="form-control" required>
                         <option selected>Chọn loại quyền lợi bảo hiểm...</option>
                         <option *ngFor="let mainBenefit of listMainBenefitScale" [value]="mainBenefit.id">
@@ -80,19 +80,19 @@
             </div>
 
             <div class="form-row">
-                <label for="inputAddress">Địa chỉ liên hệ: </label>
+                <label for="inputAddress">Địa chỉ liên hệ<span class="noting">(*)</span></label>
                 <input type="text" class="form-control" id="inputAddress" name="inputAddress" [(ngModel)]="address"
                     required>
             </div>
 
             <div class="form-row" style="margin-top: 1rem;">
                 <div class="col-md-6 mb-1">
-                    <label for="inputPhone">Số ĐT: </label>
+                    <label for="inputPhone">Số ĐT<span class="noting">(*)</span></label>
                     <input type="text" class="form-control" id="inputPhone" name="inputPhone" [(ngModel)]="phoneNo"
                         required>
                 </div>
                 <div class="col-md-6 mb-1">
-                    <label for="inputEmail">Email: </label>
+                    <label for="inputEmail">Email<span class="noting">(*)</span></label>
                     <input type="email" class="form-control" id="inputEmail" name="inputEmail" [(ngModel)]="email"
                         required>
                 </div>
@@ -102,13 +102,14 @@
 
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label>Ngày xảy ra<span>(*)</span></label>
-                    <input class="form-control" type="date" name="day_happen">
+                    <label for="day_happen">Ngày xảy ra<span class="noting">(*)</span></label>
+                    <input class="form-control" type="date" name="day_happen" id="day_happen" [(ngModel)]="day_happen"
+                        required>
                 </div>
             </div>
 
             <div class="mb-4">
-                <label for="validationTextarea">Mô tả về sự kiện bảo hiểm<span>(*)</span></label>
+                <label for="validationTextarea">Mô tả về sự kiện bảo hiểm<span class="noting">(*)</span></label>
                 <textarea class="form-control" id="validationTextarea" name="name" [(ngModel)]="name"
                     required></textarea>
             </div>
@@ -139,7 +140,12 @@
 
             <p style="font-size: 14px;"><strong>Chi tiết về tử vong</strong> (nếu yêu cầu quyền lợi tử vong):</p>
             <div class="form-row">
-                <div class="col-md-4 mb-3">
+                <div *ngIf="isShown" class="col-md-3 mb-3" id="divshow">
+                    <label class="label-dateDeath">Thời điểm tử vong:</label>
+                    <input type="datetime-local" class="form-control" name="inputDateDeath"
+                        [(ngModel)]="inputDateDeath">
+                </div>
+                <!-- <div class="col-md-4 mb-3">
                     <label class="label-dateDeath">Ngày tử vong:</label>
                     <input class="form-control" type="date" name="inputDateDeath">
                 </div>
@@ -152,7 +158,7 @@
                     <label>&nbsp;</label>
                     <input class="form-control" style="margin-left: 10px;" type="number" name="inputMinutesDeath">
                 </div>
-                <p class="momentDeath"><b>phút</b></p>
+                <p class="momentDeath"><b>phút</b></p> -->
             </div>
 
             <div class="form-row">
@@ -173,7 +179,11 @@
                     nhân
                     tai nạn)</i></p>
             <div class="form-row">
-                <div>
+                <div class="col-md-3 mb-3">
+                    <label class="label-dateDeath">Tai nạn xảy ra lúc</label>
+                    <input type="datetime-local" class="form-control" name="accidentHour">
+                </div>
+                <!-- <div>
                     <label class="label-dateDeath">Tai nạn xảy ra lúc</label>
                     <input class="form-control" type="number" name="accidentHour">
                 </div>
@@ -187,7 +197,7 @@
                 <div class="col-md-3 mb-3">
                     <label>&nbsp;</label>
                     <input class="form-control" style="margin-left: 10px;" type="date" name="accidentDate">
-                </div>
+                </div> -->
             </div>
 
             <div class="form-row">
@@ -216,34 +226,35 @@
 
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="inputName2">Họ và tên</label>
-                    <input type="text" class="form-control" id="inputName2" name="code_sender2">
+                    <label for="inputName2">Họ và tên<span class="noting">(*)</span></label>
+                    <input type="text" class="form-control" id="inputName2" name="code_sender2"
+                        [(ngModel)]="code_sender2" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
-                    <label>Ngày sinh</label>
-                    <input class="form-control" type="date" name="birthday2">
+                    <label>Ngày sinh<span class="noting">(*)</span></label>
+                    <input class="form-control" type="date" name="birthday2" [(ngModel)]="birthday2" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
-                    <label for="inputCMND2">Số CMND/CCCD</label>
-                    <input type="number" class="form-control" id="inputCMND2">
+                    <label for="inputCMND2">Số CMND/CCCD<span class="noting">(*)</span></label>
+                    <input type="number" class="form-control" id="inputCMND2" [(ngModel)]="inputCMND2" required>
                 </div>
             </div>
 
             <div class="form-row">
-                <label for="inputAddress2">Địa chỉ liên hệ</label>
-                <input type="text" class="form-control" id="inputAddress2">
+                <label for="inputAddress2">Địa chỉ liên hệ<span class="noting">(*)</span></label>
+                <input type="text" class="form-control" id="inputAddress2" [(ngModel)]="inputAddress2" required>
             </div>
 
             <div class="form-row" style="margin-top: 1rem;">
                 <div class="col-md-6 mb-1">
-                    <label for="inputPhone2">Số ĐT</label>
-                    <input type="text" class="form-control" id="inputPhone2">
+                    <label for="inputPhone2">Số ĐT<span class="noting">(*)</span></label>
+                    <input type="text" class="form-control" id="inputPhone2" [(ngModel)]="inputPhone2" required>
                 </div>
                 <div class="col-md-6 mb-1">
-                    <label for="inputEmail2">Email</label>
-                    <input type="email" class="form-control" id="inputEmail2">
+                    <label for="inputEmail2">Email<span class="noting">(*)</span></label>
+                    <input type="email" class="form-control" id="inputEmail2" [(ngModel)]="inputEmail2" required>
                 </div>
             </div>
 
@@ -283,7 +294,7 @@
 
 
             <div class="custom-control custom-radio">
-                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" [value]="false"
+                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input"
                     [checked]="!options" [(ngModel)]="options">
                 <label class="custom-control-label" for="customRadio2">Nhận tiền mặt bằng CMND/CCCD</label>
             </div>
@@ -340,7 +351,6 @@
             <p><span>- </span> Cho phép Công ty được quyền cung cấp các thông tin cá nhân của BMBH/ NĐBH/ NTH và các
                 thông tin liên quan đến hợp đồng bảo hiểm này và/hoặc các hợp đồng bảo hiểm khác có liên quan đến
                 BMBH/ NĐBH/ NTH cho bất kỳ cơ quan nhà nước có thẩm quyền nào.</p>
-            <br>
 
             <span class="noting"><i>(*) Quý khách vui lòng điền đầy đủ thông tin bên trên. Sau khi điền đủ thông tin vui
                     lòng xuất file về định dạng FDF và đính kèm file với những file cần thiết.</i></span>
@@ -366,9 +376,10 @@
 
         <div class="btn-end" style="margin-left: 20rem; padding-bottom: 20px;">
             <!-- <a href="/" type="submit" class="btn btn-warning">Trở về</a> -->
-            <button type="submit" class="btn btn-primary" [disabled]="requestForm.invalid" (click)="sendReq()">Xác
-                nhận</button>
+            <button type="submit" class="btn btn-primary" [disabled]="requestForm.invalid" (click)="sendReq()">Gửi
+                đơn</button>
             <button type="button" class="btn btn-info" (click)="dowloadPDF()">Xuất tài liệu PDF</button>
+            <button (click)="toggleShow()" type="button">show/hide</button>
         </div>
 
         <div>

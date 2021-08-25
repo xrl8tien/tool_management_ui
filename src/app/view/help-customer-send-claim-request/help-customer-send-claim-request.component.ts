@@ -68,6 +68,14 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
   district_name: string = "";
   listId: Array<number>;
   options: boolean;
+  day_happen: any;
+  inputEmail2: any;
+  code_sender2: any;
+  birthday2: any;
+  inputCMND2: any;
+  inputAddress2: any;
+  inputPhone2: any;
+  inputFileName: any;
 
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,
@@ -99,16 +107,6 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
 
 
   row = [
-    {
-      id: '',
-      name: '',
-      email: ''
-    },
-    {
-      id: '',
-      name: '',
-      email: ''
-    },
     {
       id: '',
       name: '',

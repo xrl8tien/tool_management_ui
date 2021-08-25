@@ -58,6 +58,19 @@ export class ClaimSubmitFormComponent implements OnInit {
   customerInfoList: Array<CustomerInfo>;
   customerInfo: CustomerInfo;
   options: boolean;
+  day_happen: any;
+  inputEmail2: any;
+  inputPhone2: any;
+  inputAddress2: any;
+  inputCMND2: any;
+  birthday2: any;
+  code_sender2: any;
+  inputFileName: any;
+
+  inputDateDeath: any;
+
+
+  isShown: boolean = true;
 
 
 
@@ -100,16 +113,16 @@ export class ClaimSubmitFormComponent implements OnInit {
       name: '',
       email: ''
     },
-    {
-      id: '',
-      name: '',
-      email: ''
-    },
-    {
-      id: '',
-      name: '',
-      email: ''
-    }
+    // {
+    //   id: '',
+    //   name: '',
+    //   email: ''
+    // },
+    // {
+    //   id: '',
+    //   name: '',
+    //   email: ''
+    // }
   ];
 
   addTable() {
@@ -161,6 +174,9 @@ export class ClaimSubmitFormComponent implements OnInit {
   }
 
   dowloadPDF() {
+    if (this.inputDateDeath == null || this.inputDateDeath == undefined) {
+      this.isShown = false;
+    }
     window.print();
   }
 
@@ -178,12 +194,17 @@ export class ClaimSubmitFormComponent implements OnInit {
     }
   }
 
+  toggleShow() {
+
+    this.isShown = !this.isShown;
+
+  }
+
   sendReq() {
     this.spinner.show();
     this.req = new Request(0, this.name, 2, new Date(), 1, this.code_sender, '', '', 'Cao', this.selectContract.value, 'CXD');
-
-    this.cusService.addOneCustomerRequest(this.req).subscribe((reqData => {
-      if (this.selectedFile.length != 0) {
+    if (this.selectedFile.length != 0) {
+      this.cusService.addOneCustomerRequest(this.req).subscribe((reqData => {
         const uploadImageData = new FormData();
         this.selectedFile.forEach(file => {
           uploadImageData.append('fileData', file, file.name);
@@ -198,12 +219,13 @@ export class ClaimSubmitFormComponent implements OnInit {
             }))
           }
         }))
-      } else {
-        this.snackBar.openSnackBar("Vui Lòng Chọn Ít Nhất 1 File Để Tải Lên", "Đóng");
-      }
+        this.spinner.hide();
+        this.snackBar.openSnackBar("Gửi Yêu Cầu Thành Công", "Đóng");
+        this.router.navigate(['list-request-customer']);
+      }))
+    } else {
       this.spinner.hide();
-      this.snackBar.openSnackBar("Gửi Yêu Cầu Thành Công", "Đóng");
-      this.router.navigate(['list-request-customer']);
-    }))
+      this.snackBar.openSnackBar("Vui Lòng Chọn Ít Nhất 1 File Để Tải Lên", "Đóng");
+    }
   }
 }

@@ -70,10 +70,6 @@ export class ClaimSubmitFormComponent implements OnInit {
   inputDateDeath: any;
 
 
-  isShown: boolean = true;
-
-
-
 
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,
@@ -174,9 +170,6 @@ export class ClaimSubmitFormComponent implements OnInit {
   }
 
   dowloadPDF() {
-    if (this.inputDateDeath == null || this.inputDateDeath == undefined) {
-      this.isShown = false;
-    }
     window.print();
   }
 
@@ -192,12 +185,6 @@ export class ClaimSubmitFormComponent implements OnInit {
     if (index > -1) {
       this.selectedFile.splice(index, 1)
     }
-  }
-
-  toggleShow() {
-
-    this.isShown = !this.isShown;
-
   }
 
   sendReq() {

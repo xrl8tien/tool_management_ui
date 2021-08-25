@@ -130,9 +130,9 @@ span{
       display: none;
     }
 
-    input{
+    /* input{
         border: none;
-    }
+    } */
 
     textarea{
         border: none;
@@ -145,12 +145,19 @@ span{
     select{
         border: none;
     }
+
+    .nothing{
+        display: none;
+    }
 }
 
 .noting{
     color: red;
 }
 
+.nothing{
+    color: red;
+}
 
 .btn-contact {
     padding: 0;
@@ -204,4 +211,8 @@ span{
 
 .noting {
     color: red;
+}
+
+.input-modify{
+    margin-left: 20px;
 }

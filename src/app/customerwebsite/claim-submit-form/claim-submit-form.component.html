@@ -126,10 +126,10 @@
                         <th></th>
                     </tr>
                     <tr *ngFor="let item of row; let i = index" class="table-light">
-                        <td><input class="form-control" type="date" name="inputDateIn"></td>
-                        <td><input class="form-control" type="date" name="inputDateOut"></td>
-                        <td><input class="form-control" type="text" name="namePataient"></td>
-                        <td><input class="form-control" type="text" name="nameHospital"></td>
+                        <td><input class="form-control" type="text" placeholder="N/A" name="inputDateIn" onfocus="(this.type='date')"></td>
+                        <td><input class="form-control" type="text" placeholder="N/A" name="inputDateOut" onfocus="(this.type='date')"></td>
+                        <td><input class="form-control" type="text" placeholder="N/A" name="namePataient"></td>
+                        <td><input class="form-control" type="text" placeholder="N/A" name="nameHospital"></td>
                         <td> <button (click)="deleteRow(i)"><img
                                     src="https://img.icons8.com/color/30/000000/delete-forever.png" /></button></td>
                     </tr>
@@ -140,9 +140,9 @@
 
             <p style="font-size: 14px;"><strong>Chi tiết về tử vong</strong> (nếu yêu cầu quyền lợi tử vong):</p>
             <div class="form-row">
-                <div *ngIf="isShown" class="col-md-3 mb-3" id="divshow">
+                <div class="col-md-3 mb-3" id="divshow">
                     <label class="label-dateDeath">Thời điểm tử vong:</label>
-                    <input type="datetime-local" class="form-control" name="inputDateDeath"
+                    <input type="text" placeholder="N/A" class="form-control input-modify" name="inputDateDeath" onfocus="(this.type='datetime-local')"
                         [(ngModel)]="inputDateDeath">
                 </div>
                 <!-- <div class="col-md-4 mb-3">
@@ -163,14 +163,14 @@
 
             <div class="form-row">
                 <label class="label-dateDeath">Nguyên nhân tử vong</label>
-                <input class="form-control" type="text" name="deathReason">
+                <input class="form-control input-modify" placeholder="N/A" type="text" name="deathReason">
             </div>
 
             <div class="form-row">
                 <label class="label-deathPlace">Nơi tử vong</label>
-                <input class="form-control" type="text" name="deathPlace">
+                <input class="form-control input-modify" placeholder="N/A" type="text" name="deathPlace">
             </div>
-            <p style="margin-top: 7px;">(ghi rõ tên bệnh viện nếu tử vong tại bệnh viện)
+            <p class="input-modify" style="margin-top: 7px;">(ghi rõ tên bệnh viện nếu tử vong tại bệnh viện)
             </p>
             <br>
 
@@ -181,7 +181,7 @@
             <div class="form-row">
                 <div class="col-md-3 mb-3">
                     <label class="label-dateDeath">Tai nạn xảy ra lúc</label>
-                    <input type="datetime-local" class="form-control" name="accidentHour">
+                    <input type="text" placeholder="N/A" class="form-control input-modify" name="accidentHour" onfocus="(this.type='datetime-local')">
                 </div>
                 <!-- <div>
                     <label class="label-dateDeath">Tai nạn xảy ra lúc</label>
@@ -202,17 +202,17 @@
 
             <div class="form-row">
                 <label class="label-dateDeath">Nơi xảy ra tai nạn</label>
-                <input class="form-control" type="text" name="accidentPlace">
+                <input class="form-control input-modify" placeholder="N/A" type="text" name="accidentPlace">
             </div>
 
             <div class="form-row" style="margin-top: 13px;">
                 <label class="label-dateDeath">Diễn biến tai nạn</label>
-                <textarea class="form-control" name="accidentDetail" rows="4"></textarea>
+                <textarea class="form-control input-modify" placeholder="N/A" name="accidentDetail" rows="4"></textarea>
             </div>
 
             <div class="form-row" style="margin-top: 13px;">
                 <label class="label-dateDeath">Tình trạng thương tích</label>
-                <textarea class="form-control" name="accidentDetail" rows="4"></textarea>
+                <textarea class="form-control input-modify" placeholder="N/A" name="accidentDetail" rows="4"></textarea>
             </div>
 
 
@@ -352,7 +352,7 @@
                 thông tin liên quan đến hợp đồng bảo hiểm này và/hoặc các hợp đồng bảo hiểm khác có liên quan đến
                 BMBH/ NĐBH/ NTH cho bất kỳ cơ quan nhà nước có thẩm quyền nào.</p>
 
-            <span class="noting"><i>(*) Quý khách vui lòng điền đầy đủ thông tin bên trên. Sau khi điền đủ thông tin vui
+            <span class="nothing"><i>(*) Quý khách vui lòng điền đầy đủ thông tin bên trên. Sau khi điền đủ thông tin vui
                     lòng xuất file về định dạng FDF và đính kèm file với những file cần thiết.</i></span>
 
             <br><br>
@@ -379,7 +379,6 @@
             <button type="submit" class="btn btn-primary" [disabled]="requestForm.invalid" (click)="sendReq()">Gửi
                 đơn</button>
             <button type="button" class="btn btn-info" (click)="dowloadPDF()">Xuất tài liệu PDF</button>
-            <button (click)="toggleShow()" type="button">show/hide</button>
         </div>
 
         <div>

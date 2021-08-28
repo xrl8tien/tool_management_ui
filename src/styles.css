@@ -52,3 +52,40 @@ body {
     background-size: cover;
     position: relative;
 }
+
+@media print {
+    
+    .multiselect-dropdown .dropdown-btn .selected-item{
+        border: none!important;
+    }
+    .multiselect-dropdown .dropdown-btn .selected-item a{
+        display: none;
+    }
+
+    button {
+        display: none!important;
+    }
+    /* input{
+        border: none;
+    } */
+    textarea{
+        border: none!important;
+    }
+    a{
+        display: none!important;
+    }
+    select{
+        border: none!important;
+    }
+    .nothing{
+        display: none!important;
+    }
+    .list-file{
+        display: none!important;
+    }
+
+}
+
+.multiselect-dropdown .dropdown-btn .selected-item{
+    max-width: 500px!important;
+}

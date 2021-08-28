@@ -55,25 +55,20 @@
                         </option>
                     </select>
                 </div>
-                <!-- <div class="col-md-2 mb-3" *ngFor="let contract of listContracts">
-                    <label>Có hiệu lực từ: </label>
-                    <input class="form-control" type="date" name="start_date">
-                </div>
-                <div class="col-md-2 mb-3" *ngFor="let contract of listContracts">
-                    <label>đến</label>
-                    <br>
-                    <input class="form-control" type="date" name="end_date">
-                </div> -->
 
                 <div class="form-group col-md-8">
-                    <label for="inputBenefit">Quyền lợi bảo hiểm<span class="noting">(*)</span></label>
-                    <select id="inputBenefit" class="form-control" required>
-                        <option selected>Chọn loại quyền lợi bảo hiểm...</option>
-                        <option *ngFor="let mainBenefit of listMainBenefitScale" [value]="mainBenefit.id">
-                            {{mainBenefit.name}}
+                    <label for="inputMainBenefit">Quyền lợi bảo hiểm chính<span class="noting">(*)</span></label>
+                    <select id="inputMainBenefit" class="form-control" [(ngModel)]="selectedMain" name="selectedMain" required>
+                        <option selected>Chọn loại quyền lợi bảo hiểm chính...</option>
+                        <option *ngFor="let mainBenefit of listMainBenefit" [value]="mainBenefit">
+                            {{mainBenefit}}
                         </option>
-                        <option *ngFor="let subBenefit of listSubBenefitScale" [value]="subBenefit.id">
-                            {{subBenefit.name}}
+                    </select>
+                    <label for="inputSubBenefit">Quyền lợi bảo hiểm phụ<span class="noting">(*)</span></label>
+                    <select id="inputSubBenefit" class="form-control" [(ngModel)]="selectedSub" name="selectedSub" required>
+                        <option selected>Chọn loại quyền lợi bảo hiểm phụ...</option>
+                        <option *ngFor="let subBenefit of listSubBenefit" [value]="subBenefit">
+                            {{subBenefit}}
                         </option>
                     </select>
                 </div>
@@ -125,18 +120,47 @@
                         <th>Tên và địa chỉ bệnh viện</th>
                         <th></th>
                     </tr>
-                    <tr *ngFor="let item of row; let i = index" class="table-light">
-                        <td><input class="form-control" type="text" placeholder="N/A" name="inputDateIn"
-                                onfocus="(this.type='date')"></td>
-                        <td><input class="form-control" type="text" placeholder="N/A" name="inputDateOut"
-                                onfocus="(this.type='date')"></td>
-                        <td><input class="form-control" type="text" placeholder="N/A" name="namePataient"></td>
-                        <td><input class="form-control" type="text" placeholder="N/A" name="nameHospital"></td>
-                        <td> <button (click)="deleteRow(i)"><img
-                                    src="https://img.icons8.com/color/30/000000/delete-forever.png" /></button></td>
+                    
+                    <tr *ngFor="let item of row; let i = index">
+                        <td>
+                            <input [(ngModel)]="item.date_in" class="form-control" type="text" name="{{item.date_in}}"/>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="item.date_out" class="form-control" type="text" name="{{item.date_out}}" placeholder="N/A" onfocus="(this.type='date')"/>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="item.diagnosis_disease" class="form-control" type="text" name="{{item.diagnosis_disease}}" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="item.name_hospital" class="form-control" type="text" name="{{item.name_hospital}}" />
+                        </td>
+                        <td>
+                            <button (click)="deleteRow(i)"><img
+                                src="https://img.icons8.com/color/30/000000/delete-forever.png" /></button>
+                        </td>
                     </tr>
-                    <button (click)="addTable()" class="btn-add-row"><img
-                            src="https://img.icons8.com/color/32/000000/add--v1.png" /></button><br>
+                    <tr>
+                        <td>
+                            <input class="form-control" type="text" id="newAttributeDate_in"
+                                [(ngModel)]="newItem.date_in" name="newItemdate_in" placeholder="N/A" onfocus="(this.type='date')"/>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newItemDate_out"
+                                [(ngModel)]="newItem.date_out" name="newItemDate_out" placeholder="N/A" onfocus="(this.type='date')"/>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newItemDiagnosis_disease"
+                                [(ngModel)]="newItem.diagnosis_disease" name="newItemDiagnosis_disease" placeholder="N/A"/>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newItemName_hospital"
+                                [(ngModel)]="newItem.name_hospital" name="newItemName_hospital" placeholder="N/A"/>
+                        </td>
+                        <td>
+                            <button (click)="addTable()" class="btn-add-row"><img
+                                src="https://img.icons8.com/color/32/000000/add--v1.png" /></button>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
@@ -147,30 +171,18 @@
                     <input type="text" placeholder="N/A" class="form-control input-modify" name="inputDateDeath"
                         onfocus="(this.type='datetime-local')" [(ngModel)]="inputDateDeath">
                 </div>
-                <!-- <div class="col-md-4 mb-3">
-                    <label class="label-dateDeath">Ngày tử vong:</label>
-                    <input class="form-control" type="date" name="inputDateDeath">
-                </div>
-                <div>
-                    <label class="label-dateDeath">Thời điểm tử vong:</label>
-                    <input class="form-control" type="number" name="inputHourDeath">
-                </div>
-                <p class="momentDeath"><b>giờ</b></p>
-                <div class="col-md-2 mb-3">
-                    <label>&nbsp;</label>
-                    <input class="form-control" style="margin-left: 10px;" type="number" name="inputMinutesDeath">
-                </div>
-                <p class="momentDeath"><b>phút</b></p> -->
             </div>
 
             <div class="form-row">
                 <label class="label-dateDeath">Nguyên nhân tử vong</label>
-                <input class="form-control input-modify" placeholder="N/A" type="text" name="deathReason">
+                <input class="form-control input-modify" placeholder="N/A" type="text" name="deathReason"
+                    [(ngModel)]="deathReason">
             </div>
 
             <div class="form-row">
                 <label class="label-deathPlace">Nơi tử vong</label>
-                <input class="form-control input-modify" placeholder="N/A" type="text" name="deathPlace">
+                <input class="form-control input-modify" placeholder="N/A" type="text" name="deathPlace"
+                    [(ngModel)]="deathPlace">
             </div>
             <p class="input-modify" style="margin-top: 7px;">(ghi rõ tên bệnh viện nếu tử vong tại bệnh viện)
             </p>
@@ -184,7 +196,7 @@
                 <div class="col-md-3 mb-3">
                     <label class="label-dateDeath">Tai nạn xảy ra lúc</label>
                     <input type="text" placeholder="N/A" class="form-control input-modify" name="accidentHour"
-                        onfocus="(this.type='datetime-local')">
+                        onfocus="(this.type='datetime-local')" [(ngModel)]="inputDateAccident">
                 </div>
                 <!-- <div>
                     <label class="label-dateDeath">Tai nạn xảy ra lúc</label>
@@ -205,17 +217,20 @@
 
             <div class="form-row">
                 <label class="label-dateDeath">Nơi xảy ra tai nạn</label>
-                <input class="form-control input-modify" placeholder="N/A" type="text" name="accidentPlace">
+                <input class="form-control input-modify" placeholder="N/A" type="text" name="accidentPlace"
+                    [(ngModel)]="accidentPlace">
             </div>
 
             <div class="form-row" style="margin-top: 13px;">
                 <label class="label-dateDeath">Diễn biến tai nạn</label>
-                <textarea class="form-control input-modify" placeholder="N/A" name="accidentDetail" rows="4"></textarea>
+                <textarea class="form-control input-modify" placeholder="N/A" name="accidentDetail" rows="4"
+                    [(ngModel)]="accidentDetail"></textarea>
             </div>
 
             <div class="form-row" style="margin-top: 13px;">
                 <label class="label-dateDeath">Tình trạng thương tích</label>
-                <textarea class="form-control input-modify" placeholder="N/A" name="accidentDetail" rows="4"></textarea>
+                <textarea class="form-control input-modify" placeholder="N/A" name="injuryStatus" rows="4"
+                    [(ngModel)]="injuryStatus"></textarea>
             </div>
 
 
@@ -230,8 +245,8 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="inputName2">Họ và tên<span class="noting">(*)</span></label>
-                    <input type="text" class="form-control" id="inputName2" name="code_sender2"
-                        [(ngModel)]="code_sender2" required>
+                    <input type="text" class="form-control" id="inputName2" name="inputName2" [(ngModel)]="inputName2"
+                        required>
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -241,23 +256,27 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="inputCMND2">Số CMND/CCCD<span class="noting">(*)</span></label>
-                    <input type="number" class="form-control" id="inputCMND2" [(ngModel)]="inputCMND2" required>
+                    <input type="text" class="form-control" id="inputCMND2" name="inputCMND2" [(ngModel)]="inputCMND2"
+                        required>
                 </div>
             </div>
 
             <div class="form-row">
                 <label for="inputAddress2">Địa chỉ liên hệ<span class="noting">(*)</span></label>
-                <input type="text" class="form-control" id="inputAddress2" [(ngModel)]="inputAddress2" required>
+                <input type="text" class="form-control" id="inputAddress2" name="inputAddress2"
+                    [(ngModel)]="inputAddress2" required>
             </div>
 
             <div class="form-row" style="margin-top: 1rem;">
                 <div class="col-md-6 mb-1">
                     <label for="inputPhone2">Số ĐT<span class="noting">(*)</span></label>
-                    <input type="text" class="form-control" id="inputPhone2" [(ngModel)]="inputPhone2" required>
+                    <input type="text" class="form-control" id="inputPhone2" name="inputPhone2"
+                        [(ngModel)]="inputPhone2" required>
                 </div>
                 <div class="col-md-6 mb-1">
                     <label for="inputEmail2">Email<span class="noting">(*)</span></label>
-                    <input type="email" class="form-control" id="inputEmail2" [(ngModel)]="inputEmail2" required>
+                    <input type="email" class="form-control" id="inputEmail2" name="inputEmail2"
+                        [(ngModel)]="inputEmail2" required>
                 </div>
             </div>
 

@@ -116,23 +116,19 @@ table{
     margin-right: 10px;
 }
 
-span{
-    margin-left: 10px;
-}
-
 .sign-name{
     font-weight: 600;
     margin-left: 20px;
 }
 
-@media print {
+/* @media print {
     button {
       display: none;
     }
 
-    /* input{
+    input{
         border: none;
-    } */
+    }
 
     textarea{
         border: none;
@@ -149,7 +145,7 @@ span{
     .nothing{
         display: none;
     }
-}
+} */
 
 .noting{
     color: red;

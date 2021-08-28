@@ -28,6 +28,8 @@ import { data } from 'jquery';
 import { CustomerInfo } from 'src/app/model/CustomerInfo';
 import moment from 'moment';
 import { EmployeeInfoDTO } from 'src/app/model/EmployeeInfoDTO';
+import { RequestMedicalInformation } from 'src/app/model/RequestMedicalInformation';
+import { RequestClaimDetail } from 'src/app/model/RequestClaimDetail';
 // import { DatePipe } from '@angular/common';
 
 @Component({
@@ -77,6 +79,26 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
   inputPhone2: any;
   inputFileName: any;
 
+  address: string;
+  phoneNo: string;
+  date: any;
+  email: string;
+  customerInfoList: Array<CustomerInfo>;
+  customerInfo: CustomerInfo;
+  inputName2: any;
+  deathReason: any;
+  inputDateDeath: any;
+  deathPlace: any;
+  inputDateAccident: any;
+  accidentPlace: any;
+  accidentDetail: any;
+  injuryStatus: any;
+
+  listMainBenefit = [];
+  listSubBenefit = [];
+  selectedMain: any;
+  selectedSub: any;
+
   constructor(private snackBar: SnackbarService, private cusService: CustomerService, private illustSer: IllustrationService,
     private fileService: FileManagementService, private reqService: ContractrequestService,
     private common: CommonService, private spinner: NgxSpinnerService,
@@ -106,21 +128,17 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
   }
 
 
-  row = [
-    {
-      id: '',
-      name: '',
-      email: ''
-    }
-  ];
+  row: Array<RequestMedicalInformation> = [];
+  newItem: RequestMedicalInformation = new RequestMedicalInformation(0, null, null, null, null, null);
+
 
   addTable() {
-    const obj = {
-      id: '',
-      name: '',
-      email: ''
+    if (this.newItem.date_in != null && this.newItem.date_out != null && this.newItem.diagnosis_disease != null && this.newItem.name_hospital != null) {
+      this.row.push(this.newItem);
+    } else {
+      alert("Không được để trống!");
     }
-    this.row.push(obj)
+    this.newItem = new RequestMedicalInformation(0, null, null, null, null, null);
   }
 
   deleteRow(x) {
@@ -128,7 +146,7 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
     // if (delBtn == true) {
 
     if (this.row.length <= 1) {
-      alert("Không thể xoá");
+      alert("Không thể xoá!");
     } else {
       this.row.splice(x, 1);
     }
@@ -173,31 +191,25 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
     }))
   }
 
-  onChangeContract(id_contract: number) {
-    this.listSubBenefitScale = [];
-    this.cusService.getDetailContractForCustomer(id_contract).subscribe((data => {
-      this.contract = data;
-      this.cusService.getAllSubBenefitById(this.contract.id_illustration).subscribe((data => {
-        for (var i = 0; i < data.length; i++) {
-          this.cusService.getAllSubBenefitScaleBySubBenefitId(data[i].id_sub_benifit).subscribe((data1 => {
-            this.listSubScale = data1;
-            for (var j = 0; j < this.listSubScale.length; j++) {
-              let subBenefitScale = new SubBenefitScale(
-                this.listSubScale[j].id,
-                this.listSubScale[j].name,
-                this.listSubScale[j].scale,
-                this.listSubScale[j].id_sub_benefit
-              )
-              this.listSubBenefitScale.push(subBenefitScale);
-            }
-          }))
-        }
-      }))
-      this.cusService.getAllMainBenefitScaleByMainBenefitId(this.contract.id_main_benifit).subscribe((data => {
-        this.listMainBenefitScale = data;
-      }))
-
-    }))
+  async onChangeContract(id_contract: number) {
+    let tmpMain = [];
+    let tmpSub = [];
+    this.listMainBenefit = [];
+    this.listSubBenefit = [];
+    let contract = await this.cusService.getDetailContractForCustomer(id_contract).toPromise();
+    let listSubBenefit = await this.cusService.getAllSubBenefitById(contract.id_illustration).toPromise();
+    for (var i = 0; i < listSubBenefit.length; i++) {
+      let listSubBenefitScale = await this.cusService.getAllSubBenefitScaleBySubBenefitId(listSubBenefit[i].id_sub_benifit).toPromise();
+      for (var j = 0; j < listSubBenefitScale.length; j++) {
+        tmpSub.push(listSubBenefitScale[j].name)
+      }
+    }
+    this.listSubBenefit = tmpSub;
+    let listMainBenefitScale = await this.cusService.getAllMainBenefitScaleByMainBenefitId(contract.id_main_benifit).toPromise();
+    for (let i = 0; i < listMainBenefitScale.length; i++) {
+      tmpMain.push(listMainBenefitScale[i].name);
+    }
+    this.listMainBenefit = tmpMain;
   }
 
   dowloadPDF() {
@@ -222,8 +234,9 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
     this.spinner.show();
     this.code_sender = this.cusInfo.code;
     this.req = new Request(0, this.name, 2, new Date(), 1, this.code_sender, '', '', 'Cao', this.selectContract.value, 'CXD');
-    this.cusService.addOneCustomerRequest(this.req).subscribe((reqData => {
-      if (this.selectedFile.length != 0) {
+    if (this.selectedFile.length != 0) {
+      this.cusService.addOneCustomerRequest(this.req).subscribe((reqData => {
+        //upload file đính kèm
         const uploadImageData = new FormData();
         this.selectedFile.forEach(file => {
           uploadImageData.append('fileData', file, file.name);
@@ -238,13 +251,25 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
             }))
           }
         }))
-      } else {
-        this.snackBar.openSnackBar("Vui Lòng Chọn Ít Nhất 1 File Để Tải Lên", "Đóng");
-      }
+        //add request detail
+        let requestClaimDetail = new RequestClaimDetail(0, reqData.id, this.inputDateDeath, this.deathReason,
+          this.deathPlace, this.inputDateAccident, this.accidentDetail, this.accidentPlace, this.injuryStatus,
+          this.inputName2, this.birthday2, this.inputCMND2, this.inputAddress2, this.inputPhone2, this.inputEmail2,
+          this.selectedMain, this.selectedSub);
+        this.cusService.addOneRequestClaimDetail(requestClaimDetail).subscribe((reqClaimDetail => {
+          this.row.forEach(requestMedicalInformation => {
+            requestMedicalInformation.id_request_claim_detail = reqClaimDetail.id;
+            this.cusService.addOneRequestMedicalInformation(requestMedicalInformation).subscribe((data => {
+            }))
+          });
+        }))
+        this.spinner.hide();
+        this.snackBar.openSnackBar("Gửi Yêu Cầu Thành Công", "Đóng");
+      }))
+    } else {
       this.spinner.hide();
-      this.snackBar.openSnackBar("Gửi Yêu Cầu Thành Công", "Đóng");
-      // this.router.navigate(['list-request-customer']);
-    }))
+      this.snackBar.openSnackBar("Vui Lòng Chọn Ít Nhất 1 File Để Tải Lên", "Đóng");
+    }
   }
 
 }

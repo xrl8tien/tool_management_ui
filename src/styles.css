@@ -83,6 +83,9 @@ body {
     .list-file{
         display: none!important;
     }
+    .add-row{
+        display: none!important;
+    }
 
 }
 

@@ -6,6 +6,8 @@ import { catchError } from 'rxjs/operators';
 import { CustomerNotification } from 'src/app/model/CustomerNotification';
 import { Request } from 'src/app/model/Request';
 import { RequestClaimApprove } from 'src/app/model/RequestClaimApprove';
+import { RequestClaimDetail } from 'src/app/model/RequestClaimDetail';
+import { RequestMedicalInformation } from 'src/app/model/RequestMedicalInformation';
 import { CommonService } from '../common/common.service';
 
 @Injectable({
@@ -72,6 +74,34 @@ export class ContractrequestService {
     const url = this.common.makeUrl("/request/add_one_request");
     return this.httpClient
       .post<any>(url, req, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public addOneRequestClaimDetail(requestClaimDetail: RequestClaimDetail) {
+    const url = this.common.makeUrlForCustomer("/request/add_one_request_claim_detail");
+    return this.httpClient
+      .post<any>(url, requestClaimDetail, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public addOneRequestMedicalInformation(requestMedicalInformation: RequestMedicalInformation) {
+    const url = this.common.makeUrlForCustomer("/request/add_one_request_medical_information");
+    return this.httpClient
+      .post<any>(url, requestMedicalInformation, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getRequestClaimDetail(id_request: number) {
+    const url = this.common.makeUrlForCustomer("/request/get_request_claim_detail");
+    return this.httpClient
+      .post<any>(url, id_request, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getRequestMedicalInformation(id_request_claim_detail: number) {
+    const url = this.common.makeUrlForCustomer("/request/get_request_medical_information");
+    return this.httpClient
+      .post<any>(url, id_request_claim_detail, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

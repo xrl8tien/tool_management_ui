@@ -235,7 +235,7 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
     this.code_sender = this.cusInfo.code;
     this.req = new Request(0, this.name, 2, new Date(), 1, this.code_sender, '', '', 'Cao', this.selectContract.value, 'CXD');
     if (this.selectedFile.length != 0) {
-      this.cusService.addOneCustomerRequest(this.req).subscribe((reqData => {
+      this.reqService.addOneRequest(this.req).subscribe((reqData => {
         //upload file đính kèm
         const uploadImageData = new FormData();
         this.selectedFile.forEach(file => {
@@ -256,10 +256,10 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
           this.deathPlace, this.inputDateAccident, this.accidentDetail, this.accidentPlace, this.injuryStatus,
           this.inputName2, this.birthday2, this.inputCMND2, this.inputAddress2, this.inputPhone2, this.inputEmail2,
           this.selectedMain, this.selectedSub);
-        this.cusService.addOneRequestClaimDetail(requestClaimDetail).subscribe((reqClaimDetail => {
+        this.reqService.addOneRequestClaimDetail(requestClaimDetail).subscribe((reqClaimDetail => {
           this.row.forEach(requestMedicalInformation => {
             requestMedicalInformation.id_request_claim_detail = reqClaimDetail.id;
-            this.cusService.addOneRequestMedicalInformation(requestMedicalInformation).subscribe((data => {
+            this.reqService.addOneRequestMedicalInformation(requestMedicalInformation).subscribe((data => {
             }))
           });
         }))

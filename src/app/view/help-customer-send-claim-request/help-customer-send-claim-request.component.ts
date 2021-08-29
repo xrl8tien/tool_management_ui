@@ -265,6 +265,7 @@ export class HelpCustomerSendClaimRequestComponent implements OnInit {
         }))
         this.spinner.hide();
         this.snackBar.openSnackBar("Gửi Yêu Cầu Thành Công", "Đóng");
+        this.router.navigate(['dashboard']);
       }))
     } else {
       this.spinner.hide();

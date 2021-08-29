@@ -230,7 +230,7 @@
                                 <h2 style="margin-top: 10px;"><b>Thông tin về sự kiện bảo hiểm</b></h2>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Ngày xảy ra sự kiện bảo hiểm:</label>
-                                    <p style="color: red;">{{reqClaimDetail.time_accident}}</p>
+                                    <p style="color: red;">{{reqClaimDetail.time_accident | date: 'dd-MM-yyyy'}}</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mô tả sự kiện bảo hiểm:</label>
@@ -260,8 +260,8 @@
                                         <th>Tên và địa chỉ bệnh viện</th>
                                     </tr>
                                     <tr *ngFor="let reqMed of listReqMed">
-                                        <td>{{reqMed.date_in}}</td>
-                                        <td>{{reqMed.date_out}}</td>
+                                        <td>{{reqMed.date_in | date: 'dd-MM-yyyy'}}</td>
+                                        <td>{{reqMed.date_out | date: 'dd-MM-yyyy'}}</td>
                                         <td>{{reqMed.diagnosis_disease}}</td>
                                         <td>{{reqMed.name_hospital}}</td>
                                     </tr>
@@ -275,7 +275,7 @@
                                 <table id="table1" class="table table-bordered table-striped">
                                     <tr>
                                         <th>Thời điểm tử vong</th>
-                                        <td>{{reqClaimDetail.time_death}}</td>
+                                        <td>{{reqClaimDetail.time_death | date:'short'}}</td>
                                     </tr>
                                     <tr>
                                         <th>Nguyên nhân tử vong</th>
@@ -297,7 +297,7 @@
                                 <table id="table1" class="table table-bordered table-striped">
                                     <tr>
                                         <th>Thời điểm xảy ra tai nạn</th>
-                                        <td>{{reqClaimDetail.time_accident}}</td>
+                                        <td>{{reqClaimDetail.time_accident | date:'short'}}</td>
                                     </tr>
                                     <tr>
                                         <th>Nơi xảy ra tai nạn</th>
@@ -327,7 +327,7 @@
                                     </tr>
                                     <tr>
                                         <th>Ngày sinh</th>
-                                        <td>{{reqClaimDetail.dob_writer}}</td>
+                                        <td>{{reqClaimDetail.dob_writer | date: 'dd-MM-yyyy'}}</td>
                                     </tr>
                                     <tr>
                                         <th>Số CMND/CCCD</th>

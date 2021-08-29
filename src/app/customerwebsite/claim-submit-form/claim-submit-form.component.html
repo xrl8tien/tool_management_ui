@@ -58,14 +58,16 @@
 
                 <div class="form-group col-md-8">
                     <label for="inputMainBenefit">Quyền lợi bảo hiểm chính<span class="noting">(*)</span></label>
-                    <select id="inputMainBenefit" class="form-control" [(ngModel)]="selectedMain" name="selectedMain" required>
+                    <select id="inputMainBenefit" class="form-control" [(ngModel)]="selectedMain" name="selectedMain"
+                        required>
                         <option selected>Chọn loại quyền lợi bảo hiểm chính...</option>
                         <option *ngFor="let mainBenefit of listMainBenefit" [value]="mainBenefit">
                             {{mainBenefit}}
                         </option>
                     </select>
                     <label for="inputSubBenefit">Quyền lợi bảo hiểm phụ<span class="noting">(*)</span></label>
-                    <select id="inputSubBenefit" class="form-control" [(ngModel)]="selectedSub" name="selectedSub" required>
+                    <select id="inputSubBenefit" class="form-control" [(ngModel)]="selectedSub" name="selectedSub"
+                        required>
                         <option selected>Chọn loại quyền lợi bảo hiểm phụ...</option>
                         <option *ngFor="let subBenefit of listSubBenefit" [value]="subBenefit">
                             {{subBenefit}}
@@ -93,7 +95,7 @@
                 </div>
             </div>
 
-            <p class="order-info">II. THÔNG TIN VỀ SỰ KIỆN BẢO HIỂM</p>
+            <p class="order-info" style="margin-top: 20px;">II. THÔNG TIN VỀ SỰ KIỆN BẢO HIỂM</p>
 
             <div class="form-row">
                 <div class="col-md-4 mb-3">
@@ -120,45 +122,51 @@
                         <th>Tên và địa chỉ bệnh viện</th>
                         <th></th>
                     </tr>
-                    
+
                     <tr *ngFor="let item of row; let i = index">
                         <td>
-                            <input [(ngModel)]="item.date_in" class="form-control" type="text" name="{{item.date_in}}"/>
+                            <input [(ngModel)]="item.date_in" class="form-control" type="text"
+                                name="{{item.date_in}}" />
                         </td>
                         <td>
-                            <input [(ngModel)]="item.date_out" class="form-control" type="text" name="{{item.date_out}}" placeholder="N/A" onfocus="(this.type='date')"/>
+                            <input [(ngModel)]="item.date_out" class="form-control" type="text" name="{{item.date_out}}"
+                                placeholder="N/A" onfocus="(this.type='date')" />
                         </td>
                         <td>
-                            <input [(ngModel)]="item.diagnosis_disease" class="form-control" type="text" name="{{item.diagnosis_disease}}" />
+                            <input [(ngModel)]="item.diagnosis_disease" class="form-control" type="text"
+                                name="{{item.diagnosis_disease}}" />
                         </td>
                         <td>
-                            <input [(ngModel)]="item.name_hospital" class="form-control" type="text" name="{{item.name_hospital}}" />
+                            <input [(ngModel)]="item.name_hospital" class="form-control" type="text"
+                                name="{{item.name_hospital}}" />
                         </td>
                         <td>
                             <button (click)="deleteRow(i)"><img
-                                src="https://img.icons8.com/color/30/000000/delete-forever.png" /></button>
+                                    src="https://img.icons8.com/color/30/000000/delete-forever.png" /></button>
                         </td>
                     </tr>
                     <tr class="add-row">
                         <td>
                             <input class="form-control" type="text" id="newAttributeDate_in"
-                                [(ngModel)]="newItem.date_in" name="newItemdate_in" placeholder="N/A" onfocus="(this.type='date')"/>
+                                [(ngModel)]="newItem.date_in" name="newItemdate_in" placeholder="N/A"
+                                onfocus="(this.type='date')" />
                         </td>
                         <td>
-                            <input class="form-control" type="text" id="newItemDate_out"
-                                [(ngModel)]="newItem.date_out" name="newItemDate_out" placeholder="N/A" onfocus="(this.type='date')"/>
+                            <input class="form-control" type="text" id="newItemDate_out" [(ngModel)]="newItem.date_out"
+                                name="newItemDate_out" placeholder="N/A" onfocus="(this.type='date')" />
                         </td>
                         <td>
                             <input class="form-control" type="text" id="newItemDiagnosis_disease"
-                                [(ngModel)]="newItem.diagnosis_disease" name="newItemDiagnosis_disease" placeholder="N/A"/>
+                                [(ngModel)]="newItem.diagnosis_disease" name="newItemDiagnosis_disease"
+                                placeholder="N/A" />
                         </td>
                         <td>
                             <input class="form-control" type="text" id="newItemName_hospital"
-                                [(ngModel)]="newItem.name_hospital" name="newItemName_hospital" placeholder="N/A"/>
+                                [(ngModel)]="newItem.name_hospital" name="newItemName_hospital" placeholder="N/A" />
                         </td>
                         <td>
                             <button (click)="addTable()" class="btn-add-row"><img
-                                src="https://img.icons8.com/color/32/000000/add--v1.png" /></button>
+                                    src="https://img.icons8.com/color/32/000000/add--v1.png" /></button>
                         </td>
                     </tr>
                 </table>
@@ -184,7 +192,8 @@
                 <input class="form-control input-modify" placeholder="N/A" type="text" name="deathPlace"
                     [(ngModel)]="deathPlace">
             </div>
-            <p class="input-modify" style="margin-top: 7px;">(ghi rõ tên bệnh viện nếu tử vong tại bệnh viện)
+            <p class="input-modify" style="margin-top: 7px; margin-left: 15px;">(ghi rõ tên bệnh viện nếu tử vong tại
+                bệnh viện)
             </p>
             <br>
 
@@ -198,21 +207,6 @@
                     <input type="text" placeholder="N/A" class="form-control input-modify" name="accidentHour"
                         onfocus="(this.type='datetime-local')" [(ngModel)]="inputDateAccident">
                 </div>
-                <!-- <div>
-                    <label class="label-dateDeath">Tai nạn xảy ra lúc</label>
-                    <input class="form-control" type="number" name="accidentHour">
-                </div>
-                <p class="momentDeath"><b>giờ</b></p>
-                <div class="col-md-2 mb-3">
-                    <label>&nbsp;</label>
-                    <input class="form-control" style="margin-left: 10px;" type="number" name="accidentMinute">
-                </div>
-                <p class="momentDeath"><b>phút</b></p>
-                <p class="momentDeath"><b>ngày</b></p>
-                <div class="col-md-3 mb-3">
-                    <label>&nbsp;</label>
-                    <input class="form-control" style="margin-left: 10px;" type="date" name="accidentDate">
-                </div> -->
             </div>
 
             <div class="form-row">
@@ -234,7 +228,8 @@
             </div>
 
 
-            <p class="order-info">V. THÔNG TIN VỀ NGƯỜI YÊU CẦU BỒI THƯỜNG (ĐỒNG THỜI LÀ NGƯỜI NHẬN
+            <p class="order-info" style="margin-top: 20px;">V. THÔNG TIN VỀ NGƯỜI YÊU CẦU BỒI THƯỜNG (ĐỒNG THỜI LÀ NGƯỜI
+                NHẬN
                 TIỀN)</p>
             <p><em>Người yêu cầu bồi thường phải là NĐBH hoặc người thừa kế/người thụ hưởng/người được chỉ định trên
                     giấy chứng nhân bảo hiểm (GCNBH)/người được ủy quyền hợp pháp của NĐBH hoặc bố/mẹ/người giám hộ
@@ -245,42 +240,79 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="inputName2">Họ và tên<span class="noting">(*)</span></label>
-                    <input type="text" class="form-control" id="inputName2" name="inputName2" [(ngModel)]="inputName2"
-                        required>
+                    <input type="text" class="form-control" id="inputName2" name="inputName2" required
+                        [(ngModel)]="inputName2" #name2="ngModel"
+                        pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$">
+                    <span id="errorMessagename" style="color: red;" *ngIf="name2.errors?.required && name2.touched">Họ
+                        và
+                        tên không được để trống</span>
+                    <span id="errorMessagename" style="color: red;" *ngIf="name2.errors?.pattern && name2.touched">Họ và
+                        tên không được để kí tự đặc biệt
+                        hoặc
+                        chữ số</span>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label>Ngày sinh<span class="noting">(*)</span></label>
-                    <input class="form-control" type="date" name="birthday2" [(ngModel)]="birthday2" required>
+                    <input class="form-control" type="date" name="birthday2" [(ngModel)]="birthday2" required
+                        max="2020-01-01">
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label for="inputCMND2">Số CMND/CCCD<span class="noting">(*)</span></label>
                     <input type="text" class="form-control" id="inputCMND2" name="inputCMND2" [(ngModel)]="inputCMND2"
-                        required>
+                        required pattern="(^[0-9]{12}$|^[0-9]{9}$)" #id_card2="ngModel">
+                    <span id="errorMessagename" style="color: red;"
+                        *ngIf="id_card2.errors?.required && id_card2.touched">CMND/CCCD không được
+                        để trống</span>
+                    <span id="errorMessagename" style="color: red;"
+                        *ngIf="id_card2.errors?.pattern && id_card2.touched">CCND/CCCD phải đủ 9 số
+                        hoặc 12 số và không được có chữ cái và kí tự đặc biệt</span>
                 </div>
             </div>
 
             <div class="form-row">
                 <label for="inputAddress2">Địa chỉ liên hệ<span class="noting">(*)</span></label>
                 <input type="text" class="form-control" id="inputAddress2" name="inputAddress2"
-                    [(ngModel)]="inputAddress2" required>
+                    [(ngModel)]="inputAddress2" required
+                    pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéếêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀẾỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ\s0-9\/-]+$"
+                    #curadd_city="ngModel">
+                <span id="errorMessagename" style="color: red;"
+                    *ngIf="curadd_city.errors?.required && curadd_city.touched">Địa chỉ không được để
+                    trống</span>
+                <span id="errorMessagename" style="color: red;"
+                    *ngIf="curadd_city.errors?.pattern && curadd_city.touched">Địa chỉ không được để kí
+                    tự đặc biệt
+                </span>
             </div>
 
             <div class="form-row" style="margin-top: 1rem;">
                 <div class="col-md-6 mb-1">
                     <label for="inputPhone2">Số ĐT<span class="noting">(*)</span></label>
                     <input type="text" class="form-control" id="inputPhone2" name="inputPhone2"
-                        [(ngModel)]="inputPhone2" required>
+                        [(ngModel)]="inputPhone2" required #phone="ngModel" pattern="((09|03|07|08|05)+([0-9]{8})\b)">
+                    <span id="errorMessagename" style="color: red;" *ngIf="phone.errors?.required && phone.touched">Điện
+                        Thoại Di Động không được
+                        để trống</span>
+                    <span id="errorMessagename" style="color: red;" *ngIf="phone.errors?.pattern && phone.touched">Số
+                        điện thoại phải có định
+                        dạng 10 chữ số </span>
                 </div>
                 <div class="col-md-6 mb-1">
                     <label for="inputEmail2">Email<span class="noting">(*)</span></label>
                     <input type="email" class="form-control" id="inputEmail2" name="inputEmail2"
-                        [(ngModel)]="inputEmail2" required>
+                        [(ngModel)]="inputEmail2" required #email2="ngModel"
+                        pattern="^[\w\d_\.]{5,32}@[\.\-_\w\d]{2,}(\.[\w\d]{2,4}){1,2}$">
+                    <span id="errorMessagename" style="color: red;"
+                        *ngIf="email2.errors?.required && email2.touched">Email không được để trống</span>
+                    <span id="errorMessagename" style="color: red;"
+                        *ngIf="email2.errors?.pattern && email2.touched">Email
+                        không đúng định dạng. Ví dụ :
+                        isolution@gmail.com</span>
                 </div>
             </div>
 
-            <p class="order-info">VI. PHƯƠNG THỨC THANH TOÁN</p>
+            <p class="order-info" style="margin-top: 20px;">VI. PHƯƠNG THỨC THANH TOÁN</p>
             <div class="custom-control custom-radio">
                 <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" [value]="true"
                     [checked]="options" [(ngModel)]="options">
@@ -358,7 +390,7 @@
                 <input type="text" class="form-control" id="inputAddress5">
             </div>
 
-            <p class="order-info">VII. CAM KẾT VÀ ĐỒNG Ý</p>
+            <p class="order-info" style="margin-top: 20px;">VII. CAM KẾT VÀ ĐỒNG Ý</p>
 
             <p>Tôi/chúng tôi cam kết những thông tin cung cấp trên đây là đầy đủ và đúng sự thật</p>
             <p>Tôi/chúng tôi ủy quyền cho bất kỳ tổ chức, công ty hay cá nhân nào có hồ sơ hay có hiểu biết về thông

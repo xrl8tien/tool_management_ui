@@ -202,13 +202,13 @@
                 </div>
             </div>
 
-            <div class="form-row">
+            <div class="form-row" style="margin-left: 2px;">
                 <label class="label-dateDeath">Nguyên nhân tử vong</label>
                 <input class="form-control input-modify" placeholder="N/A" type="text" name="deathReason"
                     [(ngModel)]="deathReason">
             </div>
 
-            <div class="form-row">
+            <div class="form-row" style="margin-left: 2px;">
                 <label class="label-deathPlace">Nơi tử vong</label>
                 <input class="form-control input-modify" placeholder="N/A" type="text" name="deathPlace"
                     [(ngModel)]="deathPlace">
@@ -224,26 +224,26 @@
             <div class="form-row">
                 <div class="col-md-3 mb-3">
                     <label class="label-dateDeath">Tai nạn xảy ra lúc</label>
-                    <input type="text" placeholder="N/A" class="form-control input-modify" name="accidentHour"
+                    <input type="text" placeholder="N/A" class="form-control" name="accidentHour"
                         onfocus="(this.type='datetime-local')" [(ngModel)]="inputDateAccident">
                 </div>
             </div>
 
             <div class="form-row">
                 <label class="label-dateDeath">Nơi xảy ra tai nạn</label>
-                <input class="form-control input-modify" placeholder="N/A" type="text" name="accidentPlace"
+                <input class="form-control cus-title" placeholder="N/A" type="text" name="accidentPlace"
                     [(ngModel)]="accidentPlace">
             </div>
 
             <div class="form-row" style="margin-top: 13px;">
                 <label class="label-dateDeath">Diễn biến tai nạn</label>
-                <textarea class="form-control input-modify" placeholder="N/A" name="accidentDetail" rows="4"
+                <textarea class="form-control cus-title" placeholder="N/A" name="accidentDetail" rows="4"
                     [(ngModel)]="accidentDetail"></textarea>
             </div>
 
             <div class="form-row" style="margin-top: 13px;">
                 <label class="label-dateDeath">Tình trạng thương tích</label>
-                <textarea class="form-control input-modify" placeholder="N/A" name="injuryStatus" rows="4"
+                <textarea class="form-control cus-title" placeholder="N/A" name="injuryStatus" rows="4"
                     [(ngModel)]="injuryStatus"></textarea>
             </div>
 
@@ -259,37 +259,74 @@
                 <div class="col-md-4 mb-3">
                     <label for="inputName2">Họ và tên<span class="noting">(*)</span></label>
                     <input type="text" class="form-control" id="inputName2" name="inputName2" [(ngModel)]="inputName2"
-                        required>
+                        required #name2="ngModel"
+                        pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$">
+                    <span id="errorMessagename" style="color: red;" *ngIf="name2.errors?.required && name2.touched">Họ
+                        và
+                        tên không được để trống</span>
+                    <span id="errorMessagename" style="color: red;" *ngIf="name2.errors?.pattern && name2.touched">Họ và
+                        tên không được để kí tự đặc biệt
+                        hoặc
+                        chữ số</span>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label>Ngày sinh<span class="noting">(*)</span></label>
-                    <input class="form-control" type="date" name="birthday2" [(ngModel)]="birthday2" required>
+                    <input class="form-control" type="date" name="birthday2" [(ngModel)]="birthday2" required
+                        max="2020-01-01">
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label for="inputCMND2">Số CMND/CCCD<span class="noting">(*)</span></label>
                     <input type="text" class="form-control" id="inputCMND2" name="inputCMND2" [(ngModel)]="inputCMND2"
-                        required>
+                        required pattern="(^[0-9]{12}$|^[0-9]{9}$)" #id_card2="ngModel">
+                    <span id="errorMessagename" style="color: red;"
+                        *ngIf="id_card2.errors?.required && id_card2.touched">CMND/CCCD không được
+                        để trống</span>
+                    <span id="errorMessagename" style="color: red;"
+                        *ngIf="id_card2.errors?.pattern && id_card2.touched">CCND/CCCD phải đủ 9 số
+                        hoặc 12 số và không được có chữ cái và kí tự đặc biệt</span>
                 </div>
             </div>
 
-            <div class="form-row">
+            <div class="form-row" style="margin-left: 1px;">
                 <label for="inputAddress2">Địa chỉ liên hệ<span class="noting">(*)</span></label>
                 <input type="text" class="form-control" id="inputAddress2" name="inputAddress2"
-                    [(ngModel)]="inputAddress2" required>
+                    [(ngModel)]="inputAddress2" required
+                    pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéếêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀẾỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ\s0-9\/-]+$"
+                    #curadd_city="ngModel">
+                <span id="errorMessagename" style="color: red;"
+                    *ngIf="curadd_city.errors?.required && curadd_city.touched">Địa chỉ không được để
+                    trống</span>
+                <span id="errorMessagename" style="color: red;"
+                    *ngIf="curadd_city.errors?.pattern && curadd_city.touched">Địa chỉ không được để kí
+                    tự đặc biệt
+                </span>
             </div>
 
             <div class="form-row" style="margin-top: 1rem;">
                 <div class="col-md-6 mb-1">
                     <label for="inputPhone2">Số ĐT<span class="noting">(*)</span></label>
                     <input type="text" class="form-control" id="inputPhone2" name="inputPhone2"
-                        [(ngModel)]="inputPhone2" required>
+                        [(ngModel)]="inputPhone2" required #phone="ngModel" pattern="((09|03|07|08|05)+([0-9]{8})\b)">
+                    <span id="errorMessagename" style="color: red;" *ngIf="phone.errors?.required && phone.touched">Điện
+                        Thoại Di Động không được
+                        để trống</span>
+                    <span id="errorMessagename" style="color: red;" *ngIf="phone.errors?.pattern && phone.touched">Số
+                        điện thoại phải có định
+                        dạng 10 chữ số </span>
                 </div>
                 <div class="col-md-6 mb-1">
                     <label for="inputEmail2">Email<span class="noting">(*)</span></label>
                     <input type="email" class="form-control" id="inputEmail2" name="inputEmail2"
-                        [(ngModel)]="inputEmail2" required>
+                        [(ngModel)]="inputEmail2" required required #email2="ngModel"
+                        pattern="^[\w\d_\.]{5,32}@[\.\-_\w\d]{2,}(\.[\w\d]{2,4}){1,2}$">
+                    <span id="errorMessagename" style="color: red;"
+                        *ngIf="email2.errors?.required && email2.touched">Email không được để trống</span>
+                    <span id="errorMessagename" style="color: red;"
+                        *ngIf="email2.errors?.pattern && email2.touched">Email
+                        không đúng định dạng. Ví dụ :
+                        isolution@gmail.com</span>
                 </div>
             </div>
 
@@ -313,18 +350,18 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="atBank">Tại ngân hàng</label>
-                    <input type="text" class="form-control" id="atBank" name="atBank">
+                    <input type="text" class="form-control cus-title2" id="atBank" name="atBank">
                 </div>
             </div>
 
             <div class="form-row" style="margin-top: 1rem;" *ngIf="options">
                 <label for="chiNhanh">Chi nhánh/ phòng Giao dịch</label>
-                <input type="text" class="form-control" id="chiNhanh">
+                <input type="text" class="form-control cus-title2" id="chiNhanh">
             </div>
 
             <div class="form-row" style="margin-top: 1rem;" *ngIf="options">
                 <label for="inputAddress3">Địa chỉ</label>
-                <input type="text" class="form-control" id="inputAddress3">
+                <input type="text" class="form-control cus-title2" id="inputAddress3">
             </div>
 
 
@@ -351,24 +388,24 @@
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label for="idCardPlace">Nơi cấP</label>
+                    <label for="idCardPlace">Nơi cấp</label>
                     <input type="text" class="form-control" id="idCardPlace" name="idCardPlace">
                 </div>
             </div>
 
             <div class="form-row" style="margin-top: 1rem;" *ngIf="!options">
                 <label for="inputAddress4">Tại ngân hàng</label>
-                <input type="text" class="form-control" id="inputAddress4">
+                <input type="text" class="form-control cus-title2" id="inputAddress4">
             </div>
 
             <div class="form-row" style="margin-top: 1rem;" *ngIf="!options">
                 <label for="chiNhanh2">Chi nhánh/ phòng Giao dịch</label>
-                <input type="text" class="form-control" id="chiNhanh2">
+                <input type="text" class="form-control cus-title2" id="chiNhanh2">
             </div>
 
             <div class="form-row" style="margin-top: 1rem;" *ngIf="!options">
                 <label for="inputAddress5">Địa chỉ</label>
-                <input type="text" class="form-control" id="inputAddress5">
+                <input type="text" class="form-control cus-title2" id="inputAddress5">
             </div>
 
             <p class="order-info">VII. CAM KẾT VÀ ĐỒNG Ý</p>
@@ -400,7 +437,7 @@
             <p class="sign-name">NGƯỜI YÊU CẦU GIẢI QUYẾT QUYỀN LỢI BẢO HIỂM</p>
             <p style="margin-left: 60px;"><i>(ký tên và ghi họ tên bằng chữ thường)</i></p>
             <br><br><br><br><br><br><br><br><br>
-            <p style="margin-left: 20px; font-size: 16px;">{{fullName}}</p>
+            <p style="margin-left: 130px; font-size: 16px;">{{fullName}}</p>
 
             <div class="form-group">
                 <div class="custom-upload-div">

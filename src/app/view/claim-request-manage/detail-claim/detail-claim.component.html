@@ -223,7 +223,7 @@
                         </mat-tab>
                     </mat-tab-group>
                 </mat-tab>
-                <mat-tab label="Chi tiết yêu cầu giải quyết quyền lợi BH">
+                <mat-tab *ngIf="reqClaimDetail != null" label="Chi tiết yêu cầu giải quyết quyền lợi BH">
                     <mat-tab-group>
                         <mat-tab label="Thông tin SKBH">
                             <div class="col-6">

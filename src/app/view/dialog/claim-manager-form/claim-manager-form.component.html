@@ -16,10 +16,12 @@
                 <td>{{claimRequest.sub_benefit}}</td>
                 <td>{{claimRequest.amount_sub|currency : "VND"}}</td>
             </tr>
+            <tr>
+                <th>Tổng Tiền Chi Trả</th>
+                <td></td>
+                <td>{{claimRequest.amount_main + claimRequest.amount_sub|currency : "VND"}}</td>
+            </tr>
         </table>
-        <label>Tổng Tiền Chi Trả</label>
-        <p>{{claimRequest.amount_main + claimRequest.amount_sub|currency : "VND"}}</p>
-        <label>Quyết Định Xét Duyệt</label>
         <select class="custom-select" [(ngModel)]="approveStatus" name="approveStatus" required>
             <option value="DD">Phê Duyệt</option>
             <option value="TC">Từ Chối</option>
@@ -32,5 +34,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Hủy</button>
-    <button mat-button mat-dialog-close type="submit" [disabled]="reviewForm.invalid" (click)="Review()">Lưu</button>
+    <button mat-button mat-dialog-close type="submit" [disabled]="reviewForm.invalid" (click)="Review()">Gửi</button>
 </mat-dialog-actions>

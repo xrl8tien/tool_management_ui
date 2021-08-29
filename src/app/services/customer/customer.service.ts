@@ -12,6 +12,9 @@ import { CustomerInfo } from 'src/app/model/CustomerInfo';
 import { CustomerInfoDTO } from 'src/app/model/CustomerInfoDTO';
 import { District } from 'src/app/model/District';
 import { Request } from 'src/app/model/Request';
+import { RequestClaimBenefit } from 'src/app/model/RequestClaimBenefit';
+import { RequestClaimDetail } from 'src/app/model/RequestClaimDetail';
+import { RequestMedicalInformation } from 'src/app/model/RequestMedicalInformation';
 import { CommonService } from '../common/common.service';
 
 @Injectable({
@@ -293,6 +296,20 @@ export class CustomerService {
     const url = this.common.makeUrl("/customer/send_acc_for_customer");
     return this.httpClient
       .post<any>(url, id, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public addOneRequestClaimDetail(requestClaimDetail: RequestClaimDetail) {
+    const url = this.common.makeUrlForCustomer("/customer-api/add_one_request_claim_detail");
+    return this.httpClient
+      .post<any>(url, requestClaimDetail, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public addOneRequestMedicalInformation(requestMedicalInformation: RequestMedicalInformation) {
+    const url = this.common.makeUrlForCustomer("/customer-api/add_one_request_medical_information");
+    return this.httpClient
+      .post<any>(url, requestMedicalInformation, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

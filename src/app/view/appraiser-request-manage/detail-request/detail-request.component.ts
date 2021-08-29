@@ -115,16 +115,11 @@ export class DetailRequestComponent implements OnInit {
         this.benifitSer.getAllSubBenifit().subscribe((data => {
           this.listSubBenifit = data;
         }))
-
-
         this.custService.getDetailCustomerInfoAdmin(this.contract.id_customer).subscribe((data2 => {
           this.custInfo = data2;
         }))
       }))
     }))
-
-
-
   }
 
   displayConfirmDialog(): void {

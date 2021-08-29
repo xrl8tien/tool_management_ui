@@ -18,6 +18,16 @@
     background-size: cover;
 }
 
+.banner-image {
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    background: url('../../../assets/images/insurance-mbl-banner.png') no-repeat;
+    background-size: cover;
+    height: 670px;
+    margin-top: 55px;
+}
+
 .list-Insurance {
     background-color: rgb(0, 0, 0, 0.6)
 }

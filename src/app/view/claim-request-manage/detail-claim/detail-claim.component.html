@@ -230,11 +230,19 @@
                                 <h2 style="margin-top: 10px;"><b>Thông tin về sự kiện bảo hiểm</b></h2>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Ngày xảy ra sự kiện bảo hiểm:</label>
-                                    <p style="color: red;">...</p>
+                                    <p style="color: red;">{{reqClaimDetail.time_accident}}</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mô tả sự kiện bảo hiểm:</label>
-                                    <p style="color: red;">...</p>
+                                    <p style="color: red;">{{req.name}}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Quyền lợi chính:</label>
+                                    <p style="color: red;">{{reqClaimDetail.main_benefit}}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Quyền lợi phụ:</label>
+                                    <p style="color: red;">{{reqClaimDetail.sub_benefit}}</p>
                                 </div>
                             </div>
                         </mat-tab>
@@ -251,11 +259,11 @@
                                         <th>Chuẩn đoán bệnh/tổn thương</th>
                                         <th>Tên và địa chỉ bệnh viện</th>
                                     </tr>
-                                    <tr>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>...</td>
+                                    <tr *ngFor="let reqMed of listReqMed">
+                                        <td>{{reqMed.date_in}}</td>
+                                        <td>{{reqMed.date_out}}</td>
+                                        <td>{{reqMed.diagnosis_disease}}</td>
+                                        <td>{{reqMed.name_hospital}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -267,15 +275,15 @@
                                 <table id="table1" class="table table-bordered table-striped">
                                     <tr>
                                         <th>Thời điểm tử vong</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.time_death}}</td>
                                     </tr>
                                     <tr>
                                         <th>Nguyên nhân tử vong</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.cause_death}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Nơi tử vong (ghi rõ tên bệnh viện nếu tử vong tại bệnh viện)</th>
-                                        <td>...</td>
+                                        <th>Nơi tử vong</th>
+                                        <td>{{reqClaimDetail.place_death}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -289,19 +297,19 @@
                                 <table id="table1" class="table table-bordered table-striped">
                                     <tr>
                                         <th>Thời điểm xảy ra tai nạn</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.time_accident}}</td>
                                     </tr>
                                     <tr>
                                         <th>Nơi xảy ra tai nạn</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.place_accident}}</td>
                                     </tr>
                                     <tr>
                                         <th>Diễn biến tai nạn</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.cause_accident}}</td>
                                     </tr>
                                     <tr>
                                         <th>Tình trạng thương tích</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.injury_status}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -315,27 +323,27 @@
                                 <table id="table1" class="table table-bordered table-striped">
                                     <tr>
                                         <th>Họ và tên</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.name_writer}}</td>
                                     </tr>
                                     <tr>
                                         <th>Ngày sinh</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.dob_writer}}</td>
                                     </tr>
                                     <tr>
                                         <th>Số CMND/CCCD</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.card_id_writer}}</td>
                                     </tr>
                                     <tr>
                                         <th>Địa chỉ liên hệ</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.address_writer}}</td>
                                     </tr>
                                     <tr>
                                         <th>Số điện thoại</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.phone_writer}}</td>
                                     </tr>
                                     <tr>
                                         <th>Email</th>
-                                        <td>...</td>
+                                        <td>{{reqClaimDetail.email_writer}}</td>
                                     </tr>
                                 </table>
                             </div>

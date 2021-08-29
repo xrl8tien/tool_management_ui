@@ -69,121 +69,10 @@
                 </div>
             </div>
 
-            <div class="form-row" style="margin-bottom: 10px;">
-                <div class="col-md-9">
-                    <label style="font-size: 18px;">
-                        <i class="fas fa-caret-right"></i> Người được bảo hiểm của quyền lợi yêu cầu:
-                    </label>
-                    <input class="form-control" type="text" name="inputBMBH">
-                </div>
-                <div class="col-md-3">
-                    <label for="inputCMND">Số CMND/CCCD</label>
-                    <input class="form-control" type="text" name="inputBMBH">
-                </div>
-            </div>
-            <!-- 
-            <div class="form-row" style="margin-bottom: 10px;">
-                <div class="col-md-6">
-                    <label for="inputJob">Nghề nghiệp hiện tại</label>
-                    <input type="text" class="form-control" id="inputJob" name="inputJob">
-                </div>
-                <div class="col-md-6">
-                    <label for="inputJobDetail">Chi tiết công việc</label>
-                    <input type="text" class="form-control" id="inputJobDetail" name="inputJobDetail">
-                </div>
-            </div> -->
-            <!-- 
-            <div class="form-row" style="margin-bottom: 10px;">
-                <div class="col-md-4">
-                    <label for="inputBHYT">Số thẻ bảo hiểm y tế: </label>
-                    <input class="form-control" type="number" name="inputBHYT">
-                </div>
-                <div class="col-md-8">
-                    <label for="inputBHYTHospital">Bệnh viện đăng kí bảo hiểm y tế: </label>
-                    <input class="form-control" type="text" name="inputBHYTHospital">
-                </div>
-            </div> -->
-
-            <div class="form-row" style="margin-bottom: 10px;">
-                <div class="col-12">
-                    <label for="inputAddress1">Địa chỉ thường trú</label>
-                    <input class="form-control" type="text" name="inputAddressBMBH">
-                </div>
-            </div>
-
-            <div class="form-row" style="margin-bottom: 10px;">
-                <div class="col-12">
-                    <label for="inputAddress2">Địa chỉ liên lạc</label>
-                    <input class="form-control" type="text" name="inputAddressBMBH">
-                </div>
-            </div>
-
-            <div class="form-row" style="margin-bottom: 10px;">
-                <div class="col-md-6 mb-1">
-                    <label for="inputPhone">Điện thoại</label>
-                    <input type="text" class="form-control" id="inputPhoneBMBH" name="phoneInputBMBH">
-                </div>
-                <div class="col-md-6 mb-1">
-                    <label for="inputEmail">Email</label>
-                    <input type="email" class="form-control" id="inputEmailBMBH" name="emailInputBMBH">
-                </div>
-            </div>
-
-            <!-- <div class="form-row" style="margin-bottom: 10px;">
-                <div class="col-12">
-                    <label>Nếu người được bảo hiểm là trẻ em, xin vui lòng ghi rõ tên trường/lớp học:</label>
-                    <input type="text" class="form-control" id="inputAddress" name="addressInput">
-                </div>
-            </div> -->
-
-            <p style="font-size: 18px; font-weight: 500;"> <i class="fas fa-caret-right"></i> Người yêu cầu giải quyết
-                quyền lợi
-                bảo hiểm ( KHÔNG ĐIỀN NẾU CŨNG LÀ BÊN MUA
-                BẢO HIỂM ):
-            </p>
-            <div class="form-row" style="margin-bottom: 10px;">
-                <div class="col-md-8">
-                    <label>Họ tên</label>
-                    <input type="text" class="form-control" id="inputName" name="code_sender">
-                </div>
-                <div class="col-md-4">
-                    <label for="inputCMND">Số CMND/CCCD</label>
-                    <input type="text" class="form-control" id="inputCMND" name="CMND/CCCD">
-                </div>
-            </div>
-
-            <div class="form-row" style="margin-bottom: 10px;">
-                <div class="col-12">
-                    <label for="inputAddress2">Địa chỉ liên hệ</label>
-                    <input type="text" class="form-control" id="inputAddress" name="addressInput">
-                </div>
-            </div>
-
-            <div class="form-row" style="margin-bottom: 10px;">
-                <div class="col-md-6 mb-1">
-                    <label for="inputPhone">Điện thoại</label>
-                    <input type="text" class="form-control" id="inputPhone" name="phoneInput">
-                </div>
-                <div class="col-md-6 mb-1">
-                    <label for="inputEmail">Email</label>
-                    <input type="email" class="form-control" id="inputEmail" name="emailInput">
-                </div>
-            </div>
-
-            <div class="form-row">
-                <p style="padding-top: 16px;"><b>Mối quan hệ với Người được bảo hiểm của quyền lợi yêu cầu:</b></p>
-                <div class="col-md-3 mb-3">
-                    <input class="form-control" style="margin-left: 10px;" type="text">
-                </div>
-            </div>
-
             <div class="form-row">
                 <p style="padding-top: 13px; font-size: 18px; font-weight: 500;"><i class="fas fa-caret-right"></i> <b>
                         Chuyên
                         viên tư vấn: </b> {{ employeinfoDTO.name }}</p>
-                <!-- <div class="col-md-10 mb-3">
-            <input class="form-control" style="margin-left: 10px;" type="text" [value]="{{ employeinfoDTO.name }}">
-        </div> -->
             </div>
 
             <div class="form-row">
@@ -194,7 +83,7 @@
                     employeinfoDTO.phone}}</p>
             </div>
 
-            <p class="order-info">I. QUYỀN LỢI BẢO HIỂM YÊU CẦU</p>
+            <p class="order-info">II. QUYỀN LỢI BẢO HIỂM YÊU CẦU</p>
 
             <div class="form-row">
                 <div class="col-md-4 mb-3">
@@ -207,35 +96,34 @@
                         </option>
                     </select>
                 </div>
-                <!-- <div class="col-md-3 mb-3">
-            <label>Có hiệu lực từ</label>
-            <input class="form-control" type="date" name="start_date">
-        </div>
-        <div class="col-md-3 mb-3">
-            <label>đến</label>
-            <input class="form-control" type="date" name="end_date">
-        </div> -->
 
                 <div class="form-group col-md-8">
-                    <label for="inputBenefit">Quyền lợi bảo hiểm<span class="noting">(*)</span></label>
-                    <select id="inputBenefit" class="form-control" required>
-                        <option selected>Chọn loại quyền lợi bảo hiểm...</option>
-                        <option *ngFor="let mainBenefit of listMainBenefitScale" [value]="mainBenefit.id">
-                            {{mainBenefit.name}}
+                    <label for="inputMainBenefit">Quyền lợi bảo hiểm chính<span class="noting">(*)</span></label>
+                    <select id="inputMainBenefit" class="form-control" [(ngModel)]="selectedMain" name="selectedMain"
+                        required>
+                        <option selected>Chọn loại quyền lợi bảo hiểm chính...</option>
+                        <option *ngFor="let mainBenefit of listMainBenefit" [value]="mainBenefit">
+                            {{mainBenefit}}
                         </option>
-                        <option *ngFor="let subBenefit of listSubBenefitScale" [value]="subBenefit.id">
-                            {{subBenefit.name}}
+                    </select>
+                    <label for="inputSubBenefit">Quyền lợi bảo hiểm phụ<span class="noting">(*)</span></label>
+                    <select id="inputSubBenefit" class="form-control" [(ngModel)]="selectedSub" name="selectedSub"
+                        required>
+                        <option selected>Chọn loại quyền lợi bảo hiểm phụ...</option>
+                        <option *ngFor="let subBenefit of listSubBenefit" [value]="subBenefit">
+                            {{subBenefit}}
                         </option>
                     </select>
                 </div>
             </div>
 
-            <p class="order-info">II. THÔNG TIN VỀ SỰ KIỆN BẢO HIỂM</p>
+            <p class="order-info">III. THÔNG TIN VỀ SỰ KIỆN BẢO HIỂM</p>
 
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label>Ngày xảy ra<span class="noting">(*)</span></label>
-                    <input class="form-control" type="date" name="day_happen" [(ngModel)]="day_happen" required>
+                    <label for="day_happen">Ngày xảy ra<span class="noting">(*)</span></label>
+                    <input class="form-control" type="date" name="day_happen" id="day_happen" [(ngModel)]="day_happen"
+                        required>
                 </div>
             </div>
 
@@ -245,7 +133,7 @@
                     required></textarea>
             </div>
 
-            <p class="order-info">III.THÔNG TIN Y TẾ <i>(từ trước đến nay)</i></p>
+            <p class="order-info">IV.THÔNG TIN Y TẾ <i>(từ trước đến nay)</i></p>
             <div class="table-container">
                 <table class="table table-hover">
                     <tr class="table-info">
@@ -256,108 +144,122 @@
                         <th>Tên và địa chỉ bệnh viện</th>
                         <th></th>
                     </tr>
-                    <tr *ngFor="let item of row; let i = index" class="table-light">
-                        <td><input class="form-control" type="text" placeholder="N/A" onfocus="(this.type='date')"
-                                name="inputDateIn"></td>
-                        <td><input class="form-control" type="text" placeholder="N/A" onfocus="(this.type='date')"
-                                name="inputDateOut"></td>
-                        <td><input class="form-control" type="text" name="namePataient"></td>
-                        <td><input class="form-control" type="text" name="nameHospital"></td>
-                        <td> <button (click)="deleteRow(i)"><img
-                                    src="https://img.icons8.com/color/30/000000/delete-forever.png" /></button></td>
+                    <tr *ngFor="let item of row; let i = index">
+                        <td>
+                            <input [(ngModel)]="item.date_in" class="form-control" type="text"
+                                name="{{item.date_in}}" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="item.date_out" class="form-control" type="text" name="{{item.date_out}}"
+                                placeholder="N/A" onfocus="(this.type='date')" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="item.diagnosis_disease" class="form-control" type="text"
+                                name="{{item.diagnosis_disease}}" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="item.name_hospital" class="form-control" type="text"
+                                name="{{item.name_hospital}}" />
+                        </td>
+                        <td>
+                            <button (click)="deleteRow(i)"><img
+                                    src="https://img.icons8.com/color/30/000000/delete-forever.png" /></button>
+                        </td>
                     </tr>
-                    <button (click)="addTable()" class="btn-add-row"><img
-                            src="https://img.icons8.com/color/32/000000/add--v1.png" /></button><br>
+                    <tr class="add-row">
+                        <td>
+                            <input class="form-control" type="text" id="newAttributeDate_in"
+                                [(ngModel)]="newItem.date_in" name="newItemdate_in" placeholder="N/A"
+                                onfocus="(this.type='date')" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newItemDate_out" [(ngModel)]="newItem.date_out"
+                                name="newItemDate_out" placeholder="N/A" onfocus="(this.type='date')" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newItemDiagnosis_disease"
+                                [(ngModel)]="newItem.diagnosis_disease" name="newItemDiagnosis_disease"
+                                placeholder="N/A" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newItemName_hospital"
+                                [(ngModel)]="newItem.name_hospital" name="newItemName_hospital" placeholder="N/A" />
+                        </td>
+                        <td>
+                            <button (click)="addTable()" class="btn-add-row"><img
+                                    src="https://img.icons8.com/color/32/000000/add--v1.png" /></button>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
             <p style="font-size: 14px;"><strong>Chi tiết về tử vong</strong> (nếu yêu cầu quyền lợi tử vong):</p>
             <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <label class="label-dateDeath">Ngày tử vong:</label>
-                    <input type="text" placeholder="N/A" class="form-control input-modify" onfocus="(this.type='date')"
-                        name="inputDateDeadth">
+                <div class="col-md-3 mb-3" id="divshow">
+                    <label class="label-dateDeath">Thời điểm tử vong:</label>
+                    <input type="text" placeholder="N/A" class="form-control input-modify" name="inputDateDeath"
+                        onfocus="(this.type='datetime-local')" [(ngModel)]="inputDateDeath">
                 </div>
-                <!-- <div class="col-md-4 mb-3">
-            <label class="label-dateDeath">Ngày tử vong:</label>
-            <input class="form-control" type="date" name="inputDateDeath">
-        </div>
-        <div>
-            <label class="label-dateDeath">Thời điểm tử vong:</label>
-            <input class="form-control" type="number" name="inputHourDeath">
-        </div>
-        <p class="momentDeath"><b>giờ</b></p>
-        <div class="col-md-2 mb-3">
-            <label>&nbsp;</label>
-            <input class="form-control" style="margin-left: 10px;" type="number" name="inputMinutesDeath">
-        </div>
-        <p class="momentDeath"><b>phút</b></p> -->
             </div>
 
             <div class="form-row">
                 <label class="label-dateDeath">Nguyên nhân tử vong</label>
-                <input class="form-control input-modify" placeholder="N/A" type="text" name="deathReason">
+                <input class="form-control input-modify" placeholder="N/A" type="text" name="deathReason"
+                    [(ngModel)]="deathReason">
             </div>
 
             <div class="form-row">
                 <label class="label-deathPlace">Nơi tử vong</label>
-                <input class="form-control input-modify" placeholder="N/A" type="text" name="deathPlace">
+                <input class="form-control input-modify" placeholder="N/A" type="text" name="deathPlace"
+                    [(ngModel)]="deathPlace">
             </div>
             <p class="input-modify" style="margin-top: 7px;">(ghi rõ tên bệnh viện nếu tử vong tại bệnh viện)
             </p>
             <br>
 
-            <p class="order-info">IV. THÔNG TIN TAI NẠN <i>(Quý khách vui lòng cung cấp thông tin nếu thương tổn do
-                    nguyên nhân
+            <p class="order-info">V. THÔNG TIN TAI NẠN <i>(Quý khách vui lòng cung cấp thông tin nếu thương tổn do
+                    nguyên
+                    nhân
                     tai nạn)</i></p>
             <div class="form-row">
-                <div lass="col-md-3 mb-3">
+                <div class="col-md-3 mb-3">
                     <label class="label-dateDeath">Tai nạn xảy ra lúc</label>
-                    <input type="text" placeholder="N/A" name="accidentHour" onfocus="(this.type='date')"
-                        class="form-control input-modify">
-                    <!-- <label class="label-dateDeath">Tai nạn xảy ra lúc</label>
-            <input class="form-control" type="number" name="accidentHour">
-        </div>
-        <p class="momentDeath"><b>giờ</b></p>
-        <div class="col-md-2 mb-3">
-            <label>&nbsp;</label>
-            <input class="form-control" style="margin-left: 10px;" type="number" name="accidentMinute">
-        </div>
-        <p class="momentDeath"><b>phút</b></p>
-        <p class="momentDeath"><b>ngày</b></p>
-        <div class="col-md-3 mb-3">
-            <label>&nbsp;</label>
-            <input class="form-control" style="margin-left: 10px;" type="date" name="accidentDate"> -->
+                    <input type="text" placeholder="N/A" class="form-control input-modify" name="accidentHour"
+                        onfocus="(this.type='datetime-local')" [(ngModel)]="inputDateAccident">
                 </div>
             </div>
 
             <div class="form-row">
                 <label class="label-dateDeath">Nơi xảy ra tai nạn</label>
-                <input class="form-control input-modify" placeholder="N/A" type="text" name="accidentPlace">
+                <input class="form-control input-modify" placeholder="N/A" type="text" name="accidentPlace"
+                    [(ngModel)]="accidentPlace">
             </div>
 
             <div class="form-row" style="margin-top: 13px;">
                 <label class="label-dateDeath">Diễn biến tai nạn</label>
-                <textarea class="form-control input-modify" placeholder="N/A" name="accidentDetail" rows="4"></textarea>
+                <textarea class="form-control input-modify" placeholder="N/A" name="accidentDetail" rows="4"
+                    [(ngModel)]="accidentDetail"></textarea>
             </div>
 
             <div class="form-row" style="margin-top: 13px;">
                 <label class="label-dateDeath">Tình trạng thương tích</label>
-                <textarea class="form-control input-modify" placeholder="N/A" name="accidentDetail" rows="4"></textarea>
+                <textarea class="form-control input-modify" placeholder="N/A" name="injuryStatus" rows="4"
+                    [(ngModel)]="injuryStatus"></textarea>
             </div>
 
-            <p class="order-info">V. THÔNG TIN VỀ NGƯỜI YÊU CẦU BỒI THƯỜNG (ĐỒNG THỜI LÀ NGƯỜI NHẬN TIỀN)</p>
+            <p class="order-info">VI. THÔNG TIN VỀ NGƯỜI YÊU CẦU BỒI THƯỜNG (ĐỒNG THỜI LÀ NGƯỜI NHẬN TIỀN)</p>
             <p><em>Người yêu cầu bồi thường phải là NĐBH hoặc người thừa kế/người thụ hưởng/người được chỉ định trên
                     giấy chứng nhân bảo hiểm (GCNBH)/người được ủy quyền hợp pháp của NĐBH hoặc bố/mẹ/người giám hộ
-                    hợp pháp trong trường hợp NĐBH dưới 18 tuổi. Chỉ điền các thông tin nếu NĐBH khác với người yêu cầu
+                    hợp pháp trong trường hợp NĐBH dưới 18 tuổi. Chỉ điền các thông tin nếu NĐBH khác với người yêu
+                    cầu
                     bồi thường.</em>
             </p>
 
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="inputName2">Họ và tên<span class="noting">(*)</span></label>
-                    <input type="text" class="form-control" id="inputName2" name="code_sender2"
-                        [(ngModel)]="code_sender2" required>
+                    <input type="text" class="form-control" id="inputName2" name="inputName2" [(ngModel)]="inputName2"
+                        required>
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -367,23 +269,27 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="inputCMND2">Số CMND/CCCD<span class="noting">(*)</span></label>
-                    <input type="number" class="form-control" id="inputCMND2" [(ngModel)]="inputCMND2" required>
+                    <input type="text" class="form-control" id="inputCMND2" name="inputCMND2" [(ngModel)]="inputCMND2"
+                        required>
                 </div>
             </div>
 
             <div class="form-row">
                 <label for="inputAddress2">Địa chỉ liên hệ<span class="noting">(*)</span></label>
-                <input type="text" class="form-control" id="inputAddress2" [(ngModel)]="inputAddress2" required>
+                <input type="text" class="form-control" id="inputAddress2" name="inputAddress2"
+                    [(ngModel)]="inputAddress2" required>
             </div>
 
             <div class="form-row" style="margin-top: 1rem;">
                 <div class="col-md-6 mb-1">
                     <label for="inputPhone2">Số ĐT<span class="noting">(*)</span></label>
-                    <input type="text" class="form-control" id="inputPhone2" [(ngModel)]="inputPhone2" required>
+                    <input type="text" class="form-control" id="inputPhone2" name="inputPhone2"
+                        [(ngModel)]="inputPhone2" required>
                 </div>
                 <div class="col-md-6 mb-1">
                     <label for="inputEmail2">Email<span class="noting">(*)</span></label>
-                    <input type="email" class="form-control" id="inputEmail2" [(ngModel)]="inputEmail2" required>
+                    <input type="email" class="form-control" id="inputEmail2" name="inputEmail2"
+                        [(ngModel)]="inputEmail2" required>
                 </div>
             </div>
 
@@ -469,20 +375,24 @@
 
             <p>Tôi/chúng tôi cam kết những thông tin cung cấp trên đây là đầy đủ và đúng sự thật</p>
             <p>Tôi/chúng tôi ủy quyền cho bất kỳ tổ chức, công ty hay cá nhân nào có hồ sơ hay có hiểu biết về thông
-                tin cá nhân, sức khỏe, bệnh sử hay việc điều trị của Người được bảo hiểm được phép tiết lộ cho Công ty
+                tin cá nhân, sức khỏe, bệnh sử hay việc điều trị của Người được bảo hiểm được phép tiết lộ cho Công
+                ty
                 hay người đại diện của Công ty bất cứ thông tin nào mà Công ty yêu cầu.
             </p>
-            <p>Tôi/chúng tôi đồng ý hợp tác với Công ty trong việc xác minh cũng như cung cấp đầy đủ các chứng từ cần
+            <p>Tôi/chúng tôi đồng ý hợp tác với Công ty trong việc xác minh cũng như cung cấp đầy đủ các chứng từ
+                cần
                 thiết liên quan đến sự kiện bảo hiểm mà Công ty yêu cầu.</p>
 
             <p>Tôi/chúng tôi với tư cách đại diện cho cá nhân Bên mua bảo hiểm (BMBH)/Người được bảo hiểm (NĐBH)
                 hoặc đại diện hợp pháp của người được nhận quyền lợi bảo hiểm này, theo đây:</p>
-            <p><span>a. </span> cho phép Công ty được quyền cung cấp các thông tin cá nhân của BMBH/ NĐBH/ NTH và các
+            <p><span>a. </span> cho phép Công ty được quyền cung cấp các thông tin cá nhân của BMBH/ NĐBH/ NTH và
+                các
                 thông tin liên quan đến hợp đồng bảo hiểm này và/hoặc các hợp đồng bảo hiểm khác có liên quan đến
                 BMBH/ NĐBH/ NTH cho bất kỳ cơ quan nhà nước có thẩm quyền nào.</p>
             <br>
 
-            <span class="nothing"><i>(*) Quý khách vui lòng điền đầy đủ thông tin bên trên. Sau khi điền đủ thông tin
+            <span class="nothing"><i>(*) Quý khách vui lòng điền đầy đủ thông tin bên trên. Sau khi điền đủ thông
+                    tin
                     vui
                     lòng xuất file về định dạng FDF và đính kèm file với những file cần thiết.</i></span>
             <br><br>
@@ -502,11 +412,10 @@
                     <input id="file" type="file" (change)="onChangeFile($event)" [(ngModel)]="inputFileName" required />
                 </div>
             </div>
-
         </form>
         <div class="btn-end" style="margin-left: 20rem; padding-bottom: 20px;">
-            <button type="submit" class="btn btn-primary" [disabled]="requestForm.invalid" (click)="sendReq()">Xác
-                nhận</button>
+            <button type="submit" class="btn btn-primary" [disabled]="requestForm.invalid" (click)="sendReq()">Gửi
+                đơn</button>
             <button type="button" class="btn btn-info" (click)="dowloadPDF()">Xuất tài liệu PDF</button>
         </div>
     </div>

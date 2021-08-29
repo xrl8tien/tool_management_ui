@@ -26,6 +26,8 @@ import { RequestAttachment } from 'src/app/model/RequestAttachment';
 import { MainBenefitScale } from 'src/app/model/MainBenefitScale';
 import { SubBenefitScale } from 'src/app/model/SubBenefitScale';
 import { IllustrationMainBenifit } from 'src/app/model/IllustrationMainBenifit';
+import { RequestClaimDetail } from 'src/app/model/RequestClaimDetail';
+import { RequestMedicalInformation } from 'src/app/model/RequestMedicalInformation';
 
 @Component({
   selector: 'app-detail-claim',
@@ -49,6 +51,8 @@ export class DetailClaimComponent implements OnInit {
 
   status: boolean = false;
   req: Request;
+  reqClaimDetail: RequestClaimDetail;
+  listReqMed: Array<RequestMedicalInformation>;
   contract: Contract;
   custInfo: Array<CustomerInfo>;
   mainBenefit: IllustrationMainBenifit;
@@ -173,7 +177,12 @@ export class DetailClaimComponent implements OnInit {
         }))
 
       }))
-
+      this.contractRequestService.getRequestClaimDetail(this.req.id).subscribe((data => {
+        this.reqClaimDetail = data;
+        this.contractRequestService.getRequestMedicalInformation(this.reqClaimDetail.id).subscribe((data1 => {
+          this.listReqMed = data1;
+        }))
+      }))
     }))
 
     this.spinner.hide();

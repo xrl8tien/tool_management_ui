@@ -781,8 +781,8 @@ export class DashboardComponent implements OnInit {
   openDayNotificationDialog(): void {
     let dialogRef = this.dialog.open(DayNotificationDialogComponent, {
       data: { listBirthdayCus: this.listBirthdayCus, listExpiredContract: this.listExpiredContract },
-      height: '600px',
-      width: '2000px',
+      height: '550px',
+      width: '100%',
     });
     dialogRef.afterClosed().subscribe(result => {
 

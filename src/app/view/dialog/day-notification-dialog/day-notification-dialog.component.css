@@ -3,12 +3,12 @@
 }
 
 button{
-    margin-top: 20px;
     margin-left: 20px;
 }
 
 .form-inline{
-    margin-top: 30px;
+    margin-top: 10px;
+    display: flex;
 }
 
 .custom-div {
@@ -20,4 +20,9 @@ button{
     position: fixed;
     bottom: 0px;
     z-index: 1000;
+}
+
+.inputDate {
+    width: 60px;
+    margin: 0 10px;
 }

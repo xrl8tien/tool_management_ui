@@ -27,9 +27,8 @@
                             <td>{{contract.contract_total_value}}</td>
                             <td>{{paymentPeriod(contract.payment_period_id)}}</td>
                             <td>{{contract.start_time | date: 'dd-MM-yyyy'}}</td>
-                            <button
-                                (click)="sendPaymentNotification(contract)"
-                                class="btn btn-info" style="height: 40px; width: 130px; margin: 10px; color: white;">Gửi
+                            <button (click)="sendPaymentNotification(contract)" class="btn btn-info"
+                                style="height: 40px; width: 130px; margin: 10px; color: white;">Gửi
                                 Thông Báo</button>
                         </tr>
                     </tbody>
@@ -40,17 +39,13 @@
                 <!-- <div class="custom-div"> -->
                 <form #notiSetting="ngForm">
                     <div class="form-inline">
-                        <div class="col">
-                            <label for="inputDayNoti">Khách hàng sẽ nhận được thông báo
-                                trước: </label>
-                        </div>
-                        <div class="col">
-                            <input type="number" name="date_setting" required
-                                [(ngModel)]="notificationSetting.date_setting" class="form-control">
-                            ngày
-                        </div>
-                        <div class="col"> <button mat-button type="submit" [disabled]="notiSetting.invalid"
-                                (click)="saveSetting()" class="btn btn-primary">Lưu</button></div>
+                        <label for="inputDayNoti">Khách hàng sẽ nhận được thông báo
+                            trước: </label>
+                        <input type="number" name="date_setting" required [(ngModel)]="notificationSetting.date_setting"
+                            class="form-control inputDate">
+                        ngày
+                        <button mat-button type="submit" [disabled]="notiSetting.invalid" (click)="saveSetting()"
+                            class="btn btn-primary">Lưu</button>
                     </div>
                 </form>
                 <!-- </div> -->

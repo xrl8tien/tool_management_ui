@@ -65,14 +65,16 @@
                             {{mainBenefit}}
                         </option>
                     </select>
-                    <label for="inputSubBenefit">Quyền lợi bảo hiểm phụ<span class="noting">(*)</span></label>
-                    <select id="inputSubBenefit" class="form-control" [(ngModel)]="selectedSub" name="selectedSub"
-                        required>
-                        <option selected>Chọn loại quyền lợi bảo hiểm phụ...</option>
-                        <option *ngFor="let subBenefit of listSubBenefit" [value]="subBenefit">
-                            {{subBenefit}}
-                        </option>
-                    </select>
+                    <div *ngIf="listSubBenefit.length > 1" style="margin-top: 10px;">
+                        <label for="inputSubBenefit">Quyền lợi bảo hiểm phụ<span class="noting">(*)</span></label>
+                        <select id="inputSubBenefit" class="form-control" [(ngModel)]="selectedSub" name="selectedSub"
+                            required>
+                            <option selected>Chọn loại quyền lợi bảo hiểm phụ...</option>
+                            <option *ngFor="let subBenefit of listSubBenefit" [value]="subBenefit">
+                                {{subBenefit}}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -274,16 +276,10 @@
             <div class="form-row">
                 <label for="inputAddress2">Địa chỉ liên hệ<span class="noting">(*)</span></label>
                 <input type="text" class="form-control" id="inputAddress2" name="inputAddress2"
-                    [(ngModel)]="inputAddress2" required
-                    pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéếêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀẾỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ\s0-9\/-]+$"
-                    #curadd_city="ngModel">
+                    [(ngModel)]="inputAddress2" required #curadd_city="ngModel">
                 <span id="errorMessagename" style="color: red;"
                     *ngIf="curadd_city.errors?.required && curadd_city.touched">Địa chỉ không được để
                     trống</span>
-                <span id="errorMessagename" style="color: red;"
-                    *ngIf="curadd_city.errors?.pattern && curadd_city.touched">Địa chỉ không được để kí
-                    tự đặc biệt
-                </span>
             </div>
 
             <div class="form-row" style="margin-top: 1rem;">

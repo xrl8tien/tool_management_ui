@@ -45,6 +45,7 @@ export type ChartOptions2 = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
   responsive: ApexResponsive[];
+  colors: string[];
   labels: any;
 };
 export type ChartOptions3 = {
@@ -289,9 +290,10 @@ export class DashboardManagerComponent implements OnInit {
             series: [],
             chart: {
               height: 347,
-              type: "donut"
+              type: "donut",
             },
             labels: [],
+            colors: ["#008ffb", "#775dd0", "#ff4560", "#ffd900", "#00e396", "#D2691E"]
           };
           this.contractService.getAllProductDTO(jwt_decode(this.common.getCookie('token_key'))['sub']).subscribe((data => {
             for (let i = 0; i < data.length; i++) {

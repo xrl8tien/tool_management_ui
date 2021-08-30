@@ -60,7 +60,7 @@
                     <label for="inputMainBenefit">Quyền lợi bảo hiểm chính<span class="noting">(*)</span></label>
                     <select id="inputMainBenefit" class="form-control" [(ngModel)]="selectedMain" name="selectedMain"
                         required>
-                        <option selected>Chọn loại quyền lợi bảo hiểm chính...</option>
+                        <option [value]="'N/A'">Không</option>
                         <option *ngFor="let mainBenefit of listMainBenefit" [value]="mainBenefit">
                             {{mainBenefit}}
                         </option>
@@ -69,12 +69,14 @@
                         <label for="inputSubBenefit">Quyền lợi bảo hiểm phụ<span class="noting">(*)</span></label>
                         <select id="inputSubBenefit" class="form-control" [(ngModel)]="selectedSub" name="selectedSub"
                             required>
-                            <option selected>Chọn loại quyền lợi bảo hiểm phụ...</option>
+                            <option [value]="'N/A'">Không</option>
                             <option *ngFor="let subBenefit of listSubBenefit" [value]="subBenefit">
                                 {{subBenefit}}
                             </option>
                         </select>
                     </div>
+                    <span id="errorMessagename" style="color: red;" *ngIf="selectedSub=='N/A' && selectedMain=='N/A'">Không
+                        được chọn cả 2 quyền lợi là Không</span>
                 </div>
             </div>
 

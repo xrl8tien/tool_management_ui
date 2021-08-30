@@ -399,7 +399,7 @@ export class SaleDashboardComponent implements OnInit {
               },
               yaxis: [
                 {
-                  seriesName: "KPI",
+                  seriesName: "Revenue",
                   axisTicks: {
                     show: true
                   },
@@ -413,7 +413,7 @@ export class SaleDashboardComponent implements OnInit {
                     }
                   },
                   title: {
-                    text: "Revenue (Đồng)",
+                    text: "(VNĐ)",
                     style: {
                       color: "#008FFB"
                     }
@@ -423,26 +423,27 @@ export class SaleDashboardComponent implements OnInit {
                   }
                 },
                 {
-                  seriesName: "KPI",
-                  opposite: true,
-                  axisTicks: {
-                    show: true
-                  },
-                  axisBorder: {
-                    show: true,
-                    color: "#FEB019"
-                  },
-                  labels: {
-                    style: {
-                      // color: "#FEB019"
-                    }
-                  },
-                  title: {
-                    text: "KPI (Đồng)",
-                    style: {
-                      color: "#FEB019"
-                    }
-                  }
+                  seriesName: "Revenue",
+                    show: false
+                  // opposite: true,
+                  // axisTicks: {
+                  //   show: true
+                  // },
+                  // axisBorder: {
+                  //   show: true,
+                  //   color: "#FEB019"
+                  // },
+                  // labels: {
+                  //   style: {
+                  //     // color: "#FEB019"
+                  //   }
+                  // },
+                  // title: {
+                  //   text: "KPI (Đồng)",
+                  //   style: {
+                  //     color: "#FEB019"
+                  //   }
+                  // }
                 }
               ],
               tooltip: {
@@ -679,7 +680,7 @@ export class SaleDashboardComponent implements OnInit {
                 },
                 yaxis: [
                   {
-                    seriesName: "KPI",
+                    seriesName: "Revenue",
                     axisTicks: {
                       show: true
                     },
@@ -693,7 +694,7 @@ export class SaleDashboardComponent implements OnInit {
                       }
                     },
                     title: {
-                      text: "Revenue (Đồng)",
+                      text: "(VNĐ)",
                       style: {
                         color: "#008FFB"
                       }
@@ -703,26 +704,27 @@ export class SaleDashboardComponent implements OnInit {
                     }
                   },
                   {
-                    seriesName: "KPI",
-                    opposite: true,
-                    axisTicks: {
-                      show: true
-                    },
-                    axisBorder: {
-                      show: true,
-                      color: "#FEB019"
-                    },
-                    labels: {
-                      style: {
-                        // color: "#FEB019"
-                      }
-                    },
-                    title: {
-                      text: "KPI (Đồng)",
-                      style: {
-                        color: "#FEB019"
-                      }
-                    }
+                    seriesName: "Revenue",
+                    show: false
+                    // opposite: true,
+                    // axisTicks: {
+                    //   show: true
+                    // },
+                    // axisBorder: {
+                    //   show: true,
+                    //   color: "#FEB019"
+                    // },
+                    // labels: {
+                    //   style: {
+                    //     // color: "#FEB019"
+                    //   }
+                    // },
+                    // title: {
+                    //   text: "KPI (Đồng)",
+                    //   style: {
+                    //     color: "#FEB019"
+                    //   }
+                    // }
                   }
                 ],
                 tooltip: {

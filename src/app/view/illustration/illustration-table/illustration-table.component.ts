@@ -29,7 +29,7 @@ export class IllustrationTableComponent implements OnInit {
   dateTo: Date;
   id_role = "";
   codes_sale: Array<string> = [];
-  selectedCode: string;
+  selectedCode: string = 'tat_ca';
 
   ngOnInit(): void {
     this.illustrationService.subsVar = this.illustrationService.
@@ -101,7 +101,7 @@ export class IllustrationTableComponent implements OnInit {
       }
       if (dateToValue == "") {
         this.dateTo = new Date('5000-01-01');
-        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + (this.dateTo.getDate() + 1)
+        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + this.dateTo.getDate()
       }
       else {
         dateTo1 = this.dateTo.toString();

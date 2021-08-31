@@ -82,7 +82,7 @@ export class SaleEmployeeManageComponent implements OnInit {
 
       if (dateToValue == "") {
         this.dateTo = new Date();
-        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + (this.dateTo.getDate() + 1)
+        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + this.dateTo.getDate()
       }
       else {
         dateTo1 = this.dateTo.toString();

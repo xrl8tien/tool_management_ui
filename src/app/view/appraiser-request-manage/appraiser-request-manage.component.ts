@@ -83,7 +83,7 @@ export class AppraiserRequestManageComponent implements OnInit {
 
       if (dateToValue == "") {
         this.dateToRequest = new Date('3000-01-01');
-        dateTo1 = this.dateToRequest.getFullYear() + "-" + (this.dateToRequest.getMonth() + 1) + "-" + (this.dateToRequest.getDate() + 1)
+        dateTo1 = this.dateToRequest.getFullYear() + "-" + (this.dateToRequest.getMonth() + 1) + "-" + this.dateToRequest.getDate()
       }
       else {
         dateTo1 = this.dateToRequest.toString();
@@ -128,7 +128,7 @@ export class AppraiserRequestManageComponent implements OnInit {
 
       if (dateToValue == "") {
         this.dateToApproval = new Date('3000-01-01');
-        dateTo1 = this.dateToApproval.getFullYear() + "-" + (this.dateToApproval.getMonth() + 1) + "-" + (this.dateToApproval.getDate() + 1)
+        dateTo1 = this.dateToApproval.getFullYear() + "-" + (this.dateToApproval.getMonth() + 1) + "-" + this.dateToApproval.getDate()
       }
       else {
         dateTo1 = this.dateToApproval.toString();

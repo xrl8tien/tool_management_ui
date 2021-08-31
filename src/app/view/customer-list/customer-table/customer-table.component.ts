@@ -33,7 +33,7 @@ export class CustomerTableComponent implements OnInit {
   dateTo: Date;
   id_role = "";
   codes_sale: Array<string> = [];
-  selectedCode: string;
+  selectedCode: string = 'tat_ca';
 
   ngOnInit(): void {
     this.customerService.subsVar = this.customerService.
@@ -74,7 +74,7 @@ export class CustomerTableComponent implements OnInit {
 
       if (dateToValue == "") {
         this.dateTo = new Date();
-        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + (this.dateTo.getDate() + 1)
+        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + this.dateTo.getDate()
       }
       else {
         dateTo1 = this.dateTo.toString();

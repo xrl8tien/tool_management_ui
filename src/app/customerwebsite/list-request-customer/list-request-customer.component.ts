@@ -74,7 +74,7 @@ export class ListRequestCustomerComponent implements OnInit {
 
       if (dateToValue == "") {
         this.dateTo = new Date('3000-01-01');
-        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + (this.dateTo.getDate() + 1)
+        dateTo1 = this.dateTo.getFullYear() + "-" + (this.dateTo.getMonth() + 1) + "-" + this.dateTo.getDate()
       }
       else {
         dateTo1 = this.dateTo.toString();
